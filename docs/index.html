@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>geologykz — open geological map of Kazakhstan</title>
+<meta name="description" content="Free, open, vector geological map of Kazakhstan at 1:500,000.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet">
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="#top"><span class="dotlogo"></span>geologykz</a>
+  <nav><a href="#map">Map</a><a href="#progress">Progress</a><a href="#how">How</a><a href="#data">Data</a></nav>
+</header>
+
+<main id="top">
+<section class="hero grid-bg">
+  <span class="pill shimmer"><span class="dot"></span>v0.1 · digitizing in progress</span>
+  <h1>geologykz</h1>
+  <p class="lead">An open geological map of Kazakhstan. Free, vector, 1:500,000.</p>
+  <p class="sub mono">Source: Геологическая карта Казахской ССР, 1976–1979</p>
+  <div class="btns">
+    <a class="btn primary" href="#map">Explore map</a>
+    <a class="btn" href="https://github.com/yerkebulat/geologykz" target="_blank" rel="noopener">GitHub</a>
+    <span class="btn disabled" aria-disabled="true">Download data <span class="chip">soon</span></span>
+  </div>
+</section>
+
+<section id="map" class="mapwrap">
+  <div id="mapview"></div>
+  <div class="overlay card">
+    <span class="pill shimmer"><span class="dot"></span>In progress</span>
+    <h3>Map coming soon</h3>
+    <p>Digitizing in progress. The geology layer will appear here.</p>
+  </div>
+</section>
+
+<section id="progress" class="wrap">
+  <div class="label mono">01 · Progress</div>
+  <h2>Sheets</h2>
+  <p class="muted">Each 1:500,000 sheet from the Soviet series. Links go to the source scan on geokniga.org.</p>
+  <div class="card progress-card">
+    <div class="prow"><span class="mono" id="pcount">0 / 0 sheets done</span><span class="mono" id="ppct">0%</span></div>
+    <div class="bar"><div class="fill" id="pfill"></div></div>
+    <div class="legend mono"><span class="badge s-not_started">Not started</span><span class="badge s-in_progress">In progress</span><span class="badge s-done">Done</span></div>
+  </div>
+  <div id="series"></div>
+  <p class="note mono" id="sheetnote"></p>
+</section>
+
+<section id="how" class="wrap">
+  <div class="label mono">02 · Pipeline</div>
+  <h2>How it works</h2>
+  <div class="steps">
+    <div class="card step"><span class="mono n">01</span><h4>Scan</h4><p>Collect sheet scans from geokniga.org.</p></div>
+    <div class="card step"><span class="mono n">02</span><h4>Georeference</h4><p>Tie sheet corners and grid to coordinates.</p></div>
+    <div class="card step"><span class="mono n">03</span><h4>Segment</h4><p>Split map colors with k-means and SAM 2.</p></div>
+    <div class="card step"><span class="mono n">04</span><h4>Vectorize &amp; attribute</h4><p>Polygons and faults, with name, age, lithology from the legend.</p></div>
+    <div class="card step"><span class="mono n">05</span><h4>Publish</h4><p>Serve as PMTiles on this page.</p></div>
+  </div>
+</section>
+
+<section id="data" class="wrap">
+  <div class="label mono">03 · Data</div>
+  <h2>Data &amp; license</h2>
+  <div class="cols">
+    <div class="card"><h4>Sources</h4><p>Original maps by the Soviet geological survey authors of the Геологическая карта Казахской ССР (1:500,000). Scans from <a href="https://www.geokniga.org" target="_blank" rel="noopener">geokniga.org</a>.</p></div>
+    <div class="card"><h4>License</h4><p><span class="badge">TBD</span> Pending source rights check.</p></div>
+    <div class="card"><h4>CRS</h4><p>Published in WGS 84 <span class="mono">EPSG:4326</span>.</p></div>
+  </div>
+</section>
+</main>
+
+<footer class="wrap foot">
+  <span>Made by Yerkebulan Tazabek</span>
+  <a href="https://github.com/yerkebulat/geologykz" target="_blank" rel="noopener" class="mono">github.com/yerkebulat/geologykz</a>
+</footer>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/pmtiles@3.2.1/dist/pmtiles.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
