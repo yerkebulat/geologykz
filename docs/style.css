@@ -44,3 +44,5 @@ h2{font-size:28px;letter-spacing:-.02em;margin:6px 0 8px}h3,h4{margin:0 0 6px}
 .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:24px}
 .foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-bottom:40px;margin-top:80px;border-top:1px solid var(--line);padding-top:24px;color:var(--muted);font-size:14px}
 @media(max-width:600px){.nav nav{display:none}.hero{padding:64px 20px}.overlay{left:12px;right:12px;top:12px}.wrap{padding-top:56px}}
+
+.layerctl{margin-top:12px;font-size:12px;display:flex;flex-direction:column;gap:6px}.layerctl input[type=range]{width:120px;vertical-align:middle}

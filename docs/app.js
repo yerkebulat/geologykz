@@ -19,6 +19,25 @@
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
 
     map.on("load", function () {
+      // Preview layer: Zhezkazgan region geology polygons (from user-supplied KMZ, Orr and Associates 2006).
+      map.addSource("zhez", { type: "geojson", data: "data/zhezkazgan_geology.geojson", attribution: "Zhezkazgan geology KMZ (Orr and Associates, 2006)" });
+      map.addLayer({ id: "zhez-fill", type: "fill", source: "zhez",
+        paint: { "fill-color": ["get", "color"], "fill-opacity": 0.7 } });
+      map.addLayer({ id: "zhez-line", type: "line", source: "zhez",
+        paint: { "line-color": "#57534e", "line-width": 0.3, "line-opacity": 0.7 } });
+      map.on("click", "zhez-fill", function (e) {
+        const p = (e.features[0] || {}).properties || {};
+        const esc = (s) => String(s || "—").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+        new maplibregl.Popup({ maxWidth: "280px" }).setLngLat(e.lngLat)
+          .setHTML(`<strong>${esc(p.map_code)}</strong><br><span class="mono">${esc([p.age_3, p.age_4, p.age_5].filter(Boolean).join(" · "))}</span><br>${esc(p.descriptio)}<br>${esc(p.rock_type)}`)
+          .addTo(map);
+      });
+      map.on("mouseenter", "zhez-fill", () => (map.getCanvas().style.cursor = "pointer"));
+      map.on("mouseleave", "zhez-fill", () => (map.getCanvas().style.cursor = ""));
+      const tg = document.getElementById("zhez-toggle"), op = document.getElementById("zhez-opacity");
+      if (tg) tg.addEventListener("change", () => ["zhez-fill", "zhez-line"].forEach((id) => map.setLayoutProperty(id, "visibility", tg.checked ? "visible" : "none")));
+      if (op) op.addEventListener("input", () => { map.setPaintProperty("zhez-fill", "fill-opacity", +op.value); map.setPaintProperty("zhez-line", "line-opacity", +op.value); });
+
       // Geology layer placeholder — uncomment when data/geology.pmtiles is published.
       /*
       map.addSource("geology", {
