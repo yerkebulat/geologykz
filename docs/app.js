@@ -93,6 +93,8 @@
     map.fitBounds(KZ_BOUNDS, { padding: pad, duration: 0, maxZoom: 5.4 });
 
     map.on("load", function () {
+      const STYLE_LAYERS = map.getStyle().layers.map((l) => [l.id, (l.layout && l.layout.visibility) || "visible"]);
+      let baseOn = true, baseName = "light";
       map.addSource("geo", { type: "geojson", data: "data/kazakhstan_macrostrat.geojson" });
       map.addSource("kz", { type: "geojson", data: "data/kazakhstan_border.geojson" });
       map.addLayer({
@@ -221,8 +223,13 @@
       map.on("mouseleave", "geo-fill", () => (map.getCanvas().style.cursor = ""));
 
         function setBasemap(name) {
-        const cfg = BASEMAPS[name] || BASEMAPS.light;
         const key = BASEMAPS[name] ? name : "light";
+        baseName = key;
+        const cfg = baseOn ? BASEMAPS[key] : { under: null, overlays: [] };
+        STYLE_LAYERS.forEach(([id, vis]) => {
+          if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", baseOn ? vis : "none");
+        });
+        mapRoot.classList.toggle("base-off", !baseOn);
         Object.keys(UNDERLAYS).forEach((id) => {
           map.setLayoutProperty(
             "base-" + id,
@@ -273,6 +280,12 @@
           if (btn) setBasemap(btn.getAttribute("data-base"));
         });
 
+      const baseTg = document.getElementById("base-toggle");
+      if (baseTg)
+        baseTg.addEventListener("change", () => {
+          baseOn = baseTg.checked;
+          setBasemap(baseName);
+        });
       setBasemap("light");
       window.geologykzSetBasemap = setBasemap;
       window.geologykzMap = map;

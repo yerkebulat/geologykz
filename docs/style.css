@@ -336,3 +336,8 @@ h2 {
 .legend-note{font-size:12px;color:#57534e;margin:8px 12px;line-height:1.45}
 .kz15m-pop .ru{color:#44403c}
 .legend-item .code.kz{min-width:64px;font-family:"JetBrains Mono",monospace;font-size:11px}
+.hero-map.base-off #mapview, .hero-map.base-off .maplibregl-canvas-container { background: #fff; }
+.hero-map.base-off { background: #fff; }
+.mode-switch { display: flex; gap: 4px; margin: 2px 0 4px 24px; }
+.mode-switch button { flex: 1; font: inherit; font-size: 12px; padding: 4px 8px; border: 1px solid #e7e5e4; border-radius: 6px; background: #fff; color: #57534e; cursor: pointer; }
+.mode-switch button.active { background: #1c1917; color: #fff; border-color: #1c1917; }

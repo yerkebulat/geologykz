@@ -36,11 +36,13 @@
       <label class="row"><input type="checkbox" id="geo-toggle" checked> <span>Geologic units (Macrostrat)</span></label>
       <label class="row opacity"><span>Opacity</span><input type="range" id="geo-opacity" min="0" max="1" step="0.05" value="0.7"></label>
       <label class="row"><input type="checkbox" id="kz15m-toggle"> <span>1:1.5M Kazakh SSR (1967)</span></label>
+      <div class="mode-switch" id="kz15m-mode" role="radiogroup" aria-label="1967 map display"><button type="button" role="radio" aria-checked="true" data-mode="scan" class="active">Scan</button><button type="button" role="radio" aria-checked="false" data-mode="colors">Colors</button></div>
       <label class="row opacity"><span>Opacity</span><input type="range" id="kz15m-opacity" min="0" max="1" step="0.05" value="0.85"></label>
       <label class="row"><input type="checkbox" id="kz-toggle" checked> <span>Kazakhstan border</span></label>
       <hr>
       <div class="basemap-block">
         <div class="panel-title">Basemap</div>
+        <label class="row"><input type="checkbox" id="base-toggle" checked> <span>Show basemap</span></label>
         <div class="basemap-switch" id="basemap-switch" role="radiogroup" aria-label="Basemap">
           <button type="button" role="radio" aria-checked="true" data-base="light" class="active">Light</button>
           <button type="button" role="radio" aria-checked="false" data-base="satellite">Satellite</button>

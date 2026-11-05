@@ -48,11 +48,27 @@
       paint: { "line-color": "#111", "line-width": ["case", ["boolean", ["feature-state", "hover"], false], 2, 0] } }, "kz-line");
     let loaded = null;
     const load = () => loaded || (loaded = Promise.all([fetch(BASE + "legend.json").then((r) => r.json()), fetch(BASE + "units_0.geojson").then((r) => r.json()), fetch(BASE + "units_1.geojson").then((r) => r.json())])
-      .then(([L, a, b]) => { const fc = { type: "FeatureCollection", features: a.features.concat(b.features) }; legend = L; map.getSource("kz15m-units").setData(fc); renderLegend(L, fc); }));
+      .then(([L, a, b]) => { const fc = { type: "FeatureCollection", features: a.features.concat(b.features) }; fc.features.forEach((f) => (f.properties.c = (L[f.properties.u] || {}).hex)); legend = L; map.getSource("kz15m-units").setData(fc); renderLegend(L, fc); }));
     const tg = document.getElementById("kz15m-toggle"), op = document.getElementById("kz15m-opacity");
-    const set = () => { ["kz15m-raster", "kz15m-fill", "kz15m-hover"].forEach((id) => map.setLayoutProperty(id, "visibility", tg.checked ? "visible" : "none")); if (tg.checked) load(); };
+    let mode = "scan";
+    const fillOp = () => ["case", ["boolean", ["feature-state", "hover"], false], Math.min(1, +op.value + 0.15), mode === "colors" ? +op.value : 0];
+    const set = () => {
+      const on = tg.checked;
+      map.setLayoutProperty("kz15m-raster", "visibility", on && mode === "scan" ? "visible" : "none");
+      ["kz15m-fill", "kz15m-hover"].forEach((id) => map.setLayoutProperty(id, "visibility", on ? "visible" : "none"));
+      map.setPaintProperty("kz15m-fill", "fill-color", mode === "colors" ? ["coalesce", ["get", "c"], "#ccc"] : "#000");
+      map.setPaintProperty("kz15m-fill", "fill-opacity", mode === "colors" ? fillOp() : ["case", ["boolean", ["feature-state", "hover"], false], 0.18, 0]);
+      if (on) load();
+    };
+    const modeEl = document.getElementById("kz15m-mode");
+    modeEl.addEventListener("click", (e) => {
+      const b = e.target.closest("button[data-mode]"); if (!b) return;
+      mode = b.getAttribute("data-mode");
+      modeEl.querySelectorAll("button").forEach((x) => { const a = x === b; x.classList.toggle("active", a); x.setAttribute("aria-checked", a ? "true" : "false"); });
+      set();
+    });
     tg.addEventListener("change", set);
-    op.addEventListener("input", () => map.setPaintProperty("kz15m-raster", "raster-opacity", +op.value));
+    op.addEventListener("input", () => { map.setPaintProperty("kz15m-raster", "raster-opacity", +op.value); set(); });
     document.getElementById("kz15m-card").addEventListener("toggle", load);
     let hov = null;
     map.on("mousemove", "kz15m-fill", (e) => {
@@ -66,6 +82,6 @@
       const f = e.features[0]; if (!f || !legend) return;
       new maplibregl.Popup({ maxWidth: "320px" }).setLngLat(e.lngLat).setHTML(popup(legend[f.properties.u])).addTo(map);
     });
-    window.geologykzKz15m = { show: () => { tg.checked = true; set(); return load(); } };
+    window.geologykzKz15m = { mode: (m) => modeEl.querySelector('[data-mode="' + m + '"]').click(), show: () => { tg.checked = true; set(); return load(); } };
   });
 })();
