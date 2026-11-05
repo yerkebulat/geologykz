@@ -3,91 +3,104 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>geologykz — open geological map of Kazakhstan</title>
-<meta name="description" content="Free, open, vector geological map of Kazakhstan at 1:500,000.">
+<title>Geological Map of Kazakhstan</title>
+<meta name="description" content="An interactive geological map of Kazakhstan — Zhezkazgan and Mangistau lithology from Orr and Associates (2006).">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
 <link href="style.css" rel="stylesheet">
 </head>
-<body>
-<header class="nav">
-  <a class="brand" href="#top"><span class="dotlogo"></span>geologykz</a>
-  <nav><a href="#map">Map</a><a href="#progress">Progress</a><a href="#how">How</a><a href="#data">Data</a></nav>
+<body class="locked">
+<div id="lock" class="lock" role="dialog" aria-modal="true" aria-labelledby="lock-title">
+  <div class="lock-card" id="lock-card">
+    <p class="eyebrow">geologykz</p>
+    <h1 id="lock-title">GEOLOGICAL MAP<br>OF KAZAKHSTAN</h1>
+    <p class="lock-hint">Enter the passcode to view the map</p>
+    <form id="lock-form" autocomplete="off">
+      <input id="lock-input" class="lock-input" type="password" inputmode="numeric" maxlength="12" placeholder="Passcode" aria-label="Passcode" required>
+      <button type="submit" class="lock-btn">Enter</button>
+    </form>
+    <p class="lock-error" id="lock-error" hidden>Incorrect passcode</p>
+  </div>
+</div>
+
+<div id="site" class="site" hidden>
+<header class="topbar">
+  <a class="brand" href="#top">geologykz</a>
+  <nav>
+    <a href="#map">Map</a>
+    <a href="#legends">Legend</a>
+    <a href="#geology">Geology</a>
+    <a href="https://github.com/yerkebulat/geologykz" target="_blank" rel="noopener">GitHub</a>
+  </nav>
 </header>
 
 <main id="top">
-<section class="hero grid-bg">
-  <span class="pill shimmer"><span class="dot"></span>v0.1 · digitizing in progress</span>
-  <h1>geologykz</h1>
-  <p class="lead">An open geological map of Kazakhstan. Free, vector, 1:500,000.</p>
-  <p class="sub mono">Source: Геологическая карта Казахской ССР, 1976–1979</p>
-  <div class="btns">
-    <a class="btn primary" href="#map">Explore map</a>
-    <a class="btn" href="https://github.com/yerkebulat/geologykz" target="_blank" rel="noopener">GitHub</a>
-    <span class="btn disabled" aria-disabled="true">Download data <span class="chip">soon</span></span>
-  </div>
-</section>
-
-<section id="map" class="mapwrap">
-  <div id="mapview"></div>
-  <div class="overlay card">
-    <span class="pill shimmer"><span class="dot"></span>In progress</span>
-    <h3>Map coming soon</h3>
-    <p>Digitizing in progress. The geology layer will appear here.</p>
-    <div class="layerctl mono">
-      <label><input type="checkbox" id="zhez-toggle" checked> Zhezkazgan region (KMZ preview)</label>
-      <label><input type="checkbox" id="sat-toggle"> Satellite basemap</label>
-      <label>Zhezkazgan opacity <input type="range" id="zhez-opacity" min="0" max="1" step="0.05" value="0.7"></label>
-      <label><input type="checkbox" id="mang-toggle" checked> Mangistau lithology (KMZ preview)</label>
-      <label>Mangistau opacity <input type="range" id="mang-opacity" min="0" max="1" step="0.05" value="0.7"></label>
+  <!-- Fullscreen target: title + map + layer panel all live here -->
+  <section id="map" class="hero-map" aria-label="Geological map">
+    <div class="title-block">
+      <p class="eyebrow">Open · Vector · Interactive</p>
+      <h1>GEOLOGICAL MAP<br>OF KAZAKHSTAN</h1>
     </div>
-  </div>
-</section>
+    <div id="mapview" role="application" aria-label="Interactive map of Kazakhstan geology"></div>
+    <aside class="layer-panel card" aria-label="Map layers">
+      <div class="panel-title">Layers</div>
+      <label class="row"><input type="checkbox" id="zhez-toggle" checked> <span>Zhezkazgan geology</span></label>
+      <label class="row opacity"><span>Opacity</span><input type="range" id="zhez-opacity" min="0" max="1" step="0.05" value="0.7"></label>
+      <label class="row"><input type="checkbox" id="mang-toggle" checked> <span>Mangistau lithology</span></label>
+      <label class="row opacity"><span>Opacity</span><input type="range" id="mang-opacity" min="0" max="1" step="0.05" value="0.7"></label>
+      <hr>
+      <label class="row"><input type="checkbox" id="sat-toggle"> <span>Satellite basemap</span></label>
+    </aside>
+  </section>
 
-<section id="progress" class="wrap">
-  <div class="label mono">01 · Progress</div>
-  <h2>Sheets</h2>
-  <p class="muted">Each 1:500,000 sheet from the Soviet series. Links go to the source scan on geokniga.org.</p>
-  <div class="card progress-card">
-    <div class="prow"><span class="mono" id="pcount">0 / 0 sheets done</span><span class="mono" id="ppct">0%</span></div>
-    <div class="bar"><div class="fill" id="pfill"></div></div>
-    <div class="legend mono"><span class="badge s-not_started">Not started</span><span class="badge s-in_progress">In progress</span><span class="badge s-done">Done</span></div>
-  </div>
-  <div id="series"></div>
-  <p class="note mono" id="sheetnote"></p>
-</section>
+  <section id="legends" class="wrap">
+    <div class="section-head">
+      <p class="label">Legend</p>
+      <h2>Map units</h2>
+      <p class="lede">Unique map codes coloured as on the map, ordered youngest to oldest. Click a region heading to expand.</p>
+    </div>
+    <div class="legend-grid">
+      <details class="legend-card">
+        <summary>
+          <span>Zhezkazgan region</span>
+          <span class="count mono" id="zhez-count">—</span>
+        </summary>
+        <div class="legend-scroll" id="zhez-legend"></div>
+      </details>
+      <details class="legend-card" open>
+        <summary>
+          <span>Mangistau region</span>
+          <span class="count mono" id="mang-count">—</span>
+        </summary>
+        <div class="legend-scroll" id="mang-legend"></div>
+      </details>
+    </div>
+  </section>
 
-<section id="how" class="wrap">
-  <div class="label mono">02 · Pipeline</div>
-  <h2>How it works</h2>
-  <div class="steps">
-    <div class="card step"><span class="mono n">01</span><h4>Scan</h4><p>Collect sheet scans from geokniga.org.</p></div>
-    <div class="card step"><span class="mono n">02</span><h4>Georeference</h4><p>Tie sheet corners and grid to coordinates.</p></div>
-    <div class="card step"><span class="mono n">03</span><h4>Segment</h4><p>Split map colors with k-means and SAM 2.</p></div>
-    <div class="card step"><span class="mono n">04</span><h4>Vectorize &amp; attribute</h4><p>Polygons and faults, with name, age, lithology from the legend.</p></div>
-    <div class="card step"><span class="mono n">05</span><h4>Publish</h4><p>Serve as PMTiles on this page.</p></div>
-  </div>
-</section>
-
-<section id="data" class="wrap">
-  <div class="label mono">03 · Data</div>
-  <h2>Data &amp; license</h2>
-  <div class="cols">
-    <div class="card"><h4>Sources</h4><p>Original maps by the Soviet geological survey authors of the Геологическая карта Казахской ССР (1:500,000). Scans from <a href="https://www.geokniga.org" target="_blank" rel="noopener">geokniga.org</a>.</p></div>
-    <div class="card"><h4>License</h4><p><span class="badge">TBD</span> Pending source rights check.</p></div>
-    <div class="card"><h4>CRS</h4><p>Published in WGS 84 <span class="mono">EPSG:4326</span>.</p></div>
-  </div>
-</section>
+  <section id="geology" class="wrap">
+    <div class="section-head">
+      <p class="label">Context</p>
+      <h2>Geology of Kazakhstan</h2>
+    </div>
+    <div class="prose">
+      <p>Kazakhstan sits at the heart of Eurasia, where ancient Precambrian microcontinents were stitched together by the Paleozoic Central Asian Orogenic Belt. That assembly produced the distinctive Kazakhstan orocline — a vast horseshoe of folded belts wrapping around the older cores of the Chu–Ili, Kokchetav, and other terranes.</p>
+      <p>To the west, the Caspian basin holds thick Mesozoic–Cenozoic sedimentary successions above a deeper Paleozoic foundation. In central Kazakhstan, Carboniferous sedimentary sequences host the world-class Zhezkazgan sedimentary copper deposits. Farther east and southeast, Devonian–Carboniferous magmatic arcs host major porphyry copper systems such as Kounrad and Aktogay.</p>
+      <p>The layers shown here are lithology polygons for the Zhezkazgan and Mangistau regions, drawn from the Orr and Associates (2006) compilation. They are a first window onto the geology; the long-term aim is a seamless national map.</p>
+    </div>
+  </section>
 </main>
 
-<footer class="wrap foot">
-  <span>Made by Yerkebulan Tazabek</span>
-  <a href="https://github.com/yerkebulat/geologykz" target="_blank" rel="noopener" class="mono">github.com/yerkebulat/geologykz</a>
+<footer class="site-foot">
+  <div class="foot-inner">
+    <p>Lithology: Orr and Associates (2006). Basemap: OpenFreeMap / OpenStreetMap · Satellite: Esri World Imagery.</p>
+    <p><a href="https://github.com/yerkebulat/geologykz" target="_blank" rel="noopener">github.com/yerkebulat/geologykz</a></p>
+  </div>
 </footer>
+</div>
 
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-<script src="https://unpkg.com/pmtiles@3.2.1/dist/pmtiles.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

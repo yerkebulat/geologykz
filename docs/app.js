@@ -1,155 +1,268 @@
-// geologykz v1 — map + progress tracker. No build step.
+// geologykz — interactive geological map showcase
 (function () {
-  // ---------- Map ----------
-  if (window.pmtiles && window.maplibregl) {
-    const protocol = new pmtiles.Protocol();
-    maplibregl.addProtocol("pmtiles", protocol.tile);
+  const PASS_HASH =
+    "17bc5504b14be3f22dda39f428b6b45869b9415cae36be41604ee80255cba304";
+  const STORAGE_KEY = "geologykz_unlocked_v1";
+  const KZ_BOUNDS = [
+    [46.5, 40.6],
+    [87.3, 55.45]
+  ];
+
+  function esc(s) {
+    return String(s == null || s === "" ? "—" : s).replace(/[&<>"]/g, (c) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])
+    );
   }
 
-  let map;
-  try {
-    map = new maplibregl.Map({
-      container: "mapview",
-      style: "https://tiles.openfreemap.org/styles/positron",
-      center: [67, 48],
-      zoom: 4,
-      attributionControl: { compact: true },
-      cooperativeGestures: true
-    });
-    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
-    map.addControl(new maplibregl.GeolocateControl({
-      positionOptions: { enableHighAccuracy: true }, trackUserLocation: true, showUserLocation: true, showAccuracyCircle: true
-    }), "top-right");
-
-    map.on("load", function () {
-      // Preview layer: Zhezkazgan region geology polygons (from user-supplied KMZ, Orr and Associates 2006).
-      map.addSource("zhez", { type: "geojson", data: "data/zhezkazgan_geology.geojson", attribution: "Zhezkazgan geology KMZ (Orr and Associates, 2006)" });
-      map.addLayer({ id: "zhez-fill", type: "fill", source: "zhez",
-        paint: { "fill-color": ["get", "color"], "fill-opacity": 0.7 } });
-      map.addLayer({ id: "zhez-line", type: "line", source: "zhez",
-        paint: { "line-color": "#57534e", "line-width": 0.3, "line-opacity": 0.7 } });
-      map.on("click", "zhez-fill", function (e) {
-        const p = (e.features[0] || {}).properties || {};
-        const esc = (s) => String(s || "—").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-        new maplibregl.Popup({ maxWidth: "280px" }).setLngLat(e.lngLat)
-          .setHTML(`<strong>${esc(p.map_code)}</strong><br><span class="mono">${esc([p.age_3, p.age_4, p.age_5].filter(Boolean).join(" · "))}</span><br>${esc(p.descriptio)}<br>${esc(p.rock_type)}`)
-          .addTo(map);
-      });
-      map.on("mouseenter", "zhez-fill", () => (map.getCanvas().style.cursor = "pointer"));
-      map.on("mouseleave", "zhez-fill", () => (map.getCanvas().style.cursor = ""));
-      const tg = document.getElementById("zhez-toggle"), op = document.getElementById("zhez-opacity");
-      if (tg) tg.addEventListener("change", () => ["zhez-fill", "zhez-line"].forEach((id) => map.setLayoutProperty(id, "visibility", tg.checked ? "visible" : "none")));
-      // Satellite basemap (Esri World Imagery), hidden by default, beneath geology.
-      map.addSource("sat", { type: "raster", tileSize: 256, maxzoom: 19,
-        tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"],
-        attribution: "Esri, Maxar, Earthstar Geographics" });
-      map.addLayer({ id: "sat", type: "raster", source: "sat", layout: { visibility: "none" } }, "zhez-fill");
-      const sat = document.getElementById("sat-toggle");
-      if (sat) sat.addEventListener("change", () => map.setLayoutProperty("sat", "visibility", sat.checked ? "visible" : "none"));
-      // Mangistau lithology polygons (from user-supplied KMZ, Orr and Associates 2006). Added after "sat" so it stays above the satellite basemap.
-      map.addSource("mang", { type: "geojson", data: "data/mangistau_lithology.geojson", attribution: "Mangistau lithology KMZ (Orr and Associates, 2006)" });
-      map.addLayer({ id: "mang-fill", type: "fill", source: "mang", paint: { "fill-color": ["get", "color"], "fill-opacity": 0.7 } });
-      map.addLayer({ id: "mang-line", type: "line", source: "mang", paint: { "line-color": "#57534e", "line-width": 0.3, "line-opacity": 0.7 } });
-      map.on("click", "mang-fill", function (e) {
-        const p = (e.features[0] || {}).properties || {};
-        const esc = (s) => String(s || "—").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-        new maplibregl.Popup({ maxWidth: "280px" }).setLngLat(e.lngLat)
-          .setHTML(`<strong>${esc(p.map_code)}</strong><br><span class="mono">${esc([p.age_2, p.age_3, p.age_4, p.age_5].filter(Boolean).join(" · "))}</span><br>${esc(p.descriptio)}<br>${esc(p.rock_type)}`)
-          .addTo(map);
-      });
-      map.on("mouseenter", "mang-fill", () => (map.getCanvas().style.cursor = "pointer"));
-      map.on("mouseleave", "mang-fill", () => (map.getCanvas().style.cursor = ""));
-      const mtg = document.getElementById("mang-toggle"), mop = document.getElementById("mang-opacity");
-      if (mtg) mtg.addEventListener("change", () => ["mang-fill", "mang-line"].forEach((id) => map.setLayoutProperty(id, "visibility", mtg.checked ? "visible" : "none")));
-      if (mop) mop.addEventListener("input", () => { map.setPaintProperty("mang-fill", "fill-opacity", +mop.value); map.setPaintProperty("mang-line", "line-opacity", +mop.value); });
-      if (op) op.addEventListener("input", () => { map.setPaintProperty("zhez-fill", "fill-opacity", +op.value); map.setPaintProperty("zhez-line", "line-opacity", +op.value); });
-
-      // Geology layer placeholder — uncomment when data/geology.pmtiles is published.
-      /*
-      map.addSource("geology", {
-        type: "vector",
-        url: "pmtiles://data/geology.pmtiles", // relative to site root
-        attribution: "Геологическая карта Казахской ССР 1:500 000; scans: geokniga.org"
-      });
-      map.addLayer({
-        id: "units-fill", type: "fill", source: "geology", "source-layer": "units",
-        paint: { "fill-color": ["coalesce", ["get", "color"], "#cccccc"], "fill-opacity": 0.7 }
-      });
-      map.addLayer({
-        id: "units-line", type: "line", source: "geology", "source-layer": "units",
-        paint: { "line-color": "#57534e", "line-width": 0.3 }
-      });
-      map.addLayer({
-        id: "faults", type: "line", source: "geology", "source-layer": "faults",
-        paint: { "line-color": "#b91c1c", "line-width": 1.2 }
-      });
-      map.on("click", "units-fill", onUnitClick);
-      map.on("mouseenter", "units-fill", () => (map.getCanvas().style.cursor = "pointer"));
-      map.on("mouseleave", "units-fill", () => (map.getCanvas().style.cursor = ""));
-      */
-    });
-  } catch (e) {
-    console.warn("Map failed to load:", e);
+  async function sha256Hex(text) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+    return Array.from(new Uint8Array(buf))
+      .map((b) => b.toString(16).padStart(2, "0"))
+      .join("");
   }
 
-  // Stub: popup for a clicked geological unit (name, age, lithology).
-  function onUnitClick(e) {
-    const f = e.features && e.features[0];
-    if (!f) return;
-    const p = f.properties || {};
-    const esc = (s) => String(s ?? "—").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-    new maplibregl.Popup({ maxWidth: "280px" })
-      .setLngLat(e.lngLat)
-      .setHTML(`<strong>${esc(p.name)}</strong><br><span class="mono">Age: ${esc(p.age)}</span><br>${esc(p.lithology)}`)
-      .addTo(map);
+  function unlockUI() {
+    document.body.classList.remove("locked");
+    const lock = document.getElementById("lock");
+    const site = document.getElementById("site");
+    if (lock) lock.hidden = true;
+    if (site) site.hidden = false;
   }
-  window.geologykzOnUnitClick = onUnitClick;
 
-  // ---------- Progress ----------
-  const LABEL = { not_started: "Not started", in_progress: "In progress", done: "Done" };
-  fetch("sheets.json")
-    .then((r) => r.json())
-    .then(render)
-    .catch((e) => {
-      console.warn("sheets.json failed:", e);
-      document.getElementById("series").textContent = "Could not load sheet list.";
+  function popupHtml(p, ageKeys) {
+    const ages = ageKeys.map((k) => p[k]).filter(Boolean).join(" · ");
+    return (
+      `<strong>${esc(p.map_code)}</strong>` +
+      `<br><span class="mono">${esc(ages)}</span>` +
+      `<br>${esc(p.descriptio)}` +
+      `<br>${esc(p.rock_type)}`
+    );
+  }
+
+  function renderLegend(list, containerId, countId) {
+    const root = document.getElementById(containerId);
+    const count = document.getElementById(countId);
+    if (!root) return;
+    if (count) count.textContent = list.length + " units";
+    root.innerHTML = "";
+    const frag = document.createDocumentFragment();
+    list.forEach((item) => {
+      const row = document.createElement("div");
+      row.className = "legend-item";
+      row.innerHTML =
+        `<span class="swatch" style="background:${esc(item.color)}"></span>` +
+        `<span class="code">${esc(item.code)}</span>` +
+        `<span class="meta"><strong>${esc(item.desc)}</strong>${esc(item.age)}${
+          item.rock ? " · " + esc(item.rock) : ""
+        }</span>`;
+      frag.appendChild(row);
     });
-
-  function el(tag, cls, text) {
-    const n = document.createElement(tag);
-    if (cls) n.className = cls;
-    if (text != null) n.textContent = text;
-    return n;
+    root.appendChild(frag);
   }
 
-  function render(data) {
-    const root = document.getElementById("series");
-    let total = 0, done = 0;
-    data.series.forEach((s) => {
-      const box = el("div", "series");
-      const h = el("h3", null, s.name);
-      h.appendChild(el("span", "chip", s.sheets.length + " sheets"));
-      box.appendChild(h);
-      const grid = el("div", "sheets");
-      s.sheets.forEach((sh) => {
-        total++;
-        if (sh.status === "done") done++;
-        const a = el("a", "card sheet");
-        a.href = "https://www.geokniga.org/maps/" + sh.geokniga;
-        a.target = "_blank"; a.rel = "noopener";
-        a.appendChild(el("div", "code", sh.id));
-        a.appendChild(el("div", "place", sh.place));
-        const b = el("span", "badge s-" + sh.status + (sh.status === "in_progress" ? " shimmer" : ""), LABEL[sh.status] || sh.status);
-        a.appendChild(b);
-        grid.appendChild(a);
+  function loadLegends() {
+    fetch("data/legends.json")
+      .then((r) => r.json())
+      .then((data) => {
+        renderLegend(data.zhezkazgan || [], "zhez-legend", "zhez-count");
+        renderLegend(data.mangistau || [], "mang-legend", "mang-count");
+      })
+      .catch((e) => console.warn("legends.json failed:", e));
+  }
+
+  function initMap() {
+    let map;
+    try {
+      const mapRoot = document.getElementById("map");
+      map = new maplibregl.Map({
+        container: "mapview",
+        style: "https://tiles.openfreemap.org/styles/dark",
+        center: [66.9, 48.2],
+        zoom: 4.2,
+        attributionControl: { compact: true },
+        cooperativeGestures: true
       });
-      box.appendChild(grid);
-      root.appendChild(box);
+      map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+      map.addControl(
+        new maplibregl.FullscreenControl({ container: mapRoot }),
+        "top-right"
+      );
+      map.addControl(
+        new maplibregl.GeolocateControl({
+          positionOptions: { enableHighAccuracy: true },
+          trackUserLocation: true,
+          showUserLocation: true,
+          showAccuracyCircle: true
+        }),
+        "top-right"
+      );
+      const pad =
+        window.innerWidth < 600
+          ? { top: 120, bottom: 200, left: 16, right: 16 }
+          : { top: 100, bottom: 40, left: 48, right: 48 };
+      map.fitBounds(KZ_BOUNDS, { padding: pad, duration: 0, maxZoom: 5.4 });
+
+      map.on("load", function () {
+        // GeoJSON sources load only after unlock (this function runs post-unlock).
+        map.addSource("zhez", {
+          type: "geojson",
+          data: "data/zhezkazgan_geology.geojson",
+          attribution: "Zhezkazgan geology (Orr and Associates, 2006)"
+        });
+        map.addLayer({
+          id: "zhez-fill",
+          type: "fill",
+          source: "zhez",
+          paint: { "fill-color": ["get", "color"], "fill-opacity": 0.7 }
+        });
+        map.addLayer({
+          id: "zhez-line",
+          type: "line",
+          source: "zhez",
+          paint: { "line-color": "#1a1a1a", "line-width": 0.25, "line-opacity": 0.55 }
+        });
+        map.on("click", "zhez-fill", function (e) {
+          const p = (e.features[0] || {}).properties || {};
+          new maplibregl.Popup({ maxWidth: "280px" })
+            .setLngLat(e.lngLat)
+            .setHTML(popupHtml(p, ["age_3", "age_4", "age_5"]))
+            .addTo(map);
+        });
+        map.on("mouseenter", "zhez-fill", () => (map.getCanvas().style.cursor = "pointer"));
+        map.on("mouseleave", "zhez-fill", () => (map.getCanvas().style.cursor = ""));
+
+        map.addSource("sat", {
+          type: "raster",
+          tileSize: 256,
+          maxzoom: 19,
+          tiles: [
+            "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+          ],
+          attribution: "Esri, Maxar, Earthstar Geographics"
+        });
+        map.addLayer(
+          { id: "sat", type: "raster", source: "sat", layout: { visibility: "none" } },
+          "zhez-fill"
+        );
+
+        map.addSource("mang", {
+          type: "geojson",
+          data: "data/mangistau_lithology.geojson",
+          attribution: "Mangistau lithology (Orr and Associates, 2006)"
+        });
+        map.addLayer({
+          id: "mang-fill",
+          type: "fill",
+          source: "mang",
+          paint: { "fill-color": ["get", "color"], "fill-opacity": 0.7 }
+        });
+        map.addLayer({
+          id: "mang-line",
+          type: "line",
+          source: "mang",
+          paint: { "line-color": "#1a1a1a", "line-width": 0.25, "line-opacity": 0.55 }
+        });
+        map.on("click", "mang-fill", function (e) {
+          const p = (e.features[0] || {}).properties || {};
+          new maplibregl.Popup({ maxWidth: "280px" })
+            .setLngLat(e.lngLat)
+            .setHTML(popupHtml(p, ["age_2", "age_3", "age_4", "age_5"]))
+            .addTo(map);
+        });
+        map.on("mouseenter", "mang-fill", () => (map.getCanvas().style.cursor = "pointer"));
+        map.on("mouseleave", "mang-fill", () => (map.getCanvas().style.cursor = ""));
+
+        const zhezTg = document.getElementById("zhez-toggle");
+        const zhezOp = document.getElementById("zhez-opacity");
+        const mangTg = document.getElementById("mang-toggle");
+        const mangOp = document.getElementById("mang-opacity");
+        const satTg = document.getElementById("sat-toggle");
+
+        if (zhezTg)
+          zhezTg.addEventListener("change", () =>
+            ["zhez-fill", "zhez-line"].forEach((id) =>
+              map.setLayoutProperty(id, "visibility", zhezTg.checked ? "visible" : "none")
+            )
+          );
+        if (mangTg)
+          mangTg.addEventListener("change", () =>
+            ["mang-fill", "mang-line"].forEach((id) =>
+              map.setLayoutProperty(id, "visibility", mangTg.checked ? "visible" : "none")
+            )
+          );
+        if (satTg)
+          satTg.addEventListener("change", () =>
+            map.setLayoutProperty("sat", "visibility", satTg.checked ? "visible" : "none")
+          );
+        if (zhezOp)
+          zhezOp.addEventListener("input", () => {
+            map.setPaintProperty("zhez-fill", "fill-opacity", +zhezOp.value);
+            map.setPaintProperty("zhez-line", "line-opacity", +zhezOp.value);
+          });
+        if (mangOp)
+          mangOp.addEventListener("input", () => {
+            map.setPaintProperty("mang-fill", "fill-opacity", +mangOp.value);
+            map.setPaintProperty("mang-line", "line-opacity", +mangOp.value);
+          });
+
+        // Resize after enter/exit fullscreen so the canvas fills the screen.
+        const resize = () => map.resize();
+        document.addEventListener("fullscreenchange", resize);
+        document.addEventListener("webkitfullscreenchange", resize);
+      });
+    } catch (e) {
+      console.warn("Map failed to load:", e);
+    }
+  }
+
+  function startApp() {
+    unlockUI();
+    initMap();
+    loadLegends();
+  }
+
+  // ---- Passcode gate (client-side only; not real security) ----
+  const already = (() => {
+    try {
+      return localStorage.getItem(STORAGE_KEY) === PASS_HASH;
+    } catch (_) {
+      return false;
+    }
+  })();
+
+  if (already) {
+    startApp();
+    return;
+  }
+
+  const form = document.getElementById("lock-form");
+  const input = document.getElementById("lock-input");
+  const err = document.getElementById("lock-error");
+  const card = document.getElementById("lock-card");
+  if (input) setTimeout(() => input.focus(), 50);
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const value = (input && input.value) || "";
+      const hash = await sha256Hex(value);
+      if (hash === PASS_HASH) {
+        try {
+          localStorage.setItem(STORAGE_KEY, PASS_HASH);
+        } catch (_) {}
+        startApp();
+        return;
+      }
+      if (err) err.hidden = false;
+      if (card) {
+        card.classList.remove("shake");
+        void card.offsetWidth;
+        card.classList.add("shake");
+      }
+      if (input) {
+        input.select();
+        input.focus();
+      }
     });
-    const pct = total ? Math.round((done / total) * 100) : 0;
-    document.getElementById("pcount").textContent = done + " / " + total + " sheets done";
-    document.getElementById("ppct").textContent = pct + "%";
-    requestAnimationFrame(() => (document.getElementById("pfill").style.width = pct + "%"));
-    if (data.note) document.getElementById("sheetnote").textContent = "Note: " + data.note + ".";
   }
 })();
