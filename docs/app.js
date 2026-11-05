@@ -46,6 +46,22 @@
       map.addLayer({ id: "sat", type: "raster", source: "sat", layout: { visibility: "none" } }, "zhez-fill");
       const sat = document.getElementById("sat-toggle");
       if (sat) sat.addEventListener("change", () => map.setLayoutProperty("sat", "visibility", sat.checked ? "visible" : "none"));
+      // Mangistau lithology polygons (from user-supplied KMZ, Orr and Associates 2006). Added after "sat" so it stays above the satellite basemap.
+      map.addSource("mang", { type: "geojson", data: "data/mangistau_lithology.geojson", attribution: "Mangistau lithology KMZ (Orr and Associates, 2006)" });
+      map.addLayer({ id: "mang-fill", type: "fill", source: "mang", paint: { "fill-color": ["get", "color"], "fill-opacity": 0.7 } });
+      map.addLayer({ id: "mang-line", type: "line", source: "mang", paint: { "line-color": "#57534e", "line-width": 0.3, "line-opacity": 0.7 } });
+      map.on("click", "mang-fill", function (e) {
+        const p = (e.features[0] || {}).properties || {};
+        const esc = (s) => String(s || "—").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+        new maplibregl.Popup({ maxWidth: "280px" }).setLngLat(e.lngLat)
+          .setHTML(`<strong>${esc(p.map_code)}</strong><br><span class="mono">${esc([p.age_2, p.age_3, p.age_4, p.age_5].filter(Boolean).join(" · "))}</span><br>${esc(p.descriptio)}<br>${esc(p.rock_type)}`)
+          .addTo(map);
+      });
+      map.on("mouseenter", "mang-fill", () => (map.getCanvas().style.cursor = "pointer"));
+      map.on("mouseleave", "mang-fill", () => (map.getCanvas().style.cursor = ""));
+      const mtg = document.getElementById("mang-toggle"), mop = document.getElementById("mang-opacity");
+      if (mtg) mtg.addEventListener("change", () => ["mang-fill", "mang-line"].forEach((id) => map.setLayoutProperty(id, "visibility", mtg.checked ? "visible" : "none")));
+      if (mop) mop.addEventListener("input", () => { map.setPaintProperty("mang-fill", "fill-opacity", +mop.value); map.setPaintProperty("mang-line", "line-opacity", +mop.value); });
       if (op) op.addEventListener("input", () => { map.setPaintProperty("zhez-fill", "fill-opacity", +op.value); map.setPaintProperty("zhez-line", "line-opacity", +op.value); });
 
       // Geology layer placeholder — uncomment when data/geology.pmtiles is published.
