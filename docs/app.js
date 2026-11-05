@@ -76,7 +76,7 @@
       const mapRoot = document.getElementById("map");
       map = new maplibregl.Map({
         container: "mapview",
-        style: "https://tiles.openfreemap.org/styles/dark",
+        style: "https://tiles.openfreemap.org/styles/positron",
         center: [66.9, 48.2],
         zoom: 4.2,
         attributionControl: { compact: true },
@@ -119,7 +119,7 @@
           id: "zhez-line",
           type: "line",
           source: "zhez",
-          paint: { "line-color": "#1a1a1a", "line-width": 0.25, "line-opacity": 0.55 }
+          paint: { "line-color": "#57534e", "line-width": 0.25, "line-opacity": 0.55 }
         });
         map.on("click", "zhez-fill", function (e) {
           const p = (e.features[0] || {}).properties || {};
@@ -160,7 +160,7 @@
           id: "mang-line",
           type: "line",
           source: "mang",
-          paint: { "line-color": "#1a1a1a", "line-width": 0.25, "line-opacity": 0.55 }
+          paint: { "line-color": "#57534e", "line-width": 0.25, "line-opacity": 0.55 }
         });
         map.on("click", "mang-fill", function (e) {
           const p = (e.features[0] || {}).properties || {};
