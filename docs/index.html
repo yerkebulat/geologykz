@@ -35,6 +35,8 @@
       <div class="panel-title">Layers</div>
       <label class="row"><input type="checkbox" id="geo-toggle" checked> <span>Geologic units (Macrostrat)</span></label>
       <label class="row opacity"><span>Opacity</span><input type="range" id="geo-opacity" min="0" max="1" step="0.05" value="0.7"></label>
+      <label class="row"><input type="checkbox" id="kz15m-toggle"> <span>1:1.5M Kazakh SSR (1967)</span></label>
+      <label class="row opacity"><span>Opacity</span><input type="range" id="kz15m-opacity" min="0" max="1" step="0.05" value="0.85"></label>
       <label class="row"><input type="checkbox" id="kz-toggle" checked> <span>Kazakhstan border</span></label>
       <hr>
       <div class="basemap-block">
@@ -66,6 +68,14 @@
         </summary>
         <div class="legend-scroll" id="geo-legend"></div>
       </details>
+      <details class="legend-card" id="kz15m-card">
+        <summary>
+          <span>1:1.5M Kazakh SSR (1967)</span>
+          <span class="count mono" id="kz15m-count">-</span>
+        </summary>
+        <p class="legend-note">Geological map of the Kazakh SSR, 1:1,500,000 (1967). Scan via geokniga.org. Legend transcribed from the map sheet; English is a short translation. Click the map with this layer on to identify a unit. Units are matched by colour, so similar colours can be confused.</p>
+        <div class="legend-scroll" id="kz15m-legend"></div>
+      </details>
     </div>
   </section>
 
@@ -85,12 +95,14 @@
 <footer class="site-foot">
   <div class="foot-inner">
     <p>Geologic map data &copy; <a href="https://macrostrat.org" target="_blank" rel="noopener">Macrostrat</a>, CC-BY 4.0. Sources: Chorlton, L.B. 2007, Generalized Geology of the World, GSC Open File 5529, doi:10.4095/223767; Asch, K. 2003, IGME 5000 International Geological Map of Europe 1:5M, BGR. Clipped to Kazakhstan and simplified. Border: Natural Earth. Basemaps: OpenFreeMap, Esri, OpenTopoMap / OpenStreetMap.</p>
+    <p>Geological map of the Kazakh SSR, 1:1,500,000 (1967). Scan via geokniga.org. Georeferenced, mosaicked and vectorised by colour for this site; boundaries are approximate.</p>
     <p><a href="https://github.com/yerkebulat/geologykz" target="_blank" rel="noopener">github.com/yerkebulat/geologykz</a></p>
   </div>
 </footer>
 </div>
 
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="kz15m.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

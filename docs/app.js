@@ -212,6 +212,8 @@
 
 
       map.on("click", "geo-fill", function (e) {
+        if (map.getLayer("kz15m-fill") && map.getLayoutProperty("kz15m-fill", "visibility") === "visible" &&
+            map.queryRenderedFeatures(e.point, { layers: ["kz15m-fill"] }).length) return;
         const p = (e.features[0] || {}).properties || {};
         new maplibregl.Popup({ maxWidth: "300px" }).setLngLat(e.lngLat).setHTML(popupHtml(p)).addTo(map);
       });
@@ -274,6 +276,7 @@
       setBasemap("light");
       window.geologykzSetBasemap = setBasemap;
       window.geologykzMap = map;
+      window.dispatchEvent(new CustomEvent("geologykz:load", { detail: map }));
       const resize = () => map.resize();
       document.addEventListener("fullscreenchange", resize);
       document.addEventListener("webkitfullscreenchange", resize);

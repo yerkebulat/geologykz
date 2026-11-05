@@ -333,3 +333,6 @@ h2 {
   color: #fff;
   border-color: var(--accent);
 }
+.legend-note{font-size:12px;color:#57534e;margin:8px 12px;line-height:1.45}
+.kz15m-pop .ru{color:#44403c}
+.legend-item .code.kz{min-width:64px;font-family:"JetBrains Mono",monospace;font-size:11px}
