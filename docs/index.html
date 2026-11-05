@@ -4,28 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Geological Map of Kazakhstan</title>
-<meta name="description" content="An interactive geological map of Kazakhstan — Zhezkazgan and Mangistau lithology from Orr and Associates (2006).">
+<meta name="description" content="An interactive geological map of Kazakhstan with open Macrostrat geologic map data (CC-BY 4.0).">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
 <link href="style.css" rel="stylesheet">
 </head>
-<body class="locked">
-<div id="lock" class="lock" role="dialog" aria-modal="true" aria-labelledby="lock-title">
-  <div class="lock-card" id="lock-card">
-    <p class="eyebrow">geologykz</p>
-    <h1 id="lock-title">GEOLOGICAL MAP<br>OF KAZAKHSTAN</h1>
-    <p class="lock-hint">Enter the passcode to view the map</p>
-    <form id="lock-form" autocomplete="off">
-      <input id="lock-input" class="lock-input" type="password" inputmode="numeric" maxlength="12" placeholder="Passcode" aria-label="Passcode" required>
-      <button type="submit" class="lock-btn">Enter</button>
-    </form>
-    <p class="lock-error" id="lock-error" hidden>Incorrect passcode</p>
-  </div>
-</div>
-
-<div id="site" class="site" hidden>
+<body>
+<div id="site" class="site">
 <header class="topbar">
   <a class="brand" href="#top">geologykz</a>
   <nav>
@@ -40,16 +27,15 @@
   <!-- Fullscreen target: title + map + layer panel all live here -->
   <section id="map" class="hero-map" aria-label="Geological map">
     <div class="title-block">
-      <p class="eyebrow">Open · Vector · Interactive</p>
+      <p class="eyebrow">Open data · Vector · Interactive</p>
       <h1>GEOLOGICAL MAP<br>OF KAZAKHSTAN</h1>
     </div>
     <div id="mapview" role="application" aria-label="Interactive map of Kazakhstan geology"></div>
     <aside class="layer-panel card" aria-label="Map layers">
       <div class="panel-title">Layers</div>
-      <label class="row"><input type="checkbox" id="zhez-toggle" checked> <span>Zhezkazgan geology</span></label>
-      <label class="row opacity"><span>Opacity</span><input type="range" id="zhez-opacity" min="0" max="1" step="0.05" value="0.7"></label>
-      <label class="row"><input type="checkbox" id="mang-toggle" checked> <span>Mangistau lithology</span></label>
-      <label class="row opacity"><span>Opacity</span><input type="range" id="mang-opacity" min="0" max="1" step="0.05" value="0.7"></label>
+      <label class="row"><input type="checkbox" id="geo-toggle" checked> <span>Geologic units (Macrostrat)</span></label>
+      <label class="row opacity"><span>Opacity</span><input type="range" id="geo-opacity" min="0" max="1" step="0.05" value="0.7"></label>
+      <label class="row"><input type="checkbox" id="kz-toggle" checked> <span>Kazakhstan border</span></label>
       <hr>
       <div class="basemap-block">
         <div class="panel-title">Basemap</div>
@@ -70,22 +56,15 @@
     <div class="section-head">
       <p class="label">Legend</p>
       <h2>Map units</h2>
-      <p class="lede">Unique map codes coloured as on the map, ordered youngest to oldest. Click a region heading to expand.</p>
+      <p class="lede">Units present in the map data, coloured as on the map and ordered youngest to oldest. The number is the polygon count. IGME 5000 covers the west; Generalized Geology of the World (GGW) covers the rest.</p>
     </div>
     <div class="legend-grid">
-      <details class="legend-card">
-        <summary>
-          <span>Zhezkazgan region</span>
-          <span class="count mono" id="zhez-count">—</span>
-        </summary>
-        <div class="legend-scroll" id="zhez-legend"></div>
-      </details>
       <details class="legend-card" open>
         <summary>
-          <span>Mangistau region</span>
-          <span class="count mono" id="mang-count">—</span>
+          <span>Kazakhstan, Macrostrat</span>
+          <span class="count mono" id="geo-count">-</span>
         </summary>
-        <div class="legend-scroll" id="mang-legend"></div>
+        <div class="legend-scroll" id="geo-legend"></div>
       </details>
     </div>
   </section>
@@ -96,16 +75,16 @@
       <h2>Geology of Kazakhstan</h2>
     </div>
     <div class="prose">
-      <p>Kazakhstan sits at the heart of Eurasia, where ancient Precambrian microcontinents were stitched together by the Paleozoic Central Asian Orogenic Belt. That assembly produced the distinctive Kazakhstan orocline — a vast horseshoe of folded belts wrapping around the older cores of the Chu–Ili, Kokchetav, and other terranes.</p>
-      <p>To the west, the Caspian basin holds thick Mesozoic–Cenozoic sedimentary successions above a deeper Paleozoic foundation. In central Kazakhstan, Carboniferous sedimentary sequences host the world-class Zhezkazgan sedimentary copper deposits. Farther east and southeast, Devonian–Carboniferous magmatic arcs host major porphyry copper systems such as Kounrad and Aktogay.</p>
-      <p>The layers shown here are lithology polygons for the Zhezkazgan and Mangistau regions, drawn from the Orr and Associates (2006) compilation. They are a first window onto the geology; the long-term aim is a seamless national map.</p>
+      <p>Kazakhstan sits in the interior of Eurasia. Much of the country belongs to the Paleozoic Central Asian Orogenic Belt, built from Precambrian microcontinental blocks, island arcs and accretionary complexes that were joined together during the Paleozoic.</p>
+      <p>In the west, the Caspian depression holds thick sedimentary successions, and Mesozoic and Cenozoic cover rocks spread across the western and southern lowlands. Central and eastern Kazakhstan expose folded Paleozoic sedimentary, volcanic and intrusive rocks.</p>
+      <p>The map shows small scale geologic units from Macrostrat: the IGME 5000 map of Europe (1:5M) in the west, and the Generalized Geology of the World compilation elsewhere. Both are clipped to the Natural Earth border of Kazakhstan and simplified, so treat them as an overview, not a field map.</p>
     </div>
   </section>
 </main>
 
 <footer class="site-foot">
   <div class="foot-inner">
-    <p>Lithology: Orr and Associates (2006). Basemaps: OpenFreeMap, Esri, OpenTopoMap / OpenStreetMap.</p>
+    <p>Geologic map data &copy; <a href="https://macrostrat.org" target="_blank" rel="noopener">Macrostrat</a>, CC-BY 4.0. Sources: Chorlton, L.B. 2007, Generalized Geology of the World, GSC Open File 5529, doi:10.4095/223767; Asch, K. 2003, IGME 5000 International Geological Map of Europe 1:5M, BGR. Clipped to Kazakhstan and simplified. Border: Natural Earth. Basemaps: OpenFreeMap, Esri, OpenTopoMap / OpenStreetMap.</p>
     <p><a href="https://github.com/yerkebulat/geologykz" target="_blank" rel="noopener">github.com/yerkebulat/geologykz</a></p>
   </div>
 </footer>
