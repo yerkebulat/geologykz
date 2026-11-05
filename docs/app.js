@@ -17,6 +17,9 @@
       cooperativeGestures: true
     });
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
+    map.addControl(new maplibregl.GeolocateControl({
+      positionOptions: { enableHighAccuracy: true }, trackUserLocation: true, showUserLocation: true, showAccuracyCircle: true
+    }), "top-right");
 
     map.on("load", function () {
       // Preview layer: Zhezkazgan region geology polygons (from user-supplied KMZ, Orr and Associates 2006).
@@ -36,6 +39,13 @@
       map.on("mouseleave", "zhez-fill", () => (map.getCanvas().style.cursor = ""));
       const tg = document.getElementById("zhez-toggle"), op = document.getElementById("zhez-opacity");
       if (tg) tg.addEventListener("change", () => ["zhez-fill", "zhez-line"].forEach((id) => map.setLayoutProperty(id, "visibility", tg.checked ? "visible" : "none")));
+      // Satellite basemap (Esri World Imagery), hidden by default, beneath geology.
+      map.addSource("sat", { type: "raster", tileSize: 256, maxzoom: 19,
+        tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"],
+        attribution: "Esri, Maxar, Earthstar Geographics" });
+      map.addLayer({ id: "sat", type: "raster", source: "sat", layout: { visibility: "none" } }, "zhez-fill");
+      const sat = document.getElementById("sat-toggle");
+      if (sat) sat.addEventListener("change", () => map.setLayoutProperty("sat", "visibility", sat.checked ? "visible" : "none"));
       if (op) op.addEventListener("input", () => { map.setPaintProperty("zhez-fill", "fill-opacity", +op.value); map.setPaintProperty("zhez-line", "line-opacity", +op.value); });
 
       // Geology layer placeholder — uncomment when data/geology.pmtiles is published.
