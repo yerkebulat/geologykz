@@ -131,19 +131,84 @@
         map.on("mouseenter", "zhez-fill", () => (map.getCanvas().style.cursor = "pointer"));
         map.on("mouseleave", "zhez-fill", () => (map.getCanvas().style.cursor = ""));
 
-        map.addSource("sat", {
+        // Raster underlays (below geology) + reference overlays (above geology).
+        // Light = OpenFreeMap positron style only. Hybrid ≈ Google Satellite Hybrid look via Esri (no Google tiles).
+        const UNDERLAYS = {
+          satellite: {
+            tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"],
+            attribution: "Esri, Maxar, Earthstar Geographics",
+            maxzoom: 19
+          },
+          terrain: {
+            tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}"],
+            attribution: "Esri, USGS",
+            maxzoom: 13
+          },
+          topo: {
+            tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"],
+            attribution: "Esri, USGS, NOAA, TomTom",
+            maxzoom: 19
+          },
+          otm: {
+            tiles: ["https://tile.opentopomap.org/{z}/{x}/{y}.png"],
+            attribution: "OpenTopoMap (CC-BY-SA), OpenStreetMap contributors",
+            maxzoom: 17
+          },
+          dark: {
+            tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"],
+            attribution: "Esri, HERE, Garmin",
+            maxzoom: 16
+          }
+        };
+        const BASEMAPS = {
+          light: { under: null, overlays: [] },
+          satellite: { under: "satellite", overlays: ["labels"] },
+          hybrid: { under: "satellite", overlays: ["labels", "transport"] },
+          terrain: { under: "terrain", overlays: ["labels"] },
+          topo: { under: "topo", overlays: [] },
+          otm: { under: "otm", overlays: ["labels"] },
+          dark: { under: "dark", overlays: ["labels"] }
+        };
+        Object.keys(UNDERLAYS).forEach((id) => {
+          const cfg = UNDERLAYS[id];
+          map.addSource("base-" + id, {
+            type: "raster",
+            tileSize: 256,
+            maxzoom: cfg.maxzoom,
+            tiles: cfg.tiles,
+            attribution: cfg.attribution
+          });
+          map.addLayer(
+            {
+              id: "base-" + id,
+              type: "raster",
+              source: "base-" + id,
+              layout: { visibility: "none" },
+              paint: { "raster-opacity": 1 }
+            },
+            "zhez-fill"
+          );
+        });
+
+        // Reference overlays — added after geology so names/roads stay readable.
+        map.addSource("base-labels", {
+          type: "raster",
+          tileSize: 256,
+          maxzoom: 16,
+          tiles: [
+            "https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}"
+          ],
+          attribution: "Esri"
+        });
+        map.addSource("base-transport", {
           type: "raster",
           tileSize: 256,
           maxzoom: 19,
           tiles: [
-            "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+            "https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}"
           ],
-          attribution: "Esri, Maxar, Earthstar Geographics"
+          attribution: "Esri"
         });
-        map.addLayer(
-          { id: "sat", type: "raster", source: "sat", layout: { visibility: "none" } },
-          "zhez-fill"
-        );
 
         map.addSource("mang", {
           type: "geojson",
@@ -162,6 +227,22 @@
           source: "mang",
           paint: { "line-color": "#57534e", "line-width": 0.25, "line-opacity": 0.55 }
         });
+
+        map.addLayer({
+          id: "base-labels",
+          type: "raster",
+          source: "base-labels",
+          layout: { visibility: "none" },
+          paint: { "raster-opacity": 0.95 }
+        });
+        map.addLayer({
+          id: "base-transport",
+          type: "raster",
+          source: "base-transport",
+          layout: { visibility: "none" },
+          paint: { "raster-opacity": 0.9 }
+        });
+
         map.on("click", "mang-fill", function (e) {
           const p = (e.features[0] || {}).properties || {};
           new maplibregl.Popup({ maxWidth: "280px" })
@@ -172,11 +253,38 @@
         map.on("mouseenter", "mang-fill", () => (map.getCanvas().style.cursor = "pointer"));
         map.on("mouseleave", "mang-fill", () => (map.getCanvas().style.cursor = ""));
 
+        function setBasemap(name) {
+          const cfg = BASEMAPS[name] || BASEMAPS.light;
+          const key = BASEMAPS[name] ? name : "light";
+          Object.keys(UNDERLAYS).forEach((id) => {
+            map.setLayoutProperty(
+              "base-" + id,
+              "visibility",
+              cfg.under === id ? "visible" : "none"
+            );
+          });
+          ["labels", "transport"].forEach((ov) => {
+            map.setLayoutProperty(
+              "base-" + ov,
+              "visibility",
+              cfg.overlays.indexOf(ov) >= 0 ? "visible" : "none"
+            );
+          });
+          const sw = document.getElementById("basemap-switch");
+          if (sw) {
+            sw.querySelectorAll("button").forEach((btn) => {
+              const on = btn.getAttribute("data-base") === key;
+              btn.classList.toggle("active", on);
+              btn.setAttribute("aria-checked", on ? "true" : "false");
+            });
+          }
+        }
+
         const zhezTg = document.getElementById("zhez-toggle");
         const zhezOp = document.getElementById("zhez-opacity");
         const mangTg = document.getElementById("mang-toggle");
         const mangOp = document.getElementById("mang-opacity");
-        const satTg = document.getElementById("sat-toggle");
+        const baseSwitch = document.getElementById("basemap-switch");
 
         if (zhezTg)
           zhezTg.addEventListener("change", () =>
@@ -190,10 +298,12 @@
               map.setLayoutProperty(id, "visibility", mangTg.checked ? "visible" : "none")
             )
           );
-        if (satTg)
-          satTg.addEventListener("change", () =>
-            map.setLayoutProperty("sat", "visibility", satTg.checked ? "visible" : "none")
-          );
+        if (baseSwitch)
+          baseSwitch.addEventListener("click", (e) => {
+            const btn = e.target.closest("button[data-base]");
+            if (!btn) return;
+            setBasemap(btn.getAttribute("data-base"));
+          });
         if (zhezOp)
           zhezOp.addEventListener("input", () => {
             map.setPaintProperty("zhez-fill", "fill-opacity", +zhezOp.value);
@@ -204,6 +314,11 @@
             map.setPaintProperty("mang-fill", "fill-opacity", +mangOp.value);
             map.setPaintProperty("mang-line", "line-opacity", +mangOp.value);
           });
+
+        setBasemap("light");
+        // expose for screenshots / debugging
+        window.geologykzSetBasemap = setBasemap;
+        window.geologykzMap = map;
 
         // Resize after enter/exit fullscreen so the canvas fills the screen.
         const resize = () => map.resize();

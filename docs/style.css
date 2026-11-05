@@ -313,3 +313,23 @@ h2 {
   .topbar nav a:nth-child(2) { display: none; }
   .hero-map { min-height: 520px; }
 }
+
+.basemap-block { margin-top: 2px; }
+.basemap-switch {
+  display: flex; flex-wrap: wrap; gap: 4px;
+}
+.basemap-switch button {
+  appearance: none; cursor: pointer;
+  border: 1px solid var(--line);
+  background: var(--soft);
+  color: var(--muted);
+  font: 500 10.5px/1.2 var(--sans);
+  padding: 5px 8px;
+  border-radius: 8px;
+}
+.basemap-switch button:hover { color: var(--text); border-color: #d6d3d1; }
+.basemap-switch button.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
