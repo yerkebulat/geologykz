@@ -1,0 +1,45 @@
+{
+  "method": "Native scan co-registered to Geokniga supplementary GeoTIFF via homography; source CRS EPSG:4326",
+  "source_geotiff": "https://www.geokniga.org/maps/additional/m-44-xvgeologicheskayakarta.tif",
+  "source_bounds": [
+    79.999,
+    50.0,
+    80.999,
+    50.667
+  ],
+  "registration": {
+    "H": [
+      [
+        0.9770051355683463,
+        -0.016161258163042497,
+        24.046310505805373
+      ],
+      [
+        0.011925476757879054,
+        0.9867085663781835,
+        4.892764669666307
+      ],
+      [
+        9.994666416942485e-08,
+        -7.122943015252238e-06,
+        1.0
+      ]
+    ],
+    "native_crop": [
+      2130,
+      880,
+      4270,
+      4410
+    ],
+    "match_size": [
+      1300,
+      1340
+    ],
+    "matches": 1556,
+    "inliers": 1475,
+    "holdout_count": 299,
+    "holdout_rms_match_px": 1.104807734489441,
+    "holdout_max_match_px": 2.513627052307129
+  },
+  "caveat": "Native scan has no readable latitude/longitude labels at the frame. Coordinate evidence is the supplied georeferenced TIFF, not independently read GCPs. Feature holdout measures image transfer only, not geographic accuracy; original TIFF registration provenance/datum conversion unknown. Provisional."
+}

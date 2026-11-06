@@ -1,0 +1,401 @@
+[
+  {
+    "id": 0,
+    "code": "Q",
+    "ru": "Четвертичные отложения нерасчлененные (только на разрезах)",
+    "en": "Historic native legend; see source excerpt.",
+    "age": "Historic legend, see native description",
+    "rgb": [
+      253,
+      255,
+      199
+    ],
+    "section_only": true,
+    "image": "data/detailed/m44xv/legend/entry-0.webp",
+    "native_box": [
+      6837,
+      398,
+      176,
+      90
+    ],
+    "transcription_caveat": "Intrusive phase symbols and N superscripts provisional; source excerpt is authoritative.",
+    "similar_swatch_ids": [
+      3,
+      4,
+      7
+    ]
+  },
+  {
+    "id": 1,
+    "code": "QIV",
+    "ru": "Современные отложения. Суглинки, супеси, пески, галечники",
+    "en": "Historic native legend; see source excerpt.",
+    "age": "Historic legend, see native description",
+    "rgb": [
+      255,
+      255,
+      234
+    ],
+    "section_only": false,
+    "image": "data/detailed/m44xv/legend/entry-1.webp",
+    "native_box": [
+      6835,
+      554,
+      176,
+      104
+    ],
+    "transcription_caveat": "Intrusive phase symbols and N superscripts provisional; source excerpt is authoritative.",
+    "similar_swatch_ids": [
+      2
+    ]
+  },
+  {
+    "id": 2,
+    "code": "QIII-IV",
+    "ru": "Верхнечетвертичные–современные отложения. Глины, суглинки, супеси, пески, галечники",
+    "en": "Historic native legend; see source excerpt.",
+    "age": "Historic legend, see native description",
+    "rgb": [
+      255,
+      255,
+      234
+    ],
+    "section_only": false,
+    "image": "data/detailed/m44xv/legend/entry-2.webp",
+    "native_box": [
+      6833,
+      714,
+      176,
+      104
+    ],
+    "transcription_caveat": "Intrusive phase symbols and N superscripts provisional; source excerpt is authoritative.",
+    "similar_swatch_ids": [
+      1
+    ]
+  },
+  {
+    "id": 3,
+    "code": "QIII",
+    "ru": "Верхнечетвертичные отложения. Супеси, суглинки, пески, галечники",
+    "en": "Historic native legend; see source excerpt.",
+    "age": "Historic legend, see native description",
+    "rgb": [
+      255,
+      255,
+      198
+    ],
+    "section_only": false,
+    "image": "data/detailed/m44xv/legend/entry-3.webp",
+    "native_box": [
+      6831,
+      879,
+      176,
+      104
+    ],
+    "transcription_caveat": "Intrusive phase symbols and N superscripts provisional; source excerpt is authoritative.",
+    "similar_swatch_ids": [
+      4,
+      7
+    ]
+  },
+  {
+    "id": 4,
+    "code": "QII-III",
+    "ru": "Средне-верхнечетвертичные отложения. Суглинки, супеси, пески, галечники",
+    "en": "Historic native legend; see source excerpt.",
+    "age": "Historic legend, see native description",
+    "rgb": [
+      255,
+      255,
+      181
+    ],
+    "section_only": false,
+    "image": "data/detailed/m44xv/legend/entry-4.webp",
+    "native_box": [
+      6829,
+      1037,
+      176,
+      104
+    ],
+    "transcription_caveat": "Intrusive phase symbols and N superscripts provisional; source excerpt is authoritative.",
+    "similar_swatch_ids": [
+      3,
+      5,
+      7
+    ]
+  },
+  {
+    "id": 5,
+    "code": "QII",
+    "ru": "Среднечетвертичные отложения. Лёссовидные суглинки; супеси, пески",
+    "en": "Historic native legend; see source excerpt.",
+    "age": "Historic legend, see native description",
+    "rgb": [
+      255,
+      254,
+      167
+    ],
+    "section_only": false,
+    "image": "data/detailed/m44xv/legend/entry-5.webp",
+    "native_box": [
+      6827,
+      1197,
+      176,
+      104
+    ],
+    "transcription_caveat": "Intrusive phase symbols and N superscripts provisional; source excerpt is authoritative.",
+    "similar_swatch_ids": [
+      4,
+      7
+    ]
+  },
+  {
+    "id": 6,
+    "code": "QI-II",
+    "ru": "Нижне-среднечетвертичные отложения. Галечники, пески",
+    "en": "Historic native legend; see source excerpt.",
+    "age": "Historic legend, see native description",
+    "rgb": [
+      255,
+      238,
+      130
+    ],
+    "section_only": false,
+    "image": "data/detailed/m44xv/legend/entry-6.webp",
+    "native_box": [
+      6825,
+      1360,
+      176,
+      104
+    ],
+    "transcription_caveat": "Intrusive phase symbols and N superscripts provisional; source excerpt is authoritative.",
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 7,
+    "code": "N2²⁻³",
+    "ru": "Средний–верхний плиоцен. Желто-бурые и сизые тонкослоистые глины, алевриты, пески, галечники",
+    "en": "Historic native legend; see source excerpt.",
+    "age": "Historic legend, see native description",
+    "rgb": [
+      255,
+      255,
+      190
+    ],
+    "section_only": false,
+    "image": "data/detailed/m44xv/legend/entry-7.webp",
+    "native_box": [
+      6823,
+      1521,
+      176,
+      104
+    ],
+    "transcription_caveat": "Intrusive phase symbols and N superscripts provisional; source excerpt is authoritative.",
+    "similar_swatch_ids": [
+      3,
+      4,
+      5
+    ]
+  },
+  {
+    "id": 8,
+    "code": "N1²⁻³–N2¹⁻²pv",
+    "ru": "Средний миоцен, средний плиоцен. Павлодарская свита. Красноцветные и зеленовато-серые известковистые глины, пески, песчаники",
+    "en": "Historic native legend; see source excerpt.",
+    "age": "Historic legend, see native description",
+    "rgb": [
+      254,
+      255,
+      116
+    ],
+    "section_only": false,
+    "image": "data/detailed/m44xv/legend/entry-8.webp",
+    "native_box": [
+      6820,
+      1682,
+      176,
+      104
+    ],
+    "transcription_caveat": "Intrusive phase symbols and N superscripts provisional; source excerpt is authoritative.",
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 9,
+    "code": "N1¹⁻²ar",
+    "ru": "Нижний–средний миоцен. Аральская свита. Зеленоцветные и пестрые загипсованные глины, пески, галечники",
+    "en": "Historic native legend; see source excerpt.",
+    "age": "Historic legend, see native description",
+    "rgb": [
+      255,
+      255,
+      19
+    ],
+    "section_only": false,
+    "image": "data/detailed/m44xv/legend/entry-9.webp",
+    "native_box": [
+      6818,
+      1844,
+      176,
+      104
+    ],
+    "transcription_caveat": "Intrusive phase symbols and N superscripts provisional; source excerpt is authoritative.",
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 10,
+    "code": "Pg3³",
+    "ru": "Верхний олигоцен. Галечники; кварцевые пески, глины зеленые, желтые, белые (только на разрезе)",
+    "en": "Historic native legend; see source excerpt.",
+    "age": "Historic legend, see native description",
+    "rgb": [
+      255,
+      252,
+      158
+    ],
+    "section_only": true,
+    "image": "data/detailed/m44xv/legend/entry-10.webp",
+    "native_box": [
+      6816,
+      2007,
+      176,
+      104
+    ],
+    "transcription_caveat": "Intrusive phase symbols and N superscripts provisional; source excerpt is authoritative.",
+    "similar_swatch_ids": [
+      4,
+      5
+    ]
+  },
+  {
+    "id": 11,
+    "code": "Pg2³",
+    "ru": "Верхний эоцен. Сливные песчаники",
+    "en": "Historic native legend; see source excerpt.",
+    "age": "Historic legend, see native description",
+    "rgb": [
+      255,
+      198,
+      2
+    ],
+    "section_only": false,
+    "image": "data/detailed/m44xv/legend/entry-11.webp",
+    "native_box": [
+      6814,
+      2166,
+      176,
+      104
+    ],
+    "transcription_caveat": "Intrusive phase symbols and N superscripts provisional; source excerpt is authoritative.",
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 12,
+    "code": "C2bk",
+    "ru": "Средний отдел. Буконьская свита. Песчаники аркозовые и туфогенные, алевролиты, глинистые сланцы, горизонты конгломератов и гравелитов",
+    "en": "Historic native legend; see source excerpt.",
+    "age": "Historic legend, see native description",
+    "rgb": [
+      236,
+      230,
+      186
+    ],
+    "section_only": false,
+    "image": "data/detailed/m44xv/legend/entry-12.webp",
+    "native_box": [
+      6812,
+      2328,
+      176,
+      104
+    ],
+    "transcription_caveat": "Intrusive phase symbols and N superscripts provisional; source excerpt is authoritative.",
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 13,
+    "code": "C1v3–nkp",
+    "ru": "Нижний отдел. Визейский ярус, верхний подъярус–намюрский ярус. Кокпектинская свита. Полимиктовые, реже туфогенные песчаники, кремнисто-глинистые сланцы, прослои алевролитов; туфы, редко лавы порфиритов",
+    "en": "Historic native legend; see source excerpt.",
+    "age": "Historic legend, see native description",
+    "rgb": [
+      189,
+      206,
+      170
+    ],
+    "section_only": false,
+    "image": "data/detailed/m44xv/legend/entry-13.webp",
+    "native_box": [
+      6810,
+      2486,
+      176,
+      104
+    ],
+    "transcription_caveat": "Intrusive phase symbols and N superscripts provisional; source excerpt is authoritative.",
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 14,
+    "code": "γPz3l III",
+    "ru": "Поздний верхнепалеозойский комплекс. Аляскитовые, биотитовые, двуслюдяные граниты; гранит-порфиры",
+    "en": "Historic native legend; see source excerpt.",
+    "age": "Historic legend, see native description",
+    "rgb": [
+      255,
+      77,
+      71
+    ],
+    "section_only": false,
+    "image": "data/detailed/m44xv/legend/entry-14.webp",
+    "native_box": [
+      6808,
+      2645,
+      176,
+      104
+    ],
+    "transcription_caveat": "Intrusive phase symbols and N superscripts provisional; source excerpt is authoritative.",
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 15,
+    "code": "γPz3l I",
+    "ru": "Аляскитовые, биотитовые и биотит-роговообманковые граниты, плагиограниты; гранит-порфиры; гранодиориты; граносиениты. Жилы и тела сиенит-порфиров",
+    "en": "Historic native legend; see source excerpt.",
+    "age": "Historic legend, see native description",
+    "rgb": [
+      255,
+      106,
+      120
+    ],
+    "section_only": false,
+    "image": "data/detailed/m44xv/legend/entry-15.webp",
+    "native_box": [
+      6806,
+      2803,
+      176,
+      104
+    ],
+    "transcription_caveat": "Intrusive phase symbols and N superscripts provisional; source excerpt is authoritative.",
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 16,
+    "code": "δPz3l I",
+    "ru": "Диориты, габбро, сиенито-диориты",
+    "en": "Historic native legend; see source excerpt.",
+    "age": "Historic legend, see native description",
+    "rgb": [
+      1,
+      160,
+      116
+    ],
+    "section_only": false,
+    "image": "data/detailed/m44xv/legend/entry-16.webp",
+    "native_box": [
+      6804,
+      2962,
+      176,
+      104
+    ],
+    "transcription_caveat": "Intrusive phase symbols and N superscripts provisional; source excerpt is authoritative.",
+    "similar_swatch_ids": []
+  }
+]

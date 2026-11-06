@@ -1,0 +1,44 @@
+{
+  "sheets": [
+    {
+      "id": "m44xv",
+      "label": "1:200,000 M-44-XV",
+      "sourcePage": "https://www.geokniga.org/maps/42215",
+      "credit": "East Kazakhstan Geological Administration; editor M. G. Khisamutdinov. Scan via geokniga.org.",
+      "units": "data/detailed/m44xv/units.geojson",
+      "legend": "data/detailed/m44xv/legend.json",
+      "bounds": [
+        [
+          79.999,
+          49.99983880339999
+        ],
+        [
+          80.9993639003955,
+          50.667
+        ]
+      ],
+      "rasterTiles": {
+        "tiles": [
+          "data/detailed/m44xv/tiles/{z}/{x}/{y}.webp"
+        ],
+        "tileSize": 256,
+        "minzoom": 7,
+        "maxzoom": 12,
+        "bounds": [
+          79.999,
+          49.99983880339999,
+          80.9993639003955,
+          50.667
+        ]
+      },
+      "experimental": true,
+      "dates": {
+        "scan_printed": 1964,
+        "catalog": 1964
+      },
+      "license": "Source rights remain with authors/rightsholders; no open redistribution license established. Scan-derived assets excluded from repository software license.",
+      "accuracy": "Native scan has no readable latitude/longitude labels at the frame. Coordinate evidence is the supplied georeferenced TIFF, not independently read GCPs. Feature holdout measures image transfer only, not geographic accuracy; original TIFF registration provenance/datum conversion unknown. Provisional.",
+      "limitations": "Approximate color segmentation, not interpreted contacts. Hatches/text are not independently classified. Similar colors list candidates. Provisional georeferencing, not field-grade. Source TIFF georeferencing has no independent geographic verification."
+    }
+  ]
+}

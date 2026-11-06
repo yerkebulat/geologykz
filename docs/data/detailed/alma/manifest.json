@@ -1,0 +1,50 @@
+{
+  "sheets": [
+    {
+      "id": "alma",
+      "label": "1:500,000 K-43-Б Alma-Ata",
+      "sourcePage": "https://www.geokniga.org/maps/2561",
+      "credit": "Kazakh SSR geological map, Alma-Ata; editors Bespalov / Kostenko; catalog Aerogeologiya. Scan and South shared legend via geokniga.org.",
+      "units": "data/detailed/alma/units.geojson",
+      "legend": "data/detailed/alma/legend.json",
+      "bounds": [
+        [
+          74.99939067053865,
+          42.80502452617507
+        ],
+        [
+          77.9994043933842,
+          44.00031882870475
+        ]
+      ],
+      "rasterTiles": {
+        "tiles": [
+          "data/detailed/alma/tiles/{z}/{x}/{y}.webp"
+        ],
+        "tileSize": 256,
+        "minzoom": 7,
+        "maxzoom": 11,
+        "bounds": [
+          74.99939067053865,
+          42.80502452617507,
+          77.9994043933842,
+          44.00031882870475
+        ]
+      },
+      "experimental": true,
+      "dates": {
+        "scan_printed": 1979,
+        "catalog": 1979
+      },
+      "license": "Source rights remain with authors/rightsholders; no open redistribution license established. Scan-derived assets excluded from repository software license.",
+      "accuracy": "Manual boundary picks, no independently surveyed landmarks. Residuals measure grid fit only. Source datum assumed, not verified; provisional georeferencing.",
+      "limitations": "Approximate color segmentation, not interpreted contacts. Hatches/text are not independently classified. Similar colors list candidates. Provisional georeferencing, not field-grade. 178 sampled shared-legend swatches are native-image references, not transcribed or uniquely identified units. Candidate lists are not exhaustive. Consult native excerpts.",
+      "legendPages": [
+        "data/detailed/alma/legend/plate-1.webp",
+        "data/detailed/alma/legend/plate-2.webp",
+        "data/detailed/alma/legend/plate-3.webp"
+      ],
+      "legendSource": "https://www.geokniga.org/maps/2550"
+    }
+  ]
+}
