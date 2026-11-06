@@ -1,0 +1,89 @@
+{
+  "gcp_source": "manual native scan coordinates, corners + four midpoint grid/frame intersections + centre",
+  "gcp_columns": [
+    "pixel_x",
+    "pixel_y",
+    "lon",
+    "lat"
+  ],
+  "gcps": [
+    [
+      2195.0,
+      966.0,
+      72.0,
+      48.666666666666664
+    ],
+    [
+      4369.0,
+      974.0,
+      72.5,
+      48.666666666666664
+    ],
+    [
+      6545.0,
+      970.0,
+      73.0,
+      48.666666666666664
+    ],
+    [
+      2180.0,
+      3162.0,
+      72.0,
+      48.333333333333336
+    ],
+    [
+      4370.0,
+      3168.0,
+      72.5,
+      48.333333333333336
+    ],
+    [
+      6554.0,
+      3162.0,
+      73.0,
+      48.333333333333336
+    ],
+    [
+      2167.0,
+      5358.0,
+      72.0,
+      48.0
+    ],
+    [
+      4371.0,
+      5368.0,
+      72.5,
+      48.0
+    ],
+    [
+      6568.0,
+      5366.0,
+      73.0,
+      48.0
+    ]
+  ],
+  "assumed_src_crs": "EPSG:4284 (not explicitly confirmed)",
+  "target_crs": "EPSG:3857",
+  "transformation": "quadratic inverse remap",
+  "rms_native_px": 1.5265391056509894,
+  "max_native_px": 2.202038022464104,
+  "loo_errors_px": [
+    6.231488276448801,
+    4.250005104035981,
+    8.07841010261175,
+    4.515721434700639,
+    1.7500005633865587,
+    4.954600620742855,
+    6.650511125690927,
+    2.500003550064223,
+    5.362378832349804
+  ],
+  "center_holdout_native_px": 1.7500005633865587,
+  "geographic_extent_pulkovo42": [
+    72,
+    48,
+    73,
+    48.666666666666664
+  ],
+  "caveat": "Residuals are grid fit, not absolute geographic accuracy. Datum assumption and manual picking are unverified."
+}

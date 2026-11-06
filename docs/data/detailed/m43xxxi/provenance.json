@@ -1,0 +1,52 @@
+{
+  "id": "M-43-XXXI",
+  "scale": 200000,
+  "source_page": "https://www.geokniga.org/maps/44362",
+  "catalog_year": 1959,
+  "scan_year": 1956,
+  "editor": "Г.Ц. Медоев",
+  "publisher": "Южно-Казахстанское геологическое управление",
+  "coverage": [
+    72,
+    48,
+    73,
+    48.666666666666664
+  ],
+  "status": "Experimental published layer, selected first sheet only",
+  "quality": "9531x7448 original complete map, nine readable coordinate-grid intersections, full 25-color legend and stratigraphic column; source GeoTIFF exists but lower resolution",
+  "reason": "Best readable standalone legend, small regional sheet; color ambiguities explicit, no unique IDs when similar swatches",
+  "files": [
+    {
+      "path": "originals-not-in-repository/M-43-XXXI.jpg",
+      "download_url": "https://www.geokniga.org/sites/geokniga/files/maps/m-43-xxxi-geologicheskaya-karta-sssr-karagandinskaya-seriya.jpg",
+      "bytes": 4963513,
+      "sha256": "c1ff1daef26a8d5f7e53c93dc1bcf753fc61e5967e67e29c2bad9d1c650e8afe",
+      "dimensions": [
+        9531,
+        7448
+      ]
+    },
+    {
+      "path": "originals-not-in-repository/M-43-XXXI.tif",
+      "download_url": "https://www.geokniga.org/maps/additional/m-43-xxxigeologicheskayakarta.tif",
+      "bytes": 8543286,
+      "sha256": "e735e051c72732611cc61c847f08d289e46ffe44c1b598d2873406f3ce2d7b3b",
+      "dimensions": [
+        2066,
+        1377
+      ]
+    }
+  ],
+  "checked": "2026-11-06 Asia/Almaty",
+  "rights_notice": "Все права на материалы принадлежат исключительно их авторам или законным правообладателям. Все материалы предоставляются исключительно для ознакомления.",
+  "license_status": "No open reuse/redistribution license established. Local pilot, not a public-license claim.",
+  "processing": {
+    "gcps": "georef.json",
+    "method": "Quadratic grid fit; assumed Pulkovo 1942 to Web Mercator; source datum not explicitly verified",
+    "scan_tiles": "256px WebP XYZ z7-12; unchanged scan pixels/alpha, no gap fill",
+    "colors": "Nearest legend color + median/majority cleanup; no SAM; retained small source-classified regions. Similar colors list candidates; no unique unit claim.",
+    "legend_entries": 25,
+    "polygons": 16424,
+    "rights_file": "RIGHTS.md"
+  }
+}

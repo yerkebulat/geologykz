@@ -1,0 +1,417 @@
+[
+  {
+    "id": 0,
+    "code": "Q3-4",
+    "ru": "Верхний-современный отделы. Щебнистые суглинки, супеси, пески, гравий, галечники",
+    "en": "Upper to Recent Quaternary: rubbly loams, sandy loams, sand, gravel, pebbles",
+    "age": "Quaternary (upper to recent)",
+    "rgb": [
+      255,
+      255,
+      255
+    ],
+    "legend_crop": "work/leg00.png",
+    "section_only": false,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 1,
+    "code": "Q2",
+    "ru": "Средний отдел. Суглинки, пески, галечники",
+    "en": "Middle Quaternary: loams, sands, pebbles",
+    "age": "Middle Quaternary",
+    "rgb": [
+      235,
+      239,
+      217
+    ],
+    "legend_crop": "work/leg01.png",
+    "section_only": false,
+    "similar_swatch_ids": [
+      2,
+      8
+    ]
+  },
+  {
+    "id": 2,
+    "code": "Q1-2",
+    "ru": "Нижний-средний отделы. Щебнистые суглинки с примесью крупнообломочного материала",
+    "en": "Lower to Middle Quaternary: rubbly loams with coarse debris",
+    "age": "Lower to Middle Quaternary",
+    "rgb": [
+      240,
+      253,
+      230
+    ],
+    "legend_crop": "work/leg02.png",
+    "section_only": false,
+    "similar_swatch_ids": [
+      1
+    ]
+  },
+  {
+    "id": 3,
+    "code": "Q",
+    "ru": "Нерасчлененные четвертичные отложения (на разрезах)",
+    "en": "Undivided Quaternary (on cross-sections only)",
+    "age": "Quaternary",
+    "rgb": [
+      227,
+      253,
+      233
+    ],
+    "legend_crop": "work/leg03.png",
+    "section_only": true,
+    "similar_swatch_ids": [
+      1,
+      2
+    ]
+  },
+  {
+    "id": 4,
+    "code": "C2kl",
+    "ru": "Средний отдел. Калмакэмельская свита. Порфириты, агломераты порфиритов, туфопесчаники, фельзит-порфиры",
+    "en": "Kalmakemel Formation: porphyrites, porphyrite agglomerates, tuffaceous sandstones, felsite porphyries",
+    "age": "Middle Carboniferous",
+    "rgb": [
+      196,
+      215,
+      219
+    ],
+    "legend_crop": "work/leg04.png",
+    "section_only": false,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 5,
+    "code": "C1v2-n",
+    "ru": "Средневизейский подъярус-намюрский ярус. Известняки",
+    "en": "Middle Visean to Namurian: limestones",
+    "age": "Middle Visean to Namurian",
+    "rgb": [
+      164,
+      184,
+      181
+    ],
+    "legend_crop": "work/leg05.png",
+    "section_only": false,
+    "similar_swatch_ids": [
+      6,
+      7
+    ]
+  },
+  {
+    "id": 6,
+    "code": "C1v1",
+    "ru": "Нижневизейский подъярус. Известняки",
+    "en": "Lower Visean: limestones",
+    "age": "Lower Visean",
+    "rgb": [
+      172,
+      190,
+      173
+    ],
+    "legend_crop": "work/leg06.png",
+    "section_only": false,
+    "similar_swatch_ids": [
+      5
+    ]
+  },
+  {
+    "id": 7,
+    "code": "C1t1-2",
+    "ru": "Нижнетурнейский-верхнетурнейский подъярусы. Известняки, песчаники, сланцы, мергели, алевролиты, диабазовые порфириты",
+    "en": "Lower to Upper Tournaisian: limestones, sandstones, shales, marls, siltstones, diabase porphyrites",
+    "age": "Tournaisian",
+    "rgb": [
+      139,
+      182,
+      177
+    ],
+    "legend_crop": "work/leg07.png",
+    "section_only": false,
+    "similar_swatch_ids": [
+      5
+    ]
+  },
+  {
+    "id": 8,
+    "code": "D3fm",
+    "ru": "Фаменский ярус. Известняки, мергели, песчаники, алевролиты, туфопесчаники",
+    "en": "Famennian: limestones, marls, sandstones, siltstones, tuffaceous sandstones",
+    "age": "Famennian",
+    "rgb": [
+      246,
+      228,
+      213
+    ],
+    "legend_crop": "work/leg08.png",
+    "section_only": false,
+    "similar_swatch_ids": [
+      1
+    ]
+  },
+  {
+    "id": 9,
+    "code": "D3fr",
+    "ru": "Франский ярус. Песчаники, туфопесчаники, конгломераты, сланцы, известняки, фельзитовые порфиры",
+    "en": "Frasnian: sandstones, tuffaceous sandstones, conglomerates, shales, limestones, felsite porphyries",
+    "age": "Frasnian",
+    "rgb": [
+      230,
+      183,
+      148
+    ],
+    "legend_crop": "work/leg09.png",
+    "section_only": false,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 10,
+    "code": "D1-2kd",
+    "ru": "Нижний-средний отделы. Кайдульская свита. Кварцевые порфиры, порфириты и туфы порфиритов, туфопесчаники, песчаники, конгломераты, алевролиты, известняки",
+    "en": "Kaidul Formation: quartz porphyries, porphyrites and their tuffs, tuffaceous sandstones, sandstones, conglomerates, siltstones, limestones",
+    "age": "Lower to Middle Devonian",
+    "rgb": [
+      226,
+      155,
+      96
+    ],
+    "legend_crop": "work/leg10.png",
+    "section_only": false,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 11,
+    "code": "D1c",
+    "ru": "Нижний отдел. Кобленцский ярус. Песчаники, конгломераты, известняки, алевролиты, порфириты и их туфы",
+    "en": "Coblenzian: sandstones, conglomerates, limestones, siltstones, porphyrites and their tuffs",
+    "age": "Lower Devonian (Coblenzian as printed)",
+    "rgb": [
+      219,
+      140,
+      96
+    ],
+    "legend_crop": "work/leg11.png",
+    "section_only": false,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 12,
+    "code": "S2ld2",
+    "ru": "Верхний отдел. Лудловский ярус. Песчаники, алевролиты, сланцы, известняки, конгломераты",
+    "en": "Ludlow: sandstones, siltstones, shales, limestones, conglomerates",
+    "age": "Upper Silurian (Ludlow)",
+    "rgb": [
+      227,
+      245,
+      202
+    ],
+    "legend_crop": "work/leg12.png",
+    "section_only": false,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 13,
+    "code": "O1-2",
+    "ru": "Нижний-средний отделы. Мраморизованные известняки",
+    "en": "Lower to Middle Ordovician: marbleised limestones",
+    "age": "Lower to Middle Ordovician",
+    "rgb": [
+      167,
+      210,
+      127
+    ],
+    "legend_crop": "work/leg13.png",
+    "section_only": false,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 14,
+    "code": "Cm2¹md?",
+    "ru": "Средний отдел. Майданская свита. Песчаники, гравелиты, конгломераты, кремнистые сланцы, порфириты",
+    "en": "Maidan Formation: sandstones, gritstones, conglomerates, siliceous shales, porphyrites",
+    "age": "Middle Cambrian (uncertain index printed on map)",
+    "rgb": [
+      252,
+      210,
+      247
+    ],
+    "legend_crop": "work/leg14.png",
+    "section_only": false,
+    "similar_swatch_ids": [
+      15,
+      16
+    ]
+  },
+  {
+    "id": 15,
+    "code": "Cm1²bk?",
+    "ru": "Нижний отдел. Бощекульская свита. Диабазовые порфириты, спилиты, песчаники, алевролиты, кремнистые сланцы, туффиты, яшмо-кварциты, яшмы",
+    "en": "Boshchekul Formation: diabase porphyrites, spilites, sandstones, siltstones, siliceous shales, tuffites, jasper-quartzites, jaspers",
+    "age": "Lower Cambrian (uncertain index printed on map)",
+    "rgb": [
+      247,
+      201,
+      240
+    ],
+    "legend_crop": "work/leg15.png",
+    "section_only": false,
+    "similar_swatch_ids": [
+      14
+    ]
+  },
+  {
+    "id": 16,
+    "code": "Snsm",
+    "ru": "Сулуманская свита. Кварцито-сланцы, сланцы, углистые сланцы, филлиты, песчаники, алевролиты, известняки, порфироиды",
+    "en": "Suluman Formation: quartzite schists, shales, carbonaceous shales, phyllites, sandstones, siltstones, limestones, porphyroids",
+    "age": "Sn, historic division as printed; modern correlation not asserted",
+    "rgb": [
+      244,
+      216,
+      241
+    ],
+    "legend_crop": "work/leg16.png",
+    "section_only": false,
+    "similar_swatch_ids": [
+      14
+    ]
+  },
+  {
+    "id": 17,
+    "code": "Snak",
+    "ru": "Актауская свита. Слюдистые и кремнистые сланцы, кварциты, кварцито-сланцы, гнейсы и порфироиды",
+    "en": "Aktau Formation: micaceous and siliceous schists, quartzites, quartzite schists, gneisses, porphyroids",
+    "age": "Sn, historic division as printed; modern correlation not asserted",
+    "rgb": [
+      236,
+      181,
+      209
+    ],
+    "legend_crop": "work/leg17.png",
+    "section_only": false,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 18,
+    "code": "γP",
+    "ru": "Пермский комплекс аляскитовых гранитов. Аляскитовые разнозернистые граниты",
+    "en": "Permian alaskite granite complex: variable-grained alaskite granites",
+    "age": "Permian",
+    "rgb": [
+      255,
+      56,
+      90
+    ],
+    "legend_crop": "work/leg18.png",
+    "section_only": false,
+    "similar_swatch_ids": [
+      19
+    ]
+  },
+  {
+    "id": 19,
+    "code": "γπP?",
+    "ru": "Пермские (?) гипабиссальные интрузии гранит-порфиров и интрузивных кварцевых порфиров",
+    "en": "Permian (?) hypabyssal granite-porphyry and intrusive quartz-porphyry bodies",
+    "age": "Permian (?)",
+    "rgb": [
+      255,
+      55,
+      91
+    ],
+    "legend_crop": "work/leg19.png",
+    "section_only": false,
+    "similar_swatch_ids": [
+      18
+    ]
+  },
+  {
+    "id": 20,
+    "code": "γC3",
+    "ru": "Интрузивный комплекс верхнего карбона. Биотитовые и аляскитовые граниты",
+    "en": "Upper Carboniferous intrusive complex: biotite and alaskite granites",
+    "age": "Upper Carboniferous",
+    "rgb": [
+      255,
+      105,
+      125
+    ],
+    "legend_crop": "work/leg20.png",
+    "section_only": false,
+    "similar_swatch_ids": [
+      21,
+      22
+    ]
+  },
+  {
+    "id": 21,
+    "code": "γδC2-3",
+    "ru": "Интрузивный комплекс средне-верхнего карбона. Гранодиориты, адамеллиты и биотитовороговообманковые граниты",
+    "en": "Middle to Upper Carboniferous intrusive complex: granodiorites, adamellites, biotite-hornblende granites",
+    "age": "Middle to Upper Carboniferous",
+    "rgb": [
+      255,
+      115,
+      114
+    ],
+    "legend_crop": "work/leg21.png",
+    "section_only": false,
+    "similar_swatch_ids": [
+      20,
+      22,
+      24
+    ]
+  },
+  {
+    "id": 22,
+    "code": "γδS2",
+    "ru": "Комплекс интрузий верхнего силура. Гранодиориты",
+    "en": "Upper Silurian intrusive complex: granodiorites",
+    "age": "Upper Silurian",
+    "rgb": [
+      253,
+      106,
+      119
+    ],
+    "legend_crop": "work/leg22.png",
+    "section_only": false,
+    "similar_swatch_ids": [
+      20,
+      21
+    ]
+  },
+  {
+    "id": 23,
+    "code": "νS2",
+    "ru": "Комплекс интрузий верхнего силура. Габбро и габбро-диабазы",
+    "en": "Upper Silurian intrusive complex: gabbro and gabbro-diabases",
+    "age": "Upper Silurian",
+    "rgb": [
+      133,
+      226,
+      201
+    ],
+    "legend_crop": "work/leg23.png",
+    "section_only": false,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 24,
+    "code": "γδO3",
+    "ru": "Комплекс интрузий верхнего ордовика. Гранодиориты и плагиограниты",
+    "en": "Upper Ordovician intrusive complex: granodiorites and plagiogranites",
+    "age": "Upper Ordovician",
+    "rgb": [
+      254,
+      125,
+      127
+    ],
+    "legend_crop": "work/leg24.png",
+    "section_only": false,
+    "similar_swatch_ids": [
+      21
+    ]
+  }
+]

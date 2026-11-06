@@ -1,0 +1,62 @@
+{
+  "sheets": [
+    {
+      "id": "m43xxxi",
+      "label": "1:200,000 M-43-XXXI",
+      "sourcePage": "https://www.geokniga.org/maps/44362",
+      "credit": "South Kazakhstan Geological Administration; editor G. Ts. Medoev. Scan via geokniga.org.",
+      "units": "data/detailed/m43xxxi/units.geojson",
+      "legend": "data/detailed/m43xxxi/legend.json",
+      "coordinates": [
+        [
+          71.99921936640783,
+          48.667052126920694
+        ],
+        [
+          72.99929580591241,
+          48.667052126920694
+        ],
+        [
+          72.99929580591241,
+          48.000312241253866
+        ],
+        [
+          71.99921936640783,
+          48.000312241253866
+        ]
+      ],
+      "bounds": [
+        [
+          72,
+          48
+        ],
+        [
+          73,
+          48.666666666666664
+        ]
+      ],
+      "license": "Source rights remain with authors/rightsholders. Geokniga provides materials for familiarisation; no open redistribution license established. These scan-derived assets are not covered by a repository code license.",
+      "accuracy": "9 manually read grid GCPs; quadratic fit RMS 1.53 native pixels. Pulkovo 1942 assumed, not confirmed. Colors approximate and may list multiple candidates.",
+      "rasterTiles": {
+        "tiles": [
+          "data/detailed/m43xxxi/tiles/{z}/{x}/{y}.webp"
+        ],
+        "tileSize": 256,
+        "minzoom": 7,
+        "maxzoom": 12,
+        "bounds": [
+          71.99921936640783,
+          48.000312241253866,
+          72.99929580591241,
+          48.667052126920694
+        ]
+      },
+      "dates": {
+        "scan_printed": 1956,
+        "catalog": 1959
+      },
+      "experimental": true,
+      "limitations": "Approximate color segmentation, including ambiguous candidate lists. Provisional georeferencing, not field-grade. White Q3-4 is a mapped unit, not missing coverage."
+    }
+  ]
+}
