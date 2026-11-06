@@ -28,3 +28,11 @@ node --check docs/detailed.js
 NODE_PATH=/path/to/jsdom/node_modules node tests/detailed-lifecycle.cjs
 python tests/detailed-assets.py
 ```
+
+## East Kazakhstan shared family (batch 3)
+
+`family.py east1976-config.json SOURCE_DIR WORK_DIR OUTPUT_DIR BORDER_GEOJSON` builds four native 1:500k sheets together from the pre-downloaded `east_*.jpg` originals. Exact filenames, manually read geographic controls, actual native legend swatch boxes and source URLs are in the configuration; source hashes and fit/LOO residuals accompany every output. Reuse the corrected repository Kazakhstan border. The 160 sampled stratigraphic / intrusion-matrix swatches and their native descriptions are stored once under `data/detailed/east1976`, not duplicated for each map. Codes/ages are **native image references, not invented transcriptions**, and candidate sets are non-unique and not exhaustive. Whole native legend/context plates include the original title and credits. Prints are 1979; source catalog / series is 1976.
+
+Scans use 110m Web Mercator pixels and bounded z7–11 XYZ; approximate Colors uses ~220m Mercator pixels (~140m ground at50N). Labelled native frame controls (12 on Semipalatinsk/Zharma,8 on Leninogorsk/Ust-Kamenogorsk) fit a quadratic inverse remap, with Pulkovo1942 assumed rather than confirmed. Fit/LOO errors measure internal grid consistency, not absolute or independently surveyed accuracy. All frame picks are approximate (recorded uncertainty8 native pixels); interior landmarks have not been independently verified. No false field-grade claims. Water exclusion is an approximate competing color sampled from the labelled Seyten lake on the Semipalatinsk original, with a separate actual Bukhtarma reservoir sample for the paler Ust-Kamenogorsk scan; hatches, text and similar lithologic colors remain limitations. No source-white global exclusion, nearest-neighbor missing-geology fill or removal of small classified regions. Native source-derived assets remain outside any software license, with no open redistribution license established.
+
+Lean check: `python tests/detailed-family-assets.py`. Originals, arrays, source crops and visual intermediates remain in the external work directory and are never committed. Use one grouped release rather than per-sheet UI changes.

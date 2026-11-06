@@ -1,0 +1,50 @@
+{
+  "sheets": [
+    {
+      "id": "east-m44g",
+      "label": "1:500,000 M-44-Г Ust-Kamenogorsk",
+      "sourcePage": "https://www.geokniga.org/maps/3186",
+      "credit": "USSR / Kazakh SSR Ministries of Geology; East Kazakhstan series; chief editor S. E. Chakabaev. Native scans / shared legend via geokniga.org.",
+      "units": "data/detailed/east-m44g/units.geojson",
+      "legend": "data/detailed/east1976/legend.json",
+      "legendSource": "https://www.geokniga.org/maps/3184",
+      "legendPages": [
+        "data/detailed/east1976/plate-1.webp",
+        "data/detailed/east1976/plate-2.webp",
+        "data/detailed/east1976/plate-3.webp"
+      ],
+      "bounds": [
+        [
+          81.00046166739703,
+          48.00227084270714
+        ],
+        [
+          83.997510949805,
+          50.000501142445735
+        ]
+      ],
+      "rasterTiles": {
+        "tiles": [
+          "data/detailed/east-m44g/tiles/{z}/{x}/{y}.webp"
+        ],
+        "tileSize": 256,
+        "minzoom": 7,
+        "maxzoom": 11,
+        "bounds": [
+          81.00046166739703,
+          48.00227084270714,
+          83.997510949805,
+          50.000501142445735
+        ]
+      },
+      "dates": {
+        "scan_printed": 1979,
+        "catalog": 1976
+      },
+      "experimental": true,
+      "license": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+      "limitations": "Experimental color segmentation from 160 sampled native shared-legend references, not transcribed or unique units. Candidate lists not exhaustive; hatches/text/water classification approximate. Provisional georeferencing, not field-grade. Scan printed 1979; series/catalog 1976.",
+      "accuracy": "8 labelled native frame controls; internal grid-fit RMS 2.63px, leave-one-out max 16.31px. Grid-fit and leave-one-out residuals are not absolute geographic accuracy. Picks are approximate; all controls are on frame, not surveyed landmarks. Datum assumption, paper/scanner distortion and interior alignment remain unverified. Provisional, not field-grade."
+    }
+  ]
+}

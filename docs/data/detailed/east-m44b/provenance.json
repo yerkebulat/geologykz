@@ -1,0 +1,18 @@
+{
+  "source_file": "east_M-44-B_Leninogorsk.jpg",
+  "source_sha256": "56d4cf1f541de6012190b652227d4bfb715fb5146a7071b6db17ef33f09372e9",
+  "source_bytes": 23672859,
+  "sourcePage": "https://www.geokniga.org/maps/3185",
+  "legendSource": "https://www.geokniga.org/maps/3184",
+  "legend_family": "east1976",
+  "credit": "USSR / Kazakh SSR Ministries of Geology; East Kazakhstan series; chief editor S. E. Chakabaev. Native scans / shared legend via geokniga.org.",
+  "source_rights": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+  "method": "Actual legend-swatch Lab segmentation, not SAM. Text/hatch filtering and majority smoothing; no removed-small-region holes or nearest-neighbor geological infill. Corrected Kazakhstan border including Baikonur is unchanged.",
+  "reproduction": "tools/detailed-maps/family.py + east1976-config.json",
+  "water_sample_rgb": [
+    221,
+    255,
+    231
+  ],
+  "water_evidence": "Native Semipalatinsk scan: labelled saline lake Seyten, interior pixel box x540..560, y910..940 (RGB median). Approximate spectral exclusion, not an interpreted water boundary."
+}
