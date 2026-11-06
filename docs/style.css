@@ -362,3 +362,8 @@ h2 {
 .mode-switch { display: flex; gap: 4px; margin: 2px 0 4px 24px; }
 .mode-switch button { flex: 1; font: inherit; font-size: 12px; padding: 4px 8px; border: 1px solid #e7e5e4; border-radius: 6px; background: #fff; color: #57534e; cursor: pointer; }
 .mode-switch button.active { background: #1c1917; color: #fff; border-color: #1c1917; }
+
+/* Short viewports: keep the map (and its Layers button) within the visible screen */
+@media (max-height: 600px) {
+  .hero-map { min-height: 0; }
+}
