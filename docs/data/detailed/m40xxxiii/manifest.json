@@ -1,0 +1,49 @@
+{
+  "sheets": [
+    {
+      "id": "m40xxxiii",
+      "label": "1:200,000 M-40-XXXIII",
+      "sourcePage": "https://www.geokniga.org/maps/44223",
+      "credit": "Прикаспийская аэрогеологическая экспедиция Всесоюзного аэрогеологического треста. Автор А.А. Соколова-Кучерова; редактор В.С. Журавлев. Native original notices retained.",
+      "units": "data/detailed/m40xxxiii/units.geojson",
+      "legend": "data/detailed/m40xxxiii/legend.json",
+      "legendSource": "https://www.geokniga.org/maps/44223",
+      "legendPages": [
+        "data/detailed/m40xxxiii/plate-1.webp"
+      ],
+      "bounds": [
+        [
+          55.999080546469465,
+          48.00109503272441
+        ],
+        [
+          56.9982946033013,
+          48.66687551016171
+        ]
+      ],
+      "rasterTiles": {
+        "tiles": [
+          "data/detailed/m40xxxiii/tiles/{z}/{x}/{y}.webp"
+        ],
+        "tileSize": 256,
+        "minzoom": 7,
+        "maxzoom": 12,
+        "bounds": [
+          55.999080546469465,
+          48.00109503272441,
+          56.9982946033013,
+          48.66687551016171
+        ]
+      },
+      "dates": {
+        "scan_printed": "not established; native heading1959, approval9 April1959",
+        "catalog": 1959
+      },
+      "experimental": true,
+      "license": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+      "limitations": "Experimental color segmentation from 20 sampled native standalone-sheet references, not transcribed or unique units. Candidate lists not exhaustive; hatches/text/water classification approximate. Provisional georeferencing, not field-grade. Scan printed not established; native heading1959, approval9 April1959; series/catalog 1959. Native standalone20-reference geological legend only, not borrowed from Central/South maps. Actual 1:200000 native printed scale resolves source scale independently of nomenclature. Mineral-resource symbols are overprinted on the geological map but not independently classified or assigned ages. Four actually readable labelled native corner controls, assumed Pulkovo1942/Gauss-Kruger zone10 EPSG28410, affine holdouts, no invented midpoints or surveyed/interior landmarks. Datum/projection and absolute accuracy remain unverified. Native heading1959, mineral information current1 January1959, approval9 April1959; actual printing date not established. Native pale/blue geology retained, no global pale/blue/dark exclusion or missing-geology fill.",
+      "accuracy": "4 labelled native frame controls; internal grid-fit RMS 3.48px, leave-one-out max 14.01px. Grid-fit and leave-one-out residuals are not absolute geographic accuracy. Picks are approximate; all controls are on frame, not surveyed landmarks. Datum assumption, paper/scanner distortion and interior alignment remain unverified. Provisional, not field-grade.",
+      "sourceNotice": "data/detailed/m40xxxiii/source-notice.webp"
+    }
+  ]
+}
