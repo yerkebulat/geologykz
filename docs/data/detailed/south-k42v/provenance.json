@@ -1,0 +1,183 @@
+{
+  "water_sample_rgb": null,
+  "native_unmapped_polygons": [
+    [
+      [
+        0,
+        450
+      ],
+      [
+        870,
+        650
+      ],
+      [
+        1040,
+        1850
+      ],
+      [
+        1350,
+        1910
+      ],
+      [
+        1800,
+        1940
+      ],
+      [
+        2110,
+        1840
+      ],
+      [
+        2410,
+        1900
+      ],
+      [
+        2620,
+        2050
+      ],
+      [
+        2690,
+        2450
+      ],
+      [
+        3100,
+        2700
+      ],
+      [
+        3600,
+        2950
+      ],
+      [
+        3730,
+        2920
+      ],
+      [
+        3700,
+        2700
+      ],
+      [
+        3950,
+        2550
+      ],
+      [
+        4215,
+        2300
+      ],
+      [
+        4215,
+        4481
+      ],
+      [
+        0,
+        4481
+      ]
+    ]
+  ],
+  "native_unmapped_paper_only": true,
+  "native_unmapped_method": "Raw source minRGB>225 and max-min<25, only components within native paper ROI touching its 300px inset; close7 and fill enclosed ink/road holes. ROI is not a blanket geology exclusion.",
+  "native_water_windows": [
+    [
+      2520,
+      1570,
+      3570,
+      2200
+    ]
+  ],
+  "native_water_rule": {
+    "r_min": 0,
+    "g_min": 80,
+    "b_min": 100,
+    "g_minus_r_min": 12,
+    "b_minus_r_min": 22
+  },
+  "native_water_regions": [],
+  "native_water_exclusions": [],
+  "native_water_interiors": [
+    [
+      [
+        2740,
+        1790
+      ],
+      [
+        2840,
+        1830
+      ],
+      [
+        2900,
+        1840
+      ],
+      [
+        2950,
+        1810
+      ],
+      [
+        3060,
+        1810
+      ],
+      [
+        3090,
+        1870
+      ],
+      [
+        3150,
+        1940
+      ],
+      [
+        3260,
+        1980
+      ],
+      [
+        3340,
+        1990
+      ],
+      [
+        3400,
+        2020
+      ],
+      [
+        3360,
+        2070
+      ],
+      [
+        3290,
+        2050
+      ],
+      [
+        3190,
+        2040
+      ],
+      [
+        3090,
+        2020
+      ],
+      [
+        3000,
+        2010
+      ],
+      [
+        2940,
+        1980
+      ],
+      [
+        2860,
+        1930
+      ],
+      [
+        2780,
+        1900
+      ]
+    ]
+  ],
+  "water_window_method": "Native median9 RGB threshold (native_water_rule override, otherwise R>215 G>235 B>195 G-R>=8); source-water windows/regions plus conservative native water interior polygons, native mapped-island exclusions take priority; applied after majority, never global pale exclusion",
+  "water_evidence": "Native ЧАРДАРИНСКОЕ ВОДОХРАНИЛИЩЕ label and cyan shoreline paint in native crop2450,1550–3650,2200. Source-specific blue test only in bounded reservoir window; pale islands/peninsulas retained, a conservative actual open-water core avoids native linework speckles; no imposed modern shore. Structural annotations remain in Scan; Colors is not a submerged-geology interpretation.",
+  "source_file": "south_K-42-V_Yangier.jpg",
+  "source_sha256": "a3392c61dd578300130d6d68d608254854744f6a356e8fd479ad1c7b061db4a4",
+  "source_bytes": 3696346,
+  "sourcePage": "https://www.geokniga.org/maps/2558",
+  "legendSource": "https://www.geokniga.org/maps/2550",
+  "legend_family": "alma",
+  "credit": "Всесоюзное аэрогеологическое научно-производственное объединение «Аэрогеология», Министерство геологии СССР, Москва 1979. Native source notices retained.",
+  "source_rights": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+  "method": "Actual legend-swatch Lab segmentation, not SAM. Text/hatch filtering and majority smoothing; no removed-small-region holes or nearest-neighbor geological infill. Corrected Kazakhstan border including Baikonur is unchanged.",
+  "ink_filter": "median_only",
+  "reproduction": "tools/detailed-maps/family.py + south-final-config.json"
+}
