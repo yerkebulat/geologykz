@@ -1,0 +1,60 @@
+{
+  "water_sample_rgb": null,
+  "native_unmapped_polygons": [],
+  "native_water_windows": [
+    [
+      2100,
+      2220,
+      2350,
+      2370
+    ]
+  ],
+  "native_water_rule": {
+    "r_min": 0,
+    "g_min": 130,
+    "b_min": 130,
+    "g_minus_r_min": 15,
+    "b_minus_r_min": 5
+  },
+  "native_water_interiors": [
+    [
+      [
+        2222,
+        2242
+      ],
+      [
+        2233,
+        2240
+      ],
+      [
+        2249,
+        2252
+      ],
+      [
+        2253,
+        2285
+      ],
+      [
+        2244,
+        2289
+      ],
+      [
+        2230,
+        2265
+      ]
+    ]
+  ],
+  "water_window_method": "Native median9 RGB threshold (native_water_rule override, otherwise R>215 G>235 B>195 G-R>=8); source-water windows plus conservative native water interior polygons, applied after majority, never global pale exclusion",
+  "water_evidence": "Native cyan lake cluster at source pixels x2100–2350 y2220–2370, distinct from beige aQIV surrounds. Cyan RGB rule only in this tight source lake window, plus a conservative central lake core. Small channels/shorelines remain approximate; no global pale/blue removal.",
+  "source_file": "south_L-42-V_Chiili.jpg",
+  "source_sha256": "80233f8e14782db231f0d525ce491871bd3ab9fa9e683f193d62f3971244d18c",
+  "source_bytes": 6075285,
+  "sourcePage": "https://www.geokniga.org/maps/2570",
+  "legendSource": "https://www.geokniga.org/maps/2550",
+  "legend_family": "alma",
+  "credit": "Всесоюзное аэрогеологическое научно-производственное объединение «Аэрогеология», Министерство геологии СССР, Москва 1979. Native source notices retained.",
+  "source_rights": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+  "method": "Actual legend-swatch Lab segmentation, not SAM. Text/hatch filtering and majority smoothing; no removed-small-region holes or nearest-neighbor geological infill. Corrected Kazakhstan border including Baikonur is unchanged.",
+  "ink_filter": "median_only",
+  "reproduction": "tools/detailed-maps/family.py + south1979-config.json"
+}

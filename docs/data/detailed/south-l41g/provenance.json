@@ -1,0 +1,20 @@
+{
+  "water_sample_rgb": null,
+  "native_unmapped_polygons": [],
+  "native_water_windows": [],
+  "native_water_rule": null,
+  "native_water_interiors": [],
+  "water_window_method": null,
+  "water_evidence": "No global white, blue or dark exclusion: South legend contains pale and black geological units. Thin river linework and shoreline classification remain approximate. Any source-water mask is limited to documented native lake interiors.",
+  "source_file": "south_L-41-G_Kzyl-Orda.jpg",
+  "source_sha256": "0da5d7c83af8bac727403f4e46f068f46817afc96f74a4b1b7d565105bfbce70",
+  "source_bytes": 6038569,
+  "sourcePage": "https://www.geokniga.org/maps/2565",
+  "legendSource": "https://www.geokniga.org/maps/2550",
+  "legend_family": "alma",
+  "credit": "Всесоюзное аэрогеологическое научно-производственное объединение «Аэрогеология», Министерство геологии СССР, Москва 1979. Native source notices retained.",
+  "source_rights": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+  "method": "Actual legend-swatch Lab segmentation, not SAM. Text/hatch filtering and majority smoothing; no removed-small-region holes or nearest-neighbor geological infill. Corrected Kazakhstan border including Baikonur is unchanged.",
+  "ink_filter": "median_only",
+  "reproduction": "tools/detailed-maps/family.py + south1979-config.json"
+}

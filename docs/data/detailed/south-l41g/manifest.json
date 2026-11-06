@@ -1,0 +1,51 @@
+{
+  "sheets": [
+    {
+      "id": "south-l41g",
+      "label": "1:500,000 Kzyl-Orda L-41-Г",
+      "sourcePage": "https://www.geokniga.org/maps/2565",
+      "credit": "Всесоюзное аэрогеологическое научно-производственное объединение «Аэрогеология», Министерство геологии СССР, Москва 1979. Native source notices retained.",
+      "units": "data/detailed/south-l41g/units.geojson",
+      "legend": "data/detailed/alma/legend.json",
+      "legendSource": "https://www.geokniga.org/maps/2550",
+      "legendPages": [
+        "data/detailed/alma/legend/plate-1.webp",
+        "data/detailed/alma/legend/plate-2.webp",
+        "data/detailed/alma/legend/plate-3.webp"
+      ],
+      "bounds": [
+        [
+          63.001997598191686,
+          44.00082895111944
+        ],
+        [
+          65.99509429334952,
+          46.000257383969256
+        ]
+      ],
+      "rasterTiles": {
+        "tiles": [
+          "data/detailed/south-l41g/tiles/{z}/{x}/{y}.webp"
+        ],
+        "tileSize": 256,
+        "minzoom": 7,
+        "maxzoom": 11,
+        "bounds": [
+          63.001997598191686,
+          44.00082895111944,
+          65.99509429334952,
+          46.000257383969256
+        ]
+      },
+      "dates": {
+        "scan_printed": 1979,
+        "catalog": 1979
+      },
+      "experimental": true,
+      "license": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+      "limitations": "Experimental color segmentation from 178 sampled native shared-legend references, not transcribed or unique units. Candidate lists not exhaustive; hatches/text/water classification approximate. Provisional georeferencing, not field-grade. Scan printed 1979; series/catalog 1979. South native shared legend: 178 candidate references; native historic descriptions retained, not newly transcribed. Pale and black geological colors retained. Fine rivers and shorelines are not independently reconstructed. Chimkent has a source-native unpainted southeast excluded with a manually traced source mask; boundary placement and shorelines remain approximate, not reconstructed geology.",
+      "accuracy": "8 labelled native frame controls; internal grid-fit RMS 3.87px, leave-one-out max 26.81px. Grid-fit and leave-one-out residuals are not absolute geographic accuracy. Picks are approximate; all controls are on frame, not surveyed landmarks. Datum assumption, paper/scanner distortion and interior alignment remain unverified. Provisional, not field-grade.",
+      "sourceNotice": "data/detailed/south-l41g/source-notice.webp"
+    }
+  ]
+}
