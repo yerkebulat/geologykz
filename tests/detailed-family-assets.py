@@ -5,7 +5,7 @@ from PIL import Image
 from shapely.geometry import shape,Point
 from shapely.prepared import prep
 root=Path(__file__).resolve().parents[1];docs=root/'docs';C=json.load(open(root/'tools/detailed-maps'/ (sys.argv[1] if len(sys.argv)>1 else 'east1976-config.json')))
-fam=docs/'data/detailed'/C['family'];L=json.load(open(fam/'legend.json'));assert len(L)==sum(len(p['boxes']) for p in C['legend_plates'])
+fam=docs/'data/detailed'/C['family'];L=json.load(open(fam/'legend.json'));assert len(L)==(C['legend_count'] if C.get('reuse_legend') else sum(len(p['boxes']) for p in C['legend_plates']))
 for u in L:
  assert u['id']>=0 and u['age']=='Not transcribed; native legend only' and not u['section_only']
  assert (docs/u['image']).is_file();Image.open(docs/u['image']).verify()

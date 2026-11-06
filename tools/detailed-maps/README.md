@@ -56,3 +56,19 @@ python tests/detailed-central-source.py SOURCE_DIR WORK_DIR
 Source-dependent test samples a real pale mapped unit and the actual black-green mafic body in Dzhambul, checks palette/alpha preservation and original SHA256 provenance. Originals and processing arrays are not repository assets. Existing selected-sheet lazy loading and all off/default controls are unchanged.
 
 Central's per-sheet `source-notice.webp` preserves native map-footer authors, institutions and1981print notice at original resolution; the sheet Legend page links it explicitly.
+
+## Remaining East sheets (shared legend reused unchanged)
+
+`east-completion-config.json` adds M-45-В Zyryanovsk3190 and L-45-А Zaysan3191, Geokniga maps/3190 and maps/3191. Actual print1979, catalog series1976. `reuse_legend: true` loads existing160reference Eastlegend and skips extraction/re-encoding/provenance rewrites. Native map footer notices remain per-sheet linked source excerpts; original rights status unchanged.
+
+Native unpainted foreign paper is NOT pale geology. Georeferencing remains confined to labelled neatline and unchanged Kazakhstan country clipping. A manual source-pixel SE painted/blank boundary trace excludes clear paper fringes that survive current-country clipping; crop coordinates and approximate20px pick uncertainty are in config. This changes source coverage, NOT international borders. Zyryanovsk source painting east of the controlled87Eneatline is conservatively not extrapolated.
+
+Named native water (Markakol, Bukhtarma reservoir/Lake Zaysan) uses bounded review windows only, observed median9 RGB green-vs-yellow ink separation and conservative actual-water interior polygons. Interior masks prevent bathymetric letters/contours becoming false geological islands; they do not claim modern surveyed shorelines. Actual pale mapped shore peninsulas are tested and retained. No global white/blue exclusion, no dark-pixel inpainting, no nearest-neighbor geological fill, no SAM. Fine shorelines/hatches/small features remain approximate.
+
+```sh
+python tools/detailed-maps/family.py tools/detailed-maps/east-completion-config.json SOURCE_DIR WORK_DIR docs/data/detailed docs/data/kazakhstan_border.geojson
+python tests/detailed-family-assets.py east-completion-config.json
+python tests/detailed-east-completion-source.py SOURCE_DIR WORK_DIR
+```
+
+Eight native frame controls each; RMS3.565/5.723px and leave-one-outmax20.297/35.168px are INTERNAL grid metrics, not absolute geographic accuracy. Assumed datum, interior distortion and independent landmarks remain unverified. Source-dependent tests check actual named-water interiors, pale mapped peninsulas and foreign/paper NoData, preserving lake water in Scan.
