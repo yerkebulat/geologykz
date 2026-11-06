@@ -1,0 +1,4908 @@
+[
+  {
+    "id": 0,
+    "code": "South 1979 plate 1, column 1, entry 1",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      218,
+      203,
+      170
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-0.webp",
+    "native_box": [
+      237,
+      483,
+      146,
+      75
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      1,
+      24,
+      65,
+      66
+    ]
+  },
+  {
+    "id": 1,
+    "code": "South 1979 plate 1, column 1, entry 2",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      234,
+      215,
+      175
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-1.webp",
+    "native_box": [
+      239,
+      591,
+      143,
+      77
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      0,
+      24,
+      65
+    ]
+  },
+  {
+    "id": 2,
+    "code": "South 1979 plate 1, column 1, entry 3",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      237,
+      207,
+      145
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-2.webp",
+    "native_box": [
+      238,
+      708,
+      143,
+      75
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      4,
+      13
+    ]
+  },
+  {
+    "id": 3,
+    "code": "South 1979 plate 1, column 1, entry 4",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      233,
+      179,
+      107
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-3.webp",
+    "native_box": [
+      237,
+      820,
+      144,
+      76
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      5,
+      25
+    ]
+  },
+  {
+    "id": 4,
+    "code": "South 1979 plate 1, column 1, entry 5",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      235,
+      195,
+      133
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-4.webp",
+    "native_box": [
+      234,
+      936,
+      146,
+      76
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      2,
+      5,
+      13,
+      38
+    ]
+  },
+  {
+    "id": 5,
+    "code": "South 1979 plate 1, column 1, entry 6",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      228,
+      186,
+      126
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-5.webp",
+    "native_box": [
+      237,
+      1047,
+      143,
+      77
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      3,
+      4,
+      13,
+      25,
+      37,
+      38
+    ]
+  },
+  {
+    "id": 6,
+    "code": "South 1979 plate 1, column 1, entry 7",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      205,
+      161,
+      111
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-6.webp",
+    "native_box": [
+      238,
+      1160,
+      142,
+      80
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      7,
+      8,
+      10,
+      61,
+      64
+    ]
+  },
+  {
+    "id": 7,
+    "code": "South 1979 plate 1, column 1, entry 8",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      219,
+      165,
+      98
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-7.webp",
+    "native_box": [
+      238,
+      1276,
+      141,
+      78
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      6,
+      8
+    ]
+  },
+  {
+    "id": 8,
+    "code": "South 1979 plate 1, column 1, entry 9",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      213,
+      166,
+      104
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-8.webp",
+    "native_box": [
+      237,
+      1391,
+      141,
+      76
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      6,
+      7,
+      10
+    ]
+  },
+  {
+    "id": 9,
+    "code": "South 1979 plate 1, column 1, entry 10",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      204,
+      183,
+      152
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-9.webp",
+    "native_box": [
+      236,
+      1503,
+      142,
+      76
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      67
+    ]
+  },
+  {
+    "id": 10,
+    "code": "South 1979 plate 1, column 1, entry 11",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      206,
+      172,
+      125
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-10.webp",
+    "native_box": [
+      235,
+      1620,
+      144,
+      77
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      6,
+      8,
+      61,
+      77,
+      88,
+      89
+    ]
+  },
+  {
+    "id": 11,
+    "code": "South 1979 plate 1, column 1, entry 12",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      179,
+      146,
+      99
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-11.webp",
+    "native_box": [
+      235,
+      1734,
+      144,
+      74
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 12,
+    "code": "South 1979 plate 1, column 1, entry 13",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      172,
+      126,
+      83
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-12.webp",
+    "native_box": [
+      234,
+      1846,
+      144,
+      77
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 13,
+    "code": "South 1979 plate 1, column 1, entry 14",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      223,
+      196,
+      126
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-13.webp",
+    "native_box": [
+      233,
+      2051,
+      143,
+      74
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      2,
+      4,
+      5,
+      37,
+      38
+    ]
+  },
+  {
+    "id": 14,
+    "code": "South 1979 plate 1, column 1, entry 15",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      246,
+      232,
+      158
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-14.webp",
+    "native_box": [
+      234,
+      2308,
+      142,
+      74
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 15,
+    "code": "South 1979 plate 1, column 1, entry 16",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      250,
+      229,
+      112
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-15.webp",
+    "native_box": [
+      233,
+      2465,
+      143,
+      77
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      16,
+      17
+    ]
+  },
+  {
+    "id": 16,
+    "code": "South 1979 plate 1, column 1, entry 17",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      247,
+      224,
+      81
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-16.webp",
+    "native_box": [
+      232,
+      2670,
+      143,
+      72
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      15
+    ]
+  },
+  {
+    "id": 17,
+    "code": "South 1979 plate 1, column 1, entry 18",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      244,
+      216,
+      104
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-17.webp",
+    "native_box": [
+      232,
+      2799,
+      143,
+      75
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      15
+    ]
+  },
+  {
+    "id": 18,
+    "code": "South 1979 plate 1, column 1, entry 19",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      241,
+      201,
+      87
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-18.webp",
+    "native_box": [
+      232,
+      2956,
+      142,
+      73
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      20
+    ]
+  },
+  {
+    "id": 19,
+    "code": "South 1979 plate 1, column 1, entry 20",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      238,
+      159,
+      52
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-19.webp",
+    "native_box": [
+      231,
+      3104,
+      142,
+      74
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      21,
+      22
+    ]
+  },
+  {
+    "id": 20,
+    "code": "South 1979 plate 1, column 1, entry 21",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      239,
+      194,
+      67
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-20.webp",
+    "native_box": [
+      230,
+      3226,
+      142,
+      71
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      18
+    ]
+  },
+  {
+    "id": 21,
+    "code": "South 1979 plate 1, column 1, entry 22",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      238,
+      173,
+      53
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-21.webp",
+    "native_box": [
+      231,
+      3340,
+      141,
+      72
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      19
+    ]
+  },
+  {
+    "id": 22,
+    "code": "South 1979 plate 1, column 1, entry 23",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      235,
+      147,
+      48
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-22.webp",
+    "native_box": [
+      229,
+      3464,
+      142,
+      75
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      19,
+      27
+    ]
+  },
+  {
+    "id": 23,
+    "code": "South 1979 plate 1, column 1, entry 24",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      238,
+      185,
+      87
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-23.webp",
+    "native_box": [
+      229,
+      3609,
+      142,
+      76
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 24,
+    "code": "South 1979 plate 1, column 2, entry 1",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      231,
+      210,
+      170
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-24.webp",
+    "native_box": [
+      1221,
+      496,
+      144,
+      76
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      0,
+      1,
+      65,
+      66
+    ]
+  },
+  {
+    "id": 25,
+    "code": "South 1979 plate 1, column 2, entry 2",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      237,
+      182,
+      118
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-25.webp",
+    "native_box": [
+      1220,
+      636,
+      145,
+      76
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      3,
+      5
+    ]
+  },
+  {
+    "id": 26,
+    "code": "South 1979 plate 1, column 2, entry 3",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      239,
+      154,
+      80
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-26.webp",
+    "native_box": [
+      1220,
+      764,
+      144,
+      75
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 27,
+    "code": "South 1979 plate 1, column 2, entry 4",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      238,
+      140,
+      50
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-27.webp",
+    "native_box": [
+      1219,
+      890,
+      145,
+      72
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      22
+    ]
+  },
+  {
+    "id": 28,
+    "code": "South 1979 plate 1, column 2, entry 5",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      238,
+      118,
+      52
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-28.webp",
+    "native_box": [
+      1219,
+      1013,
+      145,
+      75
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ]
+  },
+  {
+    "id": 29,
+    "code": "South 1979 plate 1, column 2, entry 6",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      238,
+      118,
+      52
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-29.webp",
+    "native_box": [
+      1219,
+      1139,
+      144,
+      76
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      28,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ]
+  },
+  {
+    "id": 30,
+    "code": "South 1979 plate 1, column 2, entry 7",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      238,
+      110,
+      53
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-30.webp",
+    "native_box": [
+      1219,
+      1271,
+      144,
+      75
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      28,
+      29,
+      31,
+      32,
+      33,
+      34,
+      35
+    ]
+  },
+  {
+    "id": 31,
+    "code": "South 1979 plate 1, column 2, entry 8",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      239,
+      111,
+      64
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-31.webp",
+    "native_box": [
+      1219,
+      1393,
+      144,
+      71
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      28,
+      29,
+      30,
+      32,
+      33,
+      34,
+      35
+    ]
+  },
+  {
+    "id": 32,
+    "code": "South 1979 plate 1, column 2, entry 9",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      237,
+      109,
+      56
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-32.webp",
+    "native_box": [
+      1218,
+      1521,
+      145,
+      73
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      28,
+      29,
+      30,
+      31,
+      33,
+      34,
+      35
+    ]
+  },
+  {
+    "id": 33,
+    "code": "South 1979 plate 1, column 2, entry 10",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      239,
+      106,
+      54
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-33.webp",
+    "native_box": [
+      1218,
+      1644,
+      144,
+      76
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      28,
+      29,
+      30,
+      31,
+      32,
+      34,
+      35
+    ]
+  },
+  {
+    "id": 34,
+    "code": "South 1979 plate 1, column 2, entry 11",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      241,
+      106,
+      54
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-34.webp",
+    "native_box": [
+      1218,
+      1767,
+      144,
+      76
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      35
+    ]
+  },
+  {
+    "id": 35,
+    "code": "South 1979 plate 1, column 2, entry 12",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      239,
+      107,
+      64
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-35.webp",
+    "native_box": [
+      1218,
+      1911,
+      144,
+      73
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34
+    ]
+  },
+  {
+    "id": 36,
+    "code": "South 1979 plate 1, column 2, entry 13",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      234,
+      85,
+      45
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-36.webp",
+    "native_box": [
+      1218,
+      2059,
+      144,
+      74
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 37,
+    "code": "South 1979 plate 1, column 2, entry 14",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      211,
+      188,
+      117
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-37.webp",
+    "native_box": [
+      1218,
+      2201,
+      143,
+      72
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      5,
+      13,
+      38
+    ]
+  },
+  {
+    "id": 38,
+    "code": "South 1979 plate 1, column 2, entry 15",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      212,
+      192,
+      130
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-38.webp",
+    "native_box": [
+      1219,
+      2325,
+      142,
+      72
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      4,
+      5,
+      13,
+      37
+    ]
+  },
+  {
+    "id": 39,
+    "code": "South 1979 plate 1, column 2, entry 16",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      220,
+      224,
+      160
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-39.webp",
+    "native_box": [
+      1218,
+      2459,
+      142,
+      74
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      40
+    ]
+  },
+  {
+    "id": 40,
+    "code": "South 1979 plate 1, column 2, entry 17",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      211,
+      219,
+      149
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-40.webp",
+    "native_box": [
+      1217,
+      2598,
+      144,
+      74
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      39
+    ]
+  },
+  {
+    "id": 41,
+    "code": "South 1979 plate 1, column 2, entry 18",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      187,
+      209,
+      111
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-41.webp",
+    "native_box": [
+      1216,
+      2733,
+      144,
+      76
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      43
+    ]
+  },
+  {
+    "id": 42,
+    "code": "South 1979 plate 1, column 2, entry 19",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      167,
+      207,
+      84
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-42.webp",
+    "native_box": [
+      1216,
+      2865,
+      143,
+      77
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      44,
+      45,
+      46
+    ]
+  },
+  {
+    "id": 43,
+    "code": "South 1979 plate 1, column 2, entry 20",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      180,
+      206,
+      117
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-43.webp",
+    "native_box": [
+      1216,
+      2988,
+      142,
+      77
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      41
+    ]
+  },
+  {
+    "id": 44,
+    "code": "South 1979 plate 1, column 2, entry 21",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      165,
+      204,
+      84
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-44.webp",
+    "native_box": [
+      1216,
+      3124,
+      142,
+      72
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      42,
+      45,
+      46,
+      47
+    ]
+  },
+  {
+    "id": 45,
+    "code": "South 1979 plate 1, column 2, entry 22",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      161,
+      202,
+      83
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-45.webp",
+    "native_box": [
+      1215,
+      3252,
+      142,
+      77
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      42,
+      44,
+      46,
+      47
+    ]
+  },
+  {
+    "id": 46,
+    "code": "South 1979 plate 1, column 2, entry 23",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      155,
+      199,
+      82
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-46.webp",
+    "native_box": [
+      1215,
+      3382,
+      142,
+      74
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      42,
+      44,
+      45,
+      47
+    ]
+  },
+  {
+    "id": 47,
+    "code": "South 1979 plate 1, column 2, entry 24",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      153,
+      196,
+      89
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-47.webp",
+    "native_box": [
+      1214,
+      3516,
+      142,
+      76
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      44,
+      45,
+      46,
+      49,
+      50,
+      51
+    ]
+  },
+  {
+    "id": 48,
+    "code": "South 1979 plate 1, column 2, entry 25",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      190,
+      204,
+      149
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-48.webp",
+    "native_box": [
+      1213,
+      3638,
+      142,
+      76
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 49,
+    "code": "South 1979 plate 1, column 3, entry 1",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      137,
+      186,
+      79
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-49.webp",
+    "native_box": [
+      2208,
+      483,
+      144,
+      74
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      47,
+      50,
+      51
+    ]
+  },
+  {
+    "id": 50,
+    "code": "South 1979 plate 1, column 3, entry 2",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      137,
+      186,
+      79
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-50.webp",
+    "native_box": [
+      2207,
+      609,
+      145,
+      73
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      47,
+      49,
+      51
+    ]
+  },
+  {
+    "id": 51,
+    "code": "South 1979 plate 1, column 3, entry 3",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      137,
+      186,
+      79
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-51.webp",
+    "native_box": [
+      2207,
+      749,
+      144,
+      74
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      47,
+      49,
+      50
+    ]
+  },
+  {
+    "id": 52,
+    "code": "South 1979 plate 1, column 3, entry 4",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      108,
+      172,
+      172
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-52.webp",
+    "native_box": [
+      2207,
+      891,
+      144,
+      74
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      55
+    ]
+  },
+  {
+    "id": 53,
+    "code": "South 1979 plate 1, column 3, entry 5",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      202,
+      215,
+      200
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-53.webp",
+    "native_box": [
+      2206,
+      1057,
+      144,
+      75
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 54,
+    "code": "South 1979 plate 1, column 3, entry 6",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      178,
+      205,
+      195
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-54.webp",
+    "native_box": [
+      2205,
+      1248,
+      144,
+      74
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 55,
+    "code": "South 1979 plate 1, column 3, entry 7",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      129,
+      180,
+      175
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-55.webp",
+    "native_box": [
+      2204,
+      1477,
+      145,
+      73
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      52
+    ]
+  },
+  {
+    "id": 56,
+    "code": "South 1979 plate 1, column 3, entry 8",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      74,
+      111,
+      164
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-56.webp",
+    "native_box": [
+      2202,
+      1706,
+      145,
+      75
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 57,
+    "code": "South 1979 plate 1, column 3, entry 9",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      56,
+      102,
+      138
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-57.webp",
+    "native_box": [
+      2202,
+      1855,
+      144,
+      73
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 58,
+    "code": "South 1979 plate 1, column 3, entry 10",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      189,
+      144,
+      161
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-58.webp",
+    "native_box": [
+      2202,
+      2011,
+      141,
+      54
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 59,
+    "code": "South 1979 plate 1, column 3, entry 11",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      231,
+      149,
+      170
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-59.webp",
+    "native_box": [
+      2200,
+      2136,
+      146,
+      74
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 60,
+    "code": "South 1979 plate 1, column 3, entry 12",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      232,
+      108,
+      150
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-60.webp",
+    "native_box": [
+      2200,
+      2270,
+      144,
+      75
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 61,
+    "code": "South 1979 plate 1, column 3, entry 13",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      213,
+      165,
+      128
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-61.webp",
+    "native_box": [
+      2198,
+      2591,
+      144,
+      77
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      6,
+      10,
+      64,
+      77,
+      108
+    ]
+  },
+  {
+    "id": 62,
+    "code": "South 1979 plate 1, column 3, entry 14",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      201,
+      114,
+      73
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-62.webp",
+    "native_box": [
+      2195,
+      2943,
+      144,
+      77
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 63,
+    "code": "South 1979 plate 1, column 3, entry 15",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      181,
+      88,
+      55
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-63.webp",
+    "native_box": [
+      2194,
+      3208,
+      143,
+      73
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 64,
+    "code": "South 1979 plate 1, column 3, entry 16",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      195,
+      162,
+      128
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-64.webp",
+    "native_box": [
+      2190,
+      3554,
+      144,
+      76
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      6,
+      61,
+      69,
+      77,
+      78,
+      88,
+      89
+    ]
+  },
+  {
+    "id": 65,
+    "code": "South 1979 plate 1, column 4, entry 1",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      227,
+      209,
+      185
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-65.webp",
+    "native_box": [
+      3195,
+      552,
+      147,
+      73
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      0,
+      1,
+      24,
+      66
+    ]
+  },
+  {
+    "id": 66,
+    "code": "South 1979 plate 1, column 4, entry 2",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      222,
+      201,
+      177
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-66.webp",
+    "native_box": [
+      3194,
+      1034,
+      146,
+      73
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      0,
+      24,
+      65
+    ]
+  },
+  {
+    "id": 67,
+    "code": "South 1979 plate 1, column 4, entry 3",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      194,
+      179,
+      153
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-67.webp",
+    "native_box": [
+      3192,
+      1504,
+      145,
+      71
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      9,
+      68,
+      102
+    ]
+  },
+  {
+    "id": 68,
+    "code": "South 1979 plate 1, column 4, entry 4",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      177,
+      176,
+      146
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-68.webp",
+    "native_box": [
+      3189,
+      2065,
+      144,
+      75
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      67,
+      69,
+      88,
+      92,
+      102,
+      103
+    ]
+  },
+  {
+    "id": 69,
+    "code": "South 1979 plate 1, column 4, entry 5",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      174,
+      163,
+      141
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-69.webp",
+    "native_box": [
+      3185,
+      2625,
+      143,
+      75
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      64,
+      68,
+      103
+    ]
+  },
+  {
+    "id": 70,
+    "code": "South 1979 plate 1, column 4, entry 6",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      160,
+      151,
+      129
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-70.webp",
+    "native_box": [
+      3182,
+      2918,
+      144,
+      73
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      71,
+      107
+    ]
+  },
+  {
+    "id": 71,
+    "code": "South 1979 plate 1, column 4, entry 7",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      144,
+      146,
+      133
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-71.webp",
+    "native_box": [
+      3180,
+      3202,
+      143,
+      75
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      70
+    ]
+  },
+  {
+    "id": 72,
+    "code": "South 1979 plate 1, column 4, entry 8",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      133,
+      125,
+      111
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-72.webp",
+    "native_box": [
+      3175,
+      3574,
+      143,
+      73
+    ],
+    "legend_plate": 1,
+    "similar_swatch_ids": [
+      74
+    ]
+  },
+  {
+    "id": 73,
+    "code": "South 1979 plate 2, column 1, entry 1",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      85,
+      72,
+      57
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-73.webp",
+    "native_box": [
+      237,
+      408,
+      143,
+      78
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 74,
+    "code": "South 1979 plate 2, column 1, entry 2",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      117,
+      119,
+      106
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-74.webp",
+    "native_box": [
+      237,
+      672,
+      142,
+      75
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      72
+    ]
+  },
+  {
+    "id": 75,
+    "code": "South 1979 plate 2, column 1, entry 3",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      85,
+      81,
+      82
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-75.webp",
+    "native_box": [
+      237,
+      906,
+      143,
+      76
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 76,
+    "code": "South 1979 plate 2, column 1, entry 4",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      158,
+      133,
+      111
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-76.webp",
+    "native_box": [
+      236,
+      1153,
+      144,
+      77
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      107
+    ]
+  },
+  {
+    "id": 77,
+    "code": "South 1979 plate 2, column 1, entry 5",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      204,
+      167,
+      140
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-77.webp",
+    "native_box": [
+      236,
+      1379,
+      142,
+      75
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      10,
+      61,
+      64,
+      108
+    ]
+  },
+  {
+    "id": 78,
+    "code": "South 1979 plate 2, column 1, entry 6",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      188,
+      150,
+      126
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-78.webp",
+    "native_box": [
+      235,
+      1613,
+      143,
+      76
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      64,
+      107
+    ]
+  },
+  {
+    "id": 79,
+    "code": "South 1979 plate 2, column 1, entry 7",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      154,
+      112,
+      88
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-79.webp",
+    "native_box": [
+      235,
+      1892,
+      142,
+      76
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 80,
+    "code": "South 1979 plate 2, column 1, entry 8",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      140,
+      84,
+      57
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-80.webp",
+    "native_box": [
+      234,
+      2340,
+      142,
+      76
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      81,
+      83
+    ]
+  },
+  {
+    "id": 81,
+    "code": "South 1979 plate 2, column 1, entry 9",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      125,
+      85,
+      63
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-81.webp",
+    "native_box": [
+      231,
+      2793,
+      143,
+      78
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      80,
+      82,
+      83
+    ]
+  },
+  {
+    "id": 82,
+    "code": "South 1979 plate 2, column 1, entry 10",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      118,
+      76,
+      57
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-82.webp",
+    "native_box": [
+      229,
+      3125,
+      144,
+      75
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      81,
+      83
+    ]
+  },
+  {
+    "id": 83,
+    "code": "South 1979 plate 2, column 1, entry 11",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      133,
+      81,
+      53
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-83.webp",
+    "native_box": [
+      227,
+      3516,
+      144,
+      77
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      80,
+      81,
+      82
+    ]
+  },
+  {
+    "id": 84,
+    "code": "South 1979 plate 2, column 2, entry 1",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      110,
+      63,
+      43
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-84.webp",
+    "native_box": [
+      1228,
+      586,
+      143,
+      76
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 85,
+    "code": "South 1979 plate 2, column 2, entry 2",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      86,
+      42,
+      28
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-85.webp",
+    "native_box": [
+      1228,
+      1006,
+      144,
+      77
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      86
+    ]
+  },
+  {
+    "id": 86,
+    "code": "South 1979 plate 2, column 2, entry 3",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      81,
+      37,
+      24
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-86.webp",
+    "native_box": [
+      1228,
+      1212,
+      143,
+      76
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      85,
+      87
+    ]
+  },
+  {
+    "id": 87,
+    "code": "South 1979 plate 2, column 2, entry 4",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      71,
+      29,
+      19
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-87.webp",
+    "native_box": [
+      1228,
+      1408,
+      143,
+      78
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      86
+    ]
+  },
+  {
+    "id": 88,
+    "code": "South 1979 plate 2, column 2, entry 5",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      189,
+      173,
+      127
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-88.webp",
+    "native_box": [
+      1228,
+      1617,
+      142,
+      76
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      10,
+      64,
+      68,
+      89,
+      92
+    ]
+  },
+  {
+    "id": 89,
+    "code": "South 1979 plate 2, column 2, entry 6",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      190,
+      173,
+      123
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-89.webp",
+    "native_box": [
+      1227,
+      1800,
+      144,
+      76
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      10,
+      64,
+      88,
+      92
+    ]
+  },
+  {
+    "id": 90,
+    "code": "South 1979 plate 2, column 2, entry 7",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      146,
+      143,
+      80
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-90.webp",
+    "native_box": [
+      1226,
+      2078,
+      144,
+      75
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      94
+    ]
+  },
+  {
+    "id": 91,
+    "code": "South 1979 plate 2, column 2, entry 8",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      118,
+      118,
+      47
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-91.webp",
+    "native_box": [
+      1225,
+      2428,
+      144,
+      76
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      96
+    ]
+  },
+  {
+    "id": 92,
+    "code": "South 1979 plate 2, column 2, entry 9",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      175,
+      169,
+      125
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-92.webp",
+    "native_box": [
+      1225,
+      2665,
+      144,
+      77
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      68,
+      88,
+      89,
+      93,
+      103
+    ]
+  },
+  {
+    "id": 93,
+    "code": "South 1979 plate 2, column 2, entry 10",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      162,
+      160,
+      117
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-93.webp",
+    "native_box": [
+      1224,
+      2967,
+      144,
+      77
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      92
+    ]
+  },
+  {
+    "id": 94,
+    "code": "South 1979 plate 2, column 2, entry 11",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      146,
+      148,
+      100
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-94.webp",
+    "native_box": [
+      1223,
+      3272,
+      143,
+      77
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      90,
+      101
+    ]
+  },
+  {
+    "id": 95,
+    "code": "South 1979 plate 2, column 2, entry 12",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      119,
+      123,
+      74
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-95.webp",
+    "native_box": [
+      1221,
+      3532,
+      144,
+      76
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 96,
+    "code": "South 1979 plate 2, column 3, entry 1",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      107,
+      113,
+      47
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-96.webp",
+    "native_box": [
+      2211,
+      402,
+      143,
+      76
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      91,
+      97
+    ]
+  },
+  {
+    "id": 97,
+    "code": "South 1979 plate 2, column 3, entry 2",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      104,
+      108,
+      47
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-97.webp",
+    "native_box": [
+      2211,
+      853,
+      144,
+      74
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      96
+    ]
+  },
+  {
+    "id": 98,
+    "code": "South 1979 plate 2, column 3, entry 3",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      84,
+      93,
+      38
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-98.webp",
+    "native_box": [
+      2211,
+      1283,
+      143,
+      74
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      99
+    ]
+  },
+  {
+    "id": 99,
+    "code": "South 1979 plate 2, column 3, entry 4",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      86,
+      99,
+      50
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-99.webp",
+    "native_box": [
+      2211,
+      1689,
+      143,
+      74
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      98
+    ]
+  },
+  {
+    "id": 100,
+    "code": "South 1979 plate 2, column 3, entry 5",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      58,
+      67,
+      25
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-100.webp",
+    "native_box": [
+      2210,
+      2121,
+      143,
+      75
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 101,
+    "code": "South 1979 plate 2, column 3, entry 6",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      135,
+      147,
+      111
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-101.webp",
+    "native_box": [
+      2210,
+      2477,
+      142,
+      76
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      94
+    ]
+  },
+  {
+    "id": 102,
+    "code": "South 1979 plate 2, column 3, entry 7",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      175,
+      181,
+      146
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-102.webp",
+    "native_box": [
+      2209,
+      2848,
+      142,
+      75
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      67,
+      68,
+      103
+    ]
+  },
+  {
+    "id": 103,
+    "code": "South 1979 plate 2, column 3, entry 8",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      162,
+      174,
+      140
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-103.webp",
+    "native_box": [
+      2208,
+      3214,
+      141,
+      74
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      68,
+      69,
+      92,
+      102
+    ]
+  },
+  {
+    "id": 104,
+    "code": "South 1979 plate 2, column 3, entry 9",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      123,
+      155,
+      136
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-104.webp",
+    "native_box": [
+      2206,
+      3571,
+      142,
+      79
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 105,
+    "code": "South 1979 plate 2, column 4, entry 1",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      45,
+      86,
+      68
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-105.webp",
+    "native_box": [
+      3201,
+      475,
+      143,
+      76
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      106
+    ]
+  },
+  {
+    "id": 106,
+    "code": "South 1979 plate 2, column 4, entry 2",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      45,
+      86,
+      68
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-106.webp",
+    "native_box": [
+      3200,
+      870,
+      144,
+      76
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      105
+    ]
+  },
+  {
+    "id": 107,
+    "code": "South 1979 plate 2, column 4, entry 3",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      171,
+      142,
+      123
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-107.webp",
+    "native_box": [
+      3200,
+      1212,
+      143,
+      77
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      70,
+      76,
+      78
+    ]
+  },
+  {
+    "id": 108,
+    "code": "South 1979 plate 2, column 4, entry 4",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      223,
+      169,
+      145
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-108.webp",
+    "native_box": [
+      3199,
+      1622,
+      143,
+      78
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      61,
+      77
+    ]
+  },
+  {
+    "id": 109,
+    "code": "South 1979 plate 2, column 4, entry 5",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      240,
+      118,
+      107
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-109.webp",
+    "native_box": [
+      3198,
+      2179,
+      143,
+      79
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      110,
+      111,
+      112,
+      134,
+      135,
+      136
+    ]
+  },
+  {
+    "id": 110,
+    "code": "South 1979 plate 2, column 4, entry 6",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      244,
+      131,
+      117
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-110.webp",
+    "native_box": [
+      3197,
+      2609,
+      142,
+      78
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      109,
+      111
+    ]
+  },
+  {
+    "id": 111,
+    "code": "South 1979 plate 2, column 4, entry 7",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      250,
+      116,
+      113
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-111.webp",
+    "native_box": [
+      3196,
+      2838,
+      143,
+      77
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      109,
+      110,
+      112
+    ]
+  },
+  {
+    "id": 112,
+    "code": "South 1979 plate 2, column 4, entry 8",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      245,
+      109,
+      99
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-112.webp",
+    "native_box": [
+      3195,
+      3050,
+      143,
+      77
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      109,
+      111,
+      134,
+      135
+    ]
+  },
+  {
+    "id": 113,
+    "code": "South 1979 plate 2, column 4, entry 9",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      213,
+      77,
+      50
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-113.webp",
+    "native_box": [
+      3194,
+      3268,
+      144,
+      77
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      114,
+      116,
+      122
+    ]
+  },
+  {
+    "id": 114,
+    "code": "South 1979 plate 2, column 4, entry 10",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      206,
+      65,
+      40
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-114.webp",
+    "native_box": [
+      3193,
+      3560,
+      144,
+      79
+    ],
+    "legend_plate": 2,
+    "similar_swatch_ids": [
+      113,
+      116,
+      122
+    ]
+  },
+  {
+    "id": 115,
+    "code": "South 1979 intrusion matrix, source cell x922 y2566",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      213,
+      12,
+      9
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-115.webp",
+    "native_box": [
+      922,
+      2566,
+      144,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      118,
+      119,
+      120,
+      121,
+      127,
+      128,
+      129,
+      130,
+      133,
+      139,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148
+    ]
+  },
+  {
+    "id": 116,
+    "code": "South 1979 intrusion matrix, source cell x2396 y2576",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      220,
+      68,
+      54
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-116.webp",
+    "native_box": [
+      2396,
+      2576,
+      140,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      113,
+      114,
+      122
+    ]
+  },
+  {
+    "id": 117,
+    "code": "South 1979 intrusion matrix, source cell x921 y2739",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      182,
+      3,
+      4
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-117.webp",
+    "native_box": [
+      921,
+      2739,
+      144,
+      75
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      118,
+      120,
+      123,
+      124,
+      125,
+      126,
+      130,
+      131,
+      132,
+      137,
+      138,
+      139,
+      145
+    ]
+  },
+  {
+    "id": 118,
+    "code": "South 1979 intrusion matrix, source cell x1295 y2740",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      197,
+      4,
+      6
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-118.webp",
+    "native_box": [
+      1295,
+      2740,
+      144,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      115,
+      117,
+      119,
+      120,
+      121,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      137,
+      138,
+      139,
+      143,
+      144,
+      145
+    ]
+  },
+  {
+    "id": 119,
+    "code": "South 1979 intrusion matrix, source cell x1498 y2742",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      215,
+      7,
+      7
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-119.webp",
+    "native_box": [
+      1498,
+      2742,
+      142,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      115,
+      118,
+      120,
+      121,
+      127,
+      128,
+      129,
+      130,
+      133,
+      143,
+      144,
+      146,
+      147,
+      148
+    ]
+  },
+  {
+    "id": 120,
+    "code": "South 1979 intrusion matrix, source cell x2220 y2748",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      201,
+      3,
+      3
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-120.webp",
+    "native_box": [
+      2220,
+      2748,
+      145,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      115,
+      117,
+      118,
+      119,
+      121,
+      123,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      137,
+      138,
+      139,
+      143,
+      144,
+      145
+    ]
+  },
+  {
+    "id": 121,
+    "code": "South 1979 intrusion matrix, source cell x2944 y2753",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      202,
+      2,
+      2
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-121.webp",
+    "native_box": [
+      2944,
+      2753,
+      143,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      115,
+      118,
+      119,
+      120,
+      123,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      137,
+      138,
+      139,
+      143,
+      144,
+      145,
+      146
+    ]
+  },
+  {
+    "id": 122,
+    "code": "South 1979 intrusion matrix, source cell x3518 y2757",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      222,
+      61,
+      53
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-122.webp",
+    "native_box": [
+      3518,
+      2757,
+      142,
+      80
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      113,
+      114,
+      116
+    ]
+  },
+  {
+    "id": 123,
+    "code": "South 1979 intrusion matrix, source cell x723 y2907",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      185,
+      2,
+      5
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-123.webp",
+    "native_box": [
+      723,
+      2907,
+      144,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      117,
+      118,
+      120,
+      121,
+      124,
+      125,
+      126,
+      130,
+      131,
+      132,
+      137,
+      138,
+      139,
+      145
+    ]
+  },
+  {
+    "id": 124,
+    "code": "South 1979 intrusion matrix, source cell x920 y2909",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      180,
+      1,
+      2
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-124.webp",
+    "native_box": [
+      920,
+      2909,
+      146,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      117,
+      118,
+      123,
+      125,
+      126,
+      131,
+      132,
+      137,
+      138,
+      139,
+      145
+    ]
+  },
+  {
+    "id": 125,
+    "code": "South 1979 intrusion matrix, source cell x1121 y2910",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      181,
+      2,
+      3
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-125.webp",
+    "native_box": [
+      1121,
+      2910,
+      143,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      117,
+      118,
+      123,
+      124,
+      126,
+      131,
+      132,
+      137,
+      138,
+      139,
+      145
+    ]
+  },
+  {
+    "id": 126,
+    "code": "South 1979 intrusion matrix, source cell x1294 y2912",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      184,
+      1,
+      3
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-126.webp",
+    "native_box": [
+      1294,
+      2912,
+      145,
+      76
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      117,
+      118,
+      120,
+      121,
+      123,
+      124,
+      125,
+      130,
+      131,
+      132,
+      137,
+      138,
+      139,
+      145
+    ]
+  },
+  {
+    "id": 127,
+    "code": "South 1979 intrusion matrix, source cell x1498 y2912",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      208,
+      7,
+      10
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-127.webp",
+    "native_box": [
+      1498,
+      2912,
+      140,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      115,
+      118,
+      119,
+      120,
+      121,
+      128,
+      129,
+      130,
+      131,
+      133,
+      138,
+      139,
+      143,
+      144,
+      145,
+      146,
+      147
+    ]
+  },
+  {
+    "id": 128,
+    "code": "South 1979 intrusion matrix, source cell x1700 y2915",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      215,
+      7,
+      7
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-128.webp",
+    "native_box": [
+      1700,
+      2915,
+      145,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      115,
+      118,
+      119,
+      120,
+      121,
+      127,
+      129,
+      130,
+      133,
+      143,
+      144,
+      146,
+      147,
+      148
+    ]
+  },
+  {
+    "id": 129,
+    "code": "South 1979 intrusion matrix, source cell x1877 y2917",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      215,
+      7,
+      7
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-129.webp",
+    "native_box": [
+      1877,
+      2917,
+      140,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      115,
+      118,
+      119,
+      120,
+      121,
+      127,
+      128,
+      130,
+      133,
+      143,
+      144,
+      146,
+      147,
+      148
+    ]
+  },
+  {
+    "id": 130,
+    "code": "South 1979 intrusion matrix, source cell x2219 y2920",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      201,
+      4,
+      6
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-130.webp",
+    "native_box": [
+      2219,
+      2920,
+      146,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      115,
+      117,
+      118,
+      119,
+      120,
+      121,
+      123,
+      126,
+      127,
+      128,
+      129,
+      131,
+      132,
+      133,
+      137,
+      138,
+      139,
+      143,
+      144,
+      145,
+      146
+    ]
+  },
+  {
+    "id": 131,
+    "code": "South 1979 intrusion matrix, source cell x2394 y2921",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      189,
+      3,
+      4
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-131.webp",
+    "native_box": [
+      2394,
+      2921,
+      140,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      117,
+      118,
+      120,
+      121,
+      123,
+      124,
+      125,
+      126,
+      127,
+      130,
+      132,
+      137,
+      138,
+      139,
+      145
+    ]
+  },
+  {
+    "id": 132,
+    "code": "South 1979 intrusion matrix, source cell x2736 y2924",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      187,
+      2,
+      4
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-132.webp",
+    "native_box": [
+      2736,
+      2924,
+      145,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      117,
+      118,
+      120,
+      121,
+      123,
+      124,
+      125,
+      126,
+      130,
+      131,
+      137,
+      138,
+      139,
+      145
+    ]
+  },
+  {
+    "id": 133,
+    "code": "South 1979 intrusion matrix, source cell x2942 y2926",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      215,
+      7,
+      7
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-133.webp",
+    "native_box": [
+      2942,
+      2926,
+      144,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      115,
+      118,
+      119,
+      120,
+      121,
+      127,
+      128,
+      129,
+      130,
+      143,
+      144,
+      146,
+      147,
+      148
+    ]
+  },
+  {
+    "id": 134,
+    "code": "South 1979 intrusion matrix, source cell x3517 y2929",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      228,
+      112,
+      111
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-134.webp",
+    "native_box": [
+      3517,
+      2929,
+      141,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      109,
+      112,
+      135,
+      136
+    ]
+  },
+  {
+    "id": 135,
+    "code": "South 1979 intrusion matrix, source cell x3714 y2931",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      228,
+      115,
+      110
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-135.webp",
+    "native_box": [
+      3714,
+      2931,
+      143,
+      76
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      109,
+      112,
+      134,
+      136
+    ]
+  },
+  {
+    "id": 136,
+    "code": "South 1979 intrusion matrix, source cell x3889 y2932",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      228,
+      115,
+      114
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-136.webp",
+    "native_box": [
+      3889,
+      2932,
+      141,
+      76
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      109,
+      134,
+      135
+    ]
+  },
+  {
+    "id": 137,
+    "code": "South 1979 intrusion matrix, source cell x919 y3084",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      188,
+      5,
+      7
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-137.webp",
+    "native_box": [
+      919,
+      3084,
+      145,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      117,
+      118,
+      120,
+      121,
+      123,
+      124,
+      125,
+      126,
+      130,
+      131,
+      132,
+      138,
+      139,
+      145
+    ]
+  },
+  {
+    "id": 138,
+    "code": "South 1979 intrusion matrix, source cell x1121 y3085",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      192,
+      5,
+      9
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-138.webp",
+    "native_box": [
+      1121,
+      3085,
+      141,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      117,
+      118,
+      120,
+      121,
+      123,
+      124,
+      125,
+      126,
+      127,
+      130,
+      131,
+      132,
+      137,
+      139,
+      145
+    ]
+  },
+  {
+    "id": 139,
+    "code": "South 1979 intrusion matrix, source cell x1293 y3087",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      196,
+      5,
+      9
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-139.webp",
+    "native_box": [
+      1293,
+      3087,
+      144,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      115,
+      117,
+      118,
+      120,
+      121,
+      123,
+      124,
+      125,
+      126,
+      127,
+      130,
+      131,
+      132,
+      137,
+      138,
+      144,
+      145
+    ]
+  },
+  {
+    "id": 140,
+    "code": "South 1979 intrusion matrix, source cell x1498 y3088",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      218,
+      38,
+      85
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-140.webp",
+    "native_box": [
+      1498,
+      3088,
+      139,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      141,
+      142
+    ]
+  },
+  {
+    "id": 141,
+    "code": "South 1979 intrusion matrix, source cell x1700 y3090",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      218,
+      38,
+      85
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-141.webp",
+    "native_box": [
+      1700,
+      3090,
+      144,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      140,
+      142
+    ]
+  },
+  {
+    "id": 142,
+    "code": "South 1979 intrusion matrix, source cell x1875 y3091",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      218,
+      38,
+      85
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-142.webp",
+    "native_box": [
+      1875,
+      3091,
+      141,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      140,
+      141
+    ]
+  },
+  {
+    "id": 143,
+    "code": "South 1979 intrusion matrix, source cell x2047 y3093",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      216,
+      13,
+      21
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-143.webp",
+    "native_box": [
+      2047,
+      3093,
+      142,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      115,
+      118,
+      119,
+      120,
+      121,
+      127,
+      128,
+      129,
+      130,
+      133,
+      144,
+      146,
+      147,
+      148
+    ]
+  },
+  {
+    "id": 144,
+    "code": "South 1979 intrusion matrix, source cell x2218 y3094",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      215,
+      9,
+      14
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-144.webp",
+    "native_box": [
+      2218,
+      3094,
+      145,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      115,
+      118,
+      119,
+      120,
+      121,
+      127,
+      128,
+      129,
+      130,
+      133,
+      139,
+      143,
+      145,
+      146,
+      147,
+      148
+    ]
+  },
+  {
+    "id": 145,
+    "code": "South 1979 intrusion matrix, source cell x2734 y3098",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      197,
+      6,
+      11
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-145.webp",
+    "native_box": [
+      2734,
+      3098,
+      146,
+      79
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      115,
+      117,
+      118,
+      120,
+      121,
+      123,
+      124,
+      125,
+      126,
+      127,
+      130,
+      131,
+      132,
+      137,
+      138,
+      139,
+      144
+    ]
+  },
+  {
+    "id": 146,
+    "code": "South 1979 intrusion matrix, source cell x2941 y3100",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      219,
+      16,
+      27
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-146.webp",
+    "native_box": [
+      2941,
+      3100,
+      144,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      115,
+      119,
+      121,
+      127,
+      128,
+      129,
+      130,
+      133,
+      143,
+      144,
+      147,
+      148
+    ]
+  },
+  {
+    "id": 147,
+    "code": "South 1979 intrusion matrix, source cell x3144 y3101",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      223,
+      19,
+      30
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-147.webp",
+    "native_box": [
+      3144,
+      3101,
+      142,
+      79
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      115,
+      119,
+      127,
+      128,
+      129,
+      133,
+      143,
+      144,
+      146,
+      148
+    ]
+  },
+  {
+    "id": 148,
+    "code": "South 1979 intrusion matrix, source cell x3316 y3102",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      226,
+      23,
+      33
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-148.webp",
+    "native_box": [
+      3316,
+      3102,
+      142,
+      79
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      115,
+      119,
+      128,
+      129,
+      133,
+      143,
+      144,
+      146,
+      147
+    ]
+  },
+  {
+    "id": 149,
+    "code": "South 1979 intrusion matrix, source cell x3515 y3104",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      221,
+      86,
+      99
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-149.webp",
+    "native_box": [
+      3515,
+      3104,
+      142,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      150
+    ]
+  },
+  {
+    "id": 150,
+    "code": "South 1979 intrusion matrix, source cell x3712 y3104",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      225,
+      90,
+      101
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-150.webp",
+    "native_box": [
+      3712,
+      3104,
+      144,
+      80
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      149
+    ]
+  },
+  {
+    "id": 151,
+    "code": "South 1979 intrusion matrix, source cell x918 y3256",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      2,
+      62,
+      53
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-151.webp",
+    "native_box": [
+      918,
+      3256,
+      145,
+      76
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159
+    ]
+  },
+  {
+    "id": 152,
+    "code": "South 1979 intrusion matrix, source cell x1292 y3258",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      2,
+      62,
+      53
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-152.webp",
+    "native_box": [
+      1292,
+      3258,
+      144,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      151,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159
+    ]
+  },
+  {
+    "id": 153,
+    "code": "South 1979 intrusion matrix, source cell x1495 y3260",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      3,
+      71,
+      63
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-153.webp",
+    "native_box": [
+      1495,
+      3260,
+      141,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      151,
+      152,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162
+    ]
+  },
+  {
+    "id": 154,
+    "code": "South 1979 intrusion matrix, source cell x1696 y3262",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      3,
+      70,
+      62
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-154.webp",
+    "native_box": [
+      1696,
+      3262,
+      147,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      151,
+      152,
+      153,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162
+    ]
+  },
+  {
+    "id": 155,
+    "code": "South 1979 intrusion matrix, source cell x1872 y3264",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      3,
+      68,
+      60
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-155.webp",
+    "native_box": [
+      1872,
+      3264,
+      143,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      151,
+      152,
+      153,
+      154,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162
+    ]
+  },
+  {
+    "id": 156,
+    "code": "South 1979 intrusion matrix, source cell x2216 y3266",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      3,
+      71,
+      69
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-156.webp",
+    "native_box": [
+      2216,
+      3266,
+      146,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      151,
+      152,
+      153,
+      154,
+      155,
+      157,
+      158,
+      159,
+      160,
+      161,
+      162
+    ]
+  },
+  {
+    "id": 157,
+    "code": "South 1979 intrusion matrix, source cell x2391 y3268",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      3,
+      71,
+      69
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-157.webp",
+    "native_box": [
+      2391,
+      3268,
+      140,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      158,
+      159,
+      160,
+      161,
+      162
+    ]
+  },
+  {
+    "id": 158,
+    "code": "South 1979 intrusion matrix, source cell x2561 y3270",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      3,
+      71,
+      69
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-158.webp",
+    "native_box": [
+      2561,
+      3270,
+      143,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      159,
+      160,
+      161,
+      162
+    ]
+  },
+  {
+    "id": 159,
+    "code": "South 1979 intrusion matrix, source cell x2730 y3272",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      3,
+      71,
+      70
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-159.webp",
+    "native_box": [
+      2730,
+      3272,
+      148,
+      76
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      160,
+      161,
+      162
+    ]
+  },
+  {
+    "id": 160,
+    "code": "South 1979 intrusion matrix, source cell x2938 y3272",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      5,
+      74,
+      67
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-160.webp",
+    "native_box": [
+      2938,
+      3272,
+      145,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      161,
+      162
+    ]
+  },
+  {
+    "id": 161,
+    "code": "South 1979 intrusion matrix, source cell x3142 y3275",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      7,
+      77,
+      69
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-161.webp",
+    "native_box": [
+      3142,
+      3275,
+      143,
+      76
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      162
+    ]
+  },
+  {
+    "id": 162,
+    "code": "South 1979 intrusion matrix, source cell x3313 y3276",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      4,
+      74,
+      69
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-162.webp",
+    "native_box": [
+      3313,
+      3276,
+      143,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159,
+      160,
+      161
+    ]
+  },
+  {
+    "id": 163,
+    "code": "South 1979 intrusion matrix, source cell x3512 y3278",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      77,
+      124,
+      119
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-163.webp",
+    "native_box": [
+      3512,
+      3278,
+      144,
+      76
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 164,
+    "code": "South 1979 intrusion matrix, source cell x917 y3427",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      6,
+      65,
+      11
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-164.webp",
+    "native_box": [
+      917,
+      3427,
+      145,
+      79
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      165,
+      166
+    ]
+  },
+  {
+    "id": 165,
+    "code": "South 1979 intrusion matrix, source cell x1118 y3430",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      6,
+      64,
+      14
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-165.webp",
+    "native_box": [
+      1118,
+      3430,
+      142,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      164,
+      166
+    ]
+  },
+  {
+    "id": 166,
+    "code": "South 1979 intrusion matrix, source cell x1290 y3431",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      6,
+      62,
+      13
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-166.webp",
+    "native_box": [
+      1290,
+      3431,
+      145,
+      78
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      164,
+      165
+    ]
+  },
+  {
+    "id": 167,
+    "code": "South 1979 intrusion matrix, source cell x1495 y3431",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      23,
+      80,
+      34
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-167.webp",
+    "native_box": [
+      1495,
+      3431,
+      140,
+      80
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      168
+    ]
+  },
+  {
+    "id": 168,
+    "code": "South 1979 intrusion matrix, source cell x1873 y3436",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      23,
+      79,
+      34
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-168.webp",
+    "native_box": [
+      1873,
+      3436,
+      141,
+      79
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      167
+    ]
+  },
+  {
+    "id": 169,
+    "code": "South 1979 intrusion matrix, source cell x2560 y3444",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      29,
+      93,
+      33
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-169.webp",
+    "native_box": [
+      2560,
+      3444,
+      142,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      170
+    ]
+  },
+  {
+    "id": 170,
+    "code": "South 1979 intrusion matrix, source cell x2936 y3447",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      32,
+      101,
+      34
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-170.webp",
+    "native_box": [
+      2936,
+      3447,
+      146,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      169,
+      171
+    ]
+  },
+  {
+    "id": 171,
+    "code": "South 1979 intrusion matrix, source cell x3313 y3450",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      44,
+      111,
+      42
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-171.webp",
+    "native_box": [
+      3313,
+      3450,
+      142,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      170
+    ]
+  },
+  {
+    "id": 172,
+    "code": "South 1979 intrusion matrix, source cell x3511 y3451",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      83,
+      135,
+      82
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-172.webp",
+    "native_box": [
+      3511,
+      3451,
+      144,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      173
+    ]
+  },
+  {
+    "id": 173,
+    "code": "South 1979 intrusion matrix, source cell x3884 y3454",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      89,
+      136,
+      86
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-173.webp",
+    "native_box": [
+      3884,
+      3454,
+      142,
+      77
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      172
+    ]
+  },
+  {
+    "id": 174,
+    "code": "South 1979 intrusion matrix, source cell x915 y3601",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      8,
+      1,
+      68
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-174.webp",
+    "native_box": [
+      915,
+      3601,
+      145,
+      76
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      175,
+      176,
+      177
+    ]
+  },
+  {
+    "id": 175,
+    "code": "South 1979 intrusion matrix, source cell x2938 y3619",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      26,
+      5,
+      74
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-175.webp",
+    "native_box": [
+      2938,
+      3619,
+      143,
+      80
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      174,
+      176,
+      177
+    ]
+  },
+  {
+    "id": 176,
+    "code": "South 1979 intrusion matrix, source cell x3511 y3625",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      26,
+      5,
+      74
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-176.webp",
+    "native_box": [
+      3511,
+      3625,
+      143,
+      79
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      174,
+      175,
+      177
+    ]
+  },
+  {
+    "id": 177,
+    "code": "South 1979 intrusion matrix, source cell x3883 y3628",
+    "ru": "Исторические обозначения сохранены в фрагменте оригинальной легенды.",
+    "en": "Native legend reference, not a unique geological-unit identification. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      26,
+      5,
+      74
+    ],
+    "section_only": false,
+    "image": "data/detailed/alma/legend/entry-177.webp",
+    "native_box": [
+      3883,
+      3628,
+      142,
+      79
+    ],
+    "legend_plate": 3,
+    "similar_swatch_ids": [
+      174,
+      175,
+      176
+    ]
+  }
+]

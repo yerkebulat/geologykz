@@ -1,0 +1,14 @@
+{
+  "sourcePage": "https://www.geokniga.org/maps/2561",
+  "legendSource": "https://www.geokniga.org/maps/2550",
+  "source_geotiff_sha256": null,
+  "shared_legend_sha256": {
+    "1": "4f5ee99e3cb587d2e71c4e3042f9fdb443e9a2e27ed23e6bee17a192059eca14",
+    "2": "0e2d53bad556bc2d0e1833bdafec98ccea779e32870dd79bb8650bc2df839fba",
+    "3": "2739aa3c5642fef79dcd36e828fa39ab28ed34a7a1783ab661d4694654aed85f"
+  },
+  "source_sha256": "07c0508845e933111c35213a97f9bf4c6871509450be7b189f76704046933ffe",
+  "method": "Legend-swatch Lab color segmentation, not SAM. No nearest-neighbor geological infill. Only opacity-positive native scan pixels inside corrected Kazakhstan country geometry. All classified small regions retained.",
+  "source_rights": "Source rights remain with authors/rightsholders; no open redistribution license established. Scan-derived assets excluded from repository software license.",
+  "reproduction": "tools/detailed-maps/batch2.py; see batch2-notes.md"
+}

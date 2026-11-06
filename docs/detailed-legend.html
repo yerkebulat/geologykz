@@ -1,1 +1,23 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Detailed map legend M-43-XXXI</title><style>body{font:14px system-ui;max-width:1000px;margin:30px auto;padding:15px}td{padding:8px;border-bottom:1px solid #ddd}i{display:block;width:50px;height:35px;border:1px solid #888}</style><h1>1:200,000 M-43-XXXI</h1><p>Scan via <a href="https://www.geokniga.org/maps/44362">Geokniga</a>. 1959 catalog; 1956 printed on scan. Rights reserved to authors/rightsholders; no open license established. Experimental approximate segmentation and provisional georeferencing, not field-grade. White Q3-4 is a mapped unit. Color-only polygons cannot distinguish hatches. Candidate lists are deliberately non-unique for repeated or similar colors. Historic age labels retained.</p><table id="legend"></table><script>fetch('data/detailed/m43xxxi/legend.json').then(r=>r.json()).then(L=>{const T=document.getElementById('legend');L.forEach(u=>{let tr=document.createElement('tr');let sw=document.createElement('td'),box=document.createElement('i');box.style.background='rgb('+u.rgb.join(',')+')';sw.append(box);tr.append(sw);[u.code,u.ru,u.en,u.age,(u.section_only?'Cross-section only, not classified. ':'')+'Similar swatches: '+u.similar_swatch_ids.map(i=>L[i].code).join(', ')].forEach(v=>{let d=document.createElement('td');d.textContent=v;tr.append(d)});T.append(tr)})})</script></html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Detailed map legend</title><style>body{font:14px system-ui;max-width:1000px;margin:30px auto;padding:15px;color:#292524;background:#fff}td{padding:8px;border-bottom:1px solid #ddd;vertical-align:top}i{display:block;width:50px;height:35px;border:1px solid #888}img{display:block;max-width:100%;height:auto;margin-top:8px}table{width:100%;table-layout:fixed}td:first-child{width:60px}a{color:#176757}small{overflow-wrap:anywhere}</style></head>
+<body><h1 id="title">Detailed map legend</h1><p id="notice">Loading source metadata...</p><p id="source"></p><p id="plates"></p><table id="legend"></table>
+<script>
+(async function(){
+ const allowed=['m43xxxi','m44xv','alma'],id=new URLSearchParams(location.search).get('sheet')||'m43xxxi';
+ if(!allowed.includes(id))throw new Error('Unknown sheet');
+ const get=async p=>{const r=await fetch(p);if(!r.ok)throw new Error('HTTP '+r.status);return r.json();};
+ const man=await get('data/detailed/'+id+'/manifest.json'),s=man.sheets.find(x=>x.id===id),L=await get(s.legend);
+ document.title=s.label+' legend';document.getElementById('title').textContent=s.label;
+ document.getElementById('notice').textContent='Scan '+s.dates.scan_printed+' / catalog '+s.dates.catalog+'. '+s.license+' '+s.limitations+' '+s.accuracy+' Color-only matches cannot distinguish hatches; candidate references are not definitive or exhaustive unit identifications. Historic labels are retained.';
+ function link(parent,url,text){const a=document.createElement('a');a.href=url;a.textContent=text;a.target='_blank';a.rel='noopener';parent.append(a,document.createTextNode(' '));}
+ const src=document.getElementById('source');link(src,s.sourcePage,'Source scan on Geokniga');if(s.legendSource)link(src,s.legendSource,'Shared native legend on Geokniga');
+ (s.legendPages||[]).forEach((p,i)=>link(document.getElementById('plates'),p,'Native legend plate '+(i+1)));
+ const T=document.getElementById('legend');L.forEach(u=>{
+  const tr=document.createElement('tr'),sw=document.createElement('td'),box=document.createElement('i'),info=document.createElement('td');box.style.background='rgb('+u.rgb.join(',')+')';sw.append(box);tr.append(sw,info);
+  const title=document.createElement('strong');title.textContent=u.code;info.append(title);
+  [u.ru,u.en,u.age,u.section_only?'Cross-section only, not classified.':'',u.transcription_caveat||'','Similar sampled swatches: '+u.similar_swatch_ids.map(i=>L[i].code).join('; ')].filter(Boolean).forEach(v=>{const p=document.createElement('p');p.textContent=v;info.append(p);});
+  if(u.image){const img=document.createElement('img');img.src=u.image;img.alt='Native source legend excerpt for '+u.code;img.loading='lazy';info.append(img);}
+  T.append(tr);
+ });
+})().catch(e=>{document.getElementById('notice').textContent='Legend could not load: '+e.message;});
+</script></body></html>

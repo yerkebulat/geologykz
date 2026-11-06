@@ -1,0 +1,10 @@
+{
+  "tiles": 223,
+  "tile_bytes": 3023362,
+  "polygons": 17005,
+  "mapped_source_pixels": 5623680,
+  "color_source_pixels": 5623680,
+  "color_pixel_mercator_m": 48,
+  "water_pixels": 42157,
+  "removed_small_regions": 0
+}
