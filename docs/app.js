@@ -214,6 +214,7 @@
 
 
       map.on("click", "geo-fill", function (e) {
+        if (map.getLayer("detail-fill") && map.getLayoutProperty("detail-fill", "visibility") === "visible" && map.queryRenderedFeatures(e.point, { layers: ["detail-fill"] }).length) return;
         if (map.getLayer("kz15m-fill") && map.getLayoutProperty("kz15m-fill", "visibility") === "visible" &&
             map.queryRenderedFeatures(e.point, { layers: ["kz15m-fill"] }).length) return;
         const p = (e.features[0] || {}).properties || {};

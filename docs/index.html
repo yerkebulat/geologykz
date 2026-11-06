@@ -35,6 +35,15 @@
     <button type="button" class="layers-btn" id="layers-btn" aria-expanded="true" aria-controls="layer-panel"><span class="layers-icon" aria-hidden="true"></span><span class="layers-label">Hide layers</span></button>
     <aside class="layer-panel card" id="layer-panel" aria-label="Map layers">
       <div class="panel-title">Layers</div>
+      <div class="detailed-group">
+      <div class="panel-title">Detailed maps</div>
+      <label class="row"><input id="detail-show" type="checkbox"> <span>1:200,000 M-43-XXXI</span></label>
+      <div class="mode-switch" role="radiogroup" aria-label="Detailed map display"><button type="button" role="radio" aria-checked="true" id="detail-scan" class="active">Scan</button><button type="button" role="radio" aria-checked="false" id="detail-colors">Colors</button></div>
+      <label class="row opacity"><span>Opacity</span><input id="detail-opacity" type="range" min="0" max="1" step="0.05" value="1"></label>
+      <button type="button" id="detail-fit" class="detail-fit">Zoom to sheet</button>
+      <a href="detailed-legend.html" target="_blank" rel="noopener">Legend</a>
+      <div id="detail-status" class="detail-status" role="status">Experimental. Approximate colors and provisional georeferencing.</div>
+      </div>
       <label class="row"><input type="checkbox" id="geo-toggle" checked> <span>Geologic units (Macrostrat)</span></label>
       <label class="row opacity"><span>Opacity</span><input type="range" id="geo-opacity" min="0" max="1" step="0.05" value="0.7"></label>
       <label class="row"><input type="checkbox" id="kz15m-toggle"> <span>1:1.5M Kazakh SSR (1967)</span></label>
@@ -108,6 +117,7 @@
 
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="kz15m.js"></script>
+<script src="detailed.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
