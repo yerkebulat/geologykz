@@ -1,0 +1,52 @@
+{
+  "sheets": [
+    {
+      "id": "central-l42a",
+      "label": "1:500,000 L-42-А Dzhezkazgan",
+      "sourcePage": "https://www.geokniga.org/maps/3001",
+      "credit": "USSR Ministry of Geology / Kazakh SSR Ministry of Geology; Central Kazakhstan series; native historical author and institutional credits preserved in complete source plates. Aerogeologiya, Moscow 1981 print; catalog series 1978. Via geokniga.org.",
+      "units": "data/detailed/central-l42a/units.geojson",
+      "legend": "data/detailed/central1978/legend.json",
+      "legendSource": "https://www.geokniga.org/maps/3000",
+      "legendPages": [
+        "data/detailed/central1978/plate-1.webp",
+        "data/detailed/central1978/plate-2.webp",
+        "data/detailed/central1978/plate-3.webp",
+        "data/detailed/central1978/plate-4.webp"
+      ],
+      "bounds": [
+        [
+          66.0000528328622,
+          46.00187754855545
+        ],
+        [
+          68.9980902620827,
+          48.000332215191506
+        ]
+      ],
+      "rasterTiles": {
+        "tiles": [
+          "data/detailed/central-l42a/tiles/{z}/{x}/{y}.webp"
+        ],
+        "tileSize": 256,
+        "minzoom": 7,
+        "maxzoom": 11,
+        "bounds": [
+          66.0000528328622,
+          46.00187754855545,
+          68.9980902620827,
+          48.000332215191506
+        ]
+      },
+      "dates": {
+        "scan_printed": 1981,
+        "catalog": 1978
+      },
+      "experimental": true,
+      "license": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+      "limitations": "Experimental color segmentation from 226 sampled native shared-legend references, not transcribed or unique units. Candidate lists not exhaustive; hatches/text/water classification approximate. Provisional georeferencing, not field-grade. Scan printed 1981; series/catalog 1978. Black and white native units retained; dark ink is not globally inpainted. No independent water mask: blue/white geological colors are not discarded, and hydrography is not independently interpreted. Scan and Colors remain source-derived approximations, not modern geological coverage or field-grade interpretation.",
+      "accuracy": "8 labelled native frame controls; internal grid-fit RMS 3.79px, leave-one-out max 24.92px. Grid-fit and leave-one-out residuals are not absolute geographic accuracy. Picks are approximate; all controls are on frame, not surveyed landmarks. Datum assumption, paper/scanner distortion and interior alignment remain unverified. Provisional, not field-grade.",
+      "sourceNotice": "data/detailed/central-l42a/source-notice.webp"
+    }
+  ]
+}

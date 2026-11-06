@@ -1,0 +1,15 @@
+{
+  "water_sample_rgb": null,
+  "water_evidence": "No source-derived spectral water class established on these sheets. No global white/blue exclusion is applied: both are real mapped legend colors. Hydrographic linework is not interpreted into separate water polygons; water vs similar lithologic fill may remain ambiguous. Native alpha is restricted to the map neatline and unchanged Kazakhstan boundary.",
+  "source_file": "central_L-42-A_Dzhezkazgan.jpg",
+  "source_sha256": "4af7004fd7b5a897f8eeaf7168bc8000bf0c344f234d96383a1010a8abe85eb5",
+  "source_bytes": 43220705,
+  "sourcePage": "https://www.geokniga.org/maps/3001",
+  "legendSource": "https://www.geokniga.org/maps/3000",
+  "legend_family": "central1978",
+  "credit": "USSR Ministry of Geology / Kazakh SSR Ministry of Geology; Central Kazakhstan series; native historical author and institutional credits preserved in complete source plates. Aerogeologiya, Moscow 1981 print; catalog series 1978. Via geokniga.org.",
+  "source_rights": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+  "method": "Actual legend-swatch Lab segmentation, not SAM. Text/hatch filtering and majority smoothing; no removed-small-region holes or nearest-neighbor geological infill. Corrected Kazakhstan border including Baikonur is unchanged.",
+  "ink_filter": "median_only",
+  "reproduction": "tools/detailed-maps/family.py + central1978-config.json"
+}

@@ -1,0 +1,13 @@
+{
+  "sourcePage": "https://www.geokniga.org/maps/3000",
+  "source_files": {
+    "central_legend_1.jpg": "5cf8692d2128f2114bd2e050d8efed44f676ee731ce1a0bc8861bcde49abf941",
+    "central_legend_2.jpg": "bd6e4e069f32e66f745b49acb7d6a97b20445be7a4372be26f643d05819c8022",
+    "central_legend_3.jpg": "c691ed687c1be78fd83fb9ea9687e1665c5bcd853d63a1a1a28c174f61417905",
+    "central_legend_4.jpg": "e7e33c6576ff79883377f2fd27d4333b98893d8a3a3ede3b69d45f35e90033fd"
+  },
+  "credit": "USSR Ministry of Geology / Kazakh SSR Ministry of Geology; Central Kazakhstan series; native historical author and institutional credits preserved in complete source plates. Aerogeologiya, Moscow 1981 print; catalog series 1978. Via geokniga.org.",
+  "sampled_swatches": 226,
+  "limitations": "Sampled native stratigraphic swatches and intrusion matrix cells. Not a comprehensive interpreted/transcribed legend; native labels/age descriptions remain in exact excerpts. Candidate lists are non-unique and not exhaustive.",
+  "rights": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license."
+}
