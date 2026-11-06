@@ -1,0 +1,187 @@
+{
+  "water_sample_rgb": null,
+  "native_unmapped_polygons": [
+    [
+      [
+        3250,
+        0
+      ],
+      [
+        4102,
+        0
+      ],
+      [
+        4102,
+        4438
+      ],
+      [
+        0,
+        4438
+      ],
+      [
+        0,
+        2320
+      ],
+      [
+        300,
+        2300
+      ],
+      [
+        650,
+        2280
+      ],
+      [
+        900,
+        2400
+      ],
+      [
+        1200,
+        2450
+      ],
+      [
+        1460,
+        2510
+      ],
+      [
+        1600,
+        2520
+      ],
+      [
+        1650,
+        2700
+      ],
+      [
+        1800,
+        2800
+      ],
+      [
+        2000,
+        2930
+      ],
+      [
+        2250,
+        3000
+      ],
+      [
+        2500,
+        3070
+      ],
+      [
+        2740,
+        3200
+      ],
+      [
+        2950,
+        3220
+      ],
+      [
+        3020,
+        3300
+      ],
+      [
+        3100,
+        3400
+      ],
+      [
+        3000,
+        3500
+      ],
+      [
+        3200,
+        3600
+      ],
+      [
+        3400,
+        3550
+      ],
+      [
+        3400,
+        3200
+      ],
+      [
+        3300,
+        3000
+      ],
+      [
+        3200,
+        2800
+      ],
+      [
+        3100,
+        2660
+      ],
+      [
+        3200,
+        2460
+      ],
+      [
+        3300,
+        2320
+      ],
+      [
+        3200,
+        2120
+      ],
+      [
+        3450,
+        1940
+      ],
+      [
+        3630,
+        1820
+      ],
+      [
+        3700,
+        1660
+      ],
+      [
+        3550,
+        1480
+      ],
+      [
+        3660,
+        1280
+      ],
+      [
+        3540,
+        1100
+      ],
+      [
+        3400,
+        850
+      ],
+      [
+        3300,
+        700
+      ],
+      [
+        3350,
+        560
+      ],
+      [
+        3250,
+        400
+      ]
+    ]
+  ],
+  "native_unmapped_paper_only": true,
+  "native_unmapped_method": "Raw source minRGB>225 and max-min<25, only components within native paper ROI touching its 300px inset; close7 and fill enclosed ink/road holes. ROI is not a blanket geology exclusion.",
+  "native_water_windows": [],
+  "native_water_rule": null,
+  "native_water_regions": [],
+  "native_water_exclusions": [],
+  "native_water_interiors": [],
+  "water_window_method": null,
+  "water_evidence": "Northwest blue source field carries PZ/borehole/structural labels; kept as uncertain source color candidate, not blindly excluded as water. No global blue or pale removal.",
+  "source_file": "south_K-44-A_Przhevalsk.jpg",
+  "source_sha256": "f9124c16f424bfea3952db5f380108df67195936aad8fc61e5a10005a0735641",
+  "source_bytes": 5222979,
+  "sourcePage": "https://www.geokniga.org/maps/2562",
+  "legendSource": "https://www.geokniga.org/maps/2550",
+  "legend_family": "alma",
+  "credit": "Всесоюзное аэрогеологическое научно-производственное объединение «Аэрогеология», Министерство геологии СССР, Москва 1979. Native source notices retained.",
+  "source_rights": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+  "method": "Actual legend-swatch Lab segmentation, not SAM. Text/hatch filtering and majority smoothing; no removed-small-region holes or nearest-neighbor geological infill. Corrected Kazakhstan border including Baikonur is unchanged.",
+  "ink_filter": "median_only",
+  "reproduction": "tools/detailed-maps/family.py + south-final-config.json"
+}
