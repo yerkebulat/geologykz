@@ -15,8 +15,8 @@ for s in C['sheets']:
  d=docs/'data/detailed'/s['id'];m=json.load(open(d/'manifest.json'))['sheets'][0];g=json.load(open(d/'georef.json'));p=json.load(open(d/'processing.json'));fc=json.load(open(d/'units.geojson'))['features'];b=m['rasterTiles']['bounds'];r=m['rasterTiles']
  assert m['id']==s['id'] and m['dates']=={'scan_printed':s['scan_printed'],'catalog':C.get('catalog',1976)} and m['experimental']
  if C.get('keep_native_footer'):assert (docs/m['sourceNotice']).is_file();Image.open(docs/m['sourceNotice']).verify()
- assert m['legend']==f'data/detailed/{C["family"]}/legend.json' and not (d/'legend').exists()
- assert len(g['gcps'])>=8 and g['independent_geographic_landmarks']==0 and len(g['loo_errors_px'])==len(g['gcps'])
+ assert m['legend']==f'data/detailed/{C["family"]}/legend.json' and (C.get('standalone') or not (d/'legend').exists())
+ assert len(g['gcps'])>=(4 if C.get('standalone') else 8) and g['independent_geographic_landmarks']==0 and len(g['loo_errors_px'])==len(g['gcps'])
  assert g['rms_native_px']<10 and g['loo_max_native_px']<45
  assert len(fc)==p['polygons'] and p['removed_small_regions']==0 and len(fc)>1000
  assert (d/'units.geojson').stat().st_size<11000000
@@ -25,10 +25,10 @@ for s in C['sheets']:
   u=f['properties'];assert u['approximate'] is True and re.fullmatch('#[0-9a-f]{6}',u['color'])
   ids=list(map(int,u['candidates'].split(',')));assert u['palette_index'] in ids and all(0<=i<len(L) for i in ids)
  tiles=list((d/'tiles').rglob('*.webp'));assert len(tiles)==p['tiles'] and sum(t.stat().st_size for t in tiles)==p['tile_bytes']
- assert r['tileSize']==256 and r['minzoom']==7 and r['maxzoom']==11
+ assert r['tileSize']==256 and r['minzoom']==7 and r['maxzoom']==C.get('maxzoom',11)
  for t in tiles:
   im=Image.open(t);im.load();assert im.size==(256,256) and t.stat().st_size<100000
- for z in range(7,12):
+ for z in range(7,C.get('maxzoom',11)+1):
   def xx(lon):return math.floor((lon+180)/360*2**z)
   def yy(lat):return math.floor((1-math.asinh(math.tan(math.radians(lat)))/math.pi)/2*2**z)
   for x in range(xx(b[0]),xx(b[2])+1):

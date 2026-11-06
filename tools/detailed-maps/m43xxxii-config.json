@@ -1,0 +1,341 @@
+{
+  "family": "m43xxxii",
+  "standalone": true,
+  "legend_layout": "standalone",
+  "legend_count": 22,
+  "catalog": 1958,
+  "scan_resolution": 32,
+  "maxzoom": 12,
+  "simplify_m": 57.6,
+  "ink_filter": "median_only",
+  "keep_native_footer": true,
+  "legend_source": "https://www.geokniga.org/maps/41099",
+  "credit": "Южно-Казахстанское геологическое управление; редактор Г.Ц. Медоев. Native author/publication notices retained, Geokniga catalog source.",
+  "water_rgb": null,
+  "water_evidence": "No verified separate water class. Actual pale/white/blue source geological swatches and narrow native hydrographic linework are retained as uncertain color references, not globally removed or uniquely interpreted. Scan remains authoritative for linework.",
+  "extra_limitations": "Independent native standalone legend only; NOT borrowed from adjacent sheets. Cross-section-only N-Q and dyke line symbols are not areal classification swatches; full native legend/context retained. Colors are non-unique source-reference candidates, not transcribed units/ages, not exhaustive. Four actual labelled native corner intersections fitted affine in assumed Gauss-Kruger zone13 EPSG28413, each corner held out against the other three. No surveyed/interior landmarks or absolute accuracy. Native map heading1958; printing date not established; catalog1958 agrees with native heading1958.",
+  "legend_plates": [
+    {
+      "number": 1,
+      "file": "M-43-XXXII.jpg",
+      "boxes": [
+        [
+          6748,
+          930,
+          179,
+          97
+        ],
+        [
+          6747,
+          1071,
+          180,
+          95
+        ],
+        [
+          6746,
+          1214,
+          179,
+          94
+        ],
+        [
+          6745,
+          1354,
+          180,
+          95
+        ],
+        [
+          6744,
+          1495,
+          179,
+          94
+        ],
+        [
+          6743,
+          1637,
+          178,
+          95
+        ],
+        [
+          6741,
+          1776,
+          183,
+          101
+        ],
+        [
+          6742,
+          1921,
+          178,
+          93
+        ],
+        [
+          6740,
+          2061,
+          182,
+          100
+        ],
+        [
+          6740,
+          2205,
+          179,
+          96
+        ],
+        [
+          6739,
+          2346,
+          180,
+          96
+        ],
+        [
+          6740,
+          2488,
+          181,
+          92
+        ],
+        [
+          6737,
+          2629,
+          181,
+          91
+        ],
+        [
+          6734,
+          2767,
+          180,
+          95
+        ],
+        [
+          6734,
+          2907,
+          180,
+          96
+        ],
+        [
+          6734,
+          3048,
+          180,
+          95
+        ],
+        [
+          6732,
+          3191,
+          183,
+          100
+        ],
+        [
+          6729,
+          3475,
+          185,
+          98
+        ],
+        [
+          6728,
+          3614,
+          185,
+          101
+        ],
+        [
+          6728,
+          3755,
+          182,
+          102
+        ],
+        [
+          6726,
+          3897,
+          183,
+          103
+        ],
+        [
+          6726,
+          4040,
+          181,
+          97
+        ]
+      ],
+      "excerpts": [
+        [
+          6498,
+          918,
+          8285,
+          1047
+        ],
+        [
+          6497,
+          1059,
+          8285,
+          1186
+        ],
+        [
+          6496,
+          1202,
+          8285,
+          1328
+        ],
+        [
+          6495,
+          1342,
+          8285,
+          1469
+        ],
+        [
+          6494,
+          1483,
+          8285,
+          1609
+        ],
+        [
+          6493,
+          1625,
+          8285,
+          1752
+        ],
+        [
+          6491,
+          1764,
+          8285,
+          1897
+        ],
+        [
+          6492,
+          1909,
+          8285,
+          2034
+        ],
+        [
+          6490,
+          2049,
+          8285,
+          2181
+        ],
+        [
+          6490,
+          2193,
+          8285,
+          2321
+        ],
+        [
+          6489,
+          2334,
+          8285,
+          2462
+        ],
+        [
+          6490,
+          2476,
+          8285,
+          2600
+        ],
+        [
+          6487,
+          2617,
+          8285,
+          2740
+        ],
+        [
+          6484,
+          2755,
+          8285,
+          2882
+        ],
+        [
+          6484,
+          2895,
+          8285,
+          3023
+        ],
+        [
+          6484,
+          3036,
+          8285,
+          3163
+        ],
+        [
+          6482,
+          3179,
+          8285,
+          3311
+        ],
+        [
+          6479,
+          3463,
+          8285,
+          3593
+        ],
+        [
+          6478,
+          3602,
+          8285,
+          3735
+        ],
+        [
+          6478,
+          3743,
+          8285,
+          3877
+        ],
+        [
+          6476,
+          3885,
+          8285,
+          4020
+        ],
+        [
+          6476,
+          4028,
+          8285,
+          4157
+        ]
+      ]
+    }
+  ],
+  "full_legend_plates": [
+    {
+      "number": 1,
+      "file": "M-43-XXXII.jpg",
+      "crop": [
+        6500,
+        750,
+        8285,
+        6200
+      ]
+    }
+  ],
+  "sheets": [
+    {
+      "id": "m43xxxii",
+      "label": "1:200,000 M-43-XXXII",
+      "file": "M-43-XXXII.jpg",
+      "page": 41099,
+      "scan_printed": "not established; native heading1958",
+      "gcp_pick_uncertainty_native_px": 8,
+      "fit_model": "affine",
+      "fit_crs": 28413,
+      "gcps": [
+        [
+          1971,
+          1018,
+          73,
+          48.666666666666664
+        ],
+        [
+          6338,
+          1034,
+          74,
+          48.666666666666664
+        ],
+        [
+          1917,
+          5396,
+          73,
+          48
+        ],
+        [
+          6336,
+          5417,
+          74,
+          48
+        ]
+      ]
+    }
+  ]
+}
