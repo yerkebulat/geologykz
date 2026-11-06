@@ -1,0 +1,51 @@
+{
+  "sheets": [
+    {
+      "id": "south-l44a",
+      "label": "1:500,000 L-44-А Ayaguz",
+      "sourcePage": "https://www.geokniga.org/maps/2573",
+      "credit": "Всесоюзное аэрогеологическое научно-производственное объединение «Аэрогеология», Министерство геологии СССР, Москва 1979. Native source notices retained.",
+      "units": "data/detailed/south-l44a/units.geojson",
+      "legend": "data/detailed/alma/legend.json",
+      "legendSource": "https://www.geokniga.org/maps/2550",
+      "legendPages": [
+        "data/detailed/alma/legend/plate-1.webp",
+        "data/detailed/alma/legend/plate-2.webp",
+        "data/detailed/alma/legend/plate-3.webp"
+      ],
+      "bounds": [
+        [
+          78.00138918239283,
+          46.00404301892616
+        ],
+        [
+          80.99646217117572,
+          47.999773422506564
+        ]
+      ],
+      "rasterTiles": {
+        "tiles": [
+          "data/detailed/south-l44a/tiles/{z}/{x}/{y}.webp"
+        ],
+        "tileSize": 256,
+        "minzoom": 7,
+        "maxzoom": 11,
+        "bounds": [
+          78.00138918239283,
+          46.00404301892616,
+          80.99646217117572,
+          47.999773422506564
+        ]
+      },
+      "dates": {
+        "scan_printed": 1979,
+        "catalog": 1979
+      },
+      "experimental": true,
+      "license": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+      "limitations": "Experimental color segmentation from 178 sampled native shared-legend references, not transcribed or unique units. Candidate lists not exhaustive; hatches/text/water classification approximate. Provisional georeferencing, not field-grade. Scan printed 1979; series/catalog 1979. Native historic shared legend candidates are non-unique/not exhaustive, not newly transcribed units or ages. Manual labelled-frame/black-white graticule picks are approximate (conservative20 native-pixel pick uncertainty), assumedEPSG4284, no independent landmarks. Source-only painted coverage/historic lake extent, no modern shoreline reconstruction; fine bays/hatching/river linework remain approximate. Makanchi/Taldy-Kurgan/Frunze show only actual source-painted Kazakhstan coverage; native unpainted foreign paper is masked, not filled. Manual native water/paper traces remain approximate.",
+      "accuracy": "8 labelled native frame controls; internal grid-fit RMS 1.83px, leave-one-out max 11.49px. Grid-fit and leave-one-out residuals are not absolute geographic accuracy. Picks are approximate; all controls are on frame, not surveyed landmarks. Datum assumption, paper/scanner distortion and interior alignment remain unverified. Provisional, not field-grade.",
+      "sourceNotice": "data/detailed/south-l44a/source-notice.webp"
+    }
+  ]
+}

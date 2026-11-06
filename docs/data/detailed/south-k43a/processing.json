@@ -1,0 +1,11 @@
+{
+  "polygons": 9889,
+  "tiles": 352,
+  "tile_bytes": 3111630,
+  "color_pixel_mercator_m": 220,
+  "scan_pixel_mercator_m": 110,
+  "color_source_pixels": 1191944,
+  "water_pixels": 0,
+  "removed_small_regions": 0,
+  "area_preserving_topology_repairs": 0
+}
