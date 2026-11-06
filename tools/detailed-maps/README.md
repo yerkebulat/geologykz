@@ -36,3 +36,23 @@ python tests/detailed-assets.py
 Scans use 110m Web Mercator pixels and bounded z7–11 XYZ; approximate Colors uses ~220m Mercator pixels (~140m ground at50N). Labelled native frame controls (12 on Semipalatinsk/Zharma,8 on Leninogorsk/Ust-Kamenogorsk) fit a quadratic inverse remap, with Pulkovo1942 assumed rather than confirmed. Fit/LOO errors measure internal grid consistency, not absolute or independently surveyed accuracy. All frame picks are approximate (recorded uncertainty8 native pixels); interior landmarks have not been independently verified. No false field-grade claims. Water exclusion is an approximate competing color sampled from the labelled Seyten lake on the Semipalatinsk original, with a separate actual Bukhtarma reservoir sample for the paler Ust-Kamenogorsk scan; hatches, text and similar lithologic colors remain limitations. No source-white global exclusion, nearest-neighbor missing-geology fill or removal of small classified regions. Native source-derived assets remain outside any software license, with no open redistribution license established.
 
 Lean check: `python tests/detailed-family-assets.py`. Originals, arrays, source crops and visual intermediates remain in the external work directory and are never committed. Use one grouped release rather than per-sheet UI changes.
+
+## Central Kazakhstan shared legend batch
+
+`central1978-config.json` reproduces the two L-42-А / L-42-Б sheets with the same family builder. Originals: Geokniga3001/3002; four shared native plates3000. Source imprint says Moscow1981, while catalog series is1978. Native authors/institutional credits remain readable in complete plates; no open license has been established. Source-derived scans/excerpts/vectors are excluded from any software license.
+
+226 actual sampled stratigraphic and intrusion-matrix references are stored once, with exact native description/header/cell excerpts. No code/age interpretation or unique assignment is claimed. Candidates remain non-unique and non-exhaustive.
+
+Central has REAL BLACK/green mafic units: use `ink_filter: median_only`, never global dark-pixel inpainting. Actual white/blue geological swatches also exist. No reliable source-specific spectral water class was established, so these colors are NOT globally excluded and hydrographic linework is not independently interpreted. This avoids inventing water/white gaps; it does not claim reliable water boundaries. No nearest-neighbor geology fill, no small-region holes, and unchanged country clipping including Baikonur.
+
+Eight manually read native degree/neatline controls per map, quadratic inverse remap, native-pixel fit and leave-one-out diagnostics are saved in georef.json. Assumed Pulkovo1942 datum is not confirmed. These are internal frame-grid fits, NOT absolute geographic accuracy; interior landmarks remain independently unverified.
+
+```sh
+python tools/detailed-maps/family.py tools/detailed-maps/central1978-config.json SOURCE_DIR WORK_DIR docs/data/detailed docs/data/kazakhstan_border.geojson
+python tests/detailed-family-assets.py central1978-config.json
+python tests/detailed-central-source.py SOURCE_DIR WORK_DIR
+```
+
+Source-dependent test samples a real pale mapped unit and the actual black-green mafic body in Dzhambul, checks palette/alpha preservation and original SHA256 provenance. Originals and processing arrays are not repository assets. Existing selected-sheet lazy loading and all off/default controls are unchanged.
+
+Central's per-sheet `source-notice.webp` preserves native map-footer authors, institutions and1981print notice at original resolution; the sheet Legend page links it explicitly.

@@ -1,0 +1,5816 @@
+[
+  {
+    "id": 0,
+    "code": "Central native legend plate 2, column 1, entry 1",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      249,
+      244,
+      223
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-0.webp",
+    "legend_plate": 2,
+    "native_box": [
+      297,
+      843,
+      212,
+      112
+    ],
+    "similar_swatch_ids": [
+      1,
+      4,
+      31,
+      58,
+      59,
+      66,
+      67,
+      68,
+      84
+    ]
+  },
+  {
+    "id": 1,
+    "code": "Central native legend plate 2, column 1, entry 2",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      249,
+      236,
+      204
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-1.webp",
+    "legend_plate": 2,
+    "native_box": [
+      299,
+      1013,
+      209,
+      103
+    ],
+    "similar_swatch_ids": [
+      0,
+      2,
+      4,
+      58,
+      60,
+      66,
+      68,
+      84
+    ]
+  },
+  {
+    "id": 2,
+    "code": "Central native legend plate 2, column 1, entry 3",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      250,
+      238,
+      193
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-2.webp",
+    "legend_plate": 2,
+    "native_box": [
+      295,
+      1162,
+      214,
+      108
+    ],
+    "similar_swatch_ids": [
+      1,
+      4,
+      18,
+      58,
+      111
+    ]
+  },
+  {
+    "id": 3,
+    "code": "Central native legend plate 2, column 1, entry 4",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      249,
+      223,
+      148
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-3.webp",
+    "legend_plate": 2,
+    "native_box": [
+      299,
+      1315,
+      208,
+      107
+    ],
+    "similar_swatch_ids": [
+      19,
+      109
+    ]
+  },
+  {
+    "id": 4,
+    "code": "Central native legend plate 2, column 1, entry 5",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      248,
+      234,
+      203
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-4.webp",
+    "legend_plate": 2,
+    "native_box": [
+      296,
+      1478,
+      214,
+      111
+    ],
+    "similar_swatch_ids": [
+      0,
+      1,
+      2,
+      58,
+      60,
+      65,
+      68,
+      84
+    ]
+  },
+  {
+    "id": 5,
+    "code": "Central native legend plate 2, column 1, entry 6",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      238,
+      206,
+      128
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-5.webp",
+    "legend_plate": 2,
+    "native_box": [
+      299,
+      1633,
+      207,
+      107
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 6,
+    "code": "Central native legend plate 2, column 1, entry 7",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      221,
+      184,
+      113
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-6.webp",
+    "legend_plate": 2,
+    "native_box": [
+      298,
+      1784,
+      208,
+      107
+    ],
+    "similar_swatch_ids": [
+      7,
+      8
+    ]
+  },
+  {
+    "id": 7,
+    "code": "Central native legend plate 2, column 1, entry 8",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      219,
+      191,
+      120
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-7.webp",
+    "legend_plate": 2,
+    "native_box": [
+      298,
+      1938,
+      208,
+      104
+    ],
+    "similar_swatch_ids": [
+      6
+    ]
+  },
+  {
+    "id": 8,
+    "code": "Central native legend plate 2, column 1, entry 9",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      198,
+      179,
+      112
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-8.webp",
+    "legend_plate": 2,
+    "native_box": [
+      300,
+      2093,
+      207,
+      102
+    ],
+    "similar_swatch_ids": [
+      6
+    ]
+  },
+  {
+    "id": 9,
+    "code": "Central native legend plate 2, column 1, entry 10",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      250,
+      248,
+      128
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-9.webp",
+    "legend_plate": 2,
+    "native_box": [
+      297,
+      2256,
+      210,
+      106
+    ],
+    "similar_swatch_ids": [
+      12
+    ]
+  },
+  {
+    "id": 10,
+    "code": "Central native legend plate 2, column 1, entry 11",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      255,
+      175
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-10.webp",
+    "legend_plate": 2,
+    "native_box": [
+      298,
+      2421,
+      209,
+      105
+    ],
+    "similar_swatch_ids": [
+      27
+    ]
+  },
+  {
+    "id": 11,
+    "code": "Central native legend plate 2, column 1, entry 12",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      255,
+      77
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-11.webp",
+    "legend_plate": 2,
+    "native_box": [
+      297,
+      2596,
+      209,
+      106
+    ],
+    "similar_swatch_ids": [
+      15
+    ]
+  },
+  {
+    "id": 12,
+    "code": "Central native legend plate 2, column 1, entry 13",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      252,
+      251,
+      130
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-12.webp",
+    "legend_plate": 2,
+    "native_box": [
+      297,
+      2798,
+      208,
+      103
+    ],
+    "similar_swatch_ids": [
+      9
+    ]
+  },
+  {
+    "id": 13,
+    "code": "Central native legend plate 2, column 1, entry 14",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      230,
+      3
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-13.webp",
+    "legend_plate": 2,
+    "native_box": [
+      298,
+      2982,
+      207,
+      105
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 14,
+    "code": "Central native legend plate 2, column 1, entry 15",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      252,
+      240,
+      75
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-14.webp",
+    "legend_plate": 2,
+    "native_box": [
+      297,
+      3137,
+      208,
+      106
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 15,
+    "code": "Central native legend plate 2, column 1, entry 16",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      252,
+      36
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-15.webp",
+    "legend_plate": 2,
+    "native_box": [
+      295,
+      3321,
+      214,
+      105
+    ],
+    "similar_swatch_ids": [
+      11
+    ]
+  },
+  {
+    "id": 16,
+    "code": "Central native legend plate 2, column 1, entry 17",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      215,
+      1
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-16.webp",
+    "legend_plate": 2,
+    "native_box": [
+      298,
+      3495,
+      207,
+      105
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 17,
+    "code": "Central native legend plate 2, column 1, entry 18",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      252,
+      198,
+      2
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-17.webp",
+    "legend_plate": 2,
+    "native_box": [
+      297,
+      3671,
+      207,
+      104
+    ],
+    "similar_swatch_ids": [
+      21
+    ]
+  },
+  {
+    "id": 18,
+    "code": "Central native legend plate 2, column 1, entry 19",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      237,
+      180
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-18.webp",
+    "legend_plate": 2,
+    "native_box": [
+      297,
+      3858,
+      208,
+      107
+    ],
+    "similar_swatch_ids": [
+      2,
+      103,
+      109,
+      111,
+      112
+    ]
+  },
+  {
+    "id": 19,
+    "code": "Central native legend plate 2, column 1, entry 20",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      228,
+      141
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-19.webp",
+    "legend_plate": 2,
+    "native_box": [
+      297,
+      4061,
+      208,
+      106
+    ],
+    "similar_swatch_ids": [
+      3,
+      102,
+      103,
+      109
+    ]
+  },
+  {
+    "id": 20,
+    "code": "Central native legend plate 2, column 1, entry 21",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      212,
+      62
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-20.webp",
+    "legend_plate": 2,
+    "native_box": [
+      296,
+      4238,
+      208,
+      103
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 21,
+    "code": "Central native legend plate 2, column 1, entry 22",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      252,
+      186,
+      4
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-21.webp",
+    "legend_plate": 2,
+    "native_box": [
+      297,
+      4402,
+      207,
+      104
+    ],
+    "similar_swatch_ids": [
+      17
+    ]
+  },
+  {
+    "id": 22,
+    "code": "Central native legend plate 2, column 1, entry 23",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      251,
+      208,
+      183
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-22.webp",
+    "legend_plate": 2,
+    "native_box": [
+      297,
+      4565,
+      208,
+      109
+    ],
+    "similar_swatch_ids": [
+      50,
+      61,
+      62,
+      85,
+      144
+    ]
+  },
+  {
+    "id": 23,
+    "code": "Central native legend plate 2, column 1, entry 24",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      189,
+      116
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-23.webp",
+    "legend_plate": 2,
+    "native_box": [
+      295,
+      4728,
+      213,
+      111
+    ],
+    "similar_swatch_ids": [
+      192
+    ]
+  },
+  {
+    "id": 24,
+    "code": "Central native legend plate 2, column 1, entry 25",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      247,
+      164,
+      86
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-24.webp",
+    "legend_plate": 2,
+    "native_box": [
+      295,
+      4894,
+      212,
+      113
+    ],
+    "similar_swatch_ids": [
+      52,
+      171
+    ]
+  },
+  {
+    "id": 25,
+    "code": "Central native legend plate 2, column 1, entry 26",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      241,
+      127,
+      26
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-25.webp",
+    "legend_plate": 2,
+    "native_box": [
+      297,
+      5065,
+      208,
+      104
+    ],
+    "similar_swatch_ids": [
+      54,
+      218
+    ]
+  },
+  {
+    "id": 26,
+    "code": "Central native legend plate 2, column 1, entry 27",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      239,
+      100,
+      1
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-26.webp",
+    "legend_plate": 2,
+    "native_box": [
+      297,
+      5230,
+      207,
+      105
+    ],
+    "similar_swatch_ids": [
+      55,
+      160
+    ]
+  },
+  {
+    "id": 27,
+    "code": "Central native legend plate 2, column 1, entry 28",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      235,
+      254,
+      167
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-27.webp",
+    "legend_plate": 2,
+    "native_box": [
+      295,
+      5382,
+      213,
+      111
+    ],
+    "similar_swatch_ids": [
+      10,
+      35
+    ]
+  },
+  {
+    "id": 28,
+    "code": "Central native legend plate 2, column 1, entry 29",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      215,
+      227,
+      110
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-28.webp",
+    "legend_plate": 2,
+    "native_box": [
+      297,
+      5548,
+      208,
+      107
+    ],
+    "similar_swatch_ids": [
+      104
+    ]
+  },
+  {
+    "id": 29,
+    "code": "Central native legend plate 2, column 2, entry 1",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      255,
+      255
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-29.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2162,
+      849,
+      215,
+      109
+    ],
+    "similar_swatch_ids": [
+      33,
+      34,
+      37,
+      59,
+      67,
+      83,
+      110
+    ]
+  },
+  {
+    "id": 30,
+    "code": "Central native legend plate 2, column 2, entry 2",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      242,
+      255,
+      210
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-30.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2164,
+      989,
+      210,
+      107
+    ],
+    "similar_swatch_ids": [
+      31,
+      32
+    ]
+  },
+  {
+    "id": 31,
+    "code": "Central native legend plate 2, column 2, entry 3",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      244,
+      255,
+      218
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-31.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2162,
+      1177,
+      215,
+      112
+    ],
+    "similar_swatch_ids": [
+      0,
+      30
+    ]
+  },
+  {
+    "id": 32,
+    "code": "Central native legend plate 2, column 2, entry 4",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      232,
+      255,
+      193
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-32.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2162,
+      1364,
+      215,
+      110
+    ],
+    "similar_swatch_ids": [
+      30
+    ]
+  },
+  {
+    "id": 33,
+    "code": "Central native legend plate 2, column 2, entry 5",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      255,
+      255
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-33.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2165,
+      1509,
+      209,
+      104
+    ],
+    "similar_swatch_ids": [
+      29,
+      34,
+      37,
+      59,
+      67,
+      83,
+      110
+    ]
+  },
+  {
+    "id": 34,
+    "code": "Central native legend plate 2, column 2, entry 6",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      255,
+      255
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-34.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2165,
+      1650,
+      210,
+      105
+    ],
+    "similar_swatch_ids": [
+      29,
+      33,
+      37,
+      59,
+      67,
+      83,
+      110
+    ]
+  },
+  {
+    "id": 35,
+    "code": "Central native legend plate 2, column 2, entry 7",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      219,
+      255,
+      154
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-35.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2166,
+      1789,
+      208,
+      107
+    ],
+    "similar_swatch_ids": [
+      27
+    ]
+  },
+  {
+    "id": 36,
+    "code": "Central native legend plate 2, column 2, entry 8",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      202,
+      255,
+      122
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-36.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2166,
+      1932,
+      209,
+      106
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 37,
+    "code": "Central native legend plate 2, column 2, entry 9",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      255,
+      255
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-37.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2165,
+      2072,
+      210,
+      105
+    ],
+    "similar_swatch_ids": [
+      29,
+      33,
+      34,
+      59,
+      67,
+      83,
+      110
+    ]
+  },
+  {
+    "id": 38,
+    "code": "Central native legend plate 2, column 2, entry 10",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      161,
+      242,
+      120
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-38.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2166,
+      2214,
+      209,
+      106
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 39,
+    "code": "Central native legend plate 2, column 2, entry 11",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      203,
+      250,
+      253
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-39.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2166,
+      2368,
+      211,
+      105
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 40,
+    "code": "Central native legend plate 2, column 2, entry 12",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      107,
+      218,
+      231
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-40.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2166,
+      2521,
+      209,
+      104
+    ],
+    "similar_swatch_ids": [
+      42
+    ]
+  },
+  {
+    "id": 41,
+    "code": "Central native legend plate 2, column 2, entry 13",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      164,
+      236,
+      244
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-41.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2166,
+      2686,
+      209,
+      105
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 42,
+    "code": "Central native legend plate 2, column 2, entry 14",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      137,
+      218,
+      226
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-42.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2166,
+      2885,
+      209,
+      108
+    ],
+    "similar_swatch_ids": [
+      40,
+      184,
+      190
+    ]
+  },
+  {
+    "id": 43,
+    "code": "Central native legend plate 2, column 2, entry 15",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      76,
+      189,
+      213
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-43.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2165,
+      3085,
+      210,
+      107
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 44,
+    "code": "Central native legend plate 2, column 2, entry 16",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      43,
+      159,
+      201
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-44.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2165,
+      3287,
+      211,
+      99
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 45,
+    "code": "Central native legend plate 2, column 2, entry 17",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      242,
+      225,
+      252
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-45.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2163,
+      3492,
+      214,
+      118
+    ],
+    "similar_swatch_ids": [
+      46,
+      47,
+      151
+    ]
+  },
+  {
+    "id": 46,
+    "code": "Central native legend plate 2, column 2, entry 18",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      228,
+      216,
+      250
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-46.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2163,
+      3680,
+      212,
+      106
+    ],
+    "similar_swatch_ids": [
+      45,
+      48
+    ]
+  },
+  {
+    "id": 47,
+    "code": "Central native legend plate 2, column 2, entry 19",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      235,
+      254
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-47.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2163,
+      3833,
+      213,
+      107
+    ],
+    "similar_swatch_ids": [
+      45
+    ]
+  },
+  {
+    "id": 48,
+    "code": "Central native legend plate 2, column 2, entry 20",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      252,
+      211,
+      253
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-48.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2162,
+      3975,
+      213,
+      106
+    ],
+    "similar_swatch_ids": [
+      46
+    ]
+  },
+  {
+    "id": 49,
+    "code": "Central native legend plate 2, column 2, entry 21",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      245,
+      180,
+      249
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-49.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2163,
+      4117,
+      212,
+      107
+    ],
+    "similar_swatch_ids": [
+      202
+    ]
+  },
+  {
+    "id": 50,
+    "code": "Central native legend plate 2, column 2, entry 22",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      217,
+      179
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-50.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2161,
+      4281,
+      216,
+      112
+    ],
+    "similar_swatch_ids": [
+      22,
+      61,
+      62,
+      85
+    ]
+  },
+  {
+    "id": 51,
+    "code": "Central native legend plate 2, column 2, entry 23",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      251,
+      199,
+      150
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-51.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2164,
+      4448,
+      211,
+      106
+    ],
+    "similar_swatch_ids": [
+      86
+    ]
+  },
+  {
+    "id": 52,
+    "code": "Central native legend plate 2, column 2, entry 24",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      245,
+      165,
+      97
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-52.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2164,
+      4601,
+      211,
+      107
+    ],
+    "similar_swatch_ids": [
+      24,
+      171,
+      192
+    ]
+  },
+  {
+    "id": 53,
+    "code": "Central native legend plate 2, column 2, entry 25",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      236,
+      137,
+      59
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-53.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2165,
+      4778,
+      210,
+      103
+    ],
+    "similar_swatch_ids": [
+      54
+    ]
+  },
+  {
+    "id": 54,
+    "code": "Central native legend plate 2, column 2, entry 26",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      230,
+      125,
+      43
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-54.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2166,
+      5013,
+      208,
+      94
+    ],
+    "similar_swatch_ids": [
+      25,
+      53
+    ]
+  },
+  {
+    "id": 55,
+    "code": "Central native legend plate 2, column 2, entry 27",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      222,
+      106,
+      21
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-55.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2166,
+      5191,
+      208,
+      108
+    ],
+    "similar_swatch_ids": [
+      26,
+      56
+    ]
+  },
+  {
+    "id": 56,
+    "code": "Central native legend plate 2, column 2, entry 28",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      217,
+      95,
+      10
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-56.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2166,
+      5347,
+      208,
+      106
+    ],
+    "similar_swatch_ids": [
+      55
+    ]
+  },
+  {
+    "id": 57,
+    "code": "Central native legend plate 2, column 2, entry 29",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      209,
+      194,
+      181
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-57.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2165,
+      5523,
+      208,
+      108
+    ],
+    "similar_swatch_ids": [
+      76,
+      91,
+      126,
+      130
+    ]
+  },
+  {
+    "id": 58,
+    "code": "Central native legend plate 2, column 3, entry 1",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      244,
+      234,
+      211
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-58.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4035,
+      904,
+      211,
+      107
+    ],
+    "similar_swatch_ids": [
+      0,
+      1,
+      2,
+      4,
+      59,
+      60,
+      65,
+      66,
+      68,
+      84
+    ]
+  },
+  {
+    "id": 59,
+    "code": "Central native legend plate 2, column 3, entry 2",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      249,
+      246,
+      230
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-59.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4034,
+      1079,
+      213,
+      114
+    ],
+    "similar_swatch_ids": [
+      0,
+      29,
+      33,
+      34,
+      37,
+      58,
+      66,
+      67,
+      68,
+      83,
+      84,
+      110
+    ]
+  },
+  {
+    "id": 60,
+    "code": "Central native legend plate 2, column 3, entry 3",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      239,
+      229,
+      208
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-60.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4035,
+      1222,
+      213,
+      112
+    ],
+    "similar_swatch_ids": [
+      1,
+      4,
+      58,
+      61,
+      62,
+      65,
+      66,
+      68,
+      84,
+      128,
+      143
+    ]
+  },
+  {
+    "id": 61,
+    "code": "Central native legend plate 2, column 3, entry 4",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      233,
+      218,
+      189
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-61.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4070,
+      1366,
+      179,
+      110
+    ],
+    "similar_swatch_ids": [
+      22,
+      50,
+      60,
+      62,
+      65,
+      69,
+      85
+    ]
+  },
+  {
+    "id": 62,
+    "code": "Central native legend plate 2, column 3, entry 5",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      233,
+      219,
+      188
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-62.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4035,
+      1539,
+      214,
+      113
+    ],
+    "similar_swatch_ids": [
+      22,
+      50,
+      60,
+      61,
+      65,
+      69,
+      85
+    ]
+  },
+  {
+    "id": 63,
+    "code": "Central native legend plate 2, column 3, entry 6",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      225,
+      204,
+      165
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-63.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4037,
+      1729,
+      209,
+      109
+    ],
+    "similar_swatch_ids": [
+      70,
+      71,
+      85,
+      86
+    ]
+  },
+  {
+    "id": 64,
+    "code": "Central native legend plate 2, column 3, entry 7",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      214,
+      191,
+      144
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-64.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4037,
+      1872,
+      210,
+      107
+    ],
+    "similar_swatch_ids": [
+      71,
+      72,
+      74,
+      86
+    ]
+  },
+  {
+    "id": 65,
+    "code": "Central native legend plate 2, column 3, entry 8",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      228,
+      223,
+      195
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-65.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4037,
+      2012,
+      209,
+      109
+    ],
+    "similar_swatch_ids": [
+      4,
+      58,
+      60,
+      61,
+      62,
+      68,
+      69,
+      129
+    ]
+  },
+  {
+    "id": 66,
+    "code": "Central native legend plate 2, column 3, entry 9",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      225,
+      238,
+      221
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-66.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4035,
+      2162,
+      214,
+      111
+    ],
+    "similar_swatch_ids": [
+      0,
+      1,
+      58,
+      59,
+      60,
+      68,
+      84
+    ]
+  },
+  {
+    "id": 67,
+    "code": "Central native legend plate 2, column 3, entry 10",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      247,
+      248,
+      236
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-67.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4036,
+      2305,
+      212,
+      111
+    ],
+    "similar_swatch_ids": [
+      0,
+      29,
+      33,
+      34,
+      37,
+      59,
+      83,
+      84,
+      110
+    ]
+  },
+  {
+    "id": 68,
+    "code": "Central native legend plate 2, column 3, entry 11",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      239,
+      235,
+      213
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-68.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4035,
+      2459,
+      213,
+      110
+    ],
+    "similar_swatch_ids": [
+      0,
+      1,
+      4,
+      58,
+      59,
+      60,
+      65,
+      66,
+      84
+    ]
+  },
+  {
+    "id": 69,
+    "code": "Central native legend plate 2, column 3, entry 12",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      226,
+      219,
+      186
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-69.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4035,
+      2634,
+      213,
+      111
+    ],
+    "similar_swatch_ids": [
+      61,
+      62,
+      65,
+      85,
+      117,
+      129
+    ]
+  },
+  {
+    "id": 70,
+    "code": "Central native legend plate 2, column 3, entry 13",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      220,
+      206,
+      164
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-70.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4034,
+      2811,
+      214,
+      113
+    ],
+    "similar_swatch_ids": [
+      63,
+      71,
+      85,
+      116,
+      117
+    ]
+  },
+  {
+    "id": 71,
+    "code": "Central native legend plate 2, column 3, entry 14",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      211,
+      197,
+      154
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-71.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4034,
+      2963,
+      214,
+      102
+    ],
+    "similar_swatch_ids": [
+      63,
+      64,
+      70,
+      74
+    ]
+  },
+  {
+    "id": 72,
+    "code": "Central native legend plate 2, column 3, entry 15",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      196,
+      181,
+      138
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-72.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4036,
+      3095,
+      209,
+      107
+    ],
+    "similar_swatch_ids": [
+      64,
+      74
+    ]
+  },
+  {
+    "id": 73,
+    "code": "Central native legend plate 2, column 3, entry 16",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      185,
+      168,
+      127
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-73.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4035,
+      3237,
+      210,
+      100
+    ],
+    "similar_swatch_ids": [
+      75,
+      127
+    ]
+  },
+  {
+    "id": 74,
+    "code": "Central native legend plate 2, column 3, entry 17",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      205,
+      192,
+      151
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-74.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4035,
+      3370,
+      212,
+      113
+    ],
+    "similar_swatch_ids": [
+      64,
+      71,
+      72,
+      76
+    ]
+  },
+  {
+    "id": 75,
+    "code": "Central native legend plate 2, column 3, entry 18",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      180,
+      163,
+      120
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-75.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4036,
+      3526,
+      207,
+      108
+    ],
+    "similar_swatch_ids": [
+      73
+    ]
+  },
+  {
+    "id": 76,
+    "code": "Central native legend plate 2, column 3, entry 19",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      203,
+      197,
+      177
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-76.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4035,
+      3701,
+      210,
+      110
+    ],
+    "similar_swatch_ids": [
+      57,
+      74,
+      91,
+      126,
+      130
+    ]
+  },
+  {
+    "id": 77,
+    "code": "Central native legend plate 2, column 3, entry 20",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      190,
+      182,
+      163
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-77.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4036,
+      3867,
+      208,
+      109
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 78,
+    "code": "Central native legend plate 2, column 3, entry 21",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      167,
+      158,
+      139
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-78.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4036,
+      4009,
+      207,
+      108
+    ],
+    "similar_swatch_ids": [
+      80,
+      127,
+      131
+    ]
+  },
+  {
+    "id": 79,
+    "code": "Central native legend plate 2, column 3, entry 22",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      152,
+      143,
+      125
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-79.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4036,
+      4151,
+      207,
+      104
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 80,
+    "code": "Central native legend plate 2, column 3, entry 23",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      174,
+      165,
+      162
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-80.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4035,
+      4292,
+      210,
+      119
+    ],
+    "similar_swatch_ids": [
+      78
+    ]
+  },
+  {
+    "id": 81,
+    "code": "Central native legend plate 2, column 3, entry 24",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      174,
+      152,
+      162
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-81.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4034,
+      4443,
+      213,
+      111
+    ],
+    "similar_swatch_ids": [
+      82
+    ]
+  },
+  {
+    "id": 82,
+    "code": "Central native legend plate 2, column 3, entry 25",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      174,
+      139,
+      162
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-82.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4036,
+      4587,
+      207,
+      106
+    ],
+    "similar_swatch_ids": [
+      81
+    ]
+  },
+  {
+    "id": 83,
+    "code": "Central native legend plate 2, column 3, entry 26",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      255,
+      255
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-83.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4034,
+      4737,
+      213,
+      110
+    ],
+    "similar_swatch_ids": [
+      29,
+      33,
+      34,
+      37,
+      59,
+      67,
+      110
+    ]
+  },
+  {
+    "id": 84,
+    "code": "Central native legend plate 2, column 3, entry 27",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      241,
+      223
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-84.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4034,
+      4937,
+      213,
+      114
+    ],
+    "similar_swatch_ids": [
+      0,
+      1,
+      4,
+      58,
+      59,
+      60,
+      66,
+      67,
+      68
+    ]
+  },
+  {
+    "id": 85,
+    "code": "Central native legend plate 2, column 3, entry 28",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      237,
+      209,
+      178
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-85.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4035,
+      5155,
+      210,
+      108
+    ],
+    "similar_swatch_ids": [
+      22,
+      50,
+      61,
+      62,
+      63,
+      69,
+      70
+    ]
+  },
+  {
+    "id": 86,
+    "code": "Central native legend plate 2, column 3, entry 29",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      235,
+      195,
+      153
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-86.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4035,
+      5319,
+      210,
+      109
+    ],
+    "similar_swatch_ids": [
+      51,
+      63,
+      64,
+      89
+    ]
+  },
+  {
+    "id": 87,
+    "code": "Central native legend plate 2, column 3, entry 30",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      220,
+      167,
+      97
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-87.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4035,
+      5474,
+      209,
+      110
+    ],
+    "similar_swatch_ids": [
+      88
+    ]
+  },
+  {
+    "id": 88,
+    "code": "Central native legend plate 2, column 3, entry 31",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      221,
+      160,
+      99
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-88.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4034,
+      5614,
+      213,
+      112
+    ],
+    "similar_swatch_ids": [
+      87
+    ]
+  },
+  {
+    "id": 89,
+    "code": "Central native legend plate 3, column 1, entry 1",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      232,
+      192,
+      169
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-89.webp",
+    "legend_plate": 3,
+    "native_box": [
+      287,
+      589,
+      216,
+      107
+    ],
+    "similar_swatch_ids": [
+      86,
+      91,
+      144,
+      210
+    ]
+  },
+  {
+    "id": 90,
+    "code": "Central native legend plate 3, column 1, entry 2",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      181,
+      99,
+      54
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-90.webp",
+    "legend_plate": 3,
+    "native_box": [
+      288,
+      1038,
+      213,
+      102
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 91,
+    "code": "Central native legend plate 3, column 1, entry 3",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      218,
+      187,
+      175
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-91.webp",
+    "legend_plate": 3,
+    "native_box": [
+      288,
+      1330,
+      217,
+      109
+    ],
+    "similar_swatch_ids": [
+      57,
+      76,
+      89,
+      141
+    ]
+  },
+  {
+    "id": 92,
+    "code": "Central native legend plate 3, column 1, entry 4",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      202,
+      147,
+      116
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-92.webp",
+    "legend_plate": 3,
+    "native_box": [
+      289,
+      1520,
+      213,
+      105
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 93,
+    "code": "Central native legend plate 3, column 1, entry 5",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      158,
+      78,
+      38
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-93.webp",
+    "legend_plate": 3,
+    "native_box": [
+      289,
+      1776,
+      217,
+      111
+    ],
+    "similar_swatch_ids": [
+      94,
+      95,
+      97,
+      99
+    ]
+  },
+  {
+    "id": 94,
+    "code": "Central native legend plate 3, column 1, entry 6",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      149,
+      71,
+      33
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-94.webp",
+    "legend_plate": 3,
+    "native_box": [
+      289,
+      2175,
+      217,
+      111
+    ],
+    "similar_swatch_ids": [
+      93,
+      95,
+      97,
+      99
+    ]
+  },
+  {
+    "id": 95,
+    "code": "Central native legend plate 3, column 1, entry 7",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      143,
+      70,
+      31
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-95.webp",
+    "legend_plate": 3,
+    "native_box": [
+      290,
+      2720,
+      218,
+      110
+    ],
+    "similar_swatch_ids": [
+      93,
+      94,
+      97,
+      99
+    ]
+  },
+  {
+    "id": 96,
+    "code": "Central native legend plate 3, column 1, entry 8",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      113,
+      55,
+      26
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-96.webp",
+    "legend_plate": 3,
+    "native_box": [
+      290,
+      3166,
+      218,
+      107
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 97,
+    "code": "Central native legend plate 3, column 1, entry 9",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      150,
+      79,
+      47
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-97.webp",
+    "legend_plate": 3,
+    "native_box": [
+      289,
+      3406,
+      218,
+      110
+    ],
+    "similar_swatch_ids": [
+      93,
+      94,
+      95,
+      99
+    ]
+  },
+  {
+    "id": 98,
+    "code": "Central native legend plate 3, column 1, entry 10",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      0,
+      0,
+      0
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-98.webp",
+    "legend_plate": 3,
+    "native_box": [
+      290,
+      3547,
+      217,
+      112
+    ],
+    "similar_swatch_ids": [
+      121,
+      134,
+      136,
+      225
+    ]
+  },
+  {
+    "id": 99,
+    "code": "Central native legend plate 3, column 1, entry 11",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      150,
+      71,
+      49
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-99.webp",
+    "legend_plate": 3,
+    "native_box": [
+      290,
+      3685,
+      218,
+      113
+    ],
+    "similar_swatch_ids": [
+      93,
+      94,
+      95,
+      97,
+      100
+    ]
+  },
+  {
+    "id": 100,
+    "code": "Central native legend plate 3, column 1, entry 12",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      148,
+      61,
+      46
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-100.webp",
+    "legend_plate": 3,
+    "native_box": [
+      290,
+      3830,
+      217,
+      109
+    ],
+    "similar_swatch_ids": [
+      99
+    ]
+  },
+  {
+    "id": 101,
+    "code": "Central native legend plate 3, column 1, entry 13",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      223,
+      210,
+      82
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-101.webp",
+    "legend_plate": 3,
+    "native_box": [
+      290,
+      3971,
+      217,
+      111
+    ],
+    "similar_swatch_ids": [
+      105,
+      106,
+      113
+    ]
+  },
+  {
+    "id": 102,
+    "code": "Central native legend plate 3, column 1, entry 14",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      242,
+      237,
+      145
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-102.webp",
+    "legend_plate": 3,
+    "native_box": [
+      291,
+      4113,
+      216,
+      112
+    ],
+    "similar_swatch_ids": [
+      19,
+      103,
+      109
+    ]
+  },
+  {
+    "id": 103,
+    "code": "Central native legend plate 3, column 1, entry 15",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      245,
+      238,
+      159
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-103.webp",
+    "legend_plate": 3,
+    "native_box": [
+      290,
+      4253,
+      217,
+      112
+    ],
+    "similar_swatch_ids": [
+      18,
+      19,
+      102,
+      109,
+      112
+    ]
+  },
+  {
+    "id": 104,
+    "code": "Central native legend plate 3, column 1, entry 16",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      237,
+      226,
+      115
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-104.webp",
+    "legend_plate": 3,
+    "native_box": [
+      290,
+      4396,
+      217,
+      110
+    ],
+    "similar_swatch_ids": [
+      28
+    ]
+  },
+  {
+    "id": 105,
+    "code": "Central native legend plate 3, column 1, entry 17",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      224,
+      205,
+      72
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-105.webp",
+    "legend_plate": 3,
+    "native_box": [
+      290,
+      4551,
+      217,
+      111
+    ],
+    "similar_swatch_ids": [
+      101,
+      106,
+      107
+    ]
+  },
+  {
+    "id": 106,
+    "code": "Central native legend plate 3, column 1, entry 18",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      219,
+      198,
+      54
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-106.webp",
+    "legend_plate": 3,
+    "native_box": [
+      290,
+      4715,
+      218,
+      112
+    ],
+    "similar_swatch_ids": [
+      101,
+      105,
+      107,
+      108
+    ]
+  },
+  {
+    "id": 107,
+    "code": "Central native legend plate 3, column 1, entry 19",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      218,
+      196,
+      39
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-107.webp",
+    "legend_plate": 3,
+    "native_box": [
+      291,
+      4940,
+      216,
+      110
+    ],
+    "similar_swatch_ids": [
+      105,
+      106,
+      108
+    ]
+  },
+  {
+    "id": 108,
+    "code": "Central native legend plate 3, column 1, entry 20",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      212,
+      187,
+      20
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-108.webp",
+    "legend_plate": 3,
+    "native_box": [
+      292,
+      5212,
+      213,
+      106
+    ],
+    "similar_swatch_ids": [
+      106,
+      107
+    ]
+  },
+  {
+    "id": 109,
+    "code": "Central native legend plate 3, column 1, entry 21",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      243,
+      236,
+      158
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-109.webp",
+    "legend_plate": 3,
+    "native_box": [
+      291,
+      5434,
+      216,
+      109
+    ],
+    "similar_swatch_ids": [
+      3,
+      18,
+      19,
+      102,
+      103,
+      112
+    ]
+  },
+  {
+    "id": 110,
+    "code": "Central native legend plate 3, column 2, entry 1",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      255,
+      255
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-110.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2157,
+      460,
+      216,
+      106
+    ],
+    "similar_swatch_ids": [
+      29,
+      33,
+      34,
+      37,
+      59,
+      67,
+      83
+    ]
+  },
+  {
+    "id": 111,
+    "code": "Central native legend plate 3, column 2, entry 2",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      239,
+      240,
+      187
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-111.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2158,
+      682,
+      215,
+      109
+    ],
+    "similar_swatch_ids": [
+      2,
+      18,
+      112
+    ]
+  },
+  {
+    "id": 112,
+    "code": "Central native legend plate 3, column 2, entry 3",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      232,
+      233,
+      168
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-112.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2157,
+      883,
+      215,
+      110
+    ],
+    "similar_swatch_ids": [
+      18,
+      103,
+      109,
+      111
+    ]
+  },
+  {
+    "id": 113,
+    "code": "Central native legend plate 3, column 2, entry 4",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      212,
+      210,
+      104
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-113.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2159,
+      1026,
+      210,
+      102
+    ],
+    "similar_swatch_ids": [
+      101
+    ]
+  },
+  {
+    "id": 114,
+    "code": "Central native legend plate 3, column 2, entry 5",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      192,
+      185,
+      64
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-114.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2159,
+      1258,
+      208,
+      104
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 115,
+    "code": "Central native legend plate 3, column 2, entry 6",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      191,
+      194,
+      103
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-115.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2159,
+      1666,
+      215,
+      113
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 116,
+    "code": "Central native legend plate 3, column 2, entry 7",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      202,
+      215,
+      172
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-116.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2159,
+      2033,
+      213,
+      109
+    ],
+    "similar_swatch_ids": [
+      70,
+      117
+    ]
+  },
+  {
+    "id": 117,
+    "code": "Central native legend plate 3, column 2, entry 8",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      203,
+      215,
+      175
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-117.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2159,
+      2247,
+      215,
+      109
+    ],
+    "similar_swatch_ids": [
+      69,
+      70,
+      116
+    ]
+  },
+  {
+    "id": 118,
+    "code": "Central native legend plate 3, column 2, entry 9",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      180,
+      194,
+      131
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-118.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2160,
+      2506,
+      210,
+      104
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 119,
+    "code": "Central native legend plate 3, column 2, entry 10",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      142,
+      162,
+      79
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-119.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2160,
+      2737,
+      217,
+      109
+    ],
+    "similar_swatch_ids": [
+      122
+    ]
+  },
+  {
+    "id": 120,
+    "code": "Central native legend plate 3, column 2, entry 11",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      172,
+      156,
+      24
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-120.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2160,
+      2906,
+      209,
+      103
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 121,
+    "code": "Central native legend plate 3, column 2, entry 12",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      0,
+      0,
+      0
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-121.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2160,
+      3103,
+      217,
+      110
+    ],
+    "similar_swatch_ids": [
+      98,
+      134,
+      136,
+      225
+    ]
+  },
+  {
+    "id": 122,
+    "code": "Central native legend plate 3, column 2, entry 13",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      132,
+      159,
+      75
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-122.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2162,
+      3467,
+      208,
+      103
+    ],
+    "similar_swatch_ids": [
+      119
+    ]
+  },
+  {
+    "id": 123,
+    "code": "Central native legend plate 3, column 2, entry 14",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      110,
+      136,
+      47
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-123.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2160,
+      3781,
+      215,
+      112
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 124,
+    "code": "Central native legend plate 3, column 2, entry 15",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      10,
+      24,
+      29
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-124.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2160,
+      3925,
+      215,
+      108
+    ],
+    "similar_swatch_ids": [
+      132
+    ]
+  },
+  {
+    "id": 125,
+    "code": "Central native legend plate 3, column 2, entry 16",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      157,
+      169,
+      135
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-125.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2163,
+      4103,
+      210,
+      105
+    ],
+    "similar_swatch_ids": [
+      127,
+      131
+    ]
+  },
+  {
+    "id": 126,
+    "code": "Central native legend plate 3, column 2, entry 17",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      198,
+      206,
+      186
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-126.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2163,
+      4337,
+      209,
+      106
+    ],
+    "similar_swatch_ids": [
+      57,
+      76,
+      129,
+      130
+    ]
+  },
+  {
+    "id": 127,
+    "code": "Central native legend plate 3, column 2, entry 18",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      161,
+      168,
+      135
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-127.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2163,
+      4535,
+      210,
+      107
+    ],
+    "similar_swatch_ids": [
+      73,
+      78,
+      125,
+      131
+    ]
+  },
+  {
+    "id": 128,
+    "code": "Central native legend plate 3, column 2, entry 19",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      221,
+      225,
+      220
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-128.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2164,
+      4681,
+      209,
+      104
+    ],
+    "similar_swatch_ids": [
+      60,
+      129
+    ]
+  },
+  {
+    "id": 129,
+    "code": "Central native legend plate 3, column 2, entry 20",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      210,
+      217,
+      204
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-129.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2162,
+      4820,
+      215,
+      109
+    ],
+    "similar_swatch_ids": [
+      65,
+      69,
+      126,
+      128
+    ]
+  },
+  {
+    "id": 130,
+    "code": "Central native legend plate 3, column 2, entry 21",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      188,
+      196,
+      175
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-130.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2165,
+      5034,
+      209,
+      105
+    ],
+    "similar_swatch_ids": [
+      57,
+      76,
+      126
+    ]
+  },
+  {
+    "id": 131,
+    "code": "Central native legend plate 3, column 2, entry 22",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      152,
+      164,
+      133
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-131.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2165,
+      5282,
+      210,
+      103
+    ],
+    "similar_swatch_ids": [
+      78,
+      125,
+      127
+    ]
+  },
+  {
+    "id": 132,
+    "code": "Central native legend plate 3, column 2, entry 23",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      24,
+      25,
+      35
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-132.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2163,
+      5445,
+      217,
+      110
+    ],
+    "similar_swatch_ids": [
+      124
+    ]
+  },
+  {
+    "id": 133,
+    "code": "Central native legend plate 3, column 3, entry 1",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      137,
+      151,
+      117
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-133.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4025,
+      439,
+      211,
+      102
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 134,
+    "code": "Central native legend plate 3, column 3, entry 2",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      0,
+      0,
+      0
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-134.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4024,
+      588,
+      217,
+      108
+    ],
+    "similar_swatch_ids": [
+      98,
+      121,
+      136,
+      225
+    ]
+  },
+  {
+    "id": 135,
+    "code": "Central native legend plate 3, column 3, entry 3",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      122,
+      172,
+      142
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-135.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4025,
+      823,
+      209,
+      107
+    ],
+    "similar_swatch_ids": [
+      137,
+      138
+    ]
+  },
+  {
+    "id": 136,
+    "code": "Central native legend plate 3, column 3, entry 4",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      0,
+      0,
+      0
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-136.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4024,
+      1045,
+      217,
+      109
+    ],
+    "similar_swatch_ids": [
+      98,
+      121,
+      134,
+      225
+    ]
+  },
+  {
+    "id": 137,
+    "code": "Central native legend plate 3, column 3, entry 5",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      113,
+      167,
+      143
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-137.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4025,
+      1210,
+      209,
+      104
+    ],
+    "similar_swatch_ids": [
+      135,
+      138
+    ]
+  },
+  {
+    "id": 138,
+    "code": "Central native legend plate 3, column 3, entry 6",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      97,
+      165,
+      144
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-138.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4026,
+      1375,
+      207,
+      104
+    ],
+    "similar_swatch_ids": [
+      135,
+      137
+    ]
+  },
+  {
+    "id": 139,
+    "code": "Central native legend plate 3, column 3, entry 7",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      64,
+      141,
+      134
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-139.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4024,
+      1512,
+      215,
+      113
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 140,
+    "code": "Central native legend plate 3, column 3, entry 8",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      239,
+      195,
+      199
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-140.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4024,
+      1760,
+      214,
+      110
+    ],
+    "similar_swatch_ids": [
+      142,
+      144,
+      152
+    ]
+  },
+  {
+    "id": 141,
+    "code": "Central native legend plate 3, column 3, entry 9",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      208,
+      175,
+      173
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-141.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4025,
+      2092,
+      210,
+      105
+    ],
+    "similar_swatch_ids": [
+      91
+    ]
+  },
+  {
+    "id": 142,
+    "code": "Central native legend plate 3, column 3, entry 10",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      204,
+      203
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-142.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4025,
+      2314,
+      210,
+      108
+    ],
+    "similar_swatch_ids": [
+      140,
+      144,
+      152
+    ]
+  },
+  {
+    "id": 143,
+    "code": "Central native legend plate 3, column 3, entry 11",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      220,
+      214
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-143.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4024,
+      2550,
+      214,
+      111
+    ],
+    "similar_swatch_ids": [
+      60,
+      151
+    ]
+  },
+  {
+    "id": 144,
+    "code": "Central native legend plate 3, column 3, entry 12",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      196,
+      184
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-144.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4025,
+      2798,
+      211,
+      106
+    ],
+    "similar_swatch_ids": [
+      22,
+      89,
+      140,
+      142,
+      210
+    ]
+  },
+  {
+    "id": 145,
+    "code": "Central native legend plate 3, column 3, entry 13",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      248,
+      172,
+      156
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-145.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4025,
+      3102,
+      210,
+      107
+    ],
+    "similar_swatch_ids": [
+      146,
+      147,
+      210
+    ]
+  },
+  {
+    "id": 146,
+    "code": "Central native legend plate 3, column 3, entry 14",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      250,
+      179,
+      167
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-146.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4025,
+      3426,
+      210,
+      108
+    ],
+    "similar_swatch_ids": [
+      145,
+      147,
+      210
+    ]
+  },
+  {
+    "id": 147,
+    "code": "Central native legend plate 3, column 3, entry 15",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      249,
+      164,
+      157
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-147.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4025,
+      3628,
+      210,
+      105
+    ],
+    "similar_swatch_ids": [
+      145,
+      146
+    ]
+  },
+  {
+    "id": 148,
+    "code": "Central native legend plate 3, column 3, entry 16",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      246,
+      143,
+      121
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-148.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4025,
+      3792,
+      210,
+      106
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 149,
+    "code": "Central native legend plate 3, column 3, entry 17",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      239,
+      120,
+      104
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-149.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4026,
+      3934,
+      209,
+      106
+    ],
+    "similar_swatch_ids": [
+      163
+    ]
+  },
+  {
+    "id": 150,
+    "code": "Central native legend plate 3, column 3, entry 18",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      231,
+      83,
+      78
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-150.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4024,
+      4071,
+      216,
+      113
+    ],
+    "similar_swatch_ids": [
+      198
+    ]
+  },
+  {
+    "id": 151,
+    "code": "Central native legend plate 3, column 3, entry 19",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      221,
+      229
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-151.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4024,
+      4215,
+      215,
+      110
+    ],
+    "similar_swatch_ids": [
+      45,
+      143
+    ]
+  },
+  {
+    "id": 152,
+    "code": "Central native legend plate 3, column 3, entry 20",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      203,
+      216
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-152.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4024,
+      4404,
+      215,
+      106
+    ],
+    "similar_swatch_ids": [
+      140,
+      142
+    ]
+  },
+  {
+    "id": 153,
+    "code": "Central native legend plate 3, column 3, entry 21",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      250,
+      180,
+      193
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-153.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4026,
+      4688,
+      211,
+      107
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 154,
+    "code": "Central native legend plate 3, column 3, entry 22",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      245,
+      141,
+      156
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-154.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4026,
+      4982,
+      214,
+      108
+    ],
+    "similar_swatch_ids": [
+      155,
+      173,
+      216
+    ]
+  },
+  {
+    "id": 155,
+    "code": "Central native legend plate 3, column 3, entry 23",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      243,
+      130,
+      145
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-155.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4027,
+      5160,
+      211,
+      106
+    ],
+    "similar_swatch_ids": [
+      154,
+      156,
+      161,
+      173,
+      185
+    ]
+  },
+  {
+    "id": 156,
+    "code": "Central native legend plate 3, column 3, entry 24",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      241,
+      121,
+      136
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-156.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4027,
+      5301,
+      214,
+      109
+    ],
+    "similar_swatch_ids": [
+      155,
+      161,
+      173,
+      217
+    ]
+  },
+  {
+    "id": 157,
+    "code": "Central native legend plate 3, column 3, entry 25",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      238,
+      103,
+      116
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-157.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4027,
+      5440,
+      214,
+      111
+    ],
+    "similar_swatch_ids": [
+      217,
+      223
+    ]
+  },
+  {
+    "id": 158,
+    "code": "Central native intrusion matrix, source cell x933 y3426",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      218,
+      4,
+      80
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-158.webp",
+    "legend_plate": 4,
+    "native_box": [
+      933,
+      3426,
+      280,
+      61
+    ],
+    "similar_swatch_ids": [
+      165,
+      168
+    ]
+  },
+  {
+    "id": 159,
+    "code": "Central native intrusion matrix, source cell x933 y3598",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      211,
+      0,
+      0
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-159.webp",
+    "legend_plate": 4,
+    "native_box": [
+      933,
+      3598,
+      280,
+      60
+    ],
+    "similar_swatch_ids": [
+      164,
+      166,
+      167,
+      169,
+      170,
+      175,
+      179
+    ]
+  },
+  {
+    "id": 160,
+    "code": "Central native intrusion matrix, source cell x933 y4064",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      245,
+      104,
+      12
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-160.webp",
+    "legend_plate": 4,
+    "native_box": [
+      933,
+      4064,
+      280,
+      52
+    ],
+    "similar_swatch_ids": [
+      26
+    ]
+  },
+  {
+    "id": 161,
+    "code": "Central native intrusion matrix, source cell x933 y5220",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      248,
+      122,
+      147
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-161.webp",
+    "legend_plate": 4,
+    "native_box": [
+      933,
+      5220,
+      280,
+      52
+    ],
+    "similar_swatch_ids": [
+      155,
+      156,
+      173,
+      185
+    ]
+  },
+  {
+    "id": 162,
+    "code": "Central native intrusion matrix, source cell x933 y5327",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      130,
+      232,
+      134
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-162.webp",
+    "legend_plate": 4,
+    "native_box": [
+      933,
+      5327,
+      280,
+      53
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 163,
+    "code": "Central native intrusion matrix, source cell x933 y5480",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      245,
+      125,
+      90
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-163.webp",
+    "legend_plate": 4,
+    "native_box": [
+      933,
+      5480,
+      280,
+      52
+    ],
+    "similar_swatch_ids": [
+      149,
+      197,
+      200
+    ]
+  },
+  {
+    "id": 164,
+    "code": "Central native intrusion matrix, source cell x1237 y3808",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      206,
+      0,
+      0
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-164.webp",
+    "legend_plate": 4,
+    "native_box": [
+      1237,
+      3808,
+      266,
+      62
+    ],
+    "similar_swatch_ids": [
+      159,
+      166,
+      167,
+      169,
+      170,
+      175
+    ]
+  },
+  {
+    "id": 165,
+    "code": "Central native intrusion matrix, source cell x1527 y3426",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      222,
+      11,
+      86
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-165.webp",
+    "legend_plate": 4,
+    "native_box": [
+      1527,
+      3426,
+      270,
+      55
+    ],
+    "similar_swatch_ids": [
+      158,
+      168
+    ]
+  },
+  {
+    "id": 166,
+    "code": "Central native intrusion matrix, source cell x1527 y3598",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      213,
+      1,
+      2
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-166.webp",
+    "legend_plate": 4,
+    "native_box": [
+      1527,
+      3598,
+      270,
+      60
+    ],
+    "similar_swatch_ids": [
+      159,
+      164,
+      167,
+      169,
+      170,
+      175,
+      179
+    ]
+  },
+  {
+    "id": 167,
+    "code": "Central native intrusion matrix, source cell x1527 y3808",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      223,
+      8,
+      2
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-167.webp",
+    "legend_plate": 4,
+    "native_box": [
+      1527,
+      3808,
+      270,
+      62
+    ],
+    "similar_swatch_ids": [
+      159,
+      164,
+      166,
+      169,
+      170,
+      175,
+      179,
+      180
+    ]
+  },
+  {
+    "id": 168,
+    "code": "Central native intrusion matrix, source cell x1527 y4164",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      212,
+      0,
+      85
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-168.webp",
+    "legend_plate": 4,
+    "native_box": [
+      1527,
+      4164,
+      270,
+      58
+    ],
+    "similar_swatch_ids": [
+      158,
+      165
+    ]
+  },
+  {
+    "id": 169,
+    "code": "Central native intrusion matrix, source cell x1821 y3593",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      218,
+      3,
+      11
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-169.webp",
+    "legend_plate": 4,
+    "native_box": [
+      1821,
+      3593,
+      272,
+      59
+    ],
+    "similar_swatch_ids": [
+      159,
+      164,
+      166,
+      167,
+      170,
+      175,
+      179
+    ]
+  },
+  {
+    "id": 170,
+    "code": "Central native intrusion matrix, source cell x1821 y3808",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      222,
+      6,
+      2
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-170.webp",
+    "legend_plate": 4,
+    "native_box": [
+      1821,
+      3808,
+      272,
+      58
+    ],
+    "similar_swatch_ids": [
+      159,
+      164,
+      166,
+      167,
+      169,
+      175,
+      179,
+      180
+    ]
+  },
+  {
+    "id": 171,
+    "code": "Central native intrusion matrix, source cell x1821 y4060",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      164,
+      103
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-171.webp",
+    "legend_plate": 4,
+    "native_box": [
+      1821,
+      4060,
+      272,
+      53
+    ],
+    "similar_swatch_ids": [
+      24,
+      52,
+      192
+    ]
+  },
+  {
+    "id": 172,
+    "code": "Central native intrusion matrix, source cell x1821 y4164",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      217,
+      5,
+      117
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-172.webp",
+    "legend_plate": 4,
+    "native_box": [
+      1821,
+      4164,
+      272,
+      56
+    ],
+    "similar_swatch_ids": [
+      176,
+      177,
+      181,
+      187
+    ]
+  },
+  {
+    "id": 173,
+    "code": "Central native intrusion matrix, source cell x1821 y5218",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      248,
+      130,
+      137
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-173.webp",
+    "legend_plate": 4,
+    "native_box": [
+      1821,
+      5218,
+      272,
+      56
+    ],
+    "similar_swatch_ids": [
+      154,
+      155,
+      156,
+      161
+    ]
+  },
+  {
+    "id": 174,
+    "code": "Central native intrusion matrix, source cell x2117 y3423",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      233,
+      64,
+      122
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-174.webp",
+    "legend_plate": 4,
+    "native_box": [
+      2117,
+      3423,
+      261,
+      55
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 175,
+    "code": "Central native intrusion matrix, source cell x2402 y3596",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      222,
+      14,
+      18
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-175.webp",
+    "legend_plate": 4,
+    "native_box": [
+      2402,
+      3596,
+      267,
+      56
+    ],
+    "similar_swatch_ids": [
+      159,
+      164,
+      166,
+      167,
+      169,
+      170,
+      179,
+      180
+    ]
+  },
+  {
+    "id": 176,
+    "code": "Central native intrusion matrix, source cell x2402 y4162",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      219,
+      6,
+      119
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-176.webp",
+    "legend_plate": 4,
+    "native_box": [
+      2402,
+      4162,
+      267,
+      62
+    ],
+    "similar_swatch_ids": [
+      172,
+      177,
+      181,
+      187
+    ]
+  },
+  {
+    "id": 177,
+    "code": "Central native intrusion matrix, source cell x2693 y4160",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      219,
+      7,
+      120
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-177.webp",
+    "legend_plate": 4,
+    "native_box": [
+      2693,
+      4160,
+      270,
+      64
+    ],
+    "similar_swatch_ids": [
+      172,
+      176,
+      181,
+      187
+    ]
+  },
+  {
+    "id": 178,
+    "code": "Central native intrusion matrix, source cell x2693 y5324",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      125,
+      211,
+      199
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-178.webp",
+    "legend_plate": 4,
+    "native_box": [
+      2693,
+      5324,
+      270,
+      52
+    ],
+    "similar_swatch_ids": [
+      184,
+      190,
+      196
+    ]
+  },
+  {
+    "id": 179,
+    "code": "Central native intrusion matrix, source cell x2987 y3591",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      225,
+      23,
+      27
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-179.webp",
+    "legend_plate": 4,
+    "native_box": [
+      2987,
+      3591,
+      259,
+      59
+    ],
+    "similar_swatch_ids": [
+      159,
+      166,
+      167,
+      169,
+      170,
+      175,
+      180,
+      191
+    ]
+  },
+  {
+    "id": 180,
+    "code": "Central native intrusion matrix, source cell x2987 y3805",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      230,
+      36,
+      2
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-180.webp",
+    "legend_plate": 4,
+    "native_box": [
+      2987,
+      3805,
+      259,
+      57
+    ],
+    "similar_swatch_ids": [
+      167,
+      170,
+      175,
+      179
+    ]
+  },
+  {
+    "id": 181,
+    "code": "Central native intrusion matrix, source cell x2987 y4160",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      222,
+      16,
+      129
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-181.webp",
+    "legend_plate": 4,
+    "native_box": [
+      2987,
+      4160,
+      259,
+      64
+    ],
+    "similar_swatch_ids": [
+      172,
+      176,
+      177,
+      187
+    ]
+  },
+  {
+    "id": 182,
+    "code": "Central native intrusion matrix, source cell x2987 y4852",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      245,
+      152,
+      254
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-182.webp",
+    "legend_plate": 4,
+    "native_box": [
+      2987,
+      4852,
+      259,
+      55
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 183,
+    "code": "Central native intrusion matrix, source cell x2987 y5214",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      235,
+      64,
+      92
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-183.webp",
+    "legend_plate": 4,
+    "native_box": [
+      2987,
+      5214,
+      259,
+      55
+    ],
+    "similar_swatch_ids": [
+      189,
+      195,
+      198,
+      201
+    ]
+  },
+  {
+    "id": 184,
+    "code": "Central native intrusion matrix, source cell x2987 y5324",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      133,
+      218,
+      206
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-184.webp",
+    "legend_plate": 4,
+    "native_box": [
+      2987,
+      5324,
+      259,
+      52
+    ],
+    "similar_swatch_ids": [
+      42,
+      178,
+      190,
+      196
+    ]
+  },
+  {
+    "id": 185,
+    "code": "Central native intrusion matrix, source cell x3270 y3420",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      244,
+      126,
+      163
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-185.webp",
+    "legend_plate": 4,
+    "native_box": [
+      3270,
+      3420,
+      262,
+      56
+    ],
+    "similar_swatch_ids": [
+      155,
+      161
+    ]
+  },
+  {
+    "id": 186,
+    "code": "Central native intrusion matrix, source cell x3270 y3805",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      245,
+      106,
+      56
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-186.webp",
+    "legend_plate": 4,
+    "native_box": [
+      3270,
+      3805,
+      262,
+      62
+    ],
+    "similar_swatch_ids": [
+      209
+    ]
+  },
+  {
+    "id": 187,
+    "code": "Central native intrusion matrix, source cell x3270 y4160",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      223,
+      18,
+      132
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-187.webp",
+    "legend_plate": 4,
+    "native_box": [
+      3270,
+      4160,
+      262,
+      64
+    ],
+    "similar_swatch_ids": [
+      172,
+      176,
+      177,
+      181,
+      193
+    ]
+  },
+  {
+    "id": 188,
+    "code": "Central native intrusion matrix, source cell x3270 y4722",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      5,
+      162,
+      130
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-188.webp",
+    "legend_plate": 4,
+    "native_box": [
+      3270,
+      4722,
+      262,
+      54
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 189,
+    "code": "Central native intrusion matrix, source cell x3270 y5214",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      234,
+      59,
+      87
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-189.webp",
+    "legend_plate": 4,
+    "native_box": [
+      3270,
+      5214,
+      262,
+      55
+    ],
+    "similar_swatch_ids": [
+      183,
+      195,
+      201
+    ]
+  },
+  {
+    "id": 190,
+    "code": "Central native intrusion matrix, source cell x3270 y5323",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      133,
+      223,
+      215
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-190.webp",
+    "legend_plate": 4,
+    "native_box": [
+      3270,
+      5323,
+      262,
+      53
+    ],
+    "similar_swatch_ids": [
+      42,
+      178,
+      184,
+      196
+    ]
+  },
+  {
+    "id": 191,
+    "code": "Central native intrusion matrix, source cell x3556 y3594",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      226,
+      41,
+      46
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-191.webp",
+    "legend_plate": 4,
+    "native_box": [
+      3556,
+      3594,
+      277,
+      61
+    ],
+    "similar_swatch_ids": [
+      179
+    ]
+  },
+  {
+    "id": 192,
+    "code": "Central native intrusion matrix, source cell x3556 y4057",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      175,
+      117
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-192.webp",
+    "legend_plate": 4,
+    "native_box": [
+      3556,
+      4057,
+      277,
+      54
+    ],
+    "similar_swatch_ids": [
+      23,
+      52,
+      171
+    ]
+  },
+  {
+    "id": 193,
+    "code": "Central native intrusion matrix, source cell x3556 y4160",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      229,
+      47,
+      153
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-193.webp",
+    "legend_plate": 4,
+    "native_box": [
+      3556,
+      4160,
+      277,
+      59
+    ],
+    "similar_swatch_ids": [
+      187,
+      211
+    ]
+  },
+  {
+    "id": 194,
+    "code": "Central native intrusion matrix, source cell x3556 y4722",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      5,
+      147,
+      123
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-194.webp",
+    "legend_plate": 4,
+    "native_box": [
+      3556,
+      4722,
+      277,
+      52
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 195,
+    "code": "Central native intrusion matrix, source cell x3556 y5214",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      235,
+      59,
+      91
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-195.webp",
+    "legend_plate": 4,
+    "native_box": [
+      3556,
+      5214,
+      277,
+      54
+    ],
+    "similar_swatch_ids": [
+      183,
+      189,
+      201
+    ]
+  },
+  {
+    "id": 196,
+    "code": "Central native intrusion matrix, source cell x3556 y5322",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      118,
+      214,
+      205
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-196.webp",
+    "legend_plate": 4,
+    "native_box": [
+      3556,
+      5322,
+      277,
+      53
+    ],
+    "similar_swatch_ids": [
+      178,
+      184,
+      190
+    ]
+  },
+  {
+    "id": 197,
+    "code": "Central native intrusion matrix, source cell x3556 y5474",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      246,
+      125,
+      80
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-197.webp",
+    "legend_plate": 4,
+    "native_box": [
+      3556,
+      5474,
+      277,
+      58
+    ],
+    "similar_swatch_ids": [
+      163,
+      200,
+      209
+    ]
+  },
+  {
+    "id": 198,
+    "code": "Central native intrusion matrix, source cell x3857 y3592",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      236,
+      82,
+      88
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-198.webp",
+    "legend_plate": 4,
+    "native_box": [
+      3857,
+      3592,
+      256,
+      62
+    ],
+    "similar_swatch_ids": [
+      150,
+      183
+    ]
+  },
+  {
+    "id": 199,
+    "code": "Central native intrusion matrix, source cell x3857 y4158",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      247,
+      131,
+      200
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-199.webp",
+    "legend_plate": 4,
+    "native_box": [
+      3857,
+      4158,
+      256,
+      64
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 200,
+    "code": "Central native intrusion matrix, source cell x4137 y3806",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      248,
+      128,
+      84
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-200.webp",
+    "legend_plate": 4,
+    "native_box": [
+      4137,
+      3806,
+      262,
+      64
+    ],
+    "similar_swatch_ids": [
+      163,
+      197
+    ]
+  },
+  {
+    "id": 201,
+    "code": "Central native intrusion matrix, source cell x4137 y5212",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      234,
+      66,
+      100
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-201.webp",
+    "legend_plate": 4,
+    "native_box": [
+      4137,
+      5212,
+      262,
+      57
+    ],
+    "similar_swatch_ids": [
+      183,
+      189,
+      195,
+      207,
+      214
+    ]
+  },
+  {
+    "id": 202,
+    "code": "Central native intrusion matrix, source cell x4423 y4158",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      252,
+      175,
+      225
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-202.webp",
+    "legend_plate": 4,
+    "native_box": [
+      4423,
+      4158,
+      281,
+      64
+    ],
+    "similar_swatch_ids": [
+      49
+    ]
+  },
+  {
+    "id": 203,
+    "code": "Central native intrusion matrix, source cell x4423 y4517",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      198,
+      1,
+      53
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-203.webp",
+    "legend_plate": 4,
+    "native_box": [
+      4423,
+      4517,
+      281,
+      63
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 204,
+    "code": "Central native intrusion matrix, source cell x4423 y5212",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      222,
+      90,
+      118
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-204.webp",
+    "legend_plate": 4,
+    "native_box": [
+      4423,
+      5212,
+      281,
+      51
+    ],
+    "similar_swatch_ids": [
+      207,
+      214,
+      223
+    ]
+  },
+  {
+    "id": 205,
+    "code": "Central native intrusion matrix, source cell x4423 y5320",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      100,
+      216,
+      155
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-205.webp",
+    "legend_plate": 4,
+    "native_box": [
+      4423,
+      5320,
+      281,
+      52
+    ],
+    "similar_swatch_ids": [
+      208,
+      215,
+      224
+    ]
+  },
+  {
+    "id": 206,
+    "code": "Central native intrusion matrix, source cell x4728 y4719",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      21,
+      183,
+      163
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-206.webp",
+    "legend_plate": 4,
+    "native_box": [
+      4728,
+      4719,
+      269,
+      55
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 207,
+    "code": "Central native intrusion matrix, source cell x4728 y5210",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      226,
+      81,
+      109
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-207.webp",
+    "legend_plate": 4,
+    "native_box": [
+      4728,
+      5210,
+      269,
+      52
+    ],
+    "similar_swatch_ids": [
+      201,
+      204,
+      214,
+      223
+    ]
+  },
+  {
+    "id": 208,
+    "code": "Central native intrusion matrix, source cell x4728 y5320",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      96,
+      218,
+      156
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-208.webp",
+    "legend_plate": 4,
+    "native_box": [
+      4728,
+      5320,
+      269,
+      50
+    ],
+    "similar_swatch_ids": [
+      205,
+      215,
+      224
+    ]
+  },
+  {
+    "id": 209,
+    "code": "Central native intrusion matrix, source cell x4728 y5470",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      245,
+      108,
+      66
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-209.webp",
+    "legend_plate": 4,
+    "native_box": [
+      4728,
+      5470,
+      269,
+      56
+    ],
+    "similar_swatch_ids": [
+      186,
+      197
+    ]
+  },
+  {
+    "id": 210,
+    "code": "Central native intrusion matrix, source cell x5021 y3804",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      187,
+      168
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-210.webp",
+    "legend_plate": 4,
+    "native_box": [
+      5021,
+      3804,
+      250,
+      58
+    ],
+    "similar_swatch_ids": [
+      89,
+      144,
+      145,
+      146
+    ]
+  },
+  {
+    "id": 211,
+    "code": "Central native intrusion matrix, source cell x5021 y4516",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      223,
+      68,
+      152
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-211.webp",
+    "legend_plate": 4,
+    "native_box": [
+      5021,
+      4516,
+      250,
+      62
+    ],
+    "similar_swatch_ids": [
+      193
+    ]
+  },
+  {
+    "id": 212,
+    "code": "Central native intrusion matrix, source cell x5021 y4719",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      197,
+      113,
+      202
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-212.webp",
+    "legend_plate": 4,
+    "native_box": [
+      5021,
+      4719,
+      250,
+      59
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 213,
+    "code": "Central native intrusion matrix, source cell x5021 y4846",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      227,
+      115,
+      231
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-213.webp",
+    "legend_plate": 4,
+    "native_box": [
+      5021,
+      4846,
+      250,
+      55
+    ],
+    "similar_swatch_ids": [
+      221
+    ]
+  },
+  {
+    "id": 214,
+    "code": "Central native intrusion matrix, source cell x5021 y5210",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      228,
+      86,
+      110
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-214.webp",
+    "legend_plate": 4,
+    "native_box": [
+      5021,
+      5210,
+      250,
+      52
+    ],
+    "similar_swatch_ids": [
+      201,
+      204,
+      207,
+      223
+    ]
+  },
+  {
+    "id": 215,
+    "code": "Central native intrusion matrix, source cell x5021 y5318",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      92,
+      215,
+      151
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-215.webp",
+    "legend_plate": 4,
+    "native_box": [
+      5021,
+      5318,
+      250,
+      52
+    ],
+    "similar_swatch_ids": [
+      205,
+      208,
+      224
+    ]
+  },
+  {
+    "id": 216,
+    "code": "Central native intrusion matrix, source cell x5295 y3412",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      247,
+      142,
+      179
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-216.webp",
+    "legend_plate": 4,
+    "native_box": [
+      5295,
+      3412,
+      308,
+      56
+    ],
+    "similar_swatch_ids": [
+      154,
+      219
+    ]
+  },
+  {
+    "id": 217,
+    "code": "Central native intrusion matrix, source cell x5295 y3588",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      238,
+      107,
+      117
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-217.webp",
+    "legend_plate": 4,
+    "native_box": [
+      5295,
+      3588,
+      308,
+      64
+    ],
+    "similar_swatch_ids": [
+      156,
+      157,
+      223
+    ]
+  },
+  {
+    "id": 218,
+    "code": "Central native intrusion matrix, source cell x5295 y4049",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      249,
+      123,
+      3
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-218.webp",
+    "legend_plate": 4,
+    "native_box": [
+      5295,
+      4049,
+      308,
+      59
+    ],
+    "similar_swatch_ids": [
+      25
+    ]
+  },
+  {
+    "id": 219,
+    "code": "Central native intrusion matrix, source cell x5295 y4514",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      246,
+      153,
+      204
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-219.webp",
+    "legend_plate": 4,
+    "native_box": [
+      5295,
+      4514,
+      308,
+      63
+    ],
+    "similar_swatch_ids": [
+      216
+    ]
+  },
+  {
+    "id": 220,
+    "code": "Central native intrusion matrix, source cell x5295 y4718",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      45,
+      194,
+      193
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-220.webp",
+    "legend_plate": 4,
+    "native_box": [
+      5295,
+      4718,
+      308,
+      55
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 221,
+    "code": "Central native intrusion matrix, source cell x5295 y4846",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      228,
+      116,
+      229
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-221.webp",
+    "legend_plate": 4,
+    "native_box": [
+      5295,
+      4846,
+      308,
+      54
+    ],
+    "similar_swatch_ids": [
+      213
+    ]
+  },
+  {
+    "id": 222,
+    "code": "Central native intrusion matrix, source cell x5295 y4996",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      199,
+      3,
+      32
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-222.webp",
+    "legend_plate": 4,
+    "native_box": [
+      5295,
+      4996,
+      308,
+      58
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 223,
+    "code": "Central native intrusion matrix, source cell x5295 y5208",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      224,
+      95,
+      107
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-223.webp",
+    "legend_plate": 4,
+    "native_box": [
+      5295,
+      5208,
+      308,
+      52
+    ],
+    "similar_swatch_ids": [
+      157,
+      204,
+      207,
+      214,
+      217
+    ]
+  },
+  {
+    "id": 224,
+    "code": "Central native intrusion matrix, source cell x5295 y5318",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      94,
+      213,
+      144
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-224.webp",
+    "legend_plate": 4,
+    "native_box": [
+      5295,
+      5318,
+      308,
+      50
+    ],
+    "similar_swatch_ids": [
+      205,
+      208,
+      215
+    ]
+  },
+  {
+    "id": 225,
+    "code": "Central native intrusion matrix, source cell x1821 y4736",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      0,
+      0,
+      0
+    ],
+    "section_only": false,
+    "image": "data/detailed/central1978/legend/entry-225.webp",
+    "legend_plate": 4,
+    "native_box": [
+      1821,
+      4736,
+      272,
+      46
+    ],
+    "similar_swatch_ids": [
+      98,
+      121,
+      134,
+      136
+    ]
+  }
+]

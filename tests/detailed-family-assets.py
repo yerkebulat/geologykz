@@ -13,7 +13,8 @@ for u in L:
 Bpath=docs/'data/kazakhstan_border.geojson';assert hashlib.sha256(Bpath.read_bytes()).hexdigest().startswith('a9ac4a2f5784');border=shape(json.load(open(Bpath))['geometry']);assert border.contains(Point(63.32,45.62));near=prep(border.buffer(.003))
 for s in C['sheets']:
  d=docs/'data/detailed'/s['id'];m=json.load(open(d/'manifest.json'))['sheets'][0];g=json.load(open(d/'georef.json'));p=json.load(open(d/'processing.json'));fc=json.load(open(d/'units.geojson'))['features'];b=m['rasterTiles']['bounds'];r=m['rasterTiles']
- assert m['id']==s['id'] and m['dates']=={'scan_printed':1979,'catalog':1976} and m['experimental']
+ assert m['id']==s['id'] and m['dates']=={'scan_printed':s['scan_printed'],'catalog':C.get('catalog',1976)} and m['experimental']
+ if C.get('keep_native_footer'):assert (docs/m['sourceNotice']).is_file();Image.open(docs/m['sourceNotice']).verify()
  assert m['legend']==f'data/detailed/{C["family"]}/legend.json' and not (d/'legend').exists()
  assert len(g['gcps'])>=8 and g['independent_geographic_landmarks']==0 and len(g['loo_errors_px'])==len(g['gcps'])
  assert g['rms_native_px']<10 and g['loo_max_native_px']<45

@@ -3,14 +3,14 @@
 <body><h1 id="title">Detailed map legend</h1><p id="notice">Loading source metadata...</p><p id="source"></p><p id="plates"></p><table id="legend"></table>
 <script>
 (async function(){
- const allowed=['m43xxxi','m44xv','alma','east-m44a','east-m44v','east-m44b','east-m44g'],id=new URLSearchParams(location.search).get('sheet')||'m43xxxi';
+ const allowed=['m43xxxi','m44xv','alma','east-m44a','east-m44v','east-m44b','east-m44g','central-l42a','central-l42b'],id=new URLSearchParams(location.search).get('sheet')||'m43xxxi';
  if(!allowed.includes(id))throw new Error('Unknown sheet');
  const get=async p=>{const r=await fetch(p);if(!r.ok)throw new Error('HTTP '+r.status);return r.json();};
  const man=await get('data/detailed/'+id+'/manifest.json'),s=man.sheets.find(x=>x.id===id),L=await get(s.legend);
  document.title=s.label+' legend';document.getElementById('title').textContent=s.label;
  document.getElementById('notice').textContent='Scan '+s.dates.scan_printed+' / catalog '+s.dates.catalog+'. '+s.license+' '+s.limitations+' '+s.accuracy+' Color-only matches cannot distinguish hatches; candidate references are not definitive or exhaustive unit identifications. Historic labels are retained.';
  function link(parent,url,text){const a=document.createElement('a');a.href=url;a.textContent=text;a.target='_blank';a.rel='noopener';parent.append(a,document.createTextNode(' '));}
- const src=document.getElementById('source');link(src,s.sourcePage,'Source scan on Geokniga');if(s.legendSource)link(src,s.legendSource,'Shared native legend on Geokniga');
+ const src=document.getElementById('source');link(src,s.sourcePage,'Source scan on Geokniga');if(s.legendSource)link(src,s.legendSource,'Shared native legend on Geokniga');if(s.sourceNotice)link(src,s.sourceNotice,'Native map credits and print notice');
  (s.legendPages||[]).forEach((p,i)=>link(document.getElementById('plates'),p,'Native legend plate '+(i+1)));
  const T=document.getElementById('legend');L.forEach(u=>{
   const tr=document.createElement('tr'),sw=document.createElement('td'),box=document.createElement('i'),info=document.createElement('td');box.style.background='rgb('+u.rgb.join(',')+')';sw.append(box);tr.append(sw,info);

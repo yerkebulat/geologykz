@@ -17,13 +17,23 @@ cfgpath,S,W,O,B=map(Path,sys.argv[1:]);C=json.load(open(cfgpath));W.mkdir(parent
 def dump(a,p):p.parent.mkdir(parents=True,exist_ok=True);p.write_text(json.dumps(a,ensure_ascii=False,indent=2))
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
 def native_palette(im,box):
- x,y,w,h=box;p=cv2.medianBlur(im[y+10:y+h-10,x+10:x+w-10],5).reshape(-1,3);p=p[p.mean(1)>=np.percentile(p.mean(1),35)];return np.median(p,0)[::-1].astype(int).tolist()
+ x,y,w,h=box;pad=min(10,h//5);p=cv2.medianBlur(im[y+pad:y+h-pad,x+pad:x+w-pad],5).reshape(-1,3);p=p[p.mean(1)>=np.percentile(p.mean(1),35)];return np.median(p,0)[::-1].astype(int).tolist()
 L=[];family=O/C['family'];family.mkdir(parents=True,exist_ok=True)
 for plate in C['legend_plates']:
  im=cv2.imread(str(S/plate['file']));bs=plate['boxes']
  for box in bs:
   x,y,w,h=box;matrix=plate['number']==3 and y>3750
-  if not matrix:
+  if C.get('legend_layout')=='central':
+   if plate['number']<4:
+    col=x//1800+1;rows=sorted([b for b in bs if abs(b[0]-x)<100],key=lambda b:b[1]);row=rows.index(box)+1
+    ny=rows[row][1]-8 if row<len(rows) else im.shape[0]-180
+    crop=im[max(y-8,0):ny,max(x-12,0):min(x+1750,im.shape[1]-80)];ref=f"Central native legend plate {plate['number']}, column {col}, entry {row}"
+   else:
+    # Exact native column heading, left geological-type description, and cell with its original code below.
+    crop=np.full((1050,1400,3),250,np.uint8);head=im[2820:3410,x-8:x+w+8];label=im[max(y-140,0):y+200,100:920];cell=im[max(y-8,0):y+200,x-8:x+w+8]
+    crop[:head.shape[0],:head.shape[1]]=head;crop[650:650+label.shape[0],:label.shape[1]]=label;crop[650:650+cell.shape[0],1000:1000+cell.shape[1]]=cell
+    ref=f"Central native intrusion matrix, source cell x{x} y{y}"
+  elif not matrix:
    col=round((x-(480 if plate['number']==2 else 540))/1835)+1;rows=[b for b in bs if abs(b[0]-x)<100 and (plate['number']!=3 or b[1]<3100)];rows.sort(key=lambda b:b[1]);row=rows.index(box)+1
    ny=rows[row][1]-8 if row<len(rows) else min(y+450,im.shape[0]-200)
    crop=im[y-8:ny,max(x-12,0):min(x+1790,im.shape[1]-90)];ref=f"East legend sheet {plate['number']-1}, column {col}, entry {row}"
@@ -32,13 +42,14 @@ for plate in C['legend_plates']:
    crop[:head.shape[0],:head.shape[1]]=head;crop[670:670+label.shape[0],:label.shape[1]]=label;crop[670:670+cell.shape[0],1050:1050+cell.shape[1]]=cell;ref=f"East intrusion matrix, source cell x{x} y{y}"
   i=len(L);p=family/f'legend/entry-{i}.webp';p.parent.mkdir(exist_ok=True);Image.fromarray(cv2.cvtColor(crop,cv2.COLOR_BGR2RGB)).save(p,quality=84)
   L.append(dict(id=i,code=ref,ru='Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.',en='Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.',age='Not transcribed; native legend only',rgb=native_palette(im,box),section_only=False,image=f'data/detailed/{C["family"]}/legend/entry-{i}.webp',legend_plate=plate['number'],native_box=box))
-for p in [1,2,3]:
- im=Image.open(S/f'east_legend_{p}.jpg');im.thumbnail((2400,2400));im.save(family/f'plate-{p}.webp',quality=84)
+full_plates=C.get('full_legend_plates',[dict(number=p,file=f'east_legend_{p}.jpg') for p in [1,2,3]])
+for plate in full_plates:
+ p=plate['number'];im=Image.open(S/plate['file']);im.thumbnail((2400,2400));im.save(family/f'plate-{p}.webp',quality=84)
 pal=cv2.cvtColor(np.array([[u['rgb'] for u in L]],np.uint8),cv2.COLOR_RGB2LAB)[0].astype(float)
 for i,u in enumerate(L):u['similar_swatch_ids']=[j for j in range(len(L)) if j!=i and np.linalg.norm(pal[i]-pal[j])<12]
 dump(L,family/'legend.json')
 rights='Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.'
-dump(dict(sourcePage=C['legend_source'],source_files={f'east_legend_{p}.jpg':sha(S/f'east_legend_{p}.jpg') for p in [1,2,3]},credit=C['credit'],sampled_swatches=len(L),limitations='Sampled native stratigraphic swatches and intrusion matrix cells. Not a comprehensive interpreted/transcribed legend; native labels/age descriptions remain in exact excerpts. Candidate lists are non-unique and not exhaustive.',rights=rights),family/'provenance.json');(family/'RIGHTS.md').write_text(rights+'\n'+C['legend_source']+'\n'+C['credit']+'\n')
+dump(dict(sourcePage=C['legend_source'],source_files={p['file']:sha(S/p['file']) for p in full_plates},credit=C['credit'],sampled_swatches=len(L),limitations='Sampled native stratigraphic swatches and intrusion matrix cells. Not a comprehensive interpreted/transcribed legend; native labels/age descriptions remain in exact excerpts. Candidate lists are non-unique and not exhaustive.',rights=rights),family/'provenance.json');(family/'RIGHTS.md').write_text(rights+'\n'+C['legend_source']+'\n'+C['credit']+'\n')
 toM=Transformer.from_crs(4326,3857,always_xy=True);fromM=Transformer.from_crs(3857,4326,always_xy=True);datum=Transformer.from_crs(4284,3857,always_xy=True);country=geom_transform(toM.transform,shape(json.load(open(B))['geometry']))
 for sheet in C['sheets']:
  sid=sheet['id']
@@ -60,9 +71,15 @@ for sheet in C['sheets']:
  im=cv2.remap(rgba,P[:,0].reshape(height,width).astype('float32'),P[:,1].reshape(height,width).astype('float32'),cv2.INTER_LINEAR,borderMode=cv2.BORDER_CONSTANT,borderValue=0);im[:,:,3]*=rasterize([(mapping(country),1)],out_shape=(height,width),transform=T).astype(np.uint8)
  np.save(work/'scan.npy',im);dump(dict(transform=list(T)[:6],width=width,height=height),work/'render.json')
  # Coarser color grid (~140m ground at50N); Scan retains higher source sampling.
- ci=cv2.resize(im,(width//2,height//2),interpolation=cv2.INTER_AREA);CT=T*Affine.scale(width/ci.shape[1],height/ci.shape[0]);alpha=ci[:,:,3]>250;rgb=ci[:,:,:3];dark=(cv2.cvtColor(rgb,cv2.COLOR_RGB2GRAY)<85).astype('uint8');sm=cv2.medianBlur(cv2.inpaint(rgb,dark,3,cv2.INPAINT_TELEA),7);sm=cv2.bilateralFilter(sm,9,25,9);lab=cv2.cvtColor(sm,cv2.COLOR_RGB2LAB).astype('float32')
+ ci=cv2.resize(im,(width//2,height//2),interpolation=cv2.INTER_AREA);CT=T*Affine.scale(width/ci.shape[1],height/ci.shape[0]);alpha=ci[:,:,3]>250;rgb=ci[:,:,:3];dark=(cv2.cvtColor(rgb,cv2.COLOR_RGB2GRAY)<85).astype('uint8')
+ # Central has real black/green mafic lithologies: never inpaint them as text.
+ filtered=rgb if C.get('ink_filter')=='median_only' else cv2.inpaint(rgb,dark,3,cv2.INPAINT_TELEA)
+ sm=cv2.medianBlur(filtered,7);sm=cv2.bilateralFilter(sm,9,25,9);lab=cv2.cvtColor(sm,cv2.COLOR_RGB2LAB).astype('float32')
  # Native labelled-water samples, per-sheet override for the paler Bukhtarma reservoir scan.
- water=cv2.cvtColor(np.array([[sheet.get('water_rgb',C['water_rgb'])]],np.uint8),cv2.COLOR_RGB2LAB)[0,0];palette=np.vstack([pal,water]);dist=np.full(alpha.shape,np.inf,np.float32);cls=np.full(alpha.shape,-1,np.int16)
+ water_rgb=sheet.get('water_rgb',C.get('water_rgb'))
+ # No unsourced global white/blue exclusion: those are actual Central legend units.
+ palette=pal if water_rgb is None else np.vstack([pal,cv2.cvtColor(np.array([[water_rgb]],np.uint8),cv2.COLOR_RGB2LAB)[0,0]])
+ dist=np.full(alpha.shape,np.inf,np.float32);cls=np.full(alpha.shape,-1,np.int16)
  for k,p in enumerate(palette):
   dd=((lab-p)**2*np.array([.3,1,1],np.float32)).sum(-1);better=dd<dist;dist[better]=dd[better];cls[better]=k
  cls[~alpha]=-1;best=np.full_like(cls,-1);count=np.zeros(alpha.shape,np.float32)
@@ -87,9 +104,13 @@ for sheet in C['sheets']:
    for ty in range(math.floor((o-tymax)/ts),math.floor((o-tymin)/ts)+1):
     dst=np.zeros((4,256,256),np.uint8);DT=Affine(ts/256,0,tx*ts-o,0,-ts/256,o-ty*ts);reproject(im.transpose(2,0,1),dst,src_transform=T,src_crs=3857,dst_transform=DT,dst_crs=3857,resampling=Resampling.bilinear);p=dest/f'tiles/{z}/{tx}/{ty}.webp';p.parent.mkdir(parents=True,exist_ok=True);Image.fromarray(dst.transpose(1,2,0)).save(p,quality=86,method=4);tiles+=1;total+=p.stat().st_size
   print(sid,'z',z,flush=True)
- limitations=f'Experimental color segmentation from {len(L)} sampled native shared-legend references, not transcribed or unique units. Candidate lists not exhaustive; hatches/text/water classification approximate. Provisional georeferencing, not field-grade. Scan printed 1979; series/catalog 1976.'
- s=dict(id=sid,label=sheet['label'],sourcePage=f'https://www.geokniga.org/maps/{sheet["page"]}',credit=C['credit'],units=f'data/detailed/{sid}/units.geojson',legend=f'data/detailed/{C["family"]}/legend.json',legendSource=C['legend_source'],legendPages=[f'data/detailed/{C["family"]}/plate-{p}.webp' for p in [1,2,3]],bounds=[bounds[:2],bounds[2:]],rasterTiles=dict(tiles=[f'data/detailed/{sid}/tiles/{{z}}/{{x}}/{{y}}.webp'],tileSize=256,minzoom=7,maxzoom=11,bounds=bounds),dates=dict(scan_printed=sheet['scan_printed'],catalog=1976),experimental=True,license=rights,limitations=limitations,accuracy=f"{len(G)} labelled native frame controls; internal grid-fit RMS {report['rms_native_px']:.2f}px, leave-one-out max {max(loo):.2f}px. "+report['caveat'])
- dump(dict(sheets=[s]),dest/'manifest.json');dump(dict(water_sample_rgb=sheet.get('water_rgb',C['water_rgb']),water_evidence=sheet.get('water_evidence',C['water_evidence']),source_file=sheet['file'],source_sha256=sha(S/sheet['file']),source_bytes=(S/sheet['file']).stat().st_size,sourcePage=s['sourcePage'],legendSource=C['legend_source'],legend_family=C['family'],credit=C['credit'],source_rights=rights,method='Actual legend-swatch Lab segmentation, not SAM. Text/hatch filtering and majority smoothing; no removed-small-region holes or nearest-neighbor geological infill. Corrected Kazakhstan border including Baikonur is unchanged.',reproduction='tools/detailed-maps/family.py + east1976-config.json'),dest/'provenance.json');(dest/'RIGHTS.md').write_text(rights+'\n'+s['sourcePage']+'\n'+C['legend_source']+'\n'+C['credit']+'\n')
+ limitations=f"Experimental color segmentation from {len(L)} sampled native shared-legend references, not transcribed or unique units. Candidate lists not exhaustive; hatches/text/water classification approximate. Provisional georeferencing, not field-grade. Scan printed {sheet['scan_printed']}; series/catalog {C.get('catalog',1976)}. "+C.get('extra_limitations','')
+ s=dict(id=sid,label=sheet['label'],sourcePage=f'https://www.geokniga.org/maps/{sheet["page"]}',credit=C['credit'],units=f'data/detailed/{sid}/units.geojson',legend=f'data/detailed/{C["family"]}/legend.json',legendSource=C['legend_source'],legendPages=[f'data/detailed/{C["family"]}/plate-{p}.webp' for p in [v['number'] for v in full_plates]],bounds=[bounds[:2],bounds[2:]],rasterTiles=dict(tiles=[f'data/detailed/{sid}/tiles/{{z}}/{{x}}/{{y}}.webp'],tileSize=256,minzoom=7,maxzoom=11,bounds=bounds),dates=dict(scan_printed=sheet['scan_printed'],catalog=C.get('catalog',1976)),experimental=True,license=rights,limitations=limitations,accuracy=f"{len(G)} labelled native frame controls; internal grid-fit RMS {report['rms_native_px']:.2f}px, leave-one-out max {max(loo):.2f}px. "+report['caveat'])
+ if C.get('keep_native_footer'):
+  footer_box=[0,int(G[:,1].max()+40),raw.shape[1],raw.shape[0]]
+  Image.fromarray(cv2.cvtColor(raw,cv2.COLOR_BGR2RGB)).crop(footer_box).save(dest/'source-notice.webp',quality=88)
+  s['sourceNotice']=f'data/detailed/{sid}/source-notice.webp'
+ dump(dict(sheets=[s]),dest/'manifest.json');dump(dict(water_sample_rgb=water_rgb,water_evidence=sheet.get('water_evidence',C['water_evidence']),source_file=sheet['file'],source_sha256=sha(S/sheet['file']),source_bytes=(S/sheet['file']).stat().st_size,sourcePage=s['sourcePage'],legendSource=C['legend_source'],legend_family=C['family'],credit=C['credit'],source_rights=rights,method='Actual legend-swatch Lab segmentation, not SAM. Text/hatch filtering and majority smoothing; no removed-small-region holes or nearest-neighbor geological infill. Corrected Kazakhstan border including Baikonur is unchanged.',ink_filter=C.get('ink_filter','dark_inpaint'),reproduction='tools/detailed-maps/family.py + '+cfgpath.name),dest/'provenance.json');(dest/'RIGHTS.md').write_text(rights+'\n'+s['sourcePage']+'\n'+C['legend_source']+'\n'+C['credit']+'\n')
  dump(dict(polygons=len(F),tiles=tiles,tile_bytes=total,color_pixel_mercator_m=220,scan_pixel_mercator_m=110,color_source_pixels=int(alpha.sum()),water_pixels=int(((cls==len(L))&alpha).sum()),removed_small_regions=0,area_preserving_topology_repairs=repairs),dest/'processing.json')
  # Small local previews, never git assets.
  out=np.zeros_like(ci)
