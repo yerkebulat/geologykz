@@ -1,0 +1,319 @@
+{
+  "family": "m40xxxiii",
+  "standalone": true,
+  "legend_layout": "standalone",
+  "legend_count": 20,
+  "catalog": 1959,
+  "scan_resolution": 32,
+  "maxzoom": 12,
+  "simplify_m": 57.6,
+  "ink_filter": "median_only",
+  "keep_native_footer": true,
+  "legend_source": "https://www.geokniga.org/maps/44223",
+  "credit": "Прикаспийская аэрогеологическая экспедиция Всесоюзного аэрогеологического треста. Автор А.А. Соколова-Кучерова; редактор В.С. Журавлев. Native original notices retained.",
+  "water_rgb": null,
+  "water_evidence": "Blue/cyan J2 and pale/green Cretaceous and Quaternary source geological fields are actual legend classes, not water/background exclusions. No verified separate source-water classifier. Fine hydrography and overprinted mineral symbols remain in Scan, not independently interpreted.",
+  "extra_limitations": "Native standalone20-reference geological legend only, not borrowed from Central/South maps. Actual 1:200000 native printed scale resolves source scale independently of nomenclature. Mineral-resource symbols are overprinted on the geological map but not independently classified or assigned ages. Four actually readable labelled native corner controls, assumed Pulkovo1942/Gauss-Kruger zone10 EPSG28410, affine holdouts, no invented midpoints or surveyed/interior landmarks. Datum/projection and absolute accuracy remain unverified. Native heading1959, mineral information current1 January1959, approval9 April1959; actual printing date not established. Native pale/blue geology retained, no global pale/blue/dark exclusion or missing-geology fill.",
+  "legend_plates": [
+    {
+      "number": 1,
+      "file": "M-40-XXXIII.jpg",
+      "boxes": [
+        [
+          7115,
+          804,
+          181,
+          90
+        ],
+        [
+          7113,
+          958,
+          181,
+          90
+        ],
+        [
+          7112,
+          1113,
+          181,
+          90
+        ],
+        [
+          7110,
+          1268,
+          181,
+          90
+        ],
+        [
+          7108,
+          1422,
+          181,
+          90
+        ],
+        [
+          7106,
+          1576,
+          181,
+          90
+        ],
+        [
+          7104,
+          1731,
+          181,
+          90
+        ],
+        [
+          7103,
+          1886,
+          181,
+          90
+        ],
+        [
+          7101,
+          2040,
+          181,
+          90
+        ],
+        [
+          7099,
+          2194,
+          181,
+          90
+        ],
+        [
+          7098,
+          2349,
+          181,
+          90
+        ],
+        [
+          7096,
+          2504,
+          181,
+          90
+        ],
+        [
+          7094,
+          2658,
+          181,
+          87
+        ],
+        [
+          7092,
+          2812,
+          181,
+          90
+        ],
+        [
+          7090,
+          2967,
+          181,
+          90
+        ],
+        [
+          7089,
+          3122,
+          181,
+          90
+        ],
+        [
+          7087,
+          3276,
+          181,
+          90
+        ],
+        [
+          7085,
+          3431,
+          184,
+          93
+        ],
+        [
+          7084,
+          3585,
+          181,
+          90
+        ],
+        [
+          7082,
+          3740,
+          181,
+          90
+        ]
+      ],
+      "excerpts": [
+        [
+          6935,
+          792,
+          8800,
+          926
+        ],
+        [
+          6933,
+          946,
+          8800,
+          1080
+        ],
+        [
+          6932,
+          1101,
+          8800,
+          1235
+        ],
+        [
+          6930,
+          1256,
+          8800,
+          1390
+        ],
+        [
+          6928,
+          1410,
+          8800,
+          1544
+        ],
+        [
+          6926,
+          1564,
+          8800,
+          1698
+        ],
+        [
+          6924,
+          1719,
+          8800,
+          1853
+        ],
+        [
+          6923,
+          1874,
+          8800,
+          2008
+        ],
+        [
+          6921,
+          2028,
+          8800,
+          2162
+        ],
+        [
+          6919,
+          2182,
+          8800,
+          2316
+        ],
+        [
+          6918,
+          2337,
+          8800,
+          2471
+        ],
+        [
+          6916,
+          2492,
+          8800,
+          2626
+        ],
+        [
+          6914,
+          2646,
+          8800,
+          2777
+        ],
+        [
+          6912,
+          2800,
+          8800,
+          2934
+        ],
+        [
+          6910,
+          2955,
+          8800,
+          3089
+        ],
+        [
+          6909,
+          3110,
+          8800,
+          3244
+        ],
+        [
+          6907,
+          3264,
+          8800,
+          3398
+        ],
+        [
+          6905,
+          3419,
+          8800,
+          3556
+        ],
+        [
+          6904,
+          3573,
+          8800,
+          3707
+        ],
+        [
+          6902,
+          3728,
+          8800,
+          3862
+        ]
+      ]
+    }
+  ],
+  "full_legend_plates": [
+    {
+      "number": 1,
+      "file": "M-40-XXXIII.jpg",
+      "crop": [
+        6900,
+        600,
+        8800,
+        5450
+      ]
+    }
+  ],
+  "sheets": [
+    {
+      "id": "m40xxxiii",
+      "label": "1:200,000 M-40-XXXIII",
+      "file": "M-40-XXXIII.jpg",
+      "page": 44223,
+      "scan_printed": "not established; native heading1959, approval9 April1959",
+      "gcp_pick_uncertainty_native_px": 8,
+      "fit_model": "affine",
+      "fit_crs": 28410,
+      "gcps": [
+        [
+          2351,
+          1197,
+          56,
+          48.666666666666664
+        ],
+        [
+          6695,
+          1213,
+          57,
+          48.666666666666664
+        ],
+        [
+          2310,
+          5583,
+          56,
+          48
+        ],
+        [
+          6697,
+          5599,
+          57,
+          48
+        ]
+      ]
+    }
+  ],
+  "source_test_loo_limit": 16,
+  "source_test_rms_limit": 4
+}

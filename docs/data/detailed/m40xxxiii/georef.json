@@ -1,0 +1,50 @@
+{
+  "method": "Affine inverse remap in assumed native Gauss-Kruger projection from four actually labelled source corners; each corner held out against the other three",
+  "gcp_columns": [
+    "pixel_x",
+    "pixel_y",
+    "lon",
+    "lat"
+  ],
+  "gcps": [
+    [
+      2351.0,
+      1197.0,
+      56.0,
+      48.666666666666664
+    ],
+    [
+      6695.0,
+      1213.0,
+      57.0,
+      48.666666666666664
+    ],
+    [
+      2310.0,
+      5583.0,
+      56.0,
+      48.0
+    ],
+    [
+      6697.0,
+      5599.0,
+      57.0,
+      48.0
+    ]
+  ],
+  "gcp_pick_uncertainty_native_px": 8,
+  "assumed_src_crs": "EPSG:4284 (Pulkovo 1942), not explicitly confirmed on scan",
+  "target_crs": "EPSG:3857",
+  "rms_native_px": 3.4783636253913413,
+  "max_native_px": 3.50108001865769,
+  "loo_errors_px": [
+    13.824105637126962,
+    13.823178500305579,
+    14.005516394788414,
+    14.00456476592231
+  ],
+  "loo_max_native_px": 14.005516394788414,
+  "independent_geographic_landmarks": 0,
+  "caveat": "Grid-fit and leave-one-out residuals are not absolute geographic accuracy. Picks are approximate; all controls are on frame, not surveyed landmarks. Datum assumption, paper/scanner distortion and interior alignment remain unverified. Provisional, not field-grade.",
+  "fit_crs_assumed": 28410
+}
