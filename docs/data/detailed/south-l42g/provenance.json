@@ -1,0 +1,21 @@
+{
+  "water_sample_rgb": null,
+  "native_unmapped_polygons": [],
+  "native_water_windows": [],
+  "native_water_rule": null,
+  "native_water_regions": [],
+  "native_water_interiors": [],
+  "water_window_method": null,
+  "water_evidence": "No global pale, blue or dark removal. Per-sheet source-derived water regions/cores only where qualified; native pale and black mapped units retained. Fine river linework is not independently reconstructed.",
+  "source_file": "south_L-42-G_SvkhTasty.jpg",
+  "source_sha256": "04a34e4d6a590a3c1dfef1afec756a7ac2654bab35eb3f3da2e6f898b0a4144b",
+  "source_bytes": 5857024,
+  "sourcePage": "https://www.geokniga.org/maps/2569",
+  "legendSource": "https://www.geokniga.org/maps/2550",
+  "legend_family": "alma",
+  "credit": "Всесоюзное аэрогеологическое научно-производственное объединение «Аэрогеология», Министерство геологии СССР, Москва 1979. Native source notices retained.",
+  "source_rights": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+  "method": "Actual legend-swatch Lab segmentation, not SAM. Text/hatch filtering and majority smoothing; no removed-small-region holes or nearest-neighbor geological infill. Corrected Kazakhstan border including Baikonur is unchanged.",
+  "ink_filter": "median_only",
+  "reproduction": "tools/detailed-maps/family.py + south-followon-config.json"
+}

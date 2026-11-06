@@ -1,0 +1,51 @@
+{
+  "sheets": [
+    {
+      "id": "south-l43g",
+      "label": "1:500,000 L-43-Г Ushtobe",
+      "sourcePage": "https://www.geokniga.org/maps/2571",
+      "credit": "Всесоюзное аэрогеологическое научно-производственное объединение «Аэрогеология», Министерство геологии СССР, Москва 1979. Native source notices retained.",
+      "units": "data/detailed/south-l43g/units.geojson",
+      "legend": "data/detailed/alma/legend.json",
+      "legendSource": "https://www.geokniga.org/maps/2550",
+      "legendPages": [
+        "data/detailed/alma/legend/plate-1.webp",
+        "data/detailed/alma/legend/plate-2.webp",
+        "data/detailed/alma/legend/plate-3.webp"
+      ],
+      "bounds": [
+        [
+          75.0023224387859,
+          44.001652193196655
+        ],
+        [
+          77.99640728075624,
+          45.99967954698696
+        ]
+      ],
+      "rasterTiles": {
+        "tiles": [
+          "data/detailed/south-l43g/tiles/{z}/{x}/{y}.webp"
+        ],
+        "tileSize": 256,
+        "minzoom": 7,
+        "maxzoom": 11,
+        "bounds": [
+          75.0023224387859,
+          44.001652193196655,
+          77.99640728075624,
+          45.99967954698696
+        ]
+      },
+      "dates": {
+        "scan_printed": 1979,
+        "catalog": 1979
+      },
+      "experimental": true,
+      "license": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+      "limitations": "Experimental color segmentation from 178 sampled native shared-legend references, not transcribed or unique units. Candidate lists not exhaustive; hatches/text/water classification approximate. Provisional georeferencing, not field-grade. Scan printed 1979; series/catalog 1979. Experimental non-unique native legend candidates, not interpreted unique units/ages. Historic Aral/Balkhash water extent follows this 1979 printed source, not modern shorelines. Fine rivers and shoreline text/hatches remain approximate; genuine pale and black geological colors retained.",
+      "accuracy": "8 labelled native frame controls; internal grid-fit RMS 3.97px, leave-one-out max 24.70px. Grid-fit and leave-one-out residuals are not absolute geographic accuracy. Picks are approximate; all controls are on frame, not surveyed landmarks. Datum assumption, paper/scanner distortion and interior alignment remain unverified. Provisional, not field-grade.",
+      "sourceNotice": "data/detailed/south-l43g/source-notice.webp"
+    }
+  ]
+}

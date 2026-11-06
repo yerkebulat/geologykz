@@ -3,7 +3,7 @@
 <body><h1 id="title">Detailed map legend</h1><p id="notice">Loading source metadata...</p><p id="source"></p><p id="plates"></p><table id="legend"></table>
 <script>
 (async function(){
- const allowed=['m43xxxi','m44xv','alma','east-m44a','east-m44v','east-m44b','east-m44g','east-m45v','east-l45a','central-l42a','central-l42b','south-l41g','south-l42v','south-k42a','south-k42b'],id=new URLSearchParams(location.search).get('sheet')||'m43xxxi';
+ const allowed=['m43xxxi','m44xv','alma','east-m44a','east-m44v','east-m44b','east-m44g','east-m45v','east-l45a','central-l42a','central-l42b','south-l41g','south-l42v','south-k42a','south-k42b','south-l41v','south-l42g','south-l43v','south-l43g'],id=new URLSearchParams(location.search).get('sheet')||'m43xxxi';
  if(!allowed.includes(id))throw new Error('Unknown sheet');
  const get=async p=>{const r=await fetch(p);if(!r.ok)throw new Error('HTTP '+r.status);return r.json();};
  const man=await get('data/detailed/'+id+'/manifest.json'),s=man.sheets.find(x=>x.id===id),L=await get(s.legend);

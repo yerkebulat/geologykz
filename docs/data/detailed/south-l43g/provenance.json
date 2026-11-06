@@ -1,0 +1,21 @@
+{
+  "water_sample_rgb": null,
+  "native_unmapped_polygons": [],
+  "native_water_windows": [],
+  "native_water_rule": null,
+  "native_water_regions": [],
+  "native_water_interiors": [],
+  "water_window_method": null,
+  "water_evidence": "No global pale, blue or dark removal. Per-sheet source-derived water regions/cores only where qualified; native pale and black mapped units retained. Fine river linework is not independently reconstructed.",
+  "source_file": "south_L-43-G_Ushtobe.jpg",
+  "source_sha256": "18b75a6e293d0db1fd03ed9d12ea6c481179a027c73bf449fb904b42ef7bb837",
+  "source_bytes": 5709510,
+  "sourcePage": "https://www.geokniga.org/maps/2571",
+  "legendSource": "https://www.geokniga.org/maps/2550",
+  "legend_family": "alma",
+  "credit": "Всесоюзное аэрогеологическое научно-производственное объединение «Аэрогеология», Министерство геологии СССР, Москва 1979. Native source notices retained.",
+  "source_rights": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+  "method": "Actual legend-swatch Lab segmentation, not SAM. Text/hatch filtering and majority smoothing; no removed-small-region holes or nearest-neighbor geological infill. Corrected Kazakhstan border including Baikonur is unchanged.",
+  "ink_filter": "median_only",
+  "reproduction": "tools/detailed-maps/family.py + south-followon-config.json"
+}
