@@ -31,7 +31,9 @@
       <h1>GEOLOGICAL MAP<br>OF KAZAKHSTAN</h1>
     </div>
     <div id="mapview" role="application" aria-label="Interactive map of Kazakhstan geology"></div>
-    <aside class="layer-panel card" aria-label="Map layers">
+    <div class="layers-dock" id="layers-dock">
+    <button type="button" class="layers-btn" id="layers-btn" aria-expanded="true" aria-controls="layer-panel"><span class="layers-icon" aria-hidden="true"></span><span class="layers-label">Hide layers</span></button>
+    <aside class="layer-panel card" id="layer-panel" aria-label="Map layers">
       <div class="panel-title">Layers</div>
       <label class="row"><input type="checkbox" id="geo-toggle" checked> <span>Geologic units (Macrostrat)</span></label>
       <label class="row opacity"><span>Opacity</span><input type="range" id="geo-opacity" min="0" max="1" step="0.05" value="0.7"></label>
@@ -54,6 +56,7 @@
         </div>
       </div>
     </aside>
+    </div>
   </section>
 
   <section id="legends" class="wrap">
