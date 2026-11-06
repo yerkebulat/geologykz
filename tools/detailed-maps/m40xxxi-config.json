@@ -1,0 +1,318 @@
+{
+  "family": "m40xxxi",
+  "standalone": true,
+  "legend_layout": "standalone",
+  "legend_count": 18,
+  "catalog": 1957,
+  "scan_resolution": 32,
+  "maxzoom": 12,
+  "simplify_m": 57.6,
+  "ink_filter": "median_only",
+  "keep_native_footer": true,
+  "legend_source": "https://www.geokniga.org/maps/44221",
+  "credit": "Всесоюзный аэрогеологический трест. Автор А.А. Соколова-Кучерова; редактор А.В. Хабаков. Native source author/editor/institution/printing notices retained.",
+  "water_rgb": null,
+  "water_evidence": "Actual native Jurassic cyan/blue geological swatches and labelled mapped J2/J3 fields are not water/background. No independently qualified source water classifier; fine hydrography remains in Scan, not independently interpreted.",
+  "extra_limitations": "The actual native title is Карта полезных ископаемых СССР: this is its complete geological base, not a mineral occurrence interpretation. Native18-reference legend belongs to THIS sheet, not borrowed. Hatch-only sediment textures and point/mineral/structural symbols are retained in Scan/context, not independently classified. Real pale/yellow/green/blue geological fields retained, no global pale/blue/dark exclusion or coverage fill. Actual native printed scale1:200000. Four labelled corners in assumed Pulkovo1942/Gauss-Kruger zone10 EPSG28410, datum/projection unconfirmed, no independently surveyed/interior landmarks. Native heading/catalog1957, mineral information1 January1957, approval28July1957, signed for printing24April1958. Colors are approximate nonunique/nonexhaustive candidates, not transcribed units or field-grade accuracy.",
+  "legend_plates": [
+    {
+      "number": 1,
+      "file": "M-40-XXXI.jpg",
+      "boxes": [
+        [
+          6528,
+          1152,
+          174,
+          92
+        ],
+        [
+          6528,
+          1290,
+          174,
+          92
+        ],
+        [
+          6528,
+          1430,
+          174,
+          92
+        ],
+        [
+          6528,
+          1566,
+          174,
+          92
+        ],
+        [
+          6528,
+          1706,
+          174,
+          92
+        ],
+        [
+          6528,
+          1844,
+          174,
+          92
+        ],
+        [
+          6528,
+          1982,
+          174,
+          92
+        ],
+        [
+          6528,
+          2122,
+          174,
+          92
+        ],
+        [
+          6528,
+          2259,
+          174,
+          92
+        ],
+        [
+          6528,
+          2396,
+          174,
+          92
+        ],
+        [
+          6528,
+          2535,
+          174,
+          92
+        ],
+        [
+          6528,
+          2670,
+          174,
+          92
+        ],
+        [
+          6528,
+          2809,
+          174,
+          92
+        ],
+        [
+          6528,
+          2947,
+          174,
+          92
+        ],
+        [
+          6528,
+          3084,
+          174,
+          92
+        ],
+        [
+          6528,
+          3227,
+          174,
+          92
+        ],
+        [
+          6528,
+          3363,
+          174,
+          92
+        ],
+        [
+          6528,
+          3502,
+          174,
+          92
+        ]
+      ],
+      "excerpts": [
+        [
+          6410,
+          1140,
+          8167,
+          1272
+        ],
+        [
+          6410,
+          1278,
+          8167,
+          1410
+        ],
+        [
+          6410,
+          1418,
+          8167,
+          1550
+        ],
+        [
+          6410,
+          1554,
+          8167,
+          1686
+        ],
+        [
+          6410,
+          1694,
+          8167,
+          1826
+        ],
+        [
+          6410,
+          1832,
+          8167,
+          1964
+        ],
+        [
+          6410,
+          1970,
+          8167,
+          2102
+        ],
+        [
+          6410,
+          2110,
+          8167,
+          2242
+        ],
+        [
+          6410,
+          2247,
+          8167,
+          2379
+        ],
+        [
+          6410,
+          2384,
+          8167,
+          2516
+        ],
+        [
+          6410,
+          2523,
+          8167,
+          2655
+        ],
+        [
+          6410,
+          2658,
+          8167,
+          2790
+        ],
+        [
+          6410,
+          2797,
+          8167,
+          2929
+        ],
+        [
+          6410,
+          2935,
+          8167,
+          3067
+        ],
+        [
+          6410,
+          3072,
+          8167,
+          3204
+        ],
+        [
+          6410,
+          3215,
+          8167,
+          3347
+        ],
+        [
+          6410,
+          3351,
+          8167,
+          3483
+        ],
+        [
+          6410,
+          3490,
+          8167,
+          3622
+        ]
+      ]
+    }
+  ],
+  "full_legend_plates": [
+    {
+      "number": 1,
+      "file": "M-40-XXXI.jpg",
+      "crop": [
+        6390,
+        1070,
+        8167,
+        5540
+      ]
+    }
+  ],
+  "sheets": [
+    {
+      "id": "m40xxxi",
+      "label": "1:200,000 M-40-XXXI (geological base)",
+      "file": "M-40-XXXI.jpg",
+      "page": 44221,
+      "scan_printed": "1958; signed24 April1958, native heading1957",
+      "gcp_pick_uncertainty_native_px": 8,
+      "fit_model": "affine",
+      "fit_crs": 28410,
+      "gcps": [
+        [
+          1741,
+          1152,
+          54,
+          48.666666666666664
+        ],
+        [
+          6092,
+          1154,
+          55,
+          48.666666666666664
+        ],
+        [
+          1708,
+          5538,
+          54,
+          48
+        ],
+        [
+          6122,
+          5545,
+          55,
+          48
+        ]
+      ]
+    }
+  ],
+  "source_test_loo_limit": 10,
+  "source_test_rms_limit": 3,
+  "source_test_pale_min": 175,
+  "source_test_samples": [
+    [
+      4000,
+      2900
+    ],
+    [
+      3370,
+      4440
+    ],
+    [
+      3500,
+      5150
+    ]
+  ],
+  "source_test_class_samples": [
+    [
+      3370,
+      4440,
+      16
+    ]
+  ],
+  "source_download_url": "https://www.geokniga.org/sites/geokniga/files/maps/m-40-xxxi-geologicheskaya-karta-sssr-karta-poleznyh-iskopaemyh-sssr-prikasp.jpg"
+}

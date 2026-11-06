@@ -15,12 +15,14 @@ for sid in (sys.argv[3:] or ['m43xxvi','m43xxxii']):
  for i in range(4):keep=np.arange(4)!=i;loo.append(float(np.linalg.norm(D[i]@np.linalg.lstsq(D[keep],G[keep,:2],rcond=None)[0]-G[i,:2])))
  assert np.allclose(loo,g['loo_errors_px']) and max(loo)<C.get('source_test_loo_limit',10) and g['rms_native_px']<C.get('source_test_rms_limit',3)
  assert all(not v['section_only'] and v['code'].startswith('Native sheet legend reference') and 'standalone-sheet' in v['en'] for v in L)
- assert min(L[0]['rgb'])>(180 if sid=='m40xxxiii' else 220),'Native first entry is actual pale/white Q, not a background exclusion'
+ assert min(L[0]['rgb'])>C.get('source_test_pale_min',180 if sid=='m40xxxiii' else 220),'Native first entry is actual pale/white Q, not a background exclusion'
  im=np.load(W/sid/'scan.npy');cls=np.load(W/sid/'classes.npy');r=json.load(open(W/sid/'render.json'));A=Affine(*r['transform']);CT=A*Affine.scale(r['width']/cls.shape[1],r['height']/cls.shape[0]);toM=Transformer.from_crs(s['fit_crs'],3857,always_xy=True)
  def locate(px,py):
   u=np.linalg.solve(coef[1:].T,np.array([px,py])-coef[0]);M=toM.transform(*(origin+u*100000));col,row=(~CT)*M;sc,sr=(~A)*M;return int(cls[int(row),int(col)]),int(im[int(sr),int(sc),3])
  samples=[(3530,2450),(5400,2500),(4500,1850)] if sid=='m40xxxiii' else [(2700,3100),(4800,1800),(5000,4500)] if sid=='m43xxvi' else [(4500,2500),(5200,3700),(3500,1800)]
+ samples=C.get('source_test_samples',samples)
  for pt in samples:k,a=locate(*pt);assert 0<=k<len(L) and a>250,(sid,pt,k,a)
+ for px,py,expected in C.get('source_test_class_samples',[]):k,a=locate(px,py);assert k==expected and a>250,(sid,px,py,k,expected,a)
  # White lithology is present across the mapped interior, never blanket-masked.
  assert int((cls==0).sum())>1000 and int((cls==len(L)).sum())==0
  print('PASS',sid,'own native legend',len(L),'actual white/blue geology retained; four actual corner holdouts',loo)
