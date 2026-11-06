@@ -1,0 +1,235 @@
+{
+  "water_sample_rgb": null,
+  "native_unmapped_polygons": [
+    [
+      [
+        100,
+        2500
+      ],
+      [
+        300,
+        2520
+      ],
+      [
+        500,
+        2560
+      ],
+      [
+        650,
+        2600
+      ],
+      [
+        850,
+        2640
+      ],
+      [
+        1000,
+        2710
+      ],
+      [
+        1150,
+        2730
+      ],
+      [
+        1300,
+        2800
+      ],
+      [
+        1460,
+        2820
+      ],
+      [
+        1600,
+        2900
+      ],
+      [
+        1770,
+        2940
+      ],
+      [
+        1900,
+        3000
+      ],
+      [
+        2000,
+        3070
+      ],
+      [
+        2050,
+        3120
+      ],
+      [
+        2150,
+        3150
+      ],
+      [
+        2240,
+        3180
+      ],
+      [
+        2260,
+        3150
+      ],
+      [
+        2250,
+        3050
+      ],
+      [
+        2190,
+        3000
+      ],
+      [
+        2190,
+        2940
+      ],
+      [
+        2190,
+        2840
+      ],
+      [
+        2180,
+        2720
+      ],
+      [
+        2200,
+        2600
+      ],
+      [
+        2190,
+        2520
+      ],
+      [
+        2190,
+        2440
+      ],
+      [
+        2200,
+        2310
+      ],
+      [
+        2170,
+        2220
+      ],
+      [
+        2170,
+        2110
+      ],
+      [
+        2220,
+        2070
+      ],
+      [
+        2340,
+        2040
+      ],
+      [
+        2450,
+        2010
+      ],
+      [
+        2540,
+        1940
+      ],
+      [
+        2610,
+        1880
+      ],
+      [
+        2690,
+        1850
+      ],
+      [
+        2780,
+        1780
+      ],
+      [
+        2870,
+        1830
+      ],
+      [
+        2930,
+        1850
+      ],
+      [
+        3010,
+        1880
+      ],
+      [
+        3130,
+        1920
+      ],
+      [
+        3220,
+        1980
+      ],
+      [
+        3290,
+        2000
+      ],
+      [
+        3350,
+        2020
+      ],
+      [
+        3450,
+        2070
+      ],
+      [
+        3500,
+        2120
+      ],
+      [
+        3640,
+        2160
+      ],
+      [
+        3750,
+        2220
+      ],
+      [
+        3900,
+        2260
+      ],
+      [
+        4000,
+        2280
+      ],
+      [
+        4080,
+        2280
+      ],
+      [
+        4080,
+        3920
+      ],
+      [
+        50,
+        3920
+      ],
+      [
+        50,
+        2500
+      ]
+    ]
+  ],
+  "native_unmapped_paper_only": true,
+  "native_unmapped_method": "Raw source minRGB>225 and max-min<25, only components within native paper ROI touching its 300px inset; close7 and fill enclosed ink/road holes. ROI is not a blanket geology exclusion.",
+  "native_water_windows": [],
+  "native_water_rule": null,
+  "native_water_regions": [],
+  "native_water_exclusions": [],
+  "native_water_interiors": [],
+  "water_window_method": null,
+  "water_evidence": "No global pale, blue or dark removal. Per-sheet source-derived water regions/cores only where qualified; native pale and black mapped units retained. Fine river linework is not independently reconstructed.",
+  "source_file": "south_K-43-A_Frunze.jpg",
+  "source_sha256": "009645d12da24314c7aca16bc92bee05bb7e3131acd9234211f31efd993c6fe8",
+  "source_bytes": 4929260,
+  "sourcePage": "https://www.geokniga.org/maps/2559",
+  "legendSource": "https://www.geokniga.org/maps/2550",
+  "legend_family": "alma",
+  "credit": "Всесоюзное аэрогеологическое научно-производственное объединение «Аэрогеология», Министерство геологии СССР, Москва 1979. Native source notices retained.",
+  "source_rights": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+  "method": "Actual legend-swatch Lab segmentation, not SAM. Text/hatch filtering and majority smoothing; no removed-small-region holes or nearest-neighbor geological infill. Corrected Kazakhstan border including Baikonur is unchanged.",
+  "ink_filter": "median_only",
+  "reproduction": "tools/detailed-maps/family.py + south-l44-config.json"
+}

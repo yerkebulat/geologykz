@@ -1,0 +1,175 @@
+{
+  "water_sample_rgb": null,
+  "native_unmapped_polygons": [
+    [
+      [
+        3900,
+        1800
+      ],
+      [
+        3800,
+        1880
+      ],
+      [
+        3620,
+        1900
+      ],
+      [
+        3520,
+        1920
+      ],
+      [
+        3400,
+        1960
+      ],
+      [
+        3240,
+        2020
+      ],
+      [
+        3100,
+        2050
+      ],
+      [
+        2970,
+        2120
+      ],
+      [
+        2850,
+        2160
+      ],
+      [
+        2730,
+        2230
+      ],
+      [
+        2610,
+        2270
+      ],
+      [
+        2520,
+        2340
+      ],
+      [
+        2470,
+        2370
+      ],
+      [
+        2550,
+        2410
+      ],
+      [
+        2650,
+        2430
+      ],
+      [
+        2770,
+        2400
+      ],
+      [
+        2870,
+        2460
+      ],
+      [
+        2930,
+        2530
+      ],
+      [
+        3000,
+        2580
+      ],
+      [
+        3100,
+        2620
+      ],
+      [
+        3190,
+        2650
+      ],
+      [
+        3240,
+        2670
+      ],
+      [
+        3170,
+        2700
+      ],
+      [
+        3120,
+        2750
+      ],
+      [
+        3060,
+        2810
+      ],
+      [
+        3100,
+        2910
+      ],
+      [
+        3080,
+        3000
+      ],
+      [
+        3060,
+        3100
+      ],
+      [
+        3090,
+        3230
+      ],
+      [
+        3070,
+        3340
+      ],
+      [
+        3080,
+        3400
+      ],
+      [
+        3150,
+        3520
+      ],
+      [
+        3170,
+        3650
+      ],
+      [
+        3170,
+        3830
+      ],
+      [
+        3170,
+        3920
+      ],
+      [
+        3970,
+        3920
+      ],
+      [
+        3970,
+        1800
+      ]
+    ]
+  ],
+  "native_unmapped_paper_only": true,
+  "native_unmapped_method": "Raw source minRGB>225 and max-min<25, only components within native paper ROI touching its 300px inset; close7 and fill enclosed ink/road holes. ROI is not a blanket geology exclusion.",
+  "native_water_windows": [],
+  "native_water_rule": null,
+  "native_water_regions": [],
+  "native_water_exclusions": [],
+  "native_water_interiors": [],
+  "water_window_method": null,
+  "water_evidence": "No global pale, blue or dark removal. Per-sheet source-derived water regions/cores only where qualified; native pale and black mapped units retained. Fine river linework is not independently reconstructed.",
+  "source_file": "south_L-44-V_Taldy-Kurgan.jpg",
+  "source_sha256": "38885ddaeaf73fefc2ebb0467a9f8f68469ac33abf804d187a26ff9f72d9805d",
+  "source_bytes": 5733510,
+  "sourcePage": "https://www.geokniga.org/maps/2576",
+  "legendSource": "https://www.geokniga.org/maps/2550",
+  "legend_family": "alma",
+  "credit": "Всесоюзное аэрогеологическое научно-производственное объединение «Аэрогеология», Министерство геологии СССР, Москва 1979. Native source notices retained.",
+  "source_rights": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+  "method": "Actual legend-swatch Lab segmentation, not SAM. Text/hatch filtering and majority smoothing; no removed-small-region holes or nearest-neighbor geological infill. Corrected Kazakhstan border including Baikonur is unchanged.",
+  "ink_filter": "median_only",
+  "reproduction": "tools/detailed-maps/family.py + south-l44-config.json"
+}

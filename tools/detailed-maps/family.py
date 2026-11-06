@@ -60,7 +60,7 @@ for sheet in C['sheets']:
  D=design((XY-origin)/100000);coef=np.linalg.lstsq(D,G[:,:2],rcond=None)[0];err=np.linalg.norm(D@coef-G[:,:2],axis=1);loo=[]
  for i in range(len(G)):
   keep=np.arange(len(G))!=i;c=np.linalg.lstsq(D[keep],G[keep,:2],rcond=None)[0];loo.append(float(np.linalg.norm(D[i]@c-G[i,:2])))
- report=dict(method='Quadratic inverse remap from manually read labelled native graticule/neatline marks, not an image-transfer fit',gcp_columns=['pixel_x','pixel_y','lon','lat'],gcps=G.tolist(),gcp_pick_uncertainty_native_px=8,assumed_src_crs='EPSG:4284 (Pulkovo 1942), not explicitly confirmed on scan',target_crs='EPSG:3857',rms_native_px=float(np.sqrt(np.mean(err**2))),max_native_px=float(err.max()),loo_errors_px=loo,loo_max_native_px=max(loo),independent_geographic_landmarks=0,caveat='Grid-fit and leave-one-out residuals are not absolute geographic accuracy. Picks are approximate; all controls are on frame, not surveyed landmarks. Datum assumption, paper/scanner distortion and interior alignment remain unverified. Provisional, not field-grade.')
+ report=dict(method='Quadratic inverse remap from manually read labelled native graticule/neatline marks, not an image-transfer fit',gcp_columns=['pixel_x','pixel_y','lon','lat'],gcps=G.tolist(),gcp_pick_uncertainty_native_px=sheet.get('gcp_pick_uncertainty_native_px',8),assumed_src_crs='EPSG:4284 (Pulkovo 1942), not explicitly confirmed on scan',target_crs='EPSG:3857',rms_native_px=float(np.sqrt(np.mean(err**2))),max_native_px=float(err.max()),loo_errors_px=loo,loo_max_native_px=max(loo),independent_geographic_landmarks=0,caveat='Grid-fit and leave-one-out residuals are not absolute geographic accuracy. Picks are approximate; all controls are on frame, not surveyed landmarks. Datum assumption, paper/scanner distortion and interior alignment remain unverified. Provisional, not field-grade.')
  assert report['rms_native_px']<10 and max(loo)<45,'Coordinate fit needs manual review'
  dump(report,dest/'georef.json');print(sid,'RMS',report['rms_native_px'],'LOO',max(loo),flush=True)
  xmin,xmax=x.min(),x.max();ymin,ymax=y.min(),y.max();res=110.;width=math.ceil((xmax-xmin)/res);height=math.ceil((ymax-ymin)/res);T=Affine(res,0,xmin,0,-res,ymax)
@@ -69,7 +69,21 @@ for sheet in C['sheets']:
  # Controls are ordered TL,TR,BL,BR,top midpoint,bottom midpoint,left midpoint,right midpoint, then any extra labelled controls.
  mask=np.zeros(raw.shape[:2],np.uint8);order=[0,4,1,7,3,5,2,6];frame=G[order,:2].copy();center=frame.mean(0);frame+=(center-frame)/np.linalg.norm(center-frame,axis=1)[:,None]*8
  cv2.fillPoly(mask,[frame.astype('int32')],255)
- for poly in sheet.get('native_unmapped_polygons',[]):cv2.fillPoly(mask,[np.array(poly,np.int32)],0)
+ unmapped=np.zeros(raw.shape[:2],np.uint8)
+ for poly in sheet.get('native_unmapped_polygons',[]):cv2.fillPoly(unmapped,[np.array(poly,np.int32)],255)
+ if sheet.get('native_unmapped_paper_only'):
+  # The manual polygon is only a contextual ROI, never permission to erase colored geology.
+  # Select raw near-white paper components touching a safely inset blank-paper core.
+  nearwhite=(raw.min(2)>225)&((raw.max(2).astype('int16')-raw.min(2))<25)&(unmapped>0)
+  _,labels=cv2.connectedComponents(nearwhite.astype('uint8'))
+  core=cv2.erode(unmapped,np.ones((601,601),np.uint8))>0
+  ids=np.unique(labels[core&nearwhite]);ids=ids[ids>0];assert len(ids),'No qualified blank-paper component'
+  paper=np.isin(labels,ids).astype('uint8')*255
+  paper=cv2.morphologyEx(paper,cv2.MORPH_CLOSE,np.ones((7,7),np.uint8))
+  contours,_=cv2.findContours(paper,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+  unmapped[:]=0;cv2.drawContours(unmapped,contours,-1,255,cv2.FILLED)
+  np.save(work/'native-unmapped.npy',unmapped)
+ mask[unmapped>0]=0
  rgba[:,:,3]=mask
  im=cv2.remap(rgba,P[:,0].reshape(height,width).astype('float32'),P[:,1].reshape(height,width).astype('float32'),cv2.INTER_LINEAR,borderMode=cv2.BORDER_CONSTANT,borderValue=0);im[:,:,3]*=rasterize([(mapping(country),1)],out_shape=(height,width),transform=T).astype(np.uint8)
  np.save(work/'scan.npy',im);dump(dict(transform=list(T)[:6],width=width,height=height),work/'render.json')
@@ -105,7 +119,7 @@ for sheet in C['sheets']:
   wm=cv2.resize(water_render,(cls.shape[1],cls.shape[0]),interpolation=cv2.INTER_AREA)>127
   cls[wm&alpha]=len(L)
  np.save(work/'classes.npy',cls);F=[];repairs=0
- def rnd(a):return [rnd(v) for v in a] if isinstance(a[0],(list,tuple)) else [round(a[0],6),round(a[1],6)]
+ def rnd(a):return [rnd(v) for v in a] if isinstance(a[0],(list,tuple)) else [round(a[0],sheet.get('coordinate_precision',6)),round(a[1],sheet.get('coordinate_precision',6))]
  for geo,k in shapes(cls,mask=(cls>=0)&(cls<len(L)),transform=CT):
   k=int(k);p=shape(geo).simplify(198,preserve_topology=True)
   if p.is_empty:continue
@@ -128,7 +142,7 @@ for sheet in C['sheets']:
   footer_box=[0,int(G[:,1].max()+40),raw.shape[1],raw.shape[0]]
   Image.fromarray(cv2.cvtColor(raw,cv2.COLOR_BGR2RGB)).crop(footer_box).save(dest/'source-notice.webp',quality=88)
   s['sourceNotice']=f'data/detailed/{sid}/source-notice.webp'
- dump(dict(sheets=[s]),dest/'manifest.json');dump(dict(water_sample_rgb=water_rgb,native_unmapped_polygons=sheet.get('native_unmapped_polygons',[]),native_water_windows=sheet.get('native_water_windows',[]),native_water_rule=sheet.get('native_water_rule'),native_water_regions=sheet.get('native_water_regions',[]),native_water_exclusions=sheet.get('native_water_exclusions',[]),native_water_interiors=sheet.get('native_water_interiors',[]),water_window_method='Native median9 RGB threshold (native_water_rule override, otherwise R>215 G>235 B>195 G-R>=8); source-water windows/regions plus conservative native water interior polygons, native mapped-island exclusions take priority; applied after majority, never global pale exclusion' if sheet.get('native_water_windows') or sheet.get('native_water_regions') else None,water_evidence=sheet.get('water_evidence',C['water_evidence']),source_file=sheet['file'],source_sha256=sha(S/sheet['file']),source_bytes=(S/sheet['file']).stat().st_size,sourcePage=s['sourcePage'],legendSource=C['legend_source'],legend_family=C['family'],credit=C['credit'],source_rights=rights,method='Actual legend-swatch Lab segmentation, not SAM. Text/hatch filtering and majority smoothing; no removed-small-region holes or nearest-neighbor geological infill. Corrected Kazakhstan border including Baikonur is unchanged.',ink_filter=C.get('ink_filter','dark_inpaint'),reproduction='tools/detailed-maps/family.py + '+cfgpath.name),dest/'provenance.json');(dest/'RIGHTS.md').write_text(rights+'\n'+s['sourcePage']+'\n'+C['legend_source']+'\n'+C['credit']+'\n')
+ dump(dict(sheets=[s]),dest/'manifest.json');dump(dict(water_sample_rgb=water_rgb,native_unmapped_polygons=sheet.get('native_unmapped_polygons',[]),native_unmapped_paper_only=sheet.get('native_unmapped_paper_only',False),native_unmapped_method='Raw source minRGB>225 and max-min<25, only components within native paper ROI touching its 300px inset; close7 and fill enclosed ink/road holes. ROI is not a blanket geology exclusion.' if sheet.get('native_unmapped_paper_only') else 'Explicit native unpainted polygons',native_water_windows=sheet.get('native_water_windows',[]),native_water_rule=sheet.get('native_water_rule'),native_water_regions=sheet.get('native_water_regions',[]),native_water_exclusions=sheet.get('native_water_exclusions',[]),native_water_interiors=sheet.get('native_water_interiors',[]),water_window_method='Native median9 RGB threshold (native_water_rule override, otherwise R>215 G>235 B>195 G-R>=8); source-water windows/regions plus conservative native water interior polygons, native mapped-island exclusions take priority; applied after majority, never global pale exclusion' if sheet.get('native_water_windows') or sheet.get('native_water_regions') else None,water_evidence=sheet.get('water_evidence',C['water_evidence']),source_file=sheet['file'],source_sha256=sha(S/sheet['file']),source_bytes=(S/sheet['file']).stat().st_size,sourcePage=s['sourcePage'],legendSource=C['legend_source'],legend_family=C['family'],credit=C['credit'],source_rights=rights,method='Actual legend-swatch Lab segmentation, not SAM. Text/hatch filtering and majority smoothing; no removed-small-region holes or nearest-neighbor geological infill. Corrected Kazakhstan border including Baikonur is unchanged.',ink_filter=C.get('ink_filter','dark_inpaint'),reproduction='tools/detailed-maps/family.py + '+cfgpath.name),dest/'provenance.json');(dest/'RIGHTS.md').write_text(rights+'\n'+s['sourcePage']+'\n'+C['legend_source']+'\n'+C['credit']+'\n')
  dump(dict(polygons=len(F),tiles=tiles,tile_bytes=total,color_pixel_mercator_m=220,scan_pixel_mercator_m=110,color_source_pixels=int(alpha.sum()),water_pixels=int(((cls==len(L))&alpha).sum()),removed_small_regions=0,area_preserving_topology_repairs=repairs),dest/'processing.json')
  # Small local previews, never git assets.
  out=np.zeros_like(ci)
