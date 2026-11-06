@@ -1,0 +1,51 @@
+{
+  "sheets": [
+    {
+      "id": "east-l45a",
+      "label": "1:500,000 L-45-А Zaysan",
+      "sourcePage": "https://www.geokniga.org/maps/3191",
+      "credit": "USSR / Kazakh SSR Ministries of Geology; East Kazakhstan series; chief editor S. E. Chakabaev. Native map author/institution/print notices retained in source-footer excerpts; shared legend via geokniga.org.",
+      "units": "data/detailed/east-l45a/units.geojson",
+      "legend": "data/detailed/east1976/legend.json",
+      "legendSource": "https://www.geokniga.org/maps/3184",
+      "legendPages": [
+        "data/detailed/east1976/plate-1.webp",
+        "data/detailed/east1976/plate-2.webp",
+        "data/detailed/east1976/plate-3.webp"
+      ],
+      "bounds": [
+        [
+          84.00157752356093,
+          46.83377047752881
+        ],
+        [
+          85.67846266442683,
+          48.00047144125853
+        ]
+      ],
+      "rasterTiles": {
+        "tiles": [
+          "data/detailed/east-l45a/tiles/{z}/{x}/{y}.webp"
+        ],
+        "tileSize": 256,
+        "minzoom": 7,
+        "maxzoom": 11,
+        "bounds": [
+          84.00157752356093,
+          46.83377047752881,
+          85.67846266442683,
+          48.00047144125853
+        ]
+      },
+      "dates": {
+        "scan_printed": 1979,
+        "catalog": 1976
+      },
+      "experimental": true,
+      "license": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+      "limitations": "Experimental color segmentation from 160 sampled native shared-legend references, not transcribed or unique units. Candidate lists not exhaustive; hatches/text/water classification approximate. Provisional georeferencing, not field-grade. Scan printed 1979; series/catalog 1976. Existing 160-swatch native legend reused unchanged. Dark ink is not globally inpainted. Water exclusion is source-color-based only within named-lake review windows; shoreline/hatching ambiguity remains. Native unpainted foreign areas are not geology; scan constrained to labelled neatline and unchanged Kazakhstan border. Small painted source extension east of the Zyryanovsk neatline is not extrapolated beyond the controlled frame. Clearly unpainted SE paper fringes are excluded using a manual native-source boundary trace (~20px pick uncertainty), not filled as pale geology. Native water mask uses median9 only within named-water windows; fine shorelines/hatches remain approximate. Strict named-lake interior masks remove bathymetric text from Colors; spectral shoreline margins still approximate.",
+      "accuracy": "8 labelled native frame controls; internal grid-fit RMS 5.72px, leave-one-out max 35.17px. Grid-fit and leave-one-out residuals are not absolute geographic accuracy. Picks are approximate; all controls are on frame, not surveyed landmarks. Datum assumption, paper/scanner distortion and interior alignment remain unverified. Provisional, not field-grade.",
+      "sourceNotice": "data/detailed/east-l45a/source-notice.webp"
+    }
+  ]
+}
