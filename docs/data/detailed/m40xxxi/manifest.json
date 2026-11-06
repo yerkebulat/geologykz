@@ -1,0 +1,49 @@
+{
+  "sheets": [
+    {
+      "id": "m40xxxi",
+      "label": "1:200,000 M-40-XXXI (geological base)",
+      "sourcePage": "https://www.geokniga.org/maps/44221",
+      "credit": "Всесоюзный аэрогеологический трест. Автор А.А. Соколова-Кучерова; редактор А.В. Хабаков. Native source author/editor/institution/printing notices retained.",
+      "units": "data/detailed/m40xxxi/units.geojson",
+      "legend": "data/detailed/m40xxxi/legend.json",
+      "legendSource": "https://www.geokniga.org/maps/44221",
+      "legendPages": [
+        "data/detailed/m40xxxi/plate-1.webp"
+      ],
+      "bounds": [
+        [
+          53.99932189977633,
+          48.00087635215081
+        ],
+        [
+          54.99796103482631,
+          48.66684951649306
+        ]
+      ],
+      "rasterTiles": {
+        "tiles": [
+          "data/detailed/m40xxxi/tiles/{z}/{x}/{y}.webp"
+        ],
+        "tileSize": 256,
+        "minzoom": 7,
+        "maxzoom": 12,
+        "bounds": [
+          53.99932189977633,
+          48.00087635215081,
+          54.99796103482631,
+          48.66684951649306
+        ]
+      },
+      "dates": {
+        "scan_printed": "1958; signed24 April1958, native heading1957",
+        "catalog": 1957
+      },
+      "experimental": true,
+      "license": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+      "limitations": "Experimental color segmentation from 18 sampled native standalone-sheet references, not transcribed or unique units. Candidate lists not exhaustive; hatches/text/water classification approximate. Provisional georeferencing, not field-grade. Scan printed 1958; signed24 April1958, native heading1957; series/catalog 1957. The actual native title is Карта полезных ископаемых СССР: this is its complete geological base, not a mineral occurrence interpretation. Native18-reference legend belongs to THIS sheet, not borrowed. Hatch-only sediment textures and point/mineral/structural symbols are retained in Scan/context, not independently classified. Real pale/yellow/green/blue geological fields retained, no global pale/blue/dark exclusion or coverage fill. Actual native printed scale1:200000. Four labelled corners in assumed Pulkovo1942/Gauss-Kruger zone10 EPSG28410, datum/projection unconfirmed, no independently surveyed/interior landmarks. Native heading/catalog1957, mineral information1 January1957, approval28July1957, signed for printing24April1958. Colors are approximate nonunique/nonexhaustive candidates, not transcribed units or field-grade accuracy.",
+      "accuracy": "4 labelled native frame controls; internal grid-fit RMS 2.17px, leave-one-out max 8.72px. Grid-fit and leave-one-out residuals are not absolute geographic accuracy. Picks are approximate; all controls are on frame, not surveyed landmarks. Datum assumption, paper/scanner distortion and interior alignment remain unverified. Provisional, not field-grade.",
+      "sourceNotice": "data/detailed/m40xxxi/source-notice.webp"
+    }
+  ]
+}
