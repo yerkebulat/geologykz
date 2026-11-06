@@ -296,6 +296,27 @@
     });
   }
 
+  function initLayersToggle() {
+    const btn = document.getElementById("layers-btn");
+    const panel = document.getElementById("layer-panel");
+    if (!btn || !panel) return;
+    const label = btn.querySelector(".layers-label");
+    function setOpen(open) {
+      panel.hidden = !open;
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      if (label) label.textContent = open ? "Hide layers" : "Layers";
+      btn.title = open ? "Collapse layer settings" : "Expand layer settings";
+    }
+    const phone = window.matchMedia && window.matchMedia("(max-width: 600px)").matches;
+    setOpen(!phone);
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      setOpen(btn.getAttribute("aria-expanded") !== "true");
+    });
+    window.geologykzSetLayersOpen = setOpen;
+  }
+
+  initLayersToggle();
   initMap();
   fetch("data/kazakhstan_macrostrat.geojson")
     .then((r) => r.json())
