@@ -1,0 +1,18 @@
+{
+  "source_file": "east_M-44-V_Zharma.jpg",
+  "source_sha256": "2fbc75793951a711164bab5206da9772305ab1d9b258eb18ddfc8f96ed0c9f99",
+  "source_bytes": 32222395,
+  "sourcePage": "https://www.geokniga.org/maps/3189",
+  "legendSource": "https://www.geokniga.org/maps/3184",
+  "legend_family": "east1976",
+  "credit": "USSR / Kazakh SSR Ministries of Geology; East Kazakhstan series; chief editor S. E. Chakabaev. Native scans / shared legend via geokniga.org.",
+  "source_rights": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+  "method": "Actual legend-swatch Lab segmentation, not SAM. Text/hatch filtering and majority smoothing; no removed-small-region holes or nearest-neighbor geological infill. Corrected Kazakhstan border including Baikonur is unchanged.",
+  "reproduction": "tools/detailed-maps/family.py + east1976-config.json",
+  "water_sample_rgb": [
+    221,
+    255,
+    231
+  ],
+  "water_evidence": "Native Semipalatinsk scan: labelled saline lake Seyten, interior pixel box x540..560, y910..940 (RGB median). Approximate spectral exclusion, not an interpreted water boundary."
+}

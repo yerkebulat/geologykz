@@ -1,0 +1,18 @@
+{
+  "water_sample_rgb": [
+    244,
+    254,
+    243
+  ],
+  "water_evidence": "Native Ust-Kamenogorsk scan, explicitly labelled Bukhtarma reservoir (Lake Zaysan): RGB median of interior native pixel box x4700..4750,y5540..5590. This sheet is paler than Semipalatinsk; its own water sample prevents false lithologic classification of the reservoir.",
+  "source_file": "east_M-44-G_UstKamenogorsk.jpg",
+  "source_sha256": "2250786bb42ff02ecd20d0da08fc1151446c266ac126a7c67664a425dff95dfe",
+  "source_bytes": 30702266,
+  "sourcePage": "https://www.geokniga.org/maps/3186",
+  "legendSource": "https://www.geokniga.org/maps/3184",
+  "legend_family": "east1976",
+  "credit": "USSR / Kazakh SSR Ministries of Geology; East Kazakhstan series; chief editor S. E. Chakabaev. Native scans / shared legend via geokniga.org.",
+  "source_rights": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+  "method": "Actual legend-swatch Lab segmentation, not SAM. Text/hatch filtering and majority smoothing; no removed-small-region holes or nearest-neighbor geological infill. Corrected Kazakhstan border including Baikonur is unchanged.",
+  "reproduction": "tools/detailed-maps/family.py + east1976-config.json"
+}

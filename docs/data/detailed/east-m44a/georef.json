@@ -1,0 +1,105 @@
+{
+  "method": "Quadratic inverse remap from manually read labelled native graticule/neatline marks, not an image-transfer fit",
+  "gcp_columns": [
+    "pixel_x",
+    "pixel_y",
+    "lon",
+    "lat"
+  ],
+  "gcps": [
+    [
+      347.0,
+      752.0,
+      78.0,
+      52.0
+    ],
+    [
+      5232.0,
+      642.0,
+      81.0,
+      52.0
+    ],
+    [
+      371.0,
+      6056.0,
+      78.0,
+      50.0
+    ],
+    [
+      5444.0,
+      5964.0,
+      81.0,
+      50.0
+    ],
+    [
+      2800.0,
+      731.0,
+      79.5,
+      52.0
+    ],
+    [
+      2904.0,
+      6034.0,
+      79.5,
+      50.0
+    ],
+    [
+      370.0,
+      3409.0,
+      78.0,
+      51.0
+    ],
+    [
+      5342.0,
+      3306.0,
+      81.0,
+      51.0
+    ],
+    [
+      1989.0,
+      738.0,
+      79.0,
+      52.0
+    ],
+    [
+      3610.0,
+      695.0,
+      80.0,
+      52.0
+    ],
+    [
+      2057.0,
+      6046.0,
+      79.0,
+      50.0
+    ],
+    [
+      3748.0,
+      6005.0,
+      80.0,
+      50.0
+    ]
+  ],
+  "gcp_pick_uncertainty_native_px": 8,
+  "assumed_src_crs": "EPSG:4284 (Pulkovo 1942), not explicitly confirmed on scan",
+  "target_crs": "EPSG:3857",
+  "rms_native_px": 5.599020319022557,
+  "max_native_px": 9.375560669643491,
+  "loo_errors_px": [
+    25.751120936122934,
+    8.460256794181392,
+    12.499210575689604,
+    24.239533542369422,
+    13.303165286566232,
+    4.682022986441023,
+    6.937154418675516,
+    6.937135843051125,
+    8.254356153051534,
+    8.329847830365264,
+    5.554804720145083,
+    12.202732737635136
+  ],
+  "loo_max_native_px": 25.751120936122934,
+  "independent_geographic_landmarks": 0,
+  "caveat": "Grid-fit and leave-one-out residuals are not absolute geographic accuracy. Picks are approximate; all controls are on frame, not surveyed landmarks. Datum assumption, paper/scanner distortion and interior alignment remain unverified. Provisional, not field-grade."
+}

@@ -1,0 +1,4429 @@
+[
+  {
+    "id": 0,
+    "code": "East legend sheet 1, column 1, entry 1",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      255,
+      209
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-0.webp",
+    "legend_plate": 2,
+    "native_box": [
+      496,
+      801,
+      222,
+      111
+    ],
+    "similar_swatch_ids": [
+      3,
+      16,
+      18,
+      63,
+      158,
+      159
+    ]
+  },
+  {
+    "id": 1,
+    "code": "East legend sheet 1, column 2, entry 1",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      179,
+      173,
+      146
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-1.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2336,
+      812,
+      220,
+      114
+    ],
+    "similar_swatch_ids": [
+      19,
+      24
+    ]
+  },
+  {
+    "id": 2,
+    "code": "East legend sheet 1, column 3, entry 1",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      230,
+      187,
+      145
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-2.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4172,
+      824,
+      223,
+      115
+    ],
+    "similar_swatch_ids": [
+      5,
+      54,
+      64,
+      68,
+      72
+    ]
+  },
+  {
+    "id": 3,
+    "code": "East legend sheet 1, column 1, entry 2",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      252,
+      196
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-3.webp",
+    "legend_plate": 2,
+    "native_box": [
+      495,
+      944,
+      223,
+      114
+    ],
+    "similar_swatch_ids": [
+      0,
+      6,
+      7,
+      14,
+      16,
+      18,
+      31,
+      158,
+      159
+    ]
+  },
+  {
+    "id": 4,
+    "code": "East legend sheet 1, column 2, entry 2",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      215,
+      205,
+      176
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-4.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2335,
+      1000,
+      220,
+      112
+    ],
+    "similar_swatch_ids": [
+      8,
+      12,
+      67,
+      70
+    ]
+  },
+  {
+    "id": 5,
+    "code": "East legend sheet 1, column 3, entry 2",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      230,
+      191,
+      152
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-5.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4170,
+      1075,
+      223,
+      110
+    ],
+    "similar_swatch_ids": [
+      2,
+      54,
+      64,
+      68,
+      72
+    ]
+  },
+  {
+    "id": 6,
+    "code": "East legend sheet 1, column 1, entry 3",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      241,
+      181
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-6.webp",
+    "legend_plate": 2,
+    "native_box": [
+      494,
+      1086,
+      223,
+      110
+    ],
+    "similar_swatch_ids": [
+      3,
+      7,
+      14,
+      16,
+      18,
+      22,
+      30,
+      31,
+      52
+    ]
+  },
+  {
+    "id": 7,
+    "code": "East legend sheet 1, column 1, entry 4",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      238,
+      191
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-7.webp",
+    "legend_plate": 2,
+    "native_box": [
+      493,
+      1229,
+      223,
+      109
+    ],
+    "similar_swatch_ids": [
+      3,
+      6,
+      22,
+      30,
+      31,
+      52,
+      60
+    ]
+  },
+  {
+    "id": 8,
+    "code": "East legend sheet 1, column 2, entry 3",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      215,
+      210,
+      184
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-8.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2333,
+      1252,
+      219,
+      112
+    ],
+    "similar_swatch_ids": [
+      4,
+      67,
+      70
+    ]
+  },
+  {
+    "id": 9,
+    "code": "East legend sheet 1, column 3, entry 3",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      214,
+      164,
+      127
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-9.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4167,
+      1323,
+      225,
+      113
+    ],
+    "similar_swatch_ids": [
+      59
+    ]
+  },
+  {
+    "id": 10,
+    "code": "East legend sheet 1, column 1, entry 5",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      221,
+      160
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-10.webp",
+    "legend_plate": 2,
+    "native_box": [
+      492,
+      1371,
+      222,
+      113
+    ],
+    "similar_swatch_ids": [
+      11,
+      22,
+      25,
+      34,
+      53
+    ]
+  },
+  {
+    "id": 11,
+    "code": "East legend sheet 1, column 1, entry 6",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      211,
+      138
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-11.webp",
+    "legend_plate": 2,
+    "native_box": [
+      490,
+      1512,
+      223,
+      113
+    ],
+    "similar_swatch_ids": [
+      10,
+      25
+    ]
+  },
+  {
+    "id": 12,
+    "code": "East legend sheet 1, column 2, entry 4",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      199,
+      196,
+      168
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-12.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2332,
+      1514,
+      218,
+      113
+    ],
+    "similar_swatch_ids": [
+      4,
+      15,
+      28,
+      81
+    ]
+  },
+  {
+    "id": 13,
+    "code": "East legend sheet 1, column 3, entry 4",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      192,
+      137,
+      79
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-13.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4165,
+      1575,
+      226,
+      113
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 14,
+    "code": "East legend sheet 1, column 1, entry 7",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      253,
+      178
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-14.webp",
+    "legend_plate": 2,
+    "native_box": [
+      489,
+      1657,
+      223,
+      114
+    ],
+    "similar_swatch_ids": [
+      3,
+      6,
+      16,
+      18
+    ]
+  },
+  {
+    "id": 15,
+    "code": "East legend sheet 1, column 2, entry 5",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      194,
+      192,
+      165
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-15.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2329,
+      1779,
+      219,
+      112
+    ],
+    "similar_swatch_ids": [
+      12,
+      19,
+      28,
+      71,
+      81
+    ]
+  },
+  {
+    "id": 16,
+    "code": "East legend sheet 1, column 1, entry 8",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      254,
+      191
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-16.webp",
+    "legend_plate": 2,
+    "native_box": [
+      489,
+      1801,
+      222,
+      114
+    ],
+    "similar_swatch_ids": [
+      0,
+      3,
+      6,
+      14,
+      18,
+      31
+    ]
+  },
+  {
+    "id": 17,
+    "code": "East legend sheet 1, column 3, entry 5",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      171,
+      138,
+      110
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-17.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4164,
+      1875,
+      225,
+      114
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 18,
+    "code": "East legend sheet 1, column 1, entry 9",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      255,
+      191
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-18.webp",
+    "legend_plate": 2,
+    "native_box": [
+      488,
+      1942,
+      222,
+      112
+    ],
+    "similar_swatch_ids": [
+      0,
+      3,
+      6,
+      14,
+      16,
+      31
+    ]
+  },
+  {
+    "id": 19,
+    "code": "East legend sheet 1, column 2, entry 6",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      184,
+      183,
+      156
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-19.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2327,
+      2040,
+      219,
+      114
+    ],
+    "similar_swatch_ids": [
+      1,
+      15,
+      24,
+      28,
+      71
+    ]
+  },
+  {
+    "id": 20,
+    "code": "East legend sheet 1, column 1, entry 10",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      255,
+      129
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-20.webp",
+    "legend_plate": 2,
+    "native_box": [
+      487,
+      2084,
+      222,
+      115
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 21,
+    "code": "East legend sheet 1, column 3, entry 6",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      189,
+      156,
+      129
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-21.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4162,
+      2100,
+      224,
+      114
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 22,
+    "code": "East legend sheet 1, column 1, entry 11",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      234,
+      171
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-22.webp",
+    "legend_plate": 2,
+    "native_box": [
+      486,
+      2226,
+      223,
+      111
+    ],
+    "similar_swatch_ids": [
+      6,
+      7,
+      10,
+      30,
+      31,
+      34,
+      52
+    ]
+  },
+  {
+    "id": 23,
+    "code": "East legend sheet 1, column 3, entry 7",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      154,
+      118,
+      73
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-23.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4159,
+      2254,
+      226,
+      114
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 24,
+    "code": "East legend sheet 1, column 2, entry 7",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      174,
+      179,
+      160
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-24.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2325,
+      2299,
+      219,
+      114
+    ],
+    "similar_swatch_ids": [
+      1,
+      19
+    ]
+  },
+  {
+    "id": 25,
+    "code": "East legend sheet 1, column 1, entry 12",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      218,
+      137
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-25.webp",
+    "legend_plate": 2,
+    "native_box": [
+      485,
+      2370,
+      223,
+      113
+    ],
+    "similar_swatch_ids": [
+      10,
+      11
+    ]
+  },
+  {
+    "id": 26,
+    "code": "East legend sheet 1, column 3, entry 8",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      229,
+      204,
+      113
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-26.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4160,
+      2411,
+      224,
+      113
+    ],
+    "similar_swatch_ids": [
+      37,
+      39
+    ]
+  },
+  {
+    "id": 27,
+    "code": "East legend sheet 1, column 1, entry 13",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      194,
+      79
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-27.webp",
+    "legend_plate": 2,
+    "native_box": [
+      485,
+      2516,
+      222,
+      109
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 28,
+    "code": "East legend sheet 1, column 2, entry 8",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      188,
+      191,
+      171
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-28.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2323,
+      2564,
+      220,
+      111
+    ],
+    "similar_swatch_ids": [
+      12,
+      15,
+      19,
+      81
+    ]
+  },
+  {
+    "id": 29,
+    "code": "East legend sheet 1, column 3, entry 9",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      208,
+      195,
+      101
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-29.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4159,
+      2567,
+      223,
+      114
+    ],
+    "similar_swatch_ids": [
+      42
+    ]
+  },
+  {
+    "id": 30,
+    "code": "East legend sheet 1, column 1, entry 14",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      242,
+      239,
+      173
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-30.webp",
+    "legend_plate": 2,
+    "native_box": [
+      484,
+      2657,
+      221,
+      109
+    ],
+    "similar_swatch_ids": [
+      6,
+      7,
+      22,
+      31,
+      34,
+      52
+    ]
+  },
+  {
+    "id": 31,
+    "code": "East legend sheet 1, column 3, entry 10",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      248,
+      243,
+      186
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-31.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4158,
+      2720,
+      223,
+      116
+    ],
+    "similar_swatch_ids": [
+      3,
+      6,
+      7,
+      16,
+      18,
+      22,
+      30,
+      52
+    ]
+  },
+  {
+    "id": 32,
+    "code": "East legend sheet 1, column 2, entry 9",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      148,
+      152,
+      135
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-32.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2321,
+      2757,
+      220,
+      109
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 33,
+    "code": "East legend sheet 1, column 1, entry 15",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      182,
+      236,
+      140
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-33.webp",
+    "legend_plate": 2,
+    "native_box": [
+      483,
+      2800,
+      221,
+      108
+    ],
+    "similar_swatch_ids": [
+      118,
+      119
+    ]
+  },
+  {
+    "id": 34,
+    "code": "East legend sheet 1, column 3, entry 11",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      234,
+      227,
+      157
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-34.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4156,
+      2878,
+      224,
+      116
+    ],
+    "similar_swatch_ids": [
+      10,
+      22,
+      30,
+      45,
+      52,
+      61
+    ]
+  },
+  {
+    "id": 35,
+    "code": "East legend sheet 1, column 1, entry 16",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      163,
+      227,
+      210
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-35.webp",
+    "legend_plate": 2,
+    "native_box": [
+      482,
+      2943,
+      221,
+      111
+    ],
+    "similar_swatch_ids": [
+      41,
+      129,
+      130
+    ]
+  },
+  {
+    "id": 36,
+    "code": "East legend sheet 1, column 2, entry 10",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      244,
+      209,
+      167
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-36.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2320,
+      2946,
+      220,
+      111
+    ],
+    "similar_swatch_ids": [
+      44,
+      51,
+      53,
+      68
+    ]
+  },
+  {
+    "id": 37,
+    "code": "East legend sheet 1, column 3, entry 12",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      218,
+      211,
+      129
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-37.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4155,
+      3029,
+      224,
+      117
+    ],
+    "similar_swatch_ids": [
+      26,
+      39,
+      42,
+      55
+    ]
+  },
+  {
+    "id": 38,
+    "code": "East legend sheet 1, column 1, entry 17",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      229,
+      244,
+      212
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-38.webp",
+    "legend_plate": 2,
+    "native_box": [
+      481,
+      3086,
+      219,
+      110
+    ],
+    "similar_swatch_ids": [
+      63,
+      74,
+      75,
+      77,
+      153,
+      156,
+      157,
+      158,
+      159
+    ]
+  },
+  {
+    "id": 39,
+    "code": "East legend sheet 1, column 3, entry 13",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      222,
+      215,
+      132
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-39.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4154,
+      3184,
+      224,
+      113
+    ],
+    "similar_swatch_ids": [
+      26,
+      37
+    ]
+  },
+  {
+    "id": 40,
+    "code": "East legend sheet 1, column 2, entry 11",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      241,
+      177,
+      123
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-40.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2318,
+      3207,
+      219,
+      117
+    ],
+    "similar_swatch_ids": [
+      50,
+      56,
+      126
+    ]
+  },
+  {
+    "id": 41,
+    "code": "East legend sheet 1, column 1, entry 18",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      187,
+      236,
+      219
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-41.webp",
+    "legend_plate": 2,
+    "native_box": [
+      479,
+      3223,
+      220,
+      114
+    ],
+    "similar_swatch_ids": [
+      35,
+      129
+    ]
+  },
+  {
+    "id": 42,
+    "code": "East legend sheet 1, column 3, entry 14",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      201,
+      201,
+      119
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-42.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4153,
+      3339,
+      224,
+      117
+    ],
+    "similar_swatch_ids": [
+      29,
+      37,
+      49,
+      65
+    ]
+  },
+  {
+    "id": 43,
+    "code": "East legend sheet 1, column 1, entry 19",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      249,
+      226,
+      222
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-43.webp",
+    "legend_plate": 2,
+    "native_box": [
+      477,
+      3404,
+      221,
+      114
+    ],
+    "similar_swatch_ids": [
+      113
+    ]
+  },
+  {
+    "id": 44,
+    "code": "East legend sheet 1, column 2, entry 12",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      199,
+      147
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-44.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2317,
+      3469,
+      220,
+      114
+    ],
+    "similar_swatch_ids": [
+      36,
+      54,
+      68
+    ]
+  },
+  {
+    "id": 45,
+    "code": "East legend sheet 1, column 3, entry 15",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      222,
+      222,
+      163
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-45.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4152,
+      3495,
+      224,
+      114
+    ],
+    "similar_swatch_ids": [
+      34,
+      52,
+      61,
+      62
+    ]
+  },
+  {
+    "id": 46,
+    "code": "East legend sheet 1, column 1, entry 20",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      227,
+      190,
+      210
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-46.webp",
+    "legend_plate": 2,
+    "native_box": [
+      475,
+      3583,
+      221,
+      114
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 47,
+    "code": "East legend sheet 1, column 3, entry 16",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      182,
+      192,
+      123
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-47.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4151,
+      3652,
+      223,
+      115
+    ],
+    "similar_swatch_ids": [
+      49,
+      57,
+      58,
+      65
+    ]
+  },
+  {
+    "id": 48,
+    "code": "East legend sheet 1, column 1, entry 21",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      211,
+      165,
+      201
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-48.webp",
+    "legend_plate": 2,
+    "native_box": [
+      474,
+      3729,
+      222,
+      110
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 49,
+    "code": "East legend sheet 1, column 3, entry 17",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      197,
+      204,
+      138
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-49.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4150,
+      3804,
+      223,
+      119
+    ],
+    "similar_swatch_ids": [
+      42,
+      47,
+      55,
+      65
+    ]
+  },
+  {
+    "id": 50,
+    "code": "East legend sheet 1, column 2, entry 13",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      238,
+      172,
+      120
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-50.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2314,
+      3805,
+      220,
+      115
+    ],
+    "similar_swatch_ids": [
+      40,
+      56,
+      59,
+      126
+    ]
+  },
+  {
+    "id": 51,
+    "code": "East legend sheet 1, column 1, entry 22",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      217,
+      181
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-51.webp",
+    "legend_plate": 2,
+    "native_box": [
+      473,
+      3907,
+      221,
+      114
+    ],
+    "similar_swatch_ids": [
+      36,
+      53,
+      60
+    ]
+  },
+  {
+    "id": 52,
+    "code": "East legend sheet 1, column 3, entry 18",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      232,
+      233,
+      182
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-52.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4149,
+      3999,
+      222,
+      114
+    ],
+    "similar_swatch_ids": [
+      6,
+      7,
+      22,
+      30,
+      31,
+      34,
+      45,
+      61
+    ]
+  },
+  {
+    "id": 53,
+    "code": "East legend sheet 1, column 1, entry 23",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      219,
+      170
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-53.webp",
+    "legend_plate": 2,
+    "native_box": [
+      471,
+      4124,
+      222,
+      114
+    ],
+    "similar_swatch_ids": [
+      10,
+      36,
+      51
+    ]
+  },
+  {
+    "id": 54,
+    "code": "East legend sheet 1, column 2, entry 14",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      245,
+      194,
+      146
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-54.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2312,
+      4211,
+      219,
+      114
+    ],
+    "similar_swatch_ids": [
+      2,
+      5,
+      44,
+      64,
+      68,
+      72,
+      126
+    ]
+  },
+  {
+    "id": 55,
+    "code": "East legend sheet 1, column 3, entry 19",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      205,
+      211,
+      149
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-55.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4147,
+      4240,
+      222,
+      114
+    ],
+    "similar_swatch_ids": [
+      37,
+      49,
+      62,
+      65
+    ]
+  },
+  {
+    "id": 56,
+    "code": "East legend sheet 1, column 1, entry 24",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      177,
+      110
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-56.webp",
+    "legend_plate": 2,
+    "native_box": [
+      469,
+      4348,
+      223,
+      115
+    ],
+    "similar_swatch_ids": [
+      40,
+      50,
+      126
+    ]
+  },
+  {
+    "id": 57,
+    "code": "East legend sheet 1, column 3, entry 20",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      177,
+      189,
+      119
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-57.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4146,
+      4440,
+      221,
+      114
+    ],
+    "similar_swatch_ids": [
+      47,
+      58,
+      65,
+      66
+    ]
+  },
+  {
+    "id": 58,
+    "code": "East legend sheet 1, column 3, entry 21",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      171,
+      192,
+      127
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-58.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4145,
+      4608,
+      221,
+      115
+    ],
+    "similar_swatch_ids": [
+      47,
+      57,
+      65,
+      66
+    ]
+  },
+  {
+    "id": 59,
+    "code": "East legend sheet 1, column 2, entry 15",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      223,
+      164,
+      122
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-59.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2308,
+      4615,
+      219,
+      112
+    ],
+    "similar_swatch_ids": [
+      9,
+      50
+    ]
+  },
+  {
+    "id": 60,
+    "code": "East legend sheet 1, column 1, entry 25",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      248,
+      227,
+      196
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-60.webp",
+    "legend_plate": 2,
+    "native_box": [
+      468,
+      4647,
+      222,
+      116
+    ],
+    "similar_swatch_ids": [
+      7,
+      51,
+      67
+    ]
+  },
+  {
+    "id": 61,
+    "code": "East legend sheet 1, column 3, entry 22",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      219,
+      227,
+      175
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-61.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4143,
+      4777,
+      222,
+      114
+    ],
+    "similar_swatch_ids": [
+      34,
+      45,
+      52,
+      62
+    ]
+  },
+  {
+    "id": 62,
+    "code": "East legend sheet 1, column 3, entry 23",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      208,
+      218,
+      160
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-62.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4141,
+      4941,
+      222,
+      118
+    ],
+    "similar_swatch_ids": [
+      45,
+      55,
+      61
+    ]
+  },
+  {
+    "id": 63,
+    "code": "East legend sheet 1, column 1, entry 26",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      252,
+      249,
+      222
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-63.webp",
+    "legend_plate": 2,
+    "native_box": [
+      465,
+      5044,
+      222,
+      114
+    ],
+    "similar_swatch_ids": [
+      0,
+      38,
+      74,
+      75,
+      77,
+      133
+    ]
+  },
+  {
+    "id": 64,
+    "code": "East legend sheet 1, column 2, entry 16",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      235,
+      188,
+      147
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-64.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2305,
+      5071,
+      219,
+      114
+    ],
+    "similar_swatch_ids": [
+      2,
+      5,
+      54,
+      68,
+      72
+    ]
+  },
+  {
+    "id": 65,
+    "code": "East legend sheet 1, column 3, entry 24",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      186,
+      201,
+      138
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-65.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4139,
+      5111,
+      223,
+      114
+    ],
+    "similar_swatch_ids": [
+      42,
+      47,
+      49,
+      55,
+      57,
+      58
+    ]
+  },
+  {
+    "id": 66,
+    "code": "East legend sheet 1, column 3, entry 25",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      163,
+      182,
+      119
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-66.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4138,
+      5278,
+      222,
+      116
+    ],
+    "similar_swatch_ids": [
+      57,
+      58
+    ]
+  },
+  {
+    "id": 67,
+    "code": "East legend sheet 1, column 1, entry 27",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      227,
+      217,
+      190
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-67.webp",
+    "legend_plate": 2,
+    "native_box": [
+      464,
+      5280,
+      222,
+      116
+    ],
+    "similar_swatch_ids": [
+      4,
+      8,
+      60,
+      70
+    ]
+  },
+  {
+    "id": 68,
+    "code": "East legend sheet 1, column 2, entry 17",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      239,
+      197,
+      158
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-68.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2302,
+      5415,
+      220,
+      111
+    ],
+    "similar_swatch_ids": [
+      2,
+      5,
+      36,
+      44,
+      54,
+      64,
+      72
+    ]
+  },
+  {
+    "id": 69,
+    "code": "East legend sheet 1, column 3, entry 26",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      144,
+      160,
+      81
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-69.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4137,
+      5444,
+      223,
+      115
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 70,
+    "code": "East legend sheet 1, column 1, entry 28",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      218,
+      210,
+      184
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-70.webp",
+    "legend_plate": 2,
+    "native_box": [
+      461,
+      5574,
+      223,
+      113
+    ],
+    "similar_swatch_ids": [
+      4,
+      8,
+      67
+    ]
+  },
+  {
+    "id": 71,
+    "code": "East legend sheet 1, column 3, entry 27",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      184,
+      189,
+      146
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-71.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4134,
+      5613,
+      225,
+      117
+    ],
+    "similar_swatch_ids": [
+      15,
+      19
+    ]
+  },
+  {
+    "id": 72,
+    "code": "East legend sheet 1, column 2, entry 18",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      233,
+      189,
+      150
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-72.webp",
+    "legend_plate": 2,
+    "native_box": [
+      2301,
+      5681,
+      219,
+      112
+    ],
+    "similar_swatch_ids": [
+      2,
+      5,
+      54,
+      64,
+      68
+    ]
+  },
+  {
+    "id": 73,
+    "code": "East legend sheet 1, column 3, entry 28",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      152,
+      161,
+      117
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-73.webp",
+    "legend_plate": 2,
+    "native_box": [
+      4133,
+      5778,
+      223,
+      118
+    ],
+    "similar_swatch_ids": [
+      82
+    ]
+  },
+  {
+    "id": 74,
+    "code": "East legend sheet 2, column 1, entry 1",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      234,
+      247,
+      222
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-74.webp",
+    "legend_plate": 3,
+    "native_box": [
+      549,
+      799,
+      222,
+      114
+    ],
+    "similar_swatch_ids": [
+      38,
+      63,
+      75,
+      77,
+      158,
+      159
+    ]
+  },
+  {
+    "id": 75,
+    "code": "East legend sheet 2, column 1, entry 2",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      228,
+      245,
+      217
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-75.webp",
+    "legend_plate": 3,
+    "native_box": [
+      547,
+      984,
+      222,
+      117
+    ],
+    "similar_swatch_ids": [
+      38,
+      63,
+      74,
+      77,
+      158,
+      159
+    ]
+  },
+  {
+    "id": 76,
+    "code": "East legend sheet 2, column 1, entry 3",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      176,
+      210,
+      174
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-76.webp",
+    "legend_plate": 3,
+    "native_box": [
+      545,
+      1177,
+      223,
+      117
+    ],
+    "similar_swatch_ids": [
+      81,
+      130
+    ]
+  },
+  {
+    "id": 77,
+    "code": "East legend sheet 2, column 1, entry 4",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      229,
+      245,
+      218
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-77.webp",
+    "legend_plate": 3,
+    "native_box": [
+      543,
+      1368,
+      223,
+      114
+    ],
+    "similar_swatch_ids": [
+      38,
+      63,
+      74,
+      75,
+      158,
+      159
+    ]
+  },
+  {
+    "id": 78,
+    "code": "East legend sheet 2, column 1, entry 5",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      145,
+      190,
+      148
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-78.webp",
+    "legend_plate": 3,
+    "native_box": [
+      542,
+      1585,
+      223,
+      112
+    ],
+    "similar_swatch_ids": [
+      79
+    ]
+  },
+  {
+    "id": 79,
+    "code": "East legend sheet 2, column 1, entry 6",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      143,
+      185,
+      145
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-79.webp",
+    "legend_plate": 3,
+    "native_box": [
+      540,
+      1800,
+      223,
+      113
+    ],
+    "similar_swatch_ids": [
+      78,
+      80
+    ]
+  },
+  {
+    "id": 80,
+    "code": "East legend sheet 2, column 1, entry 7",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      135,
+      174,
+      139
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-80.webp",
+    "legend_plate": 3,
+    "native_box": [
+      538,
+      1987,
+      223,
+      115
+    ],
+    "similar_swatch_ids": [
+      79,
+      82
+    ]
+  },
+  {
+    "id": 81,
+    "code": "East legend sheet 2, column 1, entry 8",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      176,
+      202,
+      173
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-81.webp",
+    "legend_plate": 3,
+    "native_box": [
+      536,
+      2180,
+      224,
+      115
+    ],
+    "similar_swatch_ids": [
+      12,
+      15,
+      28,
+      76
+    ]
+  },
+  {
+    "id": 82,
+    "code": "East legend sheet 2, column 1, entry 9",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      129,
+      164,
+      132
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-82.webp",
+    "legend_plate": 3,
+    "native_box": [
+      535,
+      2385,
+      223,
+      116
+    ],
+    "similar_swatch_ids": [
+      73,
+      80
+    ]
+  },
+  {
+    "id": 83,
+    "code": "East legend sheet 2, column 1, entry 10",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      236,
+      180,
+      160
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-83.webp",
+    "legend_plate": 3,
+    "native_box": [
+      534,
+      2576,
+      222,
+      114
+    ],
+    "similar_swatch_ids": [
+      84,
+      92
+    ]
+  },
+  {
+    "id": 84,
+    "code": "East legend sheet 2, column 1, entry 11",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      190,
+      176
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-84.webp",
+    "legend_plate": 3,
+    "native_box": [
+      532,
+      2759,
+      223,
+      112
+    ],
+    "similar_swatch_ids": [
+      83,
+      92,
+      105,
+      106,
+      107,
+      109,
+      111,
+      114
+    ]
+  },
+  {
+    "id": 85,
+    "code": "East intrusion matrix, source cell x1364 y3823",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      58,
+      55
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-85.webp",
+    "legend_plate": 3,
+    "native_box": [
+      1364,
+      3823,
+      169,
+      88
+    ],
+    "similar_swatch_ids": [
+      86
+    ]
+  },
+  {
+    "id": 86,
+    "code": "East intrusion matrix, source cell x1862 y3831",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      70,
+      60
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-86.webp",
+    "legend_plate": 3,
+    "native_box": [
+      1862,
+      3831,
+      171,
+      85
+    ],
+    "similar_swatch_ids": [
+      85
+    ]
+  },
+  {
+    "id": 87,
+    "code": "East intrusion matrix, source cell x2360 y3832",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      104,
+      87
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-87.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2360,
+      3832,
+      175,
+      87
+    ],
+    "similar_swatch_ids": [
+      88,
+      89,
+      90,
+      94,
+      134,
+      136
+    ]
+  },
+  {
+    "id": 88,
+    "code": "East intrusion matrix, source cell x3144 y3835",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      106,
+      89
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-88.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3144,
+      3835,
+      172,
+      88
+    ],
+    "similar_swatch_ids": [
+      87,
+      89,
+      90,
+      134,
+      136
+    ]
+  },
+  {
+    "id": 89,
+    "code": "East intrusion matrix, source cell x3358 y3836",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      119,
+      100
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-89.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3358,
+      3836,
+      170,
+      88
+    ],
+    "similar_swatch_ids": [
+      87,
+      88,
+      90,
+      91,
+      95,
+      96,
+      134,
+      137,
+      146
+    ]
+  },
+  {
+    "id": 90,
+    "code": "East intrusion matrix, source cell x3568 y3838",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      119,
+      102
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-90.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3568,
+      3838,
+      167,
+      87
+    ],
+    "similar_swatch_ids": [
+      87,
+      88,
+      89,
+      91,
+      95,
+      96,
+      134,
+      137,
+      146
+    ]
+  },
+  {
+    "id": 91,
+    "code": "East intrusion matrix, source cell x4207 y3844",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      131,
+      115
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-91.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4207,
+      3844,
+      170,
+      88
+    ],
+    "similar_swatch_ids": [
+      89,
+      90,
+      96,
+      97,
+      98,
+      134,
+      137,
+      142,
+      143,
+      145,
+      146,
+      147,
+      148
+    ]
+  },
+  {
+    "id": 92,
+    "code": "East intrusion matrix, source cell x5057 y3848",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      187,
+      170
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-92.webp",
+    "legend_plate": 3,
+    "native_box": [
+      5057,
+      3848,
+      168,
+      89
+    ],
+    "similar_swatch_ids": [
+      83,
+      84,
+      105,
+      106,
+      107,
+      109,
+      114
+    ]
+  },
+  {
+    "id": 93,
+    "code": "East intrusion matrix, source cell x2145 y4022",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      84,
+      39
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-93.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2145,
+      4022,
+      170,
+      87
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 94,
+    "code": "East intrusion matrix, source cell x2644 y4024",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      114,
+      70
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-94.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2644,
+      4024,
+      172,
+      85
+    ],
+    "similar_swatch_ids": [
+      87,
+      95
+    ]
+  },
+  {
+    "id": 95,
+    "code": "East intrusion matrix, source cell x3777 y4031",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      127,
+      88
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-95.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3777,
+      4031,
+      173,
+      88
+    ],
+    "similar_swatch_ids": [
+      89,
+      90,
+      94,
+      96,
+      97,
+      98
+    ]
+  },
+  {
+    "id": 96,
+    "code": "East intrusion matrix, source cell x3990 y4034",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      129,
+      93
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-96.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3990,
+      4034,
+      173,
+      87
+    ],
+    "similar_swatch_ids": [
+      89,
+      90,
+      91,
+      95,
+      97,
+      98,
+      146
+    ]
+  },
+  {
+    "id": 97,
+    "code": "East intrusion matrix, source cell x4206 y4036",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      138,
+      104
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-97.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4206,
+      4036,
+      169,
+      86
+    ],
+    "similar_swatch_ids": [
+      91,
+      95,
+      96,
+      98,
+      137,
+      142,
+      145,
+      146,
+      147,
+      148
+    ]
+  },
+  {
+    "id": 98,
+    "code": "East intrusion matrix, source cell x4418 y4037",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      138,
+      105
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-98.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4418,
+      4037,
+      169,
+      86
+    ],
+    "similar_swatch_ids": [
+      91,
+      95,
+      96,
+      97,
+      137,
+      142,
+      143,
+      145,
+      146,
+      147,
+      148
+    ]
+  },
+  {
+    "id": 99,
+    "code": "East intrusion matrix, source cell x1860 y4212",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      147,
+      51
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-99.webp",
+    "legend_plate": 3,
+    "native_box": [
+      1860,
+      4212,
+      168,
+      88
+    ],
+    "similar_swatch_ids": [
+      100,
+      124,
+      125
+    ]
+  },
+  {
+    "id": 100,
+    "code": "East intrusion matrix, source cell x2641 y4215",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      156,
+      66
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-100.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2641,
+      4215,
+      172,
+      89
+    ],
+    "similar_swatch_ids": [
+      99,
+      124,
+      125
+    ]
+  },
+  {
+    "id": 101,
+    "code": "East intrusion matrix, source cell x1859 y4404",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      100,
+      121
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-101.webp",
+    "legend_plate": 3,
+    "native_box": [
+      1859,
+      4404,
+      166,
+      85
+    ],
+    "similar_swatch_ids": [
+      102
+    ]
+  },
+  {
+    "id": 102,
+    "code": "East intrusion matrix, source cell x2143 y4405",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      103,
+      123
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-102.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2143,
+      4405,
+      169,
+      86
+    ],
+    "similar_swatch_ids": [
+      101
+    ]
+  },
+  {
+    "id": 103,
+    "code": "East intrusion matrix, source cell x2355 y4406",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      147,
+      155
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-103.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2355,
+      4406,
+      173,
+      86
+    ],
+    "similar_swatch_ids": [
+      104
+    ]
+  },
+  {
+    "id": 104,
+    "code": "East intrusion matrix, source cell x2639 y4408",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      148,
+      157
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-104.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2639,
+      4408,
+      172,
+      88
+    ],
+    "similar_swatch_ids": [
+      103,
+      141
+    ]
+  },
+  {
+    "id": 105,
+    "code": "East intrusion matrix, source cell x2927 y4411",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      186,
+      187
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-105.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2927,
+      4411,
+      167,
+      84
+    ],
+    "similar_swatch_ids": [
+      84,
+      92,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      114
+    ]
+  },
+  {
+    "id": 106,
+    "code": "East intrusion matrix, source cell x3138 y4413",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      184,
+      186
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-106.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3138,
+      4413,
+      172,
+      84
+    ],
+    "similar_swatch_ids": [
+      84,
+      92,
+      105,
+      107,
+      108,
+      109,
+      110,
+      111,
+      114
+    ]
+  },
+  {
+    "id": 107,
+    "code": "East intrusion matrix, source cell x3353 y4413",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      181,
+      180
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-107.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3353,
+      4413,
+      168,
+      88
+    ],
+    "similar_swatch_ids": [
+      84,
+      92,
+      105,
+      106,
+      108,
+      109,
+      110,
+      111,
+      114
+    ]
+  },
+  {
+    "id": 108,
+    "code": "East intrusion matrix, source cell x3561 y4417",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      179,
+      190
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-108.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3561,
+      4417,
+      170,
+      84
+    ],
+    "similar_swatch_ids": [
+      105,
+      106,
+      107,
+      109,
+      110,
+      111,
+      114
+    ]
+  },
+  {
+    "id": 109,
+    "code": "East intrusion matrix, source cell x3775 y4417",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      188,
+      187
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-109.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3775,
+      4417,
+      169,
+      88
+    ],
+    "similar_swatch_ids": [
+      84,
+      92,
+      105,
+      106,
+      107,
+      108,
+      110,
+      111,
+      114
+    ]
+  },
+  {
+    "id": 110,
+    "code": "East intrusion matrix, source cell x4200 y4419",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      185,
+      194
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-110.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4200,
+      4419,
+      170,
+      89
+    ],
+    "similar_swatch_ids": [
+      105,
+      106,
+      107,
+      108,
+      109,
+      111,
+      114
+    ]
+  },
+  {
+    "id": 111,
+    "code": "East intrusion matrix, source cell x4414 y4421",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      186,
+      195
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-111.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4414,
+      4421,
+      169,
+      87
+    ],
+    "similar_swatch_ids": [
+      84,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      114
+    ]
+  },
+  {
+    "id": 112,
+    "code": "East intrusion matrix, source cell x4628 y4422",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      225,
+      132,
+      162
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-112.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4628,
+      4422,
+      172,
+      88
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 113,
+    "code": "East intrusion matrix, source cell x4844 y4423",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      216,
+      224
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-113.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4844,
+      4423,
+      169,
+      87
+    ],
+    "similar_swatch_ids": [
+      43
+    ]
+  },
+  {
+    "id": 114,
+    "code": "East intrusion matrix, source cell x5050 y4424",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      179,
+      180
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-114.webp",
+    "legend_plate": 3,
+    "native_box": [
+      5050,
+      4424,
+      167,
+      86
+    ],
+    "similar_swatch_ids": [
+      84,
+      92,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111
+    ]
+  },
+  {
+    "id": 115,
+    "code": "East intrusion matrix, source cell x1857 y4593",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      120,
+      213,
+      131
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-115.webp",
+    "legend_plate": 3,
+    "native_box": [
+      1857,
+      4593,
+      168,
+      86
+    ],
+    "similar_swatch_ids": [
+      116,
+      117,
+      131
+    ]
+  },
+  {
+    "id": 116,
+    "code": "East intrusion matrix, source cell x2354 y4598",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      132,
+      220,
+      135
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-116.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2354,
+      4598,
+      173,
+      84
+    ],
+    "similar_swatch_ids": [
+      115,
+      117,
+      131,
+      132
+    ]
+  },
+  {
+    "id": 117,
+    "code": "East intrusion matrix, source cell x2638 y4598",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      132,
+      221,
+      134
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-117.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2638,
+      4598,
+      171,
+      86
+    ],
+    "similar_swatch_ids": [
+      115,
+      116,
+      118,
+      131,
+      132
+    ]
+  },
+  {
+    "id": 118,
+    "code": "East intrusion matrix, source cell x2924 y4600",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      150,
+      233,
+      144
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-118.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2924,
+      4600,
+      168,
+      87
+    ],
+    "similar_swatch_ids": [
+      33,
+      117,
+      119,
+      120,
+      131,
+      132
+    ]
+  },
+  {
+    "id": 119,
+    "code": "East intrusion matrix, source cell x3351 y4605",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      165,
+      241,
+      150
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-119.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3351,
+      4605,
+      169,
+      85
+    ],
+    "similar_swatch_ids": [
+      33,
+      118,
+      120
+    ]
+  },
+  {
+    "id": 120,
+    "code": "East intrusion matrix, source cell x4199 y4612",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      167,
+      233,
+      161
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-120.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4199,
+      4612,
+      171,
+      86
+    ],
+    "similar_swatch_ids": [
+      118,
+      119
+    ]
+  },
+  {
+    "id": 121,
+    "code": "East intrusion matrix, source cell x4624 y4615",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      197,
+      245,
+      185
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-121.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4624,
+      4615,
+      173,
+      85
+    ],
+    "similar_swatch_ids": [
+      122,
+      151,
+      153,
+      154,
+      155
+    ]
+  },
+  {
+    "id": 122,
+    "code": "East intrusion matrix, source cell x5048 y4619",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      199,
+      247,
+      187
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-122.webp",
+    "legend_plate": 3,
+    "native_box": [
+      5048,
+      4619,
+      167,
+      85
+    ],
+    "similar_swatch_ids": [
+      121,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156
+    ]
+  },
+  {
+    "id": 123,
+    "code": "East intrusion matrix, source cell x1856 y4785",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      123,
+      20
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-123.webp",
+    "legend_plate": 3,
+    "native_box": [
+      1856,
+      4785,
+      167,
+      85
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 124,
+    "code": "East intrusion matrix, source cell x2138 y4786",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      157,
+      68
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-124.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2138,
+      4786,
+      172,
+      84
+    ],
+    "similar_swatch_ids": [
+      99,
+      100,
+      125
+    ]
+  },
+  {
+    "id": 125,
+    "code": "East intrusion matrix, source cell x2636 y4790",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      145,
+      65
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-125.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2636,
+      4790,
+      173,
+      85
+    ],
+    "similar_swatch_ids": [
+      99,
+      100,
+      124
+    ]
+  },
+  {
+    "id": 126,
+    "code": "East intrusion matrix, source cell x3771 y4798",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      182,
+      131
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-126.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3771,
+      4798,
+      173,
+      87
+    ],
+    "similar_swatch_ids": [
+      40,
+      50,
+      54,
+      56
+    ]
+  },
+  {
+    "id": 127,
+    "code": "East intrusion matrix, source cell x1356 y4971",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      101,
+      192,
+      157
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-127.webp",
+    "legend_plate": 3,
+    "native_box": [
+      1356,
+      4971,
+      164,
+      86
+    ],
+    "similar_swatch_ids": [
+      128
+    ]
+  },
+  {
+    "id": 128,
+    "code": "East intrusion matrix, source cell x2634 y4983",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      94,
+      189,
+      155
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-128.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2634,
+      4983,
+      172,
+      84
+    ],
+    "similar_swatch_ids": [
+      127
+    ]
+  },
+  {
+    "id": 129,
+    "code": "East intrusion matrix, source cell x2919 y4986",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      169,
+      228,
+      199
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-129.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2919,
+      4986,
+      168,
+      85
+    ],
+    "similar_swatch_ids": [
+      35,
+      41,
+      130
+    ]
+  },
+  {
+    "id": 130,
+    "code": "East intrusion matrix, source cell x3344 y4988",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      157,
+      221,
+      191
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-130.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3344,
+      4988,
+      171,
+      88
+    ],
+    "similar_swatch_ids": [
+      35,
+      76,
+      129
+    ]
+  },
+  {
+    "id": 131,
+    "code": "East intrusion matrix, source cell x3556 y4990",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      138,
+      223,
+      138
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-131.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3556,
+      4990,
+      170,
+      86
+    ],
+    "similar_swatch_ids": [
+      115,
+      116,
+      117,
+      118,
+      132
+    ]
+  },
+  {
+    "id": 132,
+    "code": "East intrusion matrix, source cell x5257 y5003",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      143,
+      226,
+      141
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-132.webp",
+    "legend_plate": 3,
+    "native_box": [
+      5257,
+      5003,
+      168,
+      86
+    ],
+    "similar_swatch_ids": [
+      116,
+      117,
+      118,
+      131
+    ]
+  },
+  {
+    "id": 133,
+    "code": "East intrusion matrix, source cell x1568 y5165",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      255,
+      243
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-133.webp",
+    "legend_plate": 3,
+    "native_box": [
+      1568,
+      5165,
+      167,
+      85
+    ],
+    "similar_swatch_ids": [
+      63
+    ]
+  },
+  {
+    "id": 134,
+    "code": "East intrusion matrix, source cell x1855 y5167",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      116,
+      103
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-134.webp",
+    "legend_plate": 3,
+    "native_box": [
+      1855,
+      5167,
+      163,
+      87
+    ],
+    "similar_swatch_ids": [
+      87,
+      88,
+      89,
+      90,
+      91,
+      146
+    ]
+  },
+  {
+    "id": 135,
+    "code": "East intrusion matrix, source cell x2633 y5173",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      127,
+      176
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-135.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2633,
+      5173,
+      171,
+      85
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 136,
+    "code": "East intrusion matrix, source cell x3345 y5178",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      95,
+      72
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-136.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3345,
+      5178,
+      168,
+      85
+    ],
+    "similar_swatch_ids": [
+      87,
+      88
+    ]
+  },
+  {
+    "id": 137,
+    "code": "East intrusion matrix, source cell x3766 y5181",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      133,
+      118
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-137.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3766,
+      5181,
+      169,
+      87
+    ],
+    "similar_swatch_ids": [
+      89,
+      90,
+      91,
+      97,
+      98,
+      142,
+      143,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150
+    ]
+  },
+  {
+    "id": 138,
+    "code": "East intrusion matrix, source cell x3342 y5368",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      150,
+      106,
+      177
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-138.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3342,
+      5368,
+      169,
+      87
+    ],
+    "similar_swatch_ids": [
+      140
+    ]
+  },
+  {
+    "id": 139,
+    "code": "East intrusion matrix, source cell x3978 y5373",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      180,
+      144,
+      198
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-139.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3978,
+      5373,
+      170,
+      86
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 140,
+    "code": "East intrusion matrix, source cell x5463 y5385",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      148,
+      100,
+      179
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-140.webp",
+    "legend_plate": 3,
+    "native_box": [
+      5463,
+      5385,
+      172,
+      86
+    ],
+    "similar_swatch_ids": [
+      138
+    ]
+  },
+  {
+    "id": 141,
+    "code": "East intrusion matrix, source cell x1352 y5538",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      158,
+      144
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-141.webp",
+    "legend_plate": 3,
+    "native_box": [
+      1352,
+      5538,
+      162,
+      84
+    ],
+    "similar_swatch_ids": [
+      104,
+      143,
+      144,
+      149,
+      150
+    ]
+  },
+  {
+    "id": 142,
+    "code": "East intrusion matrix, source cell x2346 y5547",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      141,
+      124
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-142.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2346,
+      5547,
+      172,
+      86
+    ],
+    "similar_swatch_ids": [
+      91,
+      97,
+      98,
+      137,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150
+    ]
+  },
+  {
+    "id": 143,
+    "code": "East intrusion matrix, source cell x2630 y5551",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      144,
+      129
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-143.webp",
+    "legend_plate": 3,
+    "native_box": [
+      2630,
+      5551,
+      172,
+      85
+    ],
+    "similar_swatch_ids": [
+      91,
+      98,
+      137,
+      141,
+      142,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150
+    ]
+  },
+  {
+    "id": 144,
+    "code": "East intrusion matrix, source cell x3126 y5557",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      151,
+      136
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-144.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3126,
+      5557,
+      174,
+      82
+    ],
+    "similar_swatch_ids": [
+      141,
+      142,
+      143,
+      145,
+      147,
+      148,
+      149,
+      150
+    ]
+  },
+  {
+    "id": 145,
+    "code": "East intrusion matrix, source cell x3341 y5558",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      143,
+      126
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-145.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3341,
+      5558,
+      166,
+      84
+    ],
+    "similar_swatch_ids": [
+      91,
+      97,
+      98,
+      137,
+      142,
+      143,
+      144,
+      146,
+      147,
+      148,
+      149,
+      150
+    ]
+  },
+  {
+    "id": 146,
+    "code": "East intrusion matrix, source cell x3550 y5559",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      128,
+      114
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-146.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3550,
+      5559,
+      173,
+      86
+    ],
+    "similar_swatch_ids": [
+      89,
+      90,
+      91,
+      96,
+      97,
+      98,
+      134,
+      137,
+      142,
+      143,
+      145,
+      147,
+      148
+    ]
+  },
+  {
+    "id": 147,
+    "code": "East intrusion matrix, source cell x3765 y5562",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      139,
+      123
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-147.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3765,
+      5562,
+      167,
+      86
+    ],
+    "similar_swatch_ids": [
+      91,
+      97,
+      98,
+      137,
+      142,
+      143,
+      144,
+      145,
+      146,
+      148,
+      149,
+      150
+    ]
+  },
+  {
+    "id": 148,
+    "code": "East intrusion matrix, source cell x4189 y5565",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      140,
+      124
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-148.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4189,
+      5565,
+      169,
+      84
+    ],
+    "similar_swatch_ids": [
+      91,
+      97,
+      98,
+      137,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      149,
+      150
+    ]
+  },
+  {
+    "id": 149,
+    "code": "East intrusion matrix, source cell x4616 y5568",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      253,
+      149,
+      132
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-149.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4616,
+      5568,
+      171,
+      87
+    ],
+    "similar_swatch_ids": [
+      137,
+      141,
+      142,
+      143,
+      144,
+      145,
+      147,
+      148,
+      150
+    ]
+  },
+  {
+    "id": 150,
+    "code": "East intrusion matrix, source cell x5039 y5571",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      254,
+      149,
+      132
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-150.webp",
+    "legend_plate": 3,
+    "native_box": [
+      5039,
+      5571,
+      162,
+      84
+    ],
+    "similar_swatch_ids": [
+      137,
+      141,
+      142,
+      143,
+      144,
+      145,
+      147,
+      148,
+      149
+    ]
+  },
+  {
+    "id": 151,
+    "code": "East intrusion matrix, source cell x1351 y5728",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      217,
+      253,
+      199
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-151.webp",
+    "legend_plate": 3,
+    "native_box": [
+      1351,
+      5728,
+      161,
+      86
+    ],
+    "similar_swatch_ids": [
+      121,
+      122,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159
+    ]
+  },
+  {
+    "id": 152,
+    "code": "East intrusion matrix, source cell x3124 y5745",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      221,
+      254,
+      203
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-152.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3124,
+      5745,
+      175,
+      87
+    ],
+    "similar_swatch_ids": [
+      122,
+      151,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159
+    ]
+  },
+  {
+    "id": 153,
+    "code": "East intrusion matrix, source cell x3339 y5745",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      217,
+      252,
+      200
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-153.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3339,
+      5745,
+      168,
+      89
+    ],
+    "similar_swatch_ids": [
+      38,
+      121,
+      122,
+      151,
+      152,
+      154,
+      155,
+      156,
+      157,
+      158,
+      159
+    ]
+  },
+  {
+    "id": 154,
+    "code": "East intrusion matrix, source cell x3550 y5748",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      216,
+      252,
+      197
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-154.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3550,
+      5748,
+      174,
+      87
+    ],
+    "similar_swatch_ids": [
+      121,
+      122,
+      151,
+      152,
+      153,
+      155,
+      156,
+      157,
+      158,
+      159
+    ]
+  },
+  {
+    "id": 155,
+    "code": "East intrusion matrix, source cell x3763 y5749",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      221,
+      254,
+      201
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-155.webp",
+    "legend_plate": 3,
+    "native_box": [
+      3763,
+      5749,
+      167,
+      88
+    ],
+    "similar_swatch_ids": [
+      121,
+      122,
+      151,
+      152,
+      153,
+      154,
+      156,
+      157,
+      158,
+      159
+    ]
+  },
+  {
+    "id": 156,
+    "code": "East intrusion matrix, source cell x4189 y5753",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      223,
+      253,
+      202
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-156.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4189,
+      5753,
+      167,
+      88
+    ],
+    "similar_swatch_ids": [
+      38,
+      122,
+      151,
+      152,
+      153,
+      154,
+      155,
+      157,
+      158,
+      159
+    ]
+  },
+  {
+    "id": 157,
+    "code": "East intrusion matrix, source cell x4614 y5758",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      226,
+      254,
+      205
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-157.webp",
+    "legend_plate": 3,
+    "native_box": [
+      4614,
+      5758,
+      172,
+      86
+    ],
+    "similar_swatch_ids": [
+      38,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      158,
+      159
+    ]
+  },
+  {
+    "id": 158,
+    "code": "East intrusion matrix, source cell x5037 y5762",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      229,
+      254,
+      206
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-158.webp",
+    "legend_plate": 3,
+    "native_box": [
+      5037,
+      5762,
+      160,
+      85
+    ],
+    "similar_swatch_ids": [
+      0,
+      3,
+      38,
+      74,
+      75,
+      77,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      159
+    ]
+  },
+  {
+    "id": 159,
+    "code": "East intrusion matrix, source cell x5253 y5764",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native shared-legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      229,
+      254,
+      207
+    ],
+    "section_only": false,
+    "image": "data/detailed/east1976/legend/entry-159.webp",
+    "legend_plate": 3,
+    "native_box": [
+      5253,
+      5764,
+      162,
+      85
+    ],
+    "similar_swatch_ids": [
+      0,
+      3,
+      38,
+      74,
+      75,
+      77,
+      151,
+      152,
+      153,
+      154,
+      155,
+      156,
+      157,
+      158
+    ]
+  }
+]

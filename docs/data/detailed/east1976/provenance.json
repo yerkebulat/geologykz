@@ -1,0 +1,12 @@
+{
+  "sourcePage": "https://www.geokniga.org/maps/3184",
+  "source_files": {
+    "east_legend_1.jpg": "f02eccca5fc12a66ee3b8c23c1337c5e490763148d4fe6985bc7f159aa373473",
+    "east_legend_2.jpg": "e931f0c26b13e1c5711683217ed358ebf3f3b3f1575c8493e4392780241c7813",
+    "east_legend_3.jpg": "72ba8c1ac9ea2fae3d531f638d80935b73e835a05af3e5ab0d3222ea5b62ca05"
+  },
+  "credit": "USSR / Kazakh SSR Ministries of Geology; East Kazakhstan series; chief editor S. E. Chakabaev. Native scans / shared legend via geokniga.org.",
+  "sampled_swatches": 160,
+  "limitations": "Sampled native stratigraphic swatches and intrusion matrix cells. Not a comprehensive interpreted/transcribed legend; native labels/age descriptions remain in exact excerpts. Candidate lists are non-unique and not exhaustive.",
+  "rights": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license."
+}
