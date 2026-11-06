@@ -1,0 +1,77 @@
+{
+  "method": "Quadratic inverse remap from manually read labelled native graticule/neatline marks, not an image-transfer fit",
+  "gcp_columns": [
+    "pixel_x",
+    "pixel_y",
+    "lon",
+    "lat"
+  ],
+  "gcps": [
+    [
+      156.0,
+      365.0,
+      63.0,
+      46.0
+    ],
+    [
+      3807.0,
+      366.0,
+      66.0,
+      46.0
+    ],
+    [
+      94.0,
+      3858.0,
+      63.0,
+      44.0
+    ],
+    [
+      3866.0,
+      3889.0,
+      66.0,
+      44.0
+    ],
+    [
+      1965.0,
+      384.0,
+      64.5,
+      46.0
+    ],
+    [
+      1967.0,
+      3880.0,
+      64.5,
+      44.0
+    ],
+    [
+      127.0,
+      2120.0,
+      63.0,
+      45.0
+    ],
+    [
+      3841.0,
+      2122.0,
+      66.0,
+      45.0
+    ]
+  ],
+  "gcp_pick_uncertainty_native_px": 8,
+  "assumed_src_crs": "EPSG:4284 (Pulkovo 1942), not explicitly confirmed on scan",
+  "target_crs": "EPSG:3857",
+  "rms_native_px": 3.8719903139919745,
+  "max_native_px": 4.755829325386071,
+  "loo_errors_px": [
+    26.806336670719833,
+    2.5554182585478373,
+    2.6899055156436766,
+    26.58881844304919,
+    12.4999891478916,
+    12.49998076599502,
+    14.267820904510662,
+    14.267838298735288
+  ],
+  "loo_max_native_px": 26.806336670719833,
+  "independent_geographic_landmarks": 0,
+  "caveat": "Grid-fit and leave-one-out residuals are not absolute geographic accuracy. Picks are approximate; all controls are on frame, not surveyed landmarks. Datum assumption, paper/scanner distortion and interior alignment remain unverified. Provisional, not field-grade."
+}

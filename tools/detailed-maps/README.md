@@ -72,3 +72,11 @@ python tests/detailed-east-completion-source.py SOURCE_DIR WORK_DIR
 ```
 
 Eight native frame controls each; RMS3.565/5.723px and leave-one-outmax20.297/35.168px are INTERNAL grid metrics, not absolute geographic accuracy. Assumed datum, interior distortion and independent landmarks remain unverified. Source-dependent tests check actual named-water interiors, pale mapped peninsulas and foreign/paper NoData, preserving lake water in Scan.
+
+## South 1979 four-sheet continuation
+
+`south1979-config.json` adds L-41-Г Kzyl-Orda2565, L-42-В Chiili2570, K-42-А Turkestan2555 and K-42-Б Chimkent2556. Source native imprint/catalog both1979. Reuses all178 original Alma/South reference entries and all three plate assets from Geokniga2550 byte-for-byte; `legend_pages` overrides the historical nested plate paths. Complete per-sheet footer notices and original SHA256 remain linked. No open redistribution license established.
+
+Reproduce with `family.py south1979-config.json /workspace/geokniga_scans WORK docs/data/detailed docs/data/kazakhstan_border.geojson`. Native controls are eight labelled frame/graticule picks per sheet; internal quadratic fit and leave-one-out errors are in georef.json. Datum is assumedEPSG4284, no independent landmarks, not absolute/field-grade accuracy. Median-only classification preserves real dark and pale units, with candidate lists rather than unique unit/age interpretations. Native cyan lake windows on Chiili and Chimkent use per-sheet documented RGB rules and conservative cores, never a global blue/white/dark mask. Chimkent source-native unpainted southeast is traced as NoData, not filled. Fine rivers, hatch/shoreline and source-border placement remain approximate.
+
+Checks: `tests/detailed-family-assets.py south1979-config.json`; `tests/detailed-south-source.py SOURCE WORK`; existing `tests/detailed-lifecycle.cjs`. All previous layers, corrected Baikonur border, UI defaults, lazy loading and shared legend files remain unchanged. No original JPEGs/intermediates committed.
