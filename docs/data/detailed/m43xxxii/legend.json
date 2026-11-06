@@ -1,0 +1,501 @@
+[
+  {
+    "id": 0,
+    "code": "Native sheet legend reference 1, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      255,
+      255
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-0.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6748,
+      930,
+      179,
+      97
+    ],
+    "similar_swatch_ids": [
+      2
+    ]
+  },
+  {
+    "id": 1,
+    "code": "Native sheet legend reference 2, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      242,
+      237,
+      219
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-1.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6747,
+      1071,
+      180,
+      95
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 2,
+    "code": "Native sheet legend reference 3, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      254,
+      244
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-2.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6746,
+      1214,
+      179,
+      94
+    ],
+    "similar_swatch_ids": [
+      0
+    ]
+  },
+  {
+    "id": 3,
+    "code": "Native sheet legend reference 4, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      233,
+      1
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-3.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6745,
+      1354,
+      180,
+      95
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 4,
+    "code": "Native sheet legend reference 5, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      231,
+      242,
+      250
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-4.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6744,
+      1495,
+      179,
+      94
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 5,
+    "code": "Native sheet legend reference 6, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      215,
+      228,
+      234
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-5.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6743,
+      1637,
+      178,
+      95
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 6,
+    "code": "Native sheet legend reference 7, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      156,
+      174,
+      173
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-6.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6741,
+      1776,
+      183,
+      101
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 7,
+    "code": "Native sheet legend reference 8, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      181,
+      216,
+      224
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-7.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6742,
+      1921,
+      178,
+      93
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 8,
+    "code": "Native sheet legend reference 9, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      128,
+      145,
+      140
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-8.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6740,
+      2061,
+      182,
+      100
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 9,
+    "code": "Native sheet legend reference 10, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      238,
+      216,
+      207
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-9.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6740,
+      2205,
+      179,
+      96
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 10,
+    "code": "Native sheet legend reference 11, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      213,
+      175,
+      150
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-10.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6739,
+      2346,
+      180,
+      96
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 11,
+    "code": "Native sheet legend reference 12, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      219,
+      171,
+      169
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-11.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6740,
+      2488,
+      181,
+      92
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 12,
+    "code": "Native sheet legend reference 13, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      221,
+      156,
+      147
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-12.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6737,
+      2629,
+      181,
+      91
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 13,
+    "code": "Native sheet legend reference 14, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      236,
+      234,
+      171
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-13.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6734,
+      2767,
+      180,
+      95
+    ],
+    "similar_swatch_ids": [
+      14
+    ]
+  },
+  {
+    "id": 14,
+    "code": "Native sheet legend reference 15, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      236,
+      226,
+      165
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-14.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6734,
+      2907,
+      180,
+      96
+    ],
+    "similar_swatch_ids": [
+      13
+    ]
+  },
+  {
+    "id": 15,
+    "code": "Native sheet legend reference 16, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      252,
+      191,
+      243
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-15.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6734,
+      3048,
+      180,
+      95
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 16,
+    "code": "Native sheet legend reference 17, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      69,
+      98
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-16.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6732,
+      3191,
+      183,
+      100
+    ],
+    "similar_swatch_ids": [
+      17
+    ]
+  },
+  {
+    "id": 17,
+    "code": "Native sheet legend reference 18, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      89,
+      99
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-17.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6729,
+      3475,
+      185,
+      98
+    ],
+    "similar_swatch_ids": [
+      16,
+      19
+    ]
+  },
+  {
+    "id": 18,
+    "code": "Native sheet legend reference 19, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      43,
+      72
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-18.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6728,
+      3614,
+      185,
+      101
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 19,
+    "code": "Native sheet legend reference 20, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      95,
+      101
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-19.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6728,
+      3755,
+      182,
+      102
+    ],
+    "similar_swatch_ids": [
+      17
+    ]
+  },
+  {
+    "id": 20,
+    "code": "Native sheet legend reference 21, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      255,
+      99,
+      45
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-20.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6726,
+      3897,
+      183,
+      103
+    ],
+    "similar_swatch_ids": []
+  },
+  {
+    "id": 21,
+    "code": "Native sheet legend reference 22, not a unique unit",
+    "ru": "Исторические обозначения и описания сохранены в фрагменте оригинальной легенды.",
+    "en": "Native standalone-sheet legend reference, not a unique or transcribed geological unit. Consult the source excerpt.",
+    "age": "Not transcribed; native legend only",
+    "rgb": [
+      188,
+      242,
+      226
+    ],
+    "section_only": false,
+    "image": "data/detailed/m43xxxii/legend/entry-21.webp",
+    "legend_plate": 1,
+    "native_box": [
+      6726,
+      4040,
+      181,
+      97
+    ],
+    "similar_swatch_ids": []
+  }
+]

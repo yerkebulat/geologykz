@@ -1,0 +1,353 @@
+{
+  "family": "m43xxvi",
+  "standalone": true,
+  "legend_layout": "standalone",
+  "legend_count": 23,
+  "catalog": 1959,
+  "scan_resolution": 32,
+  "maxzoom": 12,
+  "simplify_m": 57.6,
+  "ink_filter": "median_only",
+  "keep_native_footer": true,
+  "legend_source": "https://www.geokniga.org/maps/44355",
+  "credit": "Южно-Казахстанское геологическое управление; редактор Г.Ц. Медоев. Native author/publication notices retained, Geokniga catalog source.",
+  "water_rgb": null,
+  "water_evidence": "No verified separate water class. Actual pale/white/blue source geological swatches and narrow native hydrographic linework are retained as uncertain color references, not globally removed or uniquely interpreted. Scan remains authoritative for linework.",
+  "extra_limitations": "Independent native standalone legend only; NOT borrowed from adjacent sheets. Cross-section-only N-Q and dyke line symbols are not areal classification swatches; full native legend/context retained. Colors are non-unique source-reference candidates, not transcribed units/ages, not exhaustive. Four actual labelled native corner intersections fitted affine in assumed Gauss-Kruger zone13 EPSG28413, each corner held out against the other three. No surveyed/interior landmarks or absolute accuracy. Native map heading1958; printing date not established; XXVI footer approval12 June1959/catalog1959 differs from native heading1958.",
+  "legend_plates": [
+    {
+      "number": 1,
+      "file": "M-43-XXVI.jpg",
+      "boxes": [
+        [
+          6893,
+          873,
+          179,
+          93
+        ],
+        [
+          6892,
+          987,
+          180,
+          93
+        ],
+        [
+          6892,
+          1100,
+          179,
+          94
+        ],
+        [
+          6891,
+          1329,
+          179,
+          95
+        ],
+        [
+          6890,
+          1444,
+          179,
+          93
+        ],
+        [
+          6889,
+          1557,
+          179,
+          93
+        ],
+        [
+          6888,
+          1671,
+          179,
+          95
+        ],
+        [
+          6889,
+          1786,
+          178,
+          93
+        ],
+        [
+          6888,
+          1901,
+          179,
+          94
+        ],
+        [
+          6887,
+          2016,
+          180,
+          94
+        ],
+        [
+          6887,
+          2130,
+          180,
+          94
+        ],
+        [
+          6886,
+          2244,
+          180,
+          93
+        ],
+        [
+          6886,
+          2358,
+          180,
+          94
+        ],
+        [
+          6886,
+          2471,
+          181,
+          94
+        ],
+        [
+          6884,
+          2584,
+          180,
+          94
+        ],
+        [
+          6883,
+          2697,
+          180,
+          95
+        ],
+        [
+          6881,
+          2812,
+          182,
+          94
+        ],
+        [
+          6881,
+          2926,
+          180,
+          94
+        ],
+        [
+          6882,
+          3039,
+          178,
+          97
+        ],
+        [
+          6881,
+          3157,
+          179,
+          94
+        ],
+        [
+          6881,
+          3271,
+          179,
+          95
+        ],
+        [
+          6892,
+          3395,
+          65,
+          28
+        ],
+        [
+          6985,
+          3446,
+          60,
+          25
+        ]
+      ],
+      "excerpts": [
+        [
+          6623,
+          863,
+          8321,
+          984
+        ],
+        [
+          6622,
+          977,
+          8321,
+          1098
+        ],
+        [
+          6622,
+          1090,
+          8321,
+          1212
+        ],
+        [
+          6621,
+          1319,
+          8321,
+          1442
+        ],
+        [
+          6620,
+          1434,
+          8321,
+          1555
+        ],
+        [
+          6619,
+          1547,
+          8321,
+          1668
+        ],
+        [
+          6618,
+          1661,
+          8321,
+          1784
+        ],
+        [
+          6619,
+          1776,
+          8321,
+          1897
+        ],
+        [
+          6618,
+          1891,
+          8321,
+          2013
+        ],
+        [
+          6617,
+          2006,
+          8321,
+          2128
+        ],
+        [
+          6617,
+          2120,
+          8321,
+          2242
+        ],
+        [
+          6616,
+          2234,
+          8321,
+          2355
+        ],
+        [
+          6616,
+          2348,
+          8321,
+          2470
+        ],
+        [
+          6616,
+          2461,
+          8321,
+          2583
+        ],
+        [
+          6614,
+          2574,
+          8321,
+          2696
+        ],
+        [
+          6613,
+          2687,
+          8321,
+          2810
+        ],
+        [
+          6611,
+          2802,
+          8321,
+          2924
+        ],
+        [
+          6611,
+          2916,
+          8321,
+          3038
+        ],
+        [
+          6612,
+          3029,
+          8321,
+          3154
+        ],
+        [
+          6611,
+          3147,
+          8321,
+          3269
+        ],
+        [
+          6611,
+          3261,
+          8321,
+          3384
+        ],
+        [
+          6610,
+          3377,
+          8321,
+          3495
+        ],
+        [
+          6610,
+          3377,
+          8321,
+          3495
+        ]
+      ]
+    }
+  ],
+  "full_legend_plates": [
+    {
+      "number": 1,
+      "file": "M-43-XXVI.jpg",
+      "crop": [
+        6600,
+        700,
+        8321,
+        6000
+      ]
+    }
+  ],
+  "sheets": [
+    {
+      "id": "m43xxvi",
+      "label": "1:200,000 M-43-XXVI",
+      "file": "M-43-XXVI.jpg",
+      "page": 44355,
+      "scan_printed": "not established; native heading1958; footer approval12 June1959",
+      "gcp_pick_uncertainty_native_px": 8,
+      "fit_model": "affine",
+      "fit_crs": 28413,
+      "gcps": [
+        [
+          2234,
+          968,
+          73,
+          49.333333333333336
+        ],
+        [
+          6519,
+          983,
+          74,
+          49.333333333333336
+        ],
+        [
+          2189,
+          5348,
+          73,
+          48.666666666666664
+        ],
+        [
+          6524,
+          5366,
+          74,
+          48.666666666666664
+        ]
+      ]
+    }
+  ]
+}

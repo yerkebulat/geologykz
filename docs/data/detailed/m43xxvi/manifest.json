@@ -1,0 +1,49 @@
+{
+  "sheets": [
+    {
+      "id": "m43xxvi",
+      "label": "1:200,000 M-43-XXVI",
+      "sourcePage": "https://www.geokniga.org/maps/44355",
+      "credit": "Южно-Казахстанское геологическое управление; редактор Г.Ц. Медоев. Native author/publication notices retained, Geokniga catalog source.",
+      "units": "data/detailed/m43xxvi/units.geojson",
+      "legend": "data/detailed/m43xxvi/legend.json",
+      "legendSource": "https://www.geokniga.org/maps/44355",
+      "legendPages": [
+        "data/detailed/m43xxvi/plate-1.webp"
+      ],
+      "bounds": [
+        [
+          72.99980975835747,
+          48.667851231118526
+        ],
+        [
+          73.99844889340747,
+          49.33374283329784
+        ]
+      ],
+      "rasterTiles": {
+        "tiles": [
+          "data/detailed/m43xxvi/tiles/{z}/{x}/{y}.webp"
+        ],
+        "tileSize": 256,
+        "minzoom": 7,
+        "maxzoom": 12,
+        "bounds": [
+          72.99980975835747,
+          48.667851231118526,
+          73.99844889340747,
+          49.33374283329784
+        ]
+      },
+      "dates": {
+        "scan_printed": "not established; native heading1958; footer approval12 June1959",
+        "catalog": 1959
+      },
+      "experimental": true,
+      "license": "Source rights remain with authors/rightsholders; no open redistribution license established. Native scans, excerpts and source-derived vectors are excluded from any repository software license. Hosting on Geokniga is not proof of an open license.",
+      "limitations": "Experimental color segmentation from 23 sampled native standalone-sheet references, not transcribed or unique units. Candidate lists not exhaustive; hatches/text/water classification approximate. Provisional georeferencing, not field-grade. Scan printed not established; native heading1958; footer approval12 June1959; series/catalog 1959. Independent native standalone legend only; NOT borrowed from adjacent sheets. Cross-section-only N-Q and dyke line symbols are not areal classification swatches; full native legend/context retained. Colors are non-unique source-reference candidates, not transcribed units/ages, not exhaustive. Four actual labelled native corner intersections fitted affine in assumed Gauss-Kruger zone13 EPSG28413, each corner held out against the other three. No surveyed/interior landmarks or absolute accuracy. Native map heading1958; printing date not established; XXVI footer approval12 June1959/catalog1959 differs from native heading1958.",
+      "accuracy": "4 labelled native frame controls; internal grid-fit RMS 2.09px, leave-one-out max 8.44px. Grid-fit and leave-one-out residuals are not absolute geographic accuracy. Picks are approximate; all controls are on frame, not surveyed landmarks. Datum assumption, paper/scanner distortion and interior alignment remain unverified. Provisional, not field-grade.",
+      "sourceNotice": "data/detailed/m43xxvi/source-notice.webp"
+    }
+  ]
+}
