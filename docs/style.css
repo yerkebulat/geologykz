@@ -393,3 +393,10 @@ h2 {
 .candidate-list { list-style:none; padding:0; margin:8px 0; }
 .candidate-list li { display:flex; align-items:baseline; gap:8px; margin:6px 0; }
 .popup-swatch { display:inline-block; width:12px; height:12px; flex-shrink:0; border:1px solid #777; }
+
+/* Compact header and nonvisual document heading. */
+.visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.topbar { gap:12px; }
+.topbar .brand { min-width:0; max-width:65%; line-height:1.25; }
+.topbar nav { display:flex; align-items:center; flex-shrink:0; }
+.topbar nav a { white-space:nowrap; }

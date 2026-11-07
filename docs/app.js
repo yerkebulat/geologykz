@@ -291,6 +291,11 @@
       window.geologykzSetBasemap = setBasemap;
       window.geologykzMap = map;
       ["geo-toggle", "kz-toggle", "geo-opacity", "base-toggle"].forEach(id => document.getElementById(id).dispatchEvent(new Event(id.endsWith("opacity") ? "input" : "change")));
+      // Start the standard attribution disclosure closed, without removing credits or its toggle.
+      mapRoot.querySelectorAll('.maplibregl-ctrl-attrib.maplibregl-compact').forEach(control => {
+        control.classList.remove('maplibregl-compact-show');
+        control.removeAttribute('open');
+      });
       window.dispatchEvent(new CustomEvent("geologykz:load", { detail: map }));
       const resize = () => map.resize();
       document.addEventListener("fullscreenchange", resize);
