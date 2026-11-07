@@ -1,4 +1,4 @@
-/* Optional experimental sheets. Groups and selection form a deduplicated union.
+/* Optional detailed sheets. Groups and selection form a deduplicated union.
  * Only enabled mode assets; two sheet jobs at a time; no retained vector cache. */
 (function () {
   const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -27,9 +27,9 @@
       map.on('mouseleave',n.fill,()=>{if(map.getSource(n.units)&&r.hover!==null)map.setFeatureState({source:n.units,id:r.hover},{hover:false});r.hover=null;map.getCanvas().style.cursor='';});
       map.on('click',n.fill,ev=>{
         if(!valid()||!ev.features.length)return;const s=r.sheet,L=r.legend,ids=String(ev.features[0].properties.candidates).split(',').map(Number),units=ids.map(i=>L[i]).filter(Boolean);
-        const body=units.slice(0,12).map(u=>'<b>'+esc(u.code)+'</b> '+(/^(Native |Not transcribed)/.test(u.en)?'':esc(u.en)+'<br>'+esc(u.ru))+(String(u.age).startsWith('Not transcribed')?'':'<br>Age: '+esc(u.age))+(u.image?'<br><a href="'+esc(assetURL(u.image))+'" target="_blank" rel="noopener">Native legend excerpt</a>':'')).join('<hr>');
-        const more=units.length>12?'<p>'+units.length+' similar swatches. First12 shown; see full legend.</p>':'';closePopup();popupSheet=r.id;
-        popup=new maplibregl.Popup({maxWidth:'360px'}).setLngLat(ev.lngLat).setHTML('<div style="max-height:45vh;overflow:auto"><strong>Candidate units</strong><br>'+body+more+'<details><summary>Sheet details &amp; native legend</summary><p>'+esc(s.label)+'</p><a href="'+esc(assetURL('detailed-legend.html?sheet='+encodeURIComponent(r.id)))+'" target="_blank" rel="noopener">Native legend</a><p>Scan '+esc(s.dates.scan_printed)+' / catalog '+esc(s.dates.catalog)+'</p><a href="'+esc(s.sourcePage)+'" target="_blank" rel="noopener">Source</a></details></div>').addTo(map);
+        const body=units.slice(0,12).map(u=>{const native=String(u.age).startsWith('Not transcribed')||String(u.en).startsWith('Native ');const ref=String(u.code).replace(/^.*?plate (\d+), column (\d+), entry (\d+)$/i,'Plate $1 · col $2 · entry $3').replace(', not a unique unit','');const color=u.hex||(u.rgb?'rgb('+u.rgb.map(v=>Math.max(0,Math.min(255,+v||0))).join(',')+')':'#ddd');return '<li><span class="popup-swatch" aria-hidden="true" style="background:'+esc(color)+'"></span><span>'+esc(native?ref:u.code)+(native?'':' · '+esc(u.en))+'</span></li>';}).join('');
+        const more=units.length>12?'<p>'+String(units.length-12)+' more in legend</p>':'';closePopup();popupSheet=r.id;
+        popup=new maplibregl.Popup({maxWidth:'340px'}).setLngLat(ev.lngLat).setHTML('<div style="max-height:45vh;overflow:auto"><strong>'+esc(s.label.replace(/^1:[\d,]+\s*/,''))+'</strong><p>Possible matches</p><ul class="candidate-list">'+body+'</ul>'+more+'<a href="'+esc(assetURL('detailed-legend.html?sheet='+encodeURIComponent(r.id)))+'" target="_blank" rel="noopener">View legend</a><details><summary>Details</summary><p>'+esc(s.label)+'</p><p>Scan '+esc(s.dates.scan_printed)+' / catalog '+esc(s.dates.catalog)+'</p><p>'+esc(s.credit)+'</p><a href="'+esc(s.sourcePage)+'" target="_blank" rel="noopener">Original source</a></details></div>').addTo(map);
       });
     }
     async function json(path,signal){const res=await fetch(assetURL(path),{signal});if(!res.ok&&res.status)throw new Error('HTTP '+res.status);return res.json();}
@@ -70,7 +70,7 @@
     function changed(){fitIntent++;for(const r of records.values())r.failed=false;sync();window.geologykzPreferences?.save();}
     show.addEventListener('change',changed);groups.forEach(([g])=>el('all-'+g).addEventListener('change',changed));
     function legendLink(){link.href='detailed-legend.html?sheet='+encodeURIComponent(select.value);information();}
-    async function information(){if(!document.getElementById('detailed-details').open)return;const id=select.value;try{const s=manifests.get(id)||await json('data/detailed/'+id+'/manifest.json').then(m=>m.sheets.find(s=>s.id===id));if(id!==select.value)return;const box=document.getElementById('detail-information');box.textContent=[s.label,'Scan '+s.dates.scan_printed+'; catalog '+s.dates.catalog,s.credit,s.accuracy,s.limitations,s.license].filter(Boolean).join('\n\n');const a=document.createElement('a');a.href=s.sourcePage;a.target='_blank';a.rel='noopener';a.textContent='Original source';box.appendChild(a);}catch(e){document.getElementById('detail-information').textContent='Source information unavailable; try again.';}}
+    async function information(){if(!document.getElementById('detailed-details').open)return;const id=select.value;try{const s=manifests.get(id)||await json('data/detailed/'+id+'/manifest.json').then(m=>m.sheets.find(s=>s.id===id));if(id!==select.value)return;const box=document.getElementById('detail-information');box.textContent=[s.label,'Scan '+s.dates.scan_printed+'; catalog '+s.dates.catalog,s.credit,s.accuracy,s.limitations,s.license].filter(Boolean).join('\n\n').replace(/\bexperimental\s*/gi,'').replace(/\u2014/g,', ');const a=document.createElement('a');a.href=s.sourcePage;a.target='_blank';a.rel='noopener';a.textContent='Original source';box.appendChild(a);}catch(e){document.getElementById('detail-information').textContent='Source information unavailable; try again.';}}
     document.getElementById('detailed-details').addEventListener('toggle',information);
     select.addEventListener('change',()=>{legendLink();changed();});
     ['scan','colors'].forEach(m=>el(m).addEventListener('click',()=>{mode=m;changed();}));

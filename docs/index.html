@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Geological Map of Kazakhstan</title>
-<meta name="description" content="Explore detailed geological sheets of Kazakhstan alongside national and global overviews. Experimental color matching; original source rights documented.">
+<meta name="description" content="Explore detailed geological sheets of Kazakhstan alongside national and global overviews. Original sources, methods and rights documented.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -37,7 +37,6 @@
       <div class="panel-heading"><strong>Explore geology</strong><button type="button" id="map-help" aria-expanded="false" aria-controls="map-help-text" aria-label="How to use this map">?</button></div>
       <p id="map-help-text" hidden>Tap a sheet outline or choose a sheet. Colors identify candidate units; Scan shows the original. Compare categories together, or hide them to explore the basemap.</p>
       <div class="map-actions"><span id="enabled-count" role="status">Loading maps…</span><button type="button" id="maps-hide-all">Hide all</button><button type="button" id="maps-fit-all">Zoom to visible maps</button></div>
-      <p class="map-warning">Experimental color matches and provisional alignment—not field-grade accuracy.</p>
       <section class="detailed-group map-category" aria-labelledby="detailed-heading">
       <h2 id="detailed-heading">Detailed maps</h2>
       <label class="row"><input id="detail-all-200k" type="checkbox" aria-describedby="detail-group-help"> <span>Show all 1:200,000</span></label>
@@ -50,7 +49,7 @@
       <div class="mode-switch" role="radiogroup" aria-label="Detailed map display"><button type="button" role="radio" aria-checked="true" id="detail-scan" class="active">Scan</button><button type="button" role="radio" aria-checked="false" id="detail-colors">Colors</button></div>
       <label class="row opacity"><span>Opacity</span><input id="detail-opacity" type="range" min="0" max="1" step="0.05" value="1"></label>
       <button type="button" id="detail-fit" class="detail-fit">Zoom to sheet</button>
-      <details id="detailed-details"><summary>Details &amp; native legend</summary><p>Outlines mark sheet extents, not exact painted coverage.</p><a id="detail-legend" href="detailed-legend.html" target="_blank" rel="noopener">Open selected sheet’s native legend</a><div id="detail-information">Choose a sheet for its source, accuracy and rights information.</div></details>
+      <details id="detailed-details"><summary>Details &amp; native legend</summary><p>Color matches and alignment are approximate, not field-grade accuracy. Outlines mark sheet extents, not exact painted coverage.</p><a id="detail-legend" href="detailed-legend.html" target="_blank" rel="noopener">Open selected sheet’s native legend</a><div id="detail-information">Choose a sheet for its source, accuracy and rights information.</div></details>
       <div id="detail-status" class="detail-status" role="status">Preparing detailed maps…</div>
       </section>
       <section class="map-category" aria-labelledby="national-heading"><h2 id="national-heading">National map</h2>

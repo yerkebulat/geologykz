@@ -390,3 +390,6 @@ h2 {
 .layer-panel .row.opacity { padding-left:0; }
 .layer-panel input[type=range] { min-height:44px; }
 .layer-panel button { min-width:44px; }
+.candidate-list { list-style:none; padding:0; margin:8px 0; }
+.candidate-list li { display:flex; align-items:baseline; gap:8px; margin:6px 0; }
+.popup-swatch { display:inline-block; width:12px; height:12px; flex-shrink:0; border:1px solid #777; }
