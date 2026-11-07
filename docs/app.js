@@ -214,7 +214,7 @@
 
 
       map.on("click", "geo-fill", function (e) {
-        if (map.getLayer("detail-fill") && map.getLayoutProperty("detail-fill", "visibility") === "visible" && map.queryRenderedFeatures(e.point, { layers: ["detail-fill"] }).length) return;
+        if (window.geologykzDetailed?.hitUnits(e.point)) return;
         if (map.getLayer("kz15m-fill") && map.getLayoutProperty("kz15m-fill", "visibility") === "visible" &&
             map.queryRenderedFeatures(e.point, { layers: ["kz15m-fill"] }).length) return;
         const p = (e.features[0] || {}).properties || {};
@@ -290,6 +290,7 @@
       setBasemap("light");
       window.geologykzSetBasemap = setBasemap;
       window.geologykzMap = map;
+      ["geo-toggle", "kz-toggle", "geo-opacity", "base-toggle"].forEach(id => document.getElementById(id).dispatchEvent(new Event(id.endsWith("opacity") ? "input" : "change")));
       window.dispatchEvent(new CustomEvent("geologykz:load", { detail: map }));
       const resize = () => map.resize();
       document.addEventListener("fullscreenchange", resize);

@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Detailed map legend</title><style>body{font:14px system-ui;max-width:1000px;margin:30px auto;padding:15px;color:#292524;background:#fff}td{padding:8px;border-bottom:1px solid #ddd;vertical-align:top}i{display:block;width:50px;height:35px;border:1px solid #888}img{display:block;max-width:100%;height:auto;margin-top:8px}table{width:100%;table-layout:fixed}td:first-child{width:60px}a{color:#176757}small{overflow-wrap:anywhere}</style></head>
-<body><h1 id="title">Detailed map legend</h1><p id="notice">Loading source metadata...</p><p id="source"></p><p id="plates"></p><table id="legend"></table>
+<body><h1 id="title">Detailed map legend</h1><details><summary>Source and accuracy details</summary><p id="notice">Loading source metadata...</p><p id="source"></p><p id="plates"></p></details><table id="legend"></table>
 <script>
 (async function(){
  const allowed=['m43xxxi','m44xv','alma','east-m44a','east-m44v','east-m44b','east-m44g','east-m45v','east-l45a','central-l42a','central-l42b','south-l41g','south-l42v','south-k42a','south-k42b','south-l41v','south-l42g','south-l43v','south-l43g','south-l44a','south-l44b','south-l44v','south-k43a','south-k44a','south-k42v','m43xxvi','m43xxxii','m40xxxiii','m40xxxi'],id=new URLSearchParams(location.search).get('sheet')||'m43xxxi';
@@ -8,7 +8,7 @@
  const get=async p=>{const r=await fetch(p);if(!r.ok)throw new Error('HTTP '+r.status);return r.json();};
  const man=await get('data/detailed/'+id+'/manifest.json'),s=man.sheets.find(x=>x.id===id),L=await get(s.legend);
  document.title=s.label+' legend';document.getElementById('title').textContent=s.label;
- document.getElementById('notice').textContent='Scan '+s.dates.scan_printed+' / catalog '+s.dates.catalog+'. '+s.license+' '+s.limitations+' '+s.accuracy+' Color-only matches cannot distinguish hatches; candidate references are not definitive or exhaustive unit identifications. Historic labels are retained.';
+ document.getElementById('notice').textContent=('Scan '+s.dates.scan_printed+' / catalog '+s.dates.catalog+'. '+s.license+' '+s.limitations+' '+s.accuracy+' Color-only matches cannot distinguish hatches; candidate references are not definitive or exhaustive unit identifications. Historic labels are retained.').replace(/\bexperimental\s*/gi,'').replace(/\u2014/g,', ');
  function link(parent,url,text){const a=document.createElement('a');a.href=url;a.textContent=text;a.target='_blank';a.rel='noopener';parent.append(a,document.createTextNode(' '));}
  const src=document.getElementById('source');link(src,s.sourcePage,'Source scan on Geokniga');if(s.legendSource)link(src,s.legendSource,'Shared native legend on Geokniga');if(s.sourceNotice)link(src,s.sourceNotice,'Native map credits and print notice');
  (s.legendPages||[]).forEach((p,i)=>link(document.getElementById('plates'),p,'Native legend plate '+(i+1)));
