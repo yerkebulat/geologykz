@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Geological Map of Kazakhstan</title>
-<meta name="description" content="An interactive geological map of Kazakhstan with open Macrostrat geologic map data (CC-BY 4.0).">
+<meta name="description" content="Explore detailed geological sheets of Kazakhstan alongside national and global overviews. Experimental color matching; original source rights documented.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -27,33 +27,41 @@
   <!-- Fullscreen target: title + map + layer panel all live here -->
   <section id="map" class="hero-map" aria-label="Geological map">
     <div class="title-block">
-      <p class="eyebrow">Open data · Vector · Interactive</p>
+      <p class="eyebrow">Explore · Compare · Discover</p>
       <h1>GEOLOGICAL MAP<br>OF KAZAKHSTAN</h1>
     </div>
     <div id="mapview" role="application" aria-label="Interactive map of Kazakhstan geology"></div>
     <div class="layers-dock" id="layers-dock">
     <button type="button" class="layers-btn" id="layers-btn" aria-expanded="true" aria-controls="layer-panel"><span class="layers-icon" aria-hidden="true"></span><span class="layers-label">Hide layers</span></button>
     <aside class="layer-panel card" id="layer-panel" aria-label="Map layers">
-      <div class="panel-title">Layers</div>
-      <div class="detailed-group">
-      <div class="panel-title">Detailed maps</div>
+      <div class="panel-heading"><strong>Explore geology</strong><button type="button" id="map-help" aria-expanded="false" aria-controls="map-help-text" aria-label="How to use this map">?</button></div>
+      <p id="map-help-text" hidden>Tap a sheet outline or choose a sheet. Colors identify candidate units; Scan shows the original. Compare categories together, or hide them to explore the basemap.</p>
+      <div class="map-actions"><span id="enabled-count" role="status">Loading maps…</span><button type="button" id="maps-hide-all">Hide all</button><button type="button" id="maps-fit-all">Zoom to visible maps</button></div>
+      <p class="map-warning">Experimental color matches and provisional alignment—not field-grade accuracy.</p>
+      <section class="detailed-group map-category" aria-labelledby="detailed-heading">
+      <h2 id="detailed-heading">Detailed maps</h2>
       <label class="row"><input id="detail-all-200k" type="checkbox" aria-describedby="detail-group-help"> <span>Show all 1:200,000</span></label>
       <label class="row"><input id="detail-all-500k" type="checkbox" aria-describedby="detail-group-help"> <span>Show all 1:500,000</span></label>
       <label class="row"><input id="detail-show" type="checkbox"> <span>Show selected sheet</span></label>
-      <small id="detail-group-help">Groups add to the selected sheet. Scan/Colors and opacity apply to all enabled sheets.</small>
+      <small id="detail-group-help">Groups and the selected sheet combine without duplicates.</small>
+      <label class="row"><input id="detail-coverage" type="checkbox" checked><span>Sheet outlines · tap to select</span></label>
       <label class="row" for="detail-sheet">Sheet</label>
       <select id="detail-sheet" style="width:100%;max-width:100%;margin-bottom:8px"><option value="m43xxxi">1:200,000 M-43-XXXI</option><option value="m44xv">1:200,000 M-44-XV</option><option value="alma">1:500,000 K-43-Б Alma-Ata</option><option value="east-m44a">1:500,000 M-44-А Semipalatinsk</option><option value="east-m44v">1:500,000 M-44-В Zharma</option><option value="east-m44b">1:500,000 M-44-Б Leninogorsk</option><option value="east-m44g">1:500,000 M-44-Г Ust-Kamenogorsk</option><option value="east-m45v">1:500,000 M-45-В Zyryanovsk</option><option value="east-l45a">1:500,000 L-45-А Zaysan</option><option value="central-l42a">1:500,000 L-42-А Dzhezkazgan</option><option value="central-l42b">1:500,000 L-42-Б Dzhambul</option><option value="south-l41g">1:500,000 Kzyl-Orda L-41-Г</option><option value="south-l42v">1:500,000 Chiili L-42-В</option><option value="south-k42a">1:500,000 Turkestan K-42-А</option><option value="south-k42b">1:500,000 Chimkent K-42-Б</option><option value="south-l41v">1:500,000 L-41-В Kazalinsk</option><option value="south-l42g">1:500,000 L-42-Г Svkh. Tasty</option><option value="south-l43v">1:500,000 L-43-В Mynaral</option><option value="south-l43g">1:500,000 L-43-Г Ushtobe</option><option value="south-l44a">1:500,000 L-44-А Ayaguz</option><option value="south-l44b">1:500,000 L-44-Б Makanchi</option><option value="south-l44v">1:500,000 L-44-В Taldy-Kurgan</option><option value="south-k43a">1:500,000 K-43-А Frunze</option><option value="south-k44a">1:500,000 K-44-А Przhevalsk</option><option value="south-k42v">1:500,000 K-42-В Yangier</option><option value="m43xxvi">1:200,000 M-43-XXVI</option><option value="m43xxxii">1:200,000 M-43-XXXII</option><option value="m40xxxiii">1:200,000 M-40-XXXIII</option><option value="m40xxxi">1:200,000 M-40-XXXI (geological base)</option></select>
       <div class="mode-switch" role="radiogroup" aria-label="Detailed map display"><button type="button" role="radio" aria-checked="true" id="detail-scan" class="active">Scan</button><button type="button" role="radio" aria-checked="false" id="detail-colors">Colors</button></div>
       <label class="row opacity"><span>Opacity</span><input id="detail-opacity" type="range" min="0" max="1" step="0.05" value="1"></label>
       <button type="button" id="detail-fit" class="detail-fit">Zoom to sheet</button>
-      <a id="detail-legend" href="detailed-legend.html" target="_blank" rel="noopener">Legend</a>
-      <div id="detail-status" class="detail-status" role="status">Experimental. Approximate colors and provisional georeferencing.</div>
-      </div>
-      <label class="row"><input type="checkbox" id="geo-toggle" checked> <span>Geologic units (Macrostrat)</span></label>
-      <label class="row opacity"><span>Opacity</span><input type="range" id="geo-opacity" min="0" max="1" step="0.05" value="0.7"></label>
-      <label class="row"><input type="checkbox" id="kz15m-toggle"> <span>1:1.5M Kazakh SSR (1967)</span></label>
+      <details id="detailed-details"><summary>Details &amp; native legend</summary><p>Outlines mark sheet extents, not exact painted coverage.</p><a id="detail-legend" href="detailed-legend.html" target="_blank" rel="noopener">Open selected sheet’s native legend</a><div id="detail-information">Choose a sheet for its source, accuracy and rights information.</div></details>
+      <div id="detail-status" class="detail-status" role="status">Preparing detailed maps…</div>
+      </section>
+      <section class="map-category" aria-labelledby="national-heading"><h2 id="national-heading">National map</h2>
+      <label class="row"><input type="checkbox" id="kz15m-toggle"> <span>Show national overview</span></label>
       <div class="mode-switch" id="kz15m-mode" role="radiogroup" aria-label="1967 map display"><button type="button" role="radio" aria-checked="true" data-mode="scan" class="active">Scan</button><button type="button" role="radio" aria-checked="false" data-mode="colors">Colors</button></div>
       <label class="row opacity"><span>Opacity</span><input type="range" id="kz15m-opacity" min="0" max="1" step="0.05" value="0.85"></label>
+      <details><summary>Details &amp; legend</summary><p>Geological map of the Kazakh SSR, 1:1,500,000 (1967). Historic source via Geokniga; approximate color segmentation and provisional georeferencing.</p><a href="#kz15m-card">National map legend and source information</a></details></section>
+      <section class="map-category" aria-labelledby="global-heading"><h2 id="global-heading">Global geology</h2>
+      <label class="row"><input type="checkbox" id="geo-toggle"><span>Show global overview</span></label>
+      <label class="row opacity"><span>Opacity</span><input type="range" id="geo-opacity" min="0" max="1" step="0.05" value="0.7"></label>
+      <details><summary>Details &amp; legend</summary><p>Macrostrat: IGME 5000 / Generalized Geology of the World, clipped to Kazakhstan. Overview data, CC-BY 4.0.</p><a href="#legends">Global geology legend and source information</a></details></section>
       <label class="row"><input type="checkbox" id="kz-toggle" checked> <span>Kazakhstan border</span></label>
       <hr>
       <div class="basemap-block">
@@ -80,7 +88,7 @@
       <p class="lede">Units present in the map data, coloured as on the map and ordered youngest to oldest. The number is the polygon count. IGME 5000 covers the west; Generalized Geology of the World (GGW) covers the rest.</p>
     </div>
     <div class="legend-grid">
-      <details class="legend-card" open>
+      <details class="legend-card">
         <summary>
           <span>Kazakhstan, Macrostrat</span>
           <span class="count mono" id="geo-count">-</span>
@@ -112,15 +120,16 @@
 </main>
 
 <footer class="site-foot">
-  <div class="foot-inner">
+  <div class="foot-inner"><details><summary>Sources, processing &amp; rights</summary>
     <p>Geologic map data &copy; <a href="https://macrostrat.org" target="_blank" rel="noopener">Macrostrat</a>, CC-BY 4.0. Sources: Chorlton, L.B. 2007, Generalized Geology of the World, GSC Open File 5529, doi:10.4095/223767; Asch, K. 2003, IGME 5000 International Geological Map of Europe 1:5M, BGR. Clipped to Kazakhstan and simplified. Border: Natural Earth. Basemaps: OpenFreeMap, Esri, OpenTopoMap / OpenStreetMap.</p>
     <p>Geological map of the Kazakh SSR, 1:1,500,000 (1967). Scan via geokniga.org. Georeferenced, mosaicked and vectorised by colour for this site; boundaries are approximate.</p>
     <p><a href="https://github.com/yerkebulat/geologykz" target="_blank" rel="noopener">github.com/yerkebulat/geologykz</a></p>
-  </div>
+  </details></div>
 </footer>
 </div>
 
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="preferences.js"></script>
 <script src="kz15m.js"></script>
 <script src="detailed.js"></script>
 <script src="app.js"></script>

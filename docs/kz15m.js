@@ -23,7 +23,7 @@
   function popup(u) {
     return `<div class="kz15m-pop"><strong class="mono">${esc(u.code)}</strong> ${esc(u.en)}` +
       `<br><span class="ru">${esc(u.ru)}</span><br>Age: ${esc(u.age)}` +
-      `<br><small>${CREDIT} Unit matched by colour, may be wrong near boundaries.</small></div>`;
+      `<details><summary>Source details</summary>${CREDIT}</details></div>`;
   }
   function renderLegend(L, fc) {
     const n = {}; fc.features.forEach((f) => (n[f.properties.u] = (n[f.properties.u] || 0) + 1));
@@ -79,7 +79,7 @@
     });
     map.on("mouseleave", "kz15m-fill", () => { if (hov !== null) map.setFeatureState({ source: "kz15m-units", id: hov }, { hover: false }); hov = null; map.getCanvas().style.cursor = ""; });
     map.on("click", "kz15m-fill", (e) => {
-      if (map.getLayer("detail-fill") && map.getLayoutProperty("detail-fill", "visibility") === "visible" && map.queryRenderedFeatures(e.point, { layers: ["detail-fill"] }).length) return;
+      if (window.geologykzDetailed?.hitUnits(e.point)) return;
       const f = e.features[0]; if (!f || !legend) return;
       new maplibregl.Popup({ maxWidth: "320px" }).setLngLat(e.lngLat).setHTML(popup(legend[f.properties.u])).addTo(map);
     });
