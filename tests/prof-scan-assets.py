@@ -9,5 +9,6 @@ for sid,g in ids:
     assert not any(f.suffix.lower() in ['.jpg','.tif','.png','.npy'] for f in d.rglob('*'))
     (x,y),(X,Y)=s['bounds'];assert 46<x<X<88 and 40<y<Y<56
     assert G['diagnostics']['affine_misfit_max_px']<60 and len(G['source_sha256'])==64
-    txt=json.dumps(s)+(d/'RIGHTS.md').read_text();assert '\u2014' not in txt and 'xperimental' not in txt and 'drive.google' not in txt
-print('PASS 44 professor scan-only sheets: manifests, tiles match georef, no originals, no em dashes.')
+    txt=json.dumps(s)+(d/'RIGHTS.md').read_text();assert '\u2014' not in txt and 'xperimental' not in txt and 'drive.google' not in txt and 'rofessor' not in txt and 'Extra collection' in txt
+assert 'rofessor' not in html+(docs/'detailed.js').read_text() and 'Extra collection' in html
+print('PASS 44 Extra collection scan-only sheets: manifests, tiles match georef, no originals, no em dashes.')

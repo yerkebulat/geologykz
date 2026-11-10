@@ -2,7 +2,7 @@ import json,shutil,hashlib,pathlib,re
 P=pathlib.Path('/workspace/profmaps');D=pathlib.Path('/workspace/geologykz-layers/docs/data/detailed')
 M=json.load(open(P/'meta.json'))
 GN={'geo200':'Geological 1:200,000','geo500':'Geological 1:500,000','geo1m':'Geological 1:1,000,000','mineral':'Mineral resources and forecast','hydro':'Hydrogeological'}
-CREDIT="From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only."
+CREDIT="Extra collection (shared scans) of Soviet geological maps. Scan only."
 LIC="Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license."
 def srcpath(pid):
     return P/'src'/(pid+'.jpg')
@@ -27,11 +27,11 @@ for pid,m in M.items():
            rasterTiles=dict(tiles=[f'data/detailed/{sid}/tiles/{{z}}/{{x}}/{{y}}.webp'],tileSize=256,minzoom=r['minzoom'],maxzoom=r['maxzoom'],bounds=[b[0][0],b[0][1],b[1][0],b[1][1]]))
     json.dump({'sheets':[s]},open(d/'manifest.json','w'),ensure_ascii=False,indent=1)
     sp=srcpath(pid);h=hashlib.sha256(sp.read_bytes()).hexdigest()
-    prov=dict(id=sid,source='professor shared collection (Google Drive folder "Kazakhstan maps")',source_file=m['drive_name'],source_bytes=sp.stat().st_size,source_sha256=h,
+    prov=dict(id=sid,source='Extra collection (shared scans)',source_file=m['drive_name'],source_bytes=sp.stat().st_size,source_sha256=h,
               nomenclature=r['sheet'],scale=scale,map_type=m['title'],year_read=yr,extent_pulkovo=r['extent_pulkovo'],corner_px_TL_TR_BL_BR=r['corner_px'],corners_wgs84=r['corners_wgs84'],
               fit_crs=r['fit_crs'],homography=r['homography'],diagnostics=r['diagnostics'],tiles=len(tiles),tile_bytes=sum(t.stat().st_size for t in tiles))
     json.dump(prov,open(d/'georef.json','w'),ensure_ascii=False,indent=1)
-    open(d/'RIGHTS.md','w').write(f"# Source rights and provenance\n\nScan-derived tiles of {m['name']}, {m['title']}, {sc}{', '+yr if yr else ''}. Source: the professor's shared collection of Soviet geological maps (file `{m['drive_name']}`).\n\n{LIC} Original scans are not committed. `georef.json` records the corner control points, the fit and the source hash.\n")
+    open(d/'RIGHTS.md','w').write(f"# Source rights and provenance\n\nScan-derived tiles of {m['name']}, {m['title']}, {sc}{', '+yr if yr else ''}. Source: Extra collection (shared scans) of Soviet geological maps (file `{m['drive_name']}`).\n\n{LIC} Original scans are not committed. `georef.json` records the corner control points, the fit and the source hash.\n")
     idx.append(dict(id=sid,label=label,group='prof-'+m['group'],bounds=b))
 order=list(GN)
 idx.sort(key=lambda s:(order.index(s['group'][5:]),s['label']))

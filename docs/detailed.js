@@ -19,7 +19,7 @@
     function paint(r){const n=names(r.id);if(map.getLayer(n.raster))map.setPaintProperty(n.raster,'raster-opacity',+opacity.value);if(map.getLayer(n.fill))map.setPaintProperty(n.fill,'fill-opacity',+opacity.value);}
     function report(){
       const loaded=[...wanted].filter(id=>records.get(id)?.loaded===modeFor(id)).length,failed=[...wanted].filter(id=>records.get(id)?.failed).length;
-      status.textContent=wanted.size?loaded+'/'+wanted.size+' sheets ready · '+(mode==='scan'?'Scan':'Colors')+([...wanted].some(id=>scanOnly.has(id))&&mode==='colors'?' (professor sheets as Scan)':'')+(failed?' · '+failed+' failed; toggle to retry.':''):'Detailed maps hidden';
+      status.textContent=wanted.size?loaded+'/'+wanted.size+' sheets ready · '+(mode==='scan'?'Scan':'Colors')+([...wanted].some(id=>scanOnly.has(id))&&mode==='colors'?' (Extra collection as Scan)':'')+(failed?' · '+failed+' failed; toggle to retry.':''):'Detailed maps hidden';
       const count=wanted.size+Number(document.getElementById('geo-toggle').checked)+Number(document.getElementById('kz15m-toggle').checked);document.getElementById('enabled-count').textContent=count+' maps enabled';
     }
     function register(r){

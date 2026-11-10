@@ -1,4 +1,4 @@
-"""Scan-only georeferencing + XYZ tiles for professor's shared Soviet map scans.
+"""Scan-only georeferencing + XYZ tiles for Extra collection Soviet map scans.
 Four labelled/nomenclature frame corners (TL,TR,BL,BR) -> perspective (homography) fit in a sheet-centred
 Lambert conformal conic on the Krassovsky ellipsoid; datum EPSG:4284 (Pulkovo 1942) assumed, shifted to WGS84
 with pyproj's default EPSG:4284->EPSG:4326 operation (same as existing site sheets). Output clipped to the sheet
