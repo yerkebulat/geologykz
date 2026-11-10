@@ -1,0 +1,81 @@
+{
+ "id": "prof-k-41-a-g",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "К-41-А-mangit-geologicheskaya-karta-kazahskoy-ssr.jpg",
+ "source_bytes": 3213384,
+ "source_sha256": "0868df7e9cc99c6e2b5fe5a1bb53e0c3db4c9e3c9312c17fcee4de03bdc6405e",
+ "nomenclature": "K-41-А",
+ "scale": 500000,
+ "map_type": "geological map, Kazakh SSR series",
+ "year_read": "1979",
+ "extent_pulkovo": [
+  60,
+  42,
+  63,
+  44
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   171,
+   348
+  ],
+  [
+   3958,
+   351
+  ],
+  [
+   86,
+   3851
+  ],
+  [
+   3995,
+   3852
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   59.999006,
+   44.000149
+  ],
+  [
+   62.999077,
+   44.000182
+  ],
+  [
+   59.999047,
+   42.000106
+  ],
+  [
+   62.999116,
+   42.000138
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=43 +lon_0=61.5 +lat_1=42.3333333333333 +lat_2=43.6666666666667 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.015736969797037724,
+   0.00010107534801750476,
+   2052.943863366022
+  ],
+  [
+   1.3304750996018597e-05,
+   -0.015771007991047036,
+   2118.5098176057295
+  ],
+  [
+   2.4094973349227598e-09,
+   -3.310886898045073e-09,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 0.9688,
+  "top_bottom_ratio_expected": 0.9681,
+  "left_right_scale_ratio": 1.0008,
+  "height_width_scale_ratio": 1.0021,
+  "affine_misfit_max_px": 0.9,
+  "metres_per_source_px": 63.5
+ },
+ "tiles": 66,
+ "tile_bytes": 444404
+}

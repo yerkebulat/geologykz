@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-l-42-g",
+   "label": "L-(42) Karsakpay · Geological map, 1:1,000,000",
+   "name": "L-(42) Karsakpay",
+   "mapType": "Geological map",
+   "scale": "1:1,000,000",
+   "group": "prof-geo1m",
+   "groupLabel": "Geological 1:1,000,000",
+   "scanOnly": true,
+   "year": "1949",
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "L-(42)-karsakpay-geologicheskaya-karta-sssr-geologicheskaya-karta.jpg",
+   "coordinates": [
+    [
+     65.999065,
+     48.000301
+    ],
+    [
+     71.999233,
+     48.000361
+    ],
+    [
+     71.999308,
+     44.00027
+    ],
+    [
+     65.999151,
+     44.000213
+    ]
+   ],
+   "bounds": [
+    [
+     65.99906468604966,
+     44.00021326490291
+    ],
+    [
+     71.99930821131704,
+     48.00036124842703
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the L-(42) nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 14.5 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-l-42-g/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 10,
+    "bounds": [
+     65.99906468604966,
+     44.00021326490291,
+     71.99930821131704,
+     48.00036124842703
+    ]
+   }
+  }
+ ]
+}

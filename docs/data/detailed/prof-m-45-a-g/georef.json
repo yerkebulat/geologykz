@@ -1,0 +1,81 @@
+{
+ "id": "prof-m-45-a-g",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "М-45-А-gorno-altaysk-geologicheskaya-karta-kazahskoy-ssr.jpg",
+ "source_bytes": 13329792,
+ "source_sha256": "03304382d40b2e1f9b1ae2ea9c802cb930346c3b4e8d2ff783effcb289e22e0d",
+ "nomenclature": "M-45-А",
+ "scale": 500000,
+ "map_type": "geological map, Kazakh SSR series",
+ "year_read": "1979",
+ "extent_pulkovo": [
+  84,
+  50,
+  87,
+  52
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   514,
+   584
+  ],
+  [
+   5404,
+   661
+  ],
+  [
+   309,
+   5823
+  ],
+  [
+   5395,
+   5997
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   83.999541,
+   52.000547
+  ],
+  [
+   86.999646,
+   52.000565
+  ],
+  [
+   83.999573,
+   50.000501
+  ],
+  [
+   86.999673,
+   50.000519
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=51 +lon_0=85.5 +lat_1=50.3333333333333 +lat_2=51.6666666666667 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.023448621702365117,
+   0.0004455578867324112,
+   2883.1620835606045
+  ],
+  [
+   0.0003216130322532382,
+   -0.023815815032576137,
+   3295.7829344862444
+  ],
+  [
+   -8.26850464613378e-08,
+   -1.4961849733402088e-08,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 0.961,
+  "top_bottom_ratio_expected": 0.9579,
+  "left_right_scale_ratio": 0.9826,
+  "height_width_scale_ratio": 1.0032,
+  "affine_misfit_max_px": 23.9,
+  "metres_per_source_px": 42.1
+ },
+ "tiles": 48,
+ "tile_bytes": 143158
+}

@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-l-4344-pq",
+   "label": "L-(43),(44) Taldy-Kurgan · Pre-Quaternary geological map, 1:1,000,000",
+   "name": "L-(43),(44) Taldy-Kurgan",
+   "mapType": "Pre-Quaternary geological map",
+   "scale": "1:1,000,000",
+   "group": "prof-geo1m",
+   "groupLabel": "Geological 1:1,000,000",
+   "scanOnly": true,
+   "year": "1974",
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "L-(43)-(44)-taldy-kurgan-geologicheskaya-karta-sssr-geologicheskaya-karta.jpg",
+   "coordinates": [
+    [
+     74.999322,
+     48.000388
+    ],
+    [
+     80.999506,
+     48.000435
+    ],
+    [
+     80.999562,
+     44.00034
+    ],
+    [
+     74.999391,
+     44.000296
+    ]
+   ],
+   "bounds": [
+    [
+     74.99932190683127,
+     44.00029560605445
+    ],
+    [
+     80.99954700087594,
+     48.00043462044919
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the L-(43),(44) nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 8.7 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-l-4344-pq/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 10,
+    "bounds": [
+     74.99932190683127,
+     44.00029560605445,
+     80.99954700087594,
+     48.00043462044919
+    ]
+   }
+  }
+ ]
+}

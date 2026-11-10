@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-k-44-viii-g",
+   "label": "K-44-VIII · Geological map, 1:200,000",
+   "name": "K-44-VIII",
+   "mapType": "Geological map",
+   "scale": "1:200,000",
+   "group": "prof-geo200",
+   "groupLabel": "Geological 1:200,000",
+   "scanOnly": true,
+   "year": null,
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "К-44-VIII-gosudarstvennaya-geologicheskaya-karta-sssr.jpg",
+   "coordinates": [
+    [
+     78.999513,
+     43.333644
+    ],
+    [
+     79.999542,
+     43.33365
+    ],
+    [
+     79.99955,
+     42.666968
+    ],
+    [
+     78.999522,
+     42.666961
+    ]
+   ],
+   "bounds": [
+    [
+     78.99951308408914,
+     42.666962284396185
+    ],
+    [
+     79.99955008811521,
+     43.33365044582443
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the K-44-VIII nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 12.0 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-k-44-viii-g/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 12,
+    "bounds": [
+     78.99951308408914,
+     42.666962284396185,
+     79.99955008811521,
+     43.33365044582443
+    ]
+   }
+  }
+ ]
+}

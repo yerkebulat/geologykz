@@ -1,0 +1,81 @@
+{
+ "id": "prof-l-4041-pq",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "L-(40)-(41)-kazalinsk.jpg",
+ "source_bytes": 1463630,
+ "source_sha256": "97db38280d9bf6a8e9ce7d8a2df9bd21f8a8245eb6c96683e76c00dd4ce70f0a",
+ "nomenclature": "L-(40),(41)",
+ "scale": 1000000,
+ "map_type": "pre-Quaternary geological map",
+ "year_read": "1984",
+ "extent_pulkovo": [
+  57,
+  44,
+  63,
+  48
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   394,
+   462
+  ],
+  [
+   4023,
+   505
+  ],
+  [
+   186,
+   4027
+  ],
+  [
+   4100,
+   4090
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   56.998836,
+   48.000195
+  ],
+  [
+   62.998985,
+   48.000268
+  ],
+  [
+   56.998938,
+   44.000114
+  ],
+  [
+   62.999077,
+   44.000182
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=46 +lon_0=60 +lat_1=44.6666666666667 +lat_2=47.3333333333333 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.008097395114306804,
+   0.0001663183570689738,
+   2170.9222980278687
+  ],
+  [
+   9.15363542766955e-05,
+   -0.00802893835129798,
+   2303.2734384657956
+  ],
+  [
+   -9.642094332231149e-09,
+   8.032099056494357e-09,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 0.9271,
+  "top_bottom_ratio_expected": 0.9304,
+  "left_right_scale_ratio": 0.9959,
+  "height_width_scale_ratio": 0.9913,
+  "affine_misfit_max_px": 5.4,
+  "metres_per_source_px": 123.7
+ },
+ "tiles": 382,
+ "tile_bytes": 1419462
+}

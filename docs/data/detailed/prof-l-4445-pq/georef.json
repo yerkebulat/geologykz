@@ -1,0 +1,81 @@
+{
+ "id": "prof-l-4445-pq",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "L-(44)-(45)-zaysan-geologicheskaya-karta-sssr-karta-dochetvertichnyh-obrazovaniy.jpg",
+ "source_bytes": 15784545,
+ "source_sha256": "0ec262d3c5d7efbe7baa2f94a945da3e684b3acdf0968d79cefd3d367c81bca4",
+ "nomenclature": "L-(44),(45)",
+ "scale": 1000000,
+ "map_type": "pre-Quaternary geological map",
+ "year_read": "1979",
+ "extent_pulkovo": [
+  81,
+  44,
+  87,
+  48
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   186,
+   420
+  ],
+  [
+   2938,
+   390
+  ],
+  [
+   82,
+   3113
+  ],
+  [
+   3072,
+   3080
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   80.999506,
+   48.000435
+  ],
+  [
+   86.999698,
+   48.000471
+  ],
+  [
+   80.999562,
+   44.00034
+  ],
+  [
+   86.999741,
+   44.000375
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=46 +lon_0=84 +lat_1=44.6666666666667 +lat_2=47.3333333333333 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.006179950282336093,
+   4.474489162765912e-06,
+   1569.712560414679
+  ],
+  [
+   -6.72372382491357e-05,
+   -0.0060162407570350405,
+   1770.2040536360566
+  ],
+  [
+   3.113677365284656e-10,
+   2.4388521454115943e-08,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 0.9204,
+  "top_bottom_ratio_expected": 0.9304,
+  "left_right_scale_ratio": 1.0006,
+  "height_width_scale_ratio": 0.9805,
+  "affine_misfit_max_px": 8.0,
+  "metres_per_source_px": 163.4
+ },
+ "tiles": 180,
+ "tile_bytes": 1002990
+}

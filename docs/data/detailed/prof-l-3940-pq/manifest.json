@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-l-3940-pq",
+   "label": "L-(39),(40) Guryev · Pre-Quaternary geological map, 1:1,000,000",
+   "name": "L-(39),(40) Guryev",
+   "mapType": "Pre-Quaternary geological map",
+   "scale": "1:1,000,000",
+   "group": "prof-geo1m",
+   "groupLabel": "Geological 1:1,000,000",
+   "scanOnly": true,
+   "year": "1980",
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "L-(39)-(40)-gurev-.jpg",
+   "coordinates": [
+    [
+     50.998702,
+     48.000116
+    ],
+    [
+     56.998836,
+     48.000195
+    ],
+    [
+     56.998938,
+     44.000114
+    ],
+    [
+     50.99884,
+     44.000054
+    ]
+   ],
+   "bounds": [
+    [
+     50.998701991610126,
+     44.00005367079005
+    ],
+    [
+     56.99890859096761,
+     48.000195361079385
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the L-(39),(40) nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 27.3 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-l-3940-pq/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 10,
+    "bounds": [
+     50.998701991610126,
+     44.00005367079005,
+     56.99890859096761,
+     48.000195361079385
+    ]
+   }
+  }
+ ]
+}

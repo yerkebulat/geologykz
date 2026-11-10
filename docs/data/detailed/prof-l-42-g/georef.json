@@ -1,0 +1,81 @@
+{
+ "id": "prof-l-42-g",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "L-(42)-karsakpay-geologicheskaya-karta-sssr-geologicheskaya-karta.jpg",
+ "source_bytes": 13925441,
+ "source_sha256": "f70a8d0dc3257cadd38d216261c10a962314e3ad45596e6c9a5d58d38c32562d",
+ "nomenclature": "L-(42)",
+ "scale": 1000000,
+ "map_type": "geological map",
+ "year_read": "1949",
+ "extent_pulkovo": [
+  66,
+  44,
+  72,
+  48
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   362,
+   337
+  ],
+  [
+   3115,
+   331
+  ],
+  [
+   307,
+   3045
+  ],
+  [
+   3231,
+   2992
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   65.999065,
+   48.000301
+  ],
+  [
+   71.999233,
+   48.000361
+  ],
+  [
+   65.999151,
+   44.000213
+  ],
+  [
+   71.999308,
+   44.00027
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=46 +lon_0=69 +lat_1=44.6666666666667 +lat_2=47.3333333333333 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.006174259444024307,
+   -0.00011826870282579905,
+   1766.135210382037
+  ],
+  [
+   -1.1967419555848044e-06,
+   -0.00608538950228761,
+   1710.6212078982091
+  ],
+  [
+   3.629393346787363e-08,
+   -2.6264134685987393e-08,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 0.9414,
+  "top_bottom_ratio_expected": 0.9304,
+  "left_right_scale_ratio": 1.0169,
+  "height_width_scale_ratio": 0.9887,
+  "affine_misfit_max_px": 14.5,
+  "metres_per_source_px": 164.6
+ },
+ "tiles": 469,
+ "tile_bytes": 1981970
+}

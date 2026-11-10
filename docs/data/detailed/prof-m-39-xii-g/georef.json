@@ -1,0 +1,81 @@
+{
+ "id": "prof-m-39-xii-g",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "М-39-XII-geologicheskaya-karta-sssr-seriya-prikaspiyskaya.jpg",
+ "source_bytes": 795149,
+ "source_sha256": "0d589b0735b1a6d18692ad8dd22e6ea29707ab3837f8fa59c0e6265225ae218d",
+ "nomenclature": "M-39-XII",
+ "scale": 200000,
+ "map_type": "geological map",
+ "year_read": null,
+ "extent_pulkovo": [
+  53,
+  50.66666666666667,
+  54,
+  51.333333333333336
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   52,
+   105
+  ],
+  [
+   1930,
+   105
+  ],
+  [
+   43,
+   2098
+  ],
+  [
+   1942,
+   2096
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   52.998636,
+   51.333541
+  ],
+  [
+   53.998659,
+   51.333555
+  ],
+  [
+   52.998659,
+   50.666862
+  ],
+  [
+   53.998683,
+   50.666875
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=51 +lon_0=53.5 +lat_1=50.7777777777778 +lat_2=51.2222222222222 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.02691677229399657,
+   -6.331004261736918e-05,
+   992.2250723491786
+  ],
+  [
+   1.493482624150879e-06,
+   -0.02690655977421567,
+   1105.8235920906593
+  ],
+  [
+   1.4223644100241402e-08,
+   -4.328025346909179e-08,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 0.9889,
+  "top_bottom_ratio_expected": 0.9858,
+  "left_right_scale_ratio": 1.001,
+  "height_width_scale_ratio": 0.9984,
+  "affine_misfit_max_px": 1.6,
+  "metres_per_source_px": 37.2
+ },
+ "tiles": 75,
+ "tile_bytes": 248184
+}

@@ -1,0 +1,81 @@
+{
+ "id": "prof-l-42-i-g",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "L-42-I-geologicheskaya-karta-sssr-seriya-ulutau-kokchetavskaya.jpg",
+ "source_bytes": 45234898,
+ "source_sha256": "5c75cc7e017387f6909db095f64a0f9c96b3e2d2f2543d34b01914775156bbf1",
+ "nomenclature": "L-42-I",
+ "scale": 200000,
+ "map_type": "geological map",
+ "year_read": "1960",
+ "extent_pulkovo": [
+  66,
+  47.333333333333336,
+  67,
+  48.0
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   2229,
+   866
+  ],
+  [
+   6638,
+   851
+  ],
+  [
+   2218,
+   5259
+  ],
+  [
+   6676,
+   5247
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   65.999065,
+   48.000301
+  ],
+  [
+   66.999092,
+   48.000312
+  ],
+  [
+   65.99908,
+   47.33362
+  ],
+  [
+   66.999107,
+   47.33363
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=47.6666666666667 +lon_0=66.5 +lat_1=47.4444444444444 +lat_2=47.8888888888889 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.058988466248258466,
+   -0.0002827289336110353,
+   4439.483574432839
+  ],
+  [
+   -0.00020902215445062515,
+   -0.05935651007354918,
+   3064.847429366596
+  ],
+  [
+   -9.541855181431003e-09,
+   -2.2713253553755585e-08,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 0.989,
+  "top_bottom_ratio_expected": 0.9873,
+  "left_right_scale_ratio": 0.9993,
+  "height_width_scale_ratio": 1.0043,
+  "affine_misfit_max_px": 2.0,
+  "metres_per_source_px": 16.9
+ },
+ "tiles": 248,
+ "tile_bytes": 1219750
+}

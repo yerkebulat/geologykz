@@ -400,3 +400,6 @@ h2 {
 .topbar .brand { min-width:0; max-width:65%; line-height:1.25; }
 .topbar nav { display:flex; align-items:center; flex-shrink:0; }
 .topbar nav a { white-space:nowrap; }
+.prof-collection{border:1px solid var(--line);border-radius:6px;margin:6px 0 8px;padding:4px 8px 6px}
+.prof-collection legend{font-size:12px;font-weight:600;padding:0 4px}
+.prof-collection small{display:block}

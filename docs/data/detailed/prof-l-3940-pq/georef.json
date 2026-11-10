@@ -1,0 +1,81 @@
+{
+ "id": "prof-l-3940-pq",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "L-(39)-(40)-gurev-.jpg",
+ "source_bytes": 1304052,
+ "source_sha256": "abb43eae7fdf57e9454ef0e97bac4fec9ca1eda51bfa03998a9abb5f26e7a3a7",
+ "nomenclature": "L-(39),(40)",
+ "scale": 1000000,
+ "map_type": "pre-Quaternary geological map",
+ "year_read": "1980",
+ "extent_pulkovo": [
+  51,
+  44,
+  57,
+  48
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   179,
+   565
+  ],
+  [
+   3320,
+   578
+  ],
+  [
+   98,
+   3680
+  ],
+  [
+   3543,
+   3609
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   50.998702,
+   48.000116
+  ],
+  [
+   56.998836,
+   48.000195
+  ],
+  [
+   50.99884,
+   44.000054
+  ],
+  [
+   56.998938,
+   44.000114
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=46 +lon_0=54 +lat_1=44.6666666666667 +lat_2=47.3333333333333 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.007188577907429623,
+   -8.416730445217482e-05,
+   1807.230357994268
+  ],
+  [
+   6.194992168390681e-05,
+   -0.006818242129768874,
+   2122.317295374608
+  ],
+  [
+   5.7062022105930164e-08,
+   4.69214605979578e-08,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 0.9116,
+  "top_bottom_ratio_expected": 0.9304,
+  "left_right_scale_ratio": 1.0253,
+  "height_width_scale_ratio": 0.9765,
+  "affine_misfit_max_px": 27.3,
+  "metres_per_source_px": 142.8
+ },
+ "tiles": 408,
+ "tile_bytes": 2187322
+}

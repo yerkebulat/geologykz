@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-l-4041-pq",
+   "label": "L-(40),(41) Kazalinsk · Pre-Quaternary geological map, 1:1,000,000",
+   "name": "L-(40),(41) Kazalinsk",
+   "mapType": "Pre-Quaternary geological map",
+   "scale": "1:1,000,000",
+   "group": "prof-geo1m",
+   "groupLabel": "Geological 1:1,000,000",
+   "scanOnly": true,
+   "year": "1984",
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "L-(40)-(41)-kazalinsk.jpg",
+   "coordinates": [
+    [
+     56.998836,
+     48.000195
+    ],
+    [
+     62.998985,
+     48.000268
+    ],
+    [
+     62.999077,
+     44.000182
+    ],
+    [
+     56.998938,
+     44.000114
+    ]
+   ],
+   "bounds": [
+    [
+     56.99883590154591,
+     44.000164085202506
+    ],
+    [
+     62.999076689896455,
+     48.000267752888625
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the L-(40),(41) nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 5.4 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-l-4041-pq/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 10,
+    "bounds": [
+     56.99883590154591,
+     44.000164085202506,
+     62.999076689896455,
+     48.000267752888625
+    ]
+   }
+  }
+ ]
+}

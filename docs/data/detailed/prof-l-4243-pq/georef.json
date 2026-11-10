@@ -1,0 +1,81 @@
+{
+ "id": "prof-l-4243-pq",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "L-(42)-(43)-balhash-geologicheskaya-karta-sssr-karta-dochetvertichnyh-obrazovaniy.jpg",
+ "source_bytes": 40678652,
+ "source_sha256": "0dc3a3d157cc82a23fe45c94213c84595066988e98c20b78493f823dc3be2648",
+ "nomenclature": "L-(42),(43)",
+ "scale": 1000000,
+ "map_type": "pre-Quaternary geological map",
+ "year_read": "1974",
+ "extent_pulkovo": [
+  69,
+  44,
+  75,
+  48
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   342,
+   342
+  ],
+  [
+   4436,
+   320
+  ],
+  [
+   123,
+   4413
+  ],
+  [
+   4688,
+   4350
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   68.999148,
+   48.000332
+  ],
+  [
+   74.999322,
+   48.000388
+  ],
+  [
+   68.999228,
+   44.000243
+  ],
+  [
+   74.999391,
+   44.000296
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=46 +lon_0=72 +lat_1=44.6666666666667 +lat_2=47.3333333333333 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.00936031780233441,
+   0.0001575994075881024,
+   2407.041502259456
+  ],
+  [
+   -4.363734692506532e-05,
+   -0.008925047538781001,
+   2359.1201421876144
+  ],
+  [
+   1.937645468220231e-08,
+   8.289467587030595e-08,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 0.8968,
+  "top_bottom_ratio_expected": 0.9304,
+  "left_right_scale_ratio": 1.0097,
+  "height_width_scale_ratio": 0.9792,
+  "affine_misfit_max_px": 42.3,
+  "metres_per_source_px": 108.5
+ },
+ "tiles": 453,
+ "tile_bytes": 1878280
+}

@@ -1,0 +1,81 @@
+{
+ "id": "prof-m-44-xxiii-f",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "М-44-XXIII-ust-kamenogorsk-karta-prognoza-poleznyh-iskopaemyh-seriya-altays.jpg",
+ "source_bytes": 6182622,
+ "source_sha256": "962678f17f47ffd720c21f1699300edde0e460d157734e5c7860254ed6e56428",
+ "nomenclature": "M-44-XXIII",
+ "scale": 200000,
+ "map_type": "mineral forecast map",
+ "year_read": null,
+ "extent_pulkovo": [
+  82,
+  49.333333333333336,
+  83,
+  50.0
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   264,
+   796
+  ],
+  [
+   4521,
+   796
+  ],
+  [
+   264,
+   5174
+  ],
+  [
+   4521,
+   5174
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   81.999506,
+   50.000488
+  ],
+  [
+   82.999539,
+   50.000495
+  ],
+  [
+   81.999517,
+   49.333806
+  ],
+  [
+   82.99955,
+   49.333813
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=49.6666666666667 +lon_0=82.5 +lat_1=49.4444444444444 +lat_2=49.8888888888889 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.05896778276175196,
+   -0.0004409285035239445,
+   2392.499999981365
+  ],
+  [
+   1.3686164440896552e-17,
+   -0.059592954591713286,
+   3007.1083259636334
+  ],
+  [
+   2.9149941933004107e-21,
+   -1.842961411490766e-07,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 1.0,
+  "top_bottom_ratio_expected": 0.9864,
+  "left_right_scale_ratio": 1.0,
+  "height_width_scale_ratio": 1.0013,
+  "affine_misfit_max_px": 14.6,
+  "metres_per_source_px": 16.9
+ },
+ "tiles": 235,
+ "tile_bytes": 798246
+}

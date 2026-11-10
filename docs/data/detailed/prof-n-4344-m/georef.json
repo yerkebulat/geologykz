@@ -1,0 +1,81 @@
+{
+ "id": "prof-n-4344-m",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "N-(43)-(44)-omsk-gosudarstvennaya-geologicheskaya-karta-novaya-seriya-karta-poleznyh-.jpg",
+ "source_bytes": 9095009,
+ "source_sha256": "694c93e925fac4d821e898d2e22e269285275eb4e76ce52cd09c57ab67d04758",
+ "nomenclature": "N-(43),(44)",
+ "scale": 1000000,
+ "map_type": "mineral resources map, 1:1,000,000",
+ "year_read": "1986",
+ "extent_pulkovo": [
+  72,
+  52,
+  81,
+  56
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   617,
+   1195
+  ],
+  [
+   7216,
+   1233
+  ],
+  [
+   276,
+   6514
+  ],
+  [
+   7560,
+   6486
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   71.999026,
+   56.000536
+  ],
+  [
+   80.999352,
+   56.000616
+  ],
+  [
+   71.999141,
+   52.00045
+  ],
+  [
+   80.999437,
+   52.000527
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=54 +lon_0=76.5 +lat_1=52.6666666666667 +lat_2=55.3333333333333 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.011856285130717494,
+   1.169298026427303e-05,
+   3939.305256797171
+  ],
+  [
+   9.37538794409889e-05,
+   -0.01187337580298065,
+   3965.2440401432987
+  ],
+  [
+   2.138582174594872e-08,
+   6.293346763299935e-09,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 0.906,
+  "top_bottom_ratio_expected": 0.9085,
+  "left_right_scale_ratio": 1.0125,
+  "height_width_scale_ratio": 1.0107,
+  "affine_misfit_max_px": 18.1,
+  "metres_per_source_px": 84.5
+ },
+ "tiles": 299,
+ "tile_bytes": 581406
+}

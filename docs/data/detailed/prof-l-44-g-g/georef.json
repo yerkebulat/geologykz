@@ -1,0 +1,81 @@
+{
+ "id": "prof-l-44-g-g",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "L-44-Г-dzerzhinskoe-geologicheskaya-karta-kazahskoy-ssr.jpg",
+ "source_bytes": 2984823,
+ "source_sha256": "bb913d4f2186bfc8206e590bd438761897c57baf657750555bb280189ef36b9b",
+ "nomenclature": "L-44-Г",
+ "scale": 500000,
+ "map_type": "geological map, Kazakh SSR series",
+ "year_read": "1979",
+ "extent_pulkovo": [
+  81,
+  44,
+  84,
+  46
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   140,
+   394
+  ],
+  [
+   3786,
+   365
+  ],
+  [
+   95,
+   3863
+  ],
+  [
+   3862,
+   3873
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   80.999535,
+   46.000388
+  ],
+  [
+   83.999627,
+   46.000407
+  ],
+  [
+   80.999562,
+   44.00034
+  ],
+  [
+   83.999651,
+   44.000359
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=45 +lon_0=82.5 +lat_1=44.3333333333333 +lat_2=45.6666666666667 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.0155775198121061,
+   -8.603873188976561e-05,
+   1960.3846742498442
+  ],
+  [
+   -0.00014273206886078514,
+   -0.01571832497946275,
+   2143.026001260003
+  ],
+  [
+   -4.765640053383263e-08,
+   -9.874426897707037e-09,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 0.9679,
+  "top_bottom_ratio_expected": 0.9658,
+  "left_right_scale_ratio": 0.9887,
+  "height_width_scale_ratio": 1.0017,
+  "affine_misfit_max_px": 10.2,
+  "metres_per_source_px": 63.8
+ },
+ "tiles": 32,
+ "tile_bytes": 225482
+}

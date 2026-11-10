@@ -1,0 +1,407 @@
+{
+ "p00": {
+  "id": "prof-k-4041-pq",
+  "group": "geo1m",
+  "name": "K-(40),(41) Nukus",
+  "title": "pre-Quaternary geological map",
+  "year": "1971",
+  "drive_name": "k-(40)-(41)-nukus-obrazovaniy-sssr.jpg",
+  "bytes": 14021679
+ },
+ "p01": {
+  "id": "prof-l-3940-pq",
+  "group": "geo1m",
+  "name": "L-(39),(40) Guryev",
+  "title": "pre-Quaternary geological map",
+  "year": "1980",
+  "drive_name": "L-(39)-(40)-gurev-.jpg",
+  "bytes": 1304052
+ },
+ "p02": {
+  "id": "prof-l-4041-pq",
+  "group": "geo1m",
+  "name": "L-(40),(41) Kazalinsk",
+  "title": "pre-Quaternary geological map",
+  "year": "1984",
+  "drive_name": "L-(40)-(41)-kazalinsk.jpg",
+  "bytes": 1463630
+ },
+ "p03": {
+  "id": "prof-l-41-vi-h",
+  "group": "hydro",
+  "name": "L-41-VI",
+  "title": "hydrogeological map",
+  "year": "1974",
+  "drive_name": "L-(41)-VI-gidrogeologicheskaya-karta-sssr-seriya-ulutau-kokchetavskaya.jpg",
+  "bytes": 35758226
+ },
+ "p04": {
+  "id": "prof-l-41-vi-m",
+  "group": "mineral",
+  "name": "L-41-VI",
+  "title": "mineral resources map",
+  "year": "1961",
+  "drive_name": "L-(41)-VI-karta-poleznyh-iskopaemyh-sssr-seriya-ulutau-kokchetavskaya.jpg",
+  "bytes": 32931067
+ },
+ "p05": {
+  "id": "prof-l-4243-pq",
+  "group": "geo1m",
+  "name": "L-(42),(43) Balkhash",
+  "title": "pre-Quaternary geological map",
+  "year": "1974",
+  "drive_name": "L-(42)-(43)-balhash-geologicheskaya-karta-sssr-karta-dochetvertichnyh-obrazovaniy.jpg",
+  "bytes": 40678652
+ },
+ "p06": {
+  "id": "prof-l-42-g",
+  "group": "geo1m",
+  "name": "L-(42) Karsakpay",
+  "title": "geological map",
+  "year": "1949",
+  "drive_name": "L-(42)-karsakpay-geologicheskaya-karta-sssr-geologicheskaya-karta.jpg",
+  "bytes": 13925441
+ },
+ "p07": {
+  "id": "prof-l-4344-pq",
+  "group": "geo1m",
+  "name": "L-(43),(44) Taldy-Kurgan",
+  "title": "pre-Quaternary geological map",
+  "year": "1974",
+  "drive_name": "L-(43)-(44)-taldy-kurgan-geologicheskaya-karta-sssr-geologicheskaya-karta.jpg",
+  "bytes": 1771223
+ },
+ "p08": {
+  "id": "prof-l-4445-pq",
+  "group": "geo1m",
+  "name": "L-(44),(45) Zaysan",
+  "title": "pre-Quaternary geological map",
+  "year": "1979",
+  "drive_name": "L-(44)-(45)-zaysan-geologicheskaya-karta-sssr-karta-dochetvertichnyh-obrazovaniy.jpg",
+  "bytes": 15784545
+ },
+ "p09": {
+  "id": "prof-l-42-i-m",
+  "group": "mineral",
+  "name": "L-42-I",
+  "title": "mineral resources map",
+  "year": "1960",
+  "drive_name": "L-42-I-karta-poleznyh-iskopaemyh-sssr-seriya-ulutau-kokchetavskaya.jpg",
+  "bytes": 40080550
+ },
+ "p10": {
+  "id": "prof-l-44-xxxi-g",
+  "group": "geo200",
+  "name": "L-44-XXXI",
+  "title": "geological map",
+  "year": "1958",
+  "drive_name": "L-44-XXXI-geologicheskaya-karta-sssr-seriya-dzhungarskaya.jpg",
+  "bytes": 16989595
+ },
+ "p11": {
+  "id": "prof-n-4344-sg",
+  "group": "geo1m",
+  "name": "N-(43),(44) Omsk",
+  "title": "schematic geological map",
+  "year": "1986",
+  "drive_name": "N-(43)-(44)-omsk-geologicheskaya-karta-novaya-seriya-shematicheskaya-geologicheskaya-kar.jpg",
+  "bytes": 23522694
+ },
+ "p12": {
+  "id": "prof-n-4344-m",
+  "group": "mineral",
+  "name": "N-(43),(44) Omsk",
+  "title": "mineral resources map, 1:1,000,000",
+  "year": "1986",
+  "drive_name": "N-(43)-(44)-omsk-gosudarstvennaya-geologicheskaya-karta-novaya-seriya-karta-poleznyh-.jpg",
+  "bytes": 9095009
+ },
+ "p13": {
+  "id": "prof-n-4344-pq",
+  "group": "geo1m",
+  "name": "N-(43),(44) Omsk",
+  "title": "pre-Quaternary geological map",
+  "year": "1986",
+  "drive_name": "N-(43)-(44)-omsk-gosudarstvennaya-geologicheskaya-karta-sssr-novaya-seriya-karta-doche.jpg",
+  "bytes": 29217164
+ },
+ "p14": {
+  "id": "prof-k-44-i-g",
+  "group": "geo200",
+  "name": "K-44-I",
+  "title": "geological map",
+  "year": "1961",
+  "drive_name": "К-44-I-geologicheskaya-karta-sssr-seriya-dzhungarskaya.jpg",
+  "bytes": 16330561
+ },
+ "p15": {
+  "id": "prof-k-44-vii-g",
+  "group": "geo200",
+  "name": "K-44-VII",
+  "title": "geological map",
+  "year": "1957",
+  "drive_name": "К-44-VII-geologicheskaya-karta-sssr-seriya-severo-tyan-shanskaya.jpg",
+  "bytes": 31578993
+ },
+ "p16": {
+  "id": "prof-m-3839-pq",
+  "group": "geo1m",
+  "name": "M-(38),(39) Uralsk",
+  "title": "pre-Quaternary geological map",
+  "year": "1985",
+  "drive_name": "М-(38)-(39)-uralsk-geologicheskaya-karta-sssr-novaya-seriya-karta-dochetvertichnyh-ob.jpg",
+  "bytes": 27069457
+ },
+ "p17": {
+  "id": "prof-m-44-xxii-m",
+  "group": "mineral",
+  "name": "M-44-XXII",
+  "title": "mineral resources map",
+  "year": "1961",
+  "drive_name": "М-44-XXII-karta-poleznyh-iskopaemyh-sssr-seriya-rudno-altayskaya.jpg",
+  "bytes": 5144491
+ },
+ "p18": {
+  "id": "prof-m-44-xxiii-m",
+  "group": "mineral",
+  "name": "M-44-XXIII",
+  "title": "mineral resources map",
+  "year": "1961",
+  "drive_name": "М-44-XXIII-karta-poleznyh-iskopaemyh-sssr-seriya-rudno-altayskaya.jpg",
+  "bytes": 5561009
+ },
+ "p19": {
+  "id": "prof-m-39-xiii-g",
+  "group": "geo200",
+  "name": "M-39-XIII",
+  "title": "geological map",
+  "year": null,
+  "drive_name": "М-39-XIII-geologicheskaya-karta-sssr-seriya-prikaspiyskaya.jpg",
+  "bytes": 1063123
+ },
+ "p20": {
+  "id": "prof-m-39-v-g",
+  "group": "geo200",
+  "name": "M-39-V",
+  "title": "geological map",
+  "year": null,
+  "drive_name": "М-39-V-geologicheskaya-karta-sssr-seriya-prikaspiyskaya.jpg",
+  "bytes": 979844
+ },
+ "p21": {
+  "id": "prof-l-42-i-h",
+  "group": "hydro",
+  "name": "L-42-I",
+  "title": "hydrogeological map",
+  "year": "1964",
+  "drive_name": "L-42-I-gidrogeologicheskaya-karta-sssr-seriya-ulutau-kokchetavskaya.jpg",
+  "bytes": 40803752
+ },
+ "p22": {
+  "id": "prof-m-39-xix-m",
+  "group": "mineral",
+  "name": "M-39-XIX",
+  "title": "mineral resources map",
+  "year": null,
+  "drive_name": "М-39-XIX-karta-poleznyh-iskopaemyh-sssr-seriya-prikaspiyskaya.jpg",
+  "bytes": 950468
+ },
+ "p23": {
+  "id": "prof-l-41-vi-g",
+  "group": "geo200",
+  "name": "L-41-VI",
+  "title": "geological map",
+  "year": "1961",
+  "drive_name": "L-(41)-VI-geologicheskaya-karta-sssr-seriya-ulutau-kokchetavskaya.jpg",
+  "bytes": 32067183
+ },
+ "p24": {
+  "id": "prof-m-3839-q",
+  "group": "geo1m",
+  "name": "M-(38),(39) Uralsk",
+  "title": "Quaternary deposits map",
+  "year": null,
+  "drive_name": "М-(38)-(39)-uralsk-geologicheskaya-karta-sssr-novaya-seriya-karta-chetvertichnyh-obra.jpg",
+  "bytes": 1006054
+ },
+ "p25": {
+  "id": "prof-m-39-xiii-m",
+  "group": "mineral",
+  "name": "M-39-XIII",
+  "title": "mineral resources map",
+  "year": null,
+  "drive_name": "М-39-XIII-karta-poleznyh-iskopaemyh-sssr-seriya-prikaspiyskaya.jpg",
+  "bytes": 1130322
+ },
+ "p26": {
+  "id": "prof-m-39-ix-m",
+  "group": "mineral",
+  "name": "M-39-IX",
+  "title": "mineral resources map",
+  "year": null,
+  "drive_name": "М-39-IX-karta-poleznyh-iskopaemyh-sssr-seriya-prikaspiyskaya.jpg",
+  "bytes": 1045983
+ },
+ "p27": {
+  "id": "prof-k-44-ii-g",
+  "group": "geo200",
+  "name": "K-44-II",
+  "title": "geological map",
+  "year": null,
+  "drive_name": "К-44-II-gosudarstvennaya-geologicheskaya-karta-sssr.jpg",
+  "bytes": 5316510
+ },
+ "p28": {
+  "id": "prof-m-44-xxiii-f",
+  "group": "mineral",
+  "name": "M-44-XXIII Ust-Kamenogorsk",
+  "title": "mineral forecast map",
+  "year": null,
+  "drive_name": "М-44-XXIII-ust-kamenogorsk-karta-prognoza-poleznyh-iskopaemyh-seriya-altays.jpg",
+  "bytes": 6182622
+ },
+ "p29": {
+  "id": "prof-m-39-viii-g",
+  "group": "geo200",
+  "name": "M-39-VIII",
+  "title": "geological map",
+  "year": null,
+  "drive_name": "М-39-VIII-geologicheskaya-karta-sssr-seriya-prikaspiyskaya.jpg",
+  "bytes": 1185797
+ },
+ "p30": {
+  "id": "prof-m-39-ix-g",
+  "group": "geo200",
+  "name": "M-39-IX",
+  "title": "geological map",
+  "year": null,
+  "drive_name": "М-39-IX-geologicheskaya-karta-sssr-seriya-prikaspiyskaya.jpg",
+  "bytes": 847679
+ },
+ "p31": {
+  "id": "prof-m-44-xxii-f",
+  "group": "mineral",
+  "name": "M-44-XXII Charsk",
+  "title": "mineral forecast map",
+  "year": null,
+  "drive_name": "М-44-XXII-charsk-karta-prognoza-poleznyh-iskopaemyh-zaysanskaya-seriya.jpg",
+  "bytes": 6353030
+ },
+ "p32": {
+  "id": "prof-m-39-xii-m",
+  "group": "mineral",
+  "name": "M-39-XII",
+  "title": "mineral resources map",
+  "year": null,
+  "drive_name": "М-39-XII-karta-poleznyh-iskopaemyh-sssr-seriya-prikaspiyskaya.jpg",
+  "bytes": 937288
+ },
+ "p33": {
+  "id": "prof-l-42-i-g",
+  "group": "geo200",
+  "name": "L-42-I",
+  "title": "geological map",
+  "year": "1960",
+  "drive_name": "L-42-I-geologicheskaya-karta-sssr-seriya-ulutau-kokchetavskaya.jpg",
+  "bytes": 45234898
+ },
+ "p34": {
+  "id": "prof-m-3839-m",
+  "group": "mineral",
+  "name": "M-(38),(39) Uralsk",
+  "title": "mineral resources map, 1:1,000,000",
+  "year": null,
+  "drive_name": "М-(38)-(39)-uralsk-geologicheskaya-karta-sssr-novaya-seriya-karta-poleznyh-iskopaem.jpg",
+  "bytes": 539977
+ },
+ "p35": {
+  "id": "prof-k-44-viii-g",
+  "group": "geo200",
+  "name": "K-44-VIII",
+  "title": "geological map",
+  "year": null,
+  "drive_name": "К-44-VIII-gosudarstvennaya-geologicheskaya-karta-sssr.jpg",
+  "bytes": 7683271
+ },
+ "p36": {
+  "id": "prof-m-39-xii-g",
+  "group": "geo200",
+  "name": "M-39-XII",
+  "title": "geological map",
+  "year": null,
+  "drive_name": "М-39-XII-geologicheskaya-karta-sssr-seriya-prikaspiyskaya.jpg",
+  "bytes": 795149
+ },
+ "p37": {
+  "id": "prof-m-39-xix-g",
+  "group": "geo200",
+  "name": "M-39-XIX",
+  "title": "geological map",
+  "year": null,
+  "drive_name": "М-39-XIX-geologicheskaya-karta-sssr-seriya-prikaspiyskaya.jpg",
+  "bytes": 796072
+ },
+ "p38": {
+  "id": "prof-m-39-viii-m",
+  "group": "mineral",
+  "name": "M-39-VIII",
+  "title": "mineral resources map",
+  "year": null,
+  "drive_name": "М-39-VIII-karta-poleznyh-iskopaemyh-sssr-seriya-prikaspiyskaya.jpg",
+  "bytes": 1174609
+ },
+ "p39": {
+  "id": "prof-l-39-i-g",
+  "group": "geo200",
+  "name": "L-39-I",
+  "title": "geological map",
+  "year": null,
+  "drive_name": "L-39-I-gosudarstvennaya-geologicheskaya-karta-sssr-seriya-nizhnevolzhskaya.jpg",
+  "bytes": 1430718
+ },
+ "q00": {
+  "id": "prof-l-44-g-g",
+  "group": "geo500",
+  "name": "L-44-Г Dzerzhinskoe",
+  "title": "geological map, Kazakh SSR series",
+  "year": "1979",
+  "drive_name": "L-44-Г-dzerzhinskoe-geologicheskaya-karta-kazahskoy-ssr.jpg",
+  "bytes": 2984823
+ },
+ "q01": {
+  "id": "prof-m-43-v-g",
+  "group": "geo500",
+  "name": "M-43-В",
+  "title": "geological map, Kazakh SSR series",
+  "year": null,
+  "drive_name": "M-43-V-geologicheskaya-karta-kazahskoy-ssr.jpg",
+  "bytes": 7452492
+ },
+ "q02": {
+  "id": "prof-k-41-a-g",
+  "group": "geo500",
+  "name": "K-41-А Mangit",
+  "title": "geological map, Kazakh SSR series",
+  "year": "1979",
+  "drive_name": "К-41-А-mangit-geologicheskaya-karta-kazahskoy-ssr.jpg",
+  "bytes": 3213384
+ },
+ "q03": {
+  "id": "prof-k-41-b-g",
+  "group": "geo500",
+  "name": "K-41-Б Gory Bukuntau",
+  "title": "geological map, Kazakh SSR series",
+  "year": "1979",
+  "drive_name": "К-41-Б-gory-bukuntau-geologicheskaya-karta-kazahskoy-ssr.jpg",
+  "bytes": 3486020
+ },
+ "q04": {
+  "id": "prof-m-45-a-g",
+  "group": "geo500",
+  "name": "M-45-А Gorno-Altaysk",
+  "title": "geological map, Kazakh SSR series",
+  "year": "1979",
+  "drive_name": "М-45-А-gorno-altaysk-geologicheskaya-karta-kazahskoy-ssr.jpg",
+  "bytes": 13329792
+ }
+}

@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-l-44-g-g",
+   "label": "L-44-Г Dzerzhinskoe · Geological map, 1:500,000",
+   "name": "L-44-Г Dzerzhinskoe",
+   "mapType": "Geological map",
+   "scale": "1:500,000",
+   "group": "prof-geo500",
+   "groupLabel": "Geological 1:500,000",
+   "scanOnly": true,
+   "year": "1979",
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "L-44-Г-dzerzhinskoe-geologicheskaya-karta-kazahskoy-ssr.jpg",
+   "coordinates": [
+    [
+     80.999535,
+     46.000388
+    ],
+    [
+     83.999627,
+     46.000407
+    ],
+    [
+     83.999651,
+     44.000359
+    ],
+    [
+     80.999562,
+     44.00034
+    ]
+   ],
+   "bounds": [
+    [
+     80.99953549784502,
+     45.115697
+    ],
+    [
+     82.63385,
+     46.000397540919856
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the L-44-Г nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 10.2 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-l-44-g-g/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 10,
+    "bounds": [
+     80.99953549784502,
+     45.115697,
+     82.63385,
+     46.000397540919856
+    ]
+   }
+  }
+ ]
+}

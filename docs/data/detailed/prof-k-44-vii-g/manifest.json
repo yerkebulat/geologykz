@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-k-44-vii-g",
+   "label": "K-44-VII · Geological map, 1:200,000",
+   "name": "K-44-VII",
+   "mapType": "Geological map",
+   "scale": "1:200,000",
+   "group": "prof-geo200",
+   "groupLabel": "Geological 1:200,000",
+   "scanOnly": true,
+   "year": "1957",
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "К-44-VII-geologicheskaya-karta-sssr-seriya-severo-tyan-shanskaya.jpg",
+   "coordinates": [
+    [
+     77.999485,
+     43.333636
+    ],
+    [
+     78.999513,
+     43.333644
+    ],
+    [
+     78.999522,
+     42.666961
+    ],
+    [
+     77.999494,
+     42.666954
+    ]
+   ],
+   "bounds": [
+    [
+     77.99948468762952,
+     42.75696250518562
+    ],
+    [
+     78.99952062235164,
+     43.33364350902369
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the K-44-VII nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 17.7 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-k-44-vii-g/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 12,
+    "bounds": [
+     77.99948468762952,
+     42.75696250518562,
+     78.99952062235164,
+     43.33364350902369
+    ]
+   }
+  }
+ ]
+}
