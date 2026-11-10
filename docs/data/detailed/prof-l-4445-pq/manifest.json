@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-l-4445-pq",
+   "label": "L-(44),(45) Zaysan · Pre-Quaternary geological map, 1:1,000,000",
+   "name": "L-(44),(45) Zaysan",
+   "mapType": "Pre-Quaternary geological map",
+   "scale": "1:1,000,000",
+   "group": "prof-geo1m",
+   "groupLabel": "Geological 1:1,000,000",
+   "scanOnly": true,
+   "year": "1979",
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "L-(44)-(45)-zaysan-geologicheskaya-karta-sssr-karta-dochetvertichnyh-obrazovaniy.jpg",
+   "coordinates": [
+    [
+     80.999506,
+     48.000435
+    ],
+    [
+     86.999698,
+     48.000471
+    ],
+    [
+     86.999741,
+     44.000375
+    ],
+    [
+     80.999562,
+     44.00034
+    ]
+   ],
+   "bounds": [
+    [
+     80.99950608162082,
+     45.115697
+    ],
+    [
+     85.67898699999999,
+     48.00046344132691
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the L-(44),(45) nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 8.0 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-l-4445-pq/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 10,
+    "bounds": [
+     80.99950608162082,
+     45.115697,
+     85.67898699999999,
+     48.00046344132691
+    ]
+   }
+  }
+ ]
+}

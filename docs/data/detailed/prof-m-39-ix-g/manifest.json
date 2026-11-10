@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-m-39-ix-g",
+   "label": "M-39-IX · Geological map, 1:200,000",
+   "name": "M-39-IX",
+   "mapType": "Geological map",
+   "scale": "1:200,000",
+   "group": "prof-geo200",
+   "groupLabel": "Geological 1:200,000",
+   "scanOnly": true,
+   "year": null,
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "М-39-IX-geologicheskaya-karta-sssr-seriya-prikaspiyskaya.jpg",
+   "coordinates": [
+    [
+     49.998568,
+     51.333498
+    ],
+    [
+     50.99859,
+     51.333513
+    ],
+    [
+     50.998614,
+     50.666833
+    ],
+    [
+     49.998592,
+     50.666819
+    ]
+   ],
+   "bounds": [
+    [
+     49.99857163708823,
+     50.66681886706283
+    ],
+    [
+     50.998614121994784,
+     51.33351251476611
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the M-39-IX nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 6.7 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-m-39-ix-g/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 11,
+    "bounds": [
+     49.99857163708823,
+     50.66681886706283,
+     50.998614121994784,
+     51.33351251476611
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-m-39-viii-m",
+   "label": "M-39-VIII · Mineral resources map, 1:200,000",
+   "name": "M-39-VIII",
+   "mapType": "Mineral resources map",
+   "scale": "1:200,000",
+   "group": "prof-mineral",
+   "groupLabel": "Mineral resources and forecast",
+   "scanOnly": true,
+   "year": null,
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "М-39-VIII-karta-poleznyh-iskopaemyh-sssr-seriya-prikaspiyskaya.jpg",
+   "coordinates": [
+    [
+     48.998546,
+     51.333483
+    ],
+    [
+     49.998568,
+     51.333498
+    ],
+    [
+     49.998592,
+     50.666819
+    ],
+    [
+     48.998571,
+     50.666804
+    ]
+   ],
+   "bounds": [
+    [
+     48.998570582199285,
+     50.66680429461977
+    ],
+    [
+     49.99859228300243,
+     51.23350580159159
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the M-39-VIII nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 0.5 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-m-39-viii-m/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 11,
+    "bounds": [
+     48.998570582199285,
+     50.66680429461977,
+     49.99859228300243,
+     51.23350580159159
+    ]
+   }
+  }
+ ]
+}

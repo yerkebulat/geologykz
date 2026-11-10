@@ -1,0 +1,81 @@
+{
+ "id": "prof-m-44-xxiii-m",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "М-44-XXIII-karta-poleznyh-iskopaemyh-sssr-seriya-rudno-altayskaya.jpg",
+ "source_bytes": 5561009,
+ "source_sha256": "718012b93dec12d21d6f5ee0fa8f78119a9dff4a3d600b992d9eca71747c6a4a",
+ "nomenclature": "M-44-XXIII",
+ "scale": 200000,
+ "map_type": "mineral resources map",
+ "year_read": "1961",
+ "extent_pulkovo": [
+  82,
+  49.333333333333336,
+  83,
+  50.0
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   1781,
+   920
+  ],
+  [
+   6009,
+   1001
+  ],
+  [
+   1669,
+   5284
+  ],
+  [
+   5950,
+   5371
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   81.999506,
+   50.000488
+  ],
+  [
+   82.999539,
+   50.000495
+  ],
+  [
+   81.999517,
+   49.333806
+  ],
+  [
+   82.99955,
+   49.333813
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=49.6666666666667 +lon_0=82.5 +lat_1=49.4444444444444 +lat_2=49.8888888888889 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.058874067385119376,
+   0.001091940631414822,
+   3850.878812254866
+  ],
+  [
+   0.0011139941121866617,
+   -0.058945915667829474,
+   3152.404243716949
+  ],
+  [
+   -1.5707480389689075e-08,
+   -1.5986166396309823e-08,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 0.9876,
+  "top_bottom_ratio_expected": 0.9864,
+  "left_right_scale_ratio": 0.9989,
+  "height_width_scale_ratio": 0.9993,
+  "affine_misfit_max_px": 1.8,
+  "metres_per_source_px": 17.0
+ },
+ "tiles": 235,
+ "tile_bytes": 1988618
+}

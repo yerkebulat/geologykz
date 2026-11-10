@@ -1,0 +1,81 @@
+{
+ "id": "prof-l-39-i-g",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "L-39-I-gosudarstvennaya-geologicheskaya-karta-sssr-seriya-nizhnevolzhskaya.jpg",
+ "source_bytes": 1430718,
+ "source_sha256": "b750dd1d760fd6896d066d62e52e685d7dcbeab9e573d8c648fa789572e6a66e",
+ "nomenclature": "L-39-I",
+ "scale": 200000,
+ "map_type": "geological map",
+ "year_read": null,
+ "extent_pulkovo": [
+  48,
+  47.333333333333336,
+  49,
+  48.0
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   67,
+   127
+  ],
+  [
+   1934,
+   124
+  ],
+  [
+   62,
+   1970
+  ],
+  [
+   1937,
+   1970
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   47.998641,
+   48.000074
+  ],
+  [
+   48.998661,
+   48.000088
+  ],
+  [
+   47.998662,
+   47.333395
+  ],
+  [
+   48.998682,
+   47.333409
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=47.6666666666667 +lon_0=48.5 +lat_1=47.4444444444444 +lat_2=47.8888888888889 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.02488998024214052,
+   -0.00010042772339580584,
+   999.23380345349
+  ],
+  [
+   -4.2753114309642314e-05,
+   -0.02500377946074479,
+   1054.6913600432417
+  ],
+  [
+   -2.1702089012675593e-08,
+   -1.1409373724700778e-07,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 0.9957,
+  "top_bottom_ratio_expected": 0.9873,
+  "left_right_scale_ratio": 0.9984,
+  "height_width_scale_ratio": 0.9989,
+  "affine_misfit_max_px": 4.1,
+  "metres_per_source_px": 40.2
+ },
+ "tiles": 60,
+ "tile_bytes": 391792
+}

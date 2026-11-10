@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-n-4344-sg",
+   "label": "N-(43),(44) Omsk · Schematic geological map, 1:1,000,000",
+   "name": "N-(43),(44) Omsk",
+   "mapType": "Schematic geological map",
+   "scale": "1:1,000,000",
+   "group": "prof-geo1m",
+   "groupLabel": "Geological 1:1,000,000",
+   "scanOnly": true,
+   "year": "1986",
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "N-(43)-(44)-omsk-geologicheskaya-karta-novaya-seriya-shematicheskaya-geologicheskaya-kar.jpg",
+   "coordinates": [
+    [
+     71.999026,
+     56.000536
+    ],
+    [
+     80.999352,
+     56.000616
+    ],
+    [
+     80.999437,
+     52.000527
+    ],
+    [
+     71.999141,
+     52.00045
+    ]
+   ],
+   "bounds": [
+    [
+     71.99908049264174,
+     52.000449890245854
+    ],
+    [
+     79.03598676395094,
+     54.46386
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the N-(43),(44) nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 52.2 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-n-4344-sg/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 10,
+    "bounds": [
+     71.99908049264174,
+     52.000449890245854,
+     79.03598676395094,
+     54.46386
+    ]
+   }
+  }
+ ]
+}

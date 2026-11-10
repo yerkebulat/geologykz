@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-k-41-b-g",
+   "label": "K-41-Б Gory Bukuntau · Geological map, 1:500,000",
+   "name": "K-41-Б Gory Bukuntau",
+   "mapType": "Geological map",
+   "scale": "1:500,000",
+   "group": "prof-geo500",
+   "groupLabel": "Geological 1:500,000",
+   "scanOnly": true,
+   "year": "1979",
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "К-41-Б-gory-bukuntau-geologicheskaya-karta-kazahskoy-ssr.jpg",
+   "coordinates": [
+    [
+     62.999077,
+     44.000182
+    ],
+    [
+     65.999151,
+     44.000213
+    ],
+    [
+     65.999188,
+     42.000169
+    ],
+    [
+     62.999116,
+     42.000138
+    ]
+   ],
+   "bounds": [
+    [
+     62.999076689896455,
+     42.875756
+    ],
+    [
+     65.99917096152647,
+     44.00021326490291
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the K-41-Б nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 17.9 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-k-41-b-g/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 11,
+    "bounds": [
+     62.999076689896455,
+     42.875756,
+     65.99917096152647,
+     44.00021326490291
+    ]
+   }
+  }
+ ]
+}

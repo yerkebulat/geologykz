@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-m-44-xxii-m",
+   "label": "M-44-XXII · Mineral resources map, 1:200,000",
+   "name": "M-44-XXII",
+   "mapType": "Mineral resources map",
+   "scale": "1:200,000",
+   "group": "prof-mineral",
+   "groupLabel": "Mineral resources and forecast",
+   "scanOnly": true,
+   "year": "1961",
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "М-44-XXII-karta-poleznyh-iskopaemyh-sssr-seriya-rudno-altayskaya.jpg",
+   "coordinates": [
+    [
+     80.999474,
+     50.000481
+    ],
+    [
+     81.999506,
+     50.000488
+    ],
+    [
+     81.999517,
+     49.333806
+    ],
+    [
+     80.999485,
+     49.333799
+    ]
+   ],
+   "bounds": [
+    [
+     80.99947352058452,
+     49.33379897894268
+    ],
+    [
+     81.99951710001119,
+     50.00048802447515
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the M-44-XXII nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 2.9 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-m-44-xxii-m/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 12,
+    "bounds": [
+     80.99947352058452,
+     49.33379897894268,
+     81.99951710001119,
+     50.00048802447515
+    ]
+   }
+  }
+ ]
+}

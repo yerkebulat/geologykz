@@ -1,0 +1,81 @@
+{
+ "id": "prof-l-44-xxxi-g",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "L-44-XXXI-geologicheskaya-karta-sssr-seriya-dzhungarskaya.jpg",
+ "source_bytes": 16989595,
+ "source_sha256": "2e16147d8cf3b16f76bcf64c231e16a97e1773398b70d6bd1106c86f1ff6db16",
+ "nomenclature": "L-44-XXXI",
+ "scale": 200000,
+ "map_type": "geological map",
+ "year_read": "1958",
+ "extent_pulkovo": [
+  78,
+  44.0,
+  79,
+  44.666666666666664
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   1443,
+   673
+  ],
+  [
+   4574,
+   681
+  ],
+  [
+   1417,
+   3624
+  ],
+  [
+   4581,
+   3624
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   77.999466,
+   44.667001
+  ],
+  [
+   78.999495,
+   44.667009
+  ],
+  [
+   77.999475,
+   44.000319
+  ],
+  [
+   78.999504,
+   44.000326
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=44.3333333333333 +lon_0=78.5 +lat_1=44.1111111111111 +lat_2=44.5555555555556 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.039566917244581036,
+   9.303246891395755e-05,
+   3005.87970350795
+  ],
+  [
+   0.00012399833172271066,
+   -0.03980651967324518,
+   2156.0114576886463
+  ],
+  [
+   3.421587561877494e-08,
+   -1.1511159620720083e-08,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 0.9896,
+  "top_bottom_ratio_expected": 0.9887,
+  "left_right_scale_ratio": 1.0028,
+  "height_width_scale_ratio": 1.0081,
+  "affine_misfit_max_px": 2.1,
+  "metres_per_source_px": 25.2
+ },
+ "tiles": 217,
+ "tile_bytes": 1317372
+}

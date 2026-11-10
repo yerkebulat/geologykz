@@ -1,0 +1,81 @@
+{
+ "id": "prof-l-41-vi-m",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "L-(41)-VI-karta-poleznyh-iskopaemyh-sssr-seriya-ulutau-kokchetavskaya.jpg",
+ "source_bytes": 32931067,
+ "source_sha256": "e6307a10b94528921572aec89a1bb607948574331dfd9cbc0d0fe695591ce047",
+ "nomenclature": "L-41-VI",
+ "scale": 200000,
+ "map_type": "mineral resources map",
+ "year_read": "1961",
+ "extent_pulkovo": [
+  65,
+  47.333333333333336,
+  66,
+  48.0
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   1686,
+   840
+  ],
+  [
+   6093,
+   839
+  ],
+  [
+   1669,
+   5239
+  ],
+  [
+   6122,
+   5238
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   64.999038,
+   48.00029
+  ],
+  [
+   65.999065,
+   48.000301
+  ],
+  [
+   64.999054,
+   47.333609
+  ],
+  [
+   65.99908,
+   47.33362
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=47.6666666666667 +lon_0=65.5 +lat_1=47.4444444444444 +lat_2=47.8888888888889 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.05898413163449565,
+   -0.00020434841699186931,
+   3892.5108029159805
+  ],
+  [
+   -1.3410603860598237e-05,
+   -0.05944410009107263,
+   3048.837087087335
+  ],
+  [
+   -3.1429419176653295e-11,
+   -3.170252438983926e-08,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 0.9897,
+  "top_bottom_ratio_expected": 0.9873,
+  "left_right_scale_ratio": 1.0,
+  "height_width_scale_ratio": 1.0062,
+  "affine_misfit_max_px": 2.6,
+  "metres_per_source_px": 16.9
+ },
+ "tiles": 230,
+ "tile_bytes": 818028
+}

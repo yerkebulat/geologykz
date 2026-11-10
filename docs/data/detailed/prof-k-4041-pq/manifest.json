@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-k-4041-pq",
+   "label": "K-(40),(41) Nukus · Pre-Quaternary geological map, 1:1,000,000",
+   "name": "K-(40),(41) Nukus",
+   "mapType": "Pre-Quaternary geological map",
+   "scale": "1:1,000,000",
+   "group": "prof-geo1m",
+   "groupLabel": "Geological 1:1,000,000",
+   "scanOnly": true,
+   "year": "1971",
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "k-(40)-(41)-nukus-obrazovaniy-sssr.jpg",
+   "coordinates": [
+    [
+     56.998938,
+     44.000114
+    ],
+    [
+     62.999077,
+     44.000182
+    ],
+    [
+     62.999122,
+     40.0001
+    ],
+    [
+     56.998992,
+     40.000035
+    ]
+   ],
+   "bounds": [
+    [
+     61.37742536503614,
+     43.480629
+    ],
+    [
+     62.999084861383295,
+     44.00018184428032
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the K-(40),(41) nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 8.1 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-k-4041-pq/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 10,
+    "bounds": [
+     61.37742536503614,
+     43.480629,
+     62.999084861383295,
+     44.00018184428032
+    ]
+   }
+  }
+ ]
+}

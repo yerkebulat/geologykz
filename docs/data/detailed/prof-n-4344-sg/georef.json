@@ -1,0 +1,81 @@
+{
+ "id": "prof-n-4344-sg",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "N-(43)-(44)-omsk-geologicheskaya-karta-novaya-seriya-shematicheskaya-geologicheskaya-kar.jpg",
+ "source_bytes": 23522694,
+ "source_sha256": "aba48a159675ba9515fa78cf8901e11aa88237bbaa6f65dff21c3e7f4446ec48",
+ "nomenclature": "N-(43),(44)",
+ "scale": 1000000,
+ "map_type": "schematic geological map",
+ "year_read": "1986",
+ "extent_pulkovo": [
+  72,
+  52,
+  81,
+  56
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   456,
+   1007
+  ],
+  [
+   7210,
+   1030
+  ],
+  [
+   201,
+   6298
+  ],
+  [
+   7429,
+   6286
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   71.999026,
+   56.000536
+  ],
+  [
+   80.999352,
+   56.000616
+  ],
+  [
+   71.999141,
+   52.00045
+  ],
+  [
+   80.999437,
+   52.000527
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=54 +lon_0=76.5 +lat_1=52.6666666666667 +lat_2=55.3333333333333 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.011898709367670995,
+   -0.00020603079986188208,
+   3835.2876026204212
+  ],
+  [
+   5.196952326840203e-05,
+   -0.012093581367181612,
+   3803.9505620598425
+  ],
+  [
+   1.1387754256017133e-08,
+   -6.333582748773916e-08,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 0.9344,
+  "top_bottom_ratio_expected": 0.9085,
+  "left_right_scale_ratio": 1.007,
+  "height_width_scale_ratio": 1.0001,
+  "affine_misfit_max_px": 52.2,
+  "metres_per_source_px": 84.3
+ },
+ "tiles": 299,
+ "tile_bytes": 1527062
+}

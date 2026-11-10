@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-l-4243-pq",
+   "label": "L-(42),(43) Balkhash · Pre-Quaternary geological map, 1:1,000,000",
+   "name": "L-(42),(43) Balkhash",
+   "mapType": "Pre-Quaternary geological map",
+   "scale": "1:1,000,000",
+   "group": "prof-geo1m",
+   "groupLabel": "Geological 1:1,000,000",
+   "scanOnly": true,
+   "year": "1974",
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "L-(42)-(43)-balhash-geologicheskaya-karta-sssr-karta-dochetvertichnyh-obrazovaniy.jpg",
+   "coordinates": [
+    [
+     68.999148,
+     48.000332
+    ],
+    [
+     74.999322,
+     48.000388
+    ],
+    [
+     74.999391,
+     44.000296
+    ],
+    [
+     68.999228,
+     44.000243
+    ]
+   ],
+   "bounds": [
+    [
+     68.99914756653138,
+     44.00024275170764
+    ],
+    [
+     74.99939067053865,
+     48.00038804162452
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the L-(42),(43) nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 42.3 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-l-4243-pq/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 10,
+    "bounds": [
+     68.99914756653138,
+     44.00024275170764,
+     74.99939067053865,
+     48.00038804162452
+    ]
+   }
+  }
+ ]
+}

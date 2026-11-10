@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-m-3839-pq",
+   "label": "M-(38),(39) Uralsk · Pre-Quaternary geological map, 1:1,000,000",
+   "name": "M-(38),(39) Uralsk",
+   "mapType": "Pre-Quaternary geological map",
+   "scale": "1:1,000,000",
+   "group": "prof-geo1m",
+   "groupLabel": "Geological 1:1,000,000",
+   "scanOnly": true,
+   "year": "1985",
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "М-(38)-(39)-uralsk-geologicheskaya-karta-sssr-novaya-seriya-karta-dochetvertichnyh-ob.jpg",
+   "coordinates": [
+    [
+     44.998438,
+     52.000101
+    ],
+    [
+     53.998635,
+     52.000235
+    ],
+    [
+     53.998767,
+     48.000156
+    ],
+    [
+     44.998585,
+     48.00003
+    ]
+   ],
+   "bounds": [
+    [
+     46.47827899999999,
+     48.000060388764844
+    ],
+    [
+     53.99876695585968,
+     51.774541
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the M-(38),(39) nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 16.0 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-m-3839-pq/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 10,
+    "bounds": [
+     46.47827899999999,
+     48.000060388764844,
+     53.99876695585968,
+     51.774541
+    ]
+   }
+  }
+ ]
+}

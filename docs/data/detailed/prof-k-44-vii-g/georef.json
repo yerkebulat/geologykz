@@ -1,0 +1,81 @@
+{
+ "id": "prof-k-44-vii-g",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "К-44-VII-geologicheskaya-karta-sssr-seriya-severo-tyan-shanskaya.jpg",
+ "source_bytes": 31578993,
+ "source_sha256": "ba42295f9e098e170f8106a86d0d08fac4d99e4a98c87d914ee3d7d42dc4ae32",
+ "nomenclature": "K-44-VII",
+ "scale": 200000,
+ "map_type": "geological map",
+ "year_read": "1957",
+ "extent_pulkovo": [
+  78,
+  42.66666666666667,
+  79,
+  43.333333333333336
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   2252,
+   1026
+  ],
+  [
+   7105,
+   978
+  ],
+  [
+   2266,
+   5402
+  ],
+  [
+   7101,
+   5359
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   77.999485,
+   43.333636
+  ],
+  [
+   78.999513,
+   43.333644
+  ],
+  [
+   77.999494,
+   42.666954
+  ],
+  [
+   78.999522,
+   42.666961
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=43 +lon_0=78.5 +lat_1=42.7777777777778 +lat_2=43.2222222222222 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.05933996892118491,
+   -0.0009856122676057794,
+   4679.690350832669
+  ],
+  [
+   -0.0006011026035673242,
+   -0.05974423020333586,
+   3214.4017230917307
+  ],
+  [
+   -1.3530319014802604e-08,
+   -1.9616120245469165e-07,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 1.0037,
+  "top_bottom_ratio_expected": 0.9892,
+  "left_right_scale_ratio": 0.9989,
+  "height_width_scale_ratio": 0.9951,
+  "affine_misfit_max_px": 17.7,
+  "metres_per_source_px": 16.9
+ },
+ "tiles": 177,
+ "tile_bytes": 1170262
+}

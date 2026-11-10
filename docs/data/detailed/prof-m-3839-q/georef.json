@@ -1,0 +1,81 @@
+{
+ "id": "prof-m-3839-q",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "М-(38)-(39)-uralsk-geologicheskaya-karta-sssr-novaya-seriya-karta-chetvertichnyh-obra.jpg",
+ "source_bytes": 1006054,
+ "source_sha256": "ce6ea2d5f04cb381242a890eb9245a4575e4786ba1e8289803890d101ea92177",
+ "nomenclature": "M-(38),(39)",
+ "scale": 1000000,
+ "map_type": "Quaternary deposits map",
+ "year_read": null,
+ "extent_pulkovo": [
+  45,
+  48,
+  54,
+  52
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   125,
+   73
+  ],
+  [
+   1886,
+   70
+  ],
+  [
+   43,
+   1350
+  ],
+  [
+   1968,
+   1350
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   44.998438,
+   52.000101
+  ],
+  [
+   53.998635,
+   52.000235
+  ],
+  [
+   44.998585,
+   48.00003
+  ],
+  [
+   53.998767,
+   48.000156
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=50 +lon_0=49.5 +lat_1=48.6666666666667 +lat_2=51.3333333333333 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.002854838814739369,
+   1.4030527769373922e-05,
+   1004.3621524257585
+  ],
+  [
+   -5.142316363558417e-06,
+   -0.0028696985214162803,
+   736.8752775115645
+  ],
+  [
+   -3.809123209153211e-09,
+   1.3517993476551275e-08,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 0.9148,
+  "top_bottom_ratio_expected": 0.9203,
+  "left_right_scale_ratio": 0.9977,
+  "height_width_scale_ratio": 1.0073,
+  "affine_misfit_max_px": 3.0,
+  "metres_per_source_px": 348.6
+ },
+ "tiles": 426,
+ "tile_bytes": 3371024
+}

@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-l-39-i-g",
+   "label": "L-39-I · Geological map, 1:200,000",
+   "name": "L-39-I",
+   "mapType": "Geological map",
+   "scale": "1:200,000",
+   "group": "prof-geo200",
+   "groupLabel": "Geological 1:200,000",
+   "scanOnly": true,
+   "year": null,
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "L-39-I-gosudarstvennaya-geologicheskaya-karta-sssr-seriya-nizhnevolzhskaya.jpg",
+   "coordinates": [
+    [
+     47.998641,
+     48.000074
+    ],
+    [
+     48.998661,
+     48.000088
+    ],
+    [
+     48.998682,
+     47.333409
+    ],
+    [
+     47.998662,
+     47.333395
+    ]
+   ],
+   "bounds": [
+    [
+     47.99864118685476,
+     47.33340264830758
+    ],
+    [
+     48.998681547823814,
+     48.00008788636079
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the L-39-I nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 4.1 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-l-39-i-g/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 11,
+    "bounds": [
+     47.99864118685476,
+     47.33340264830758,
+     48.998681547823814,
+     48.00008788636079
+    ]
+   }
+  }
+ ]
+}

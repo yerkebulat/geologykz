@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-m-45-a-g",
+   "label": "M-45-А Gorno-Altaysk · Geological map, 1:500,000",
+   "name": "M-45-А Gorno-Altaysk",
+   "mapType": "Geological map",
+   "scale": "1:500,000",
+   "group": "prof-geo500",
+   "groupLabel": "Geological 1:500,000",
+   "scanOnly": true,
+   "year": "1979",
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "М-45-А-gorno-altaysk-geologicheskaya-karta-kazahskoy-ssr.jpg",
+   "coordinates": [
+    [
+     83.999541,
+     52.000547
+    ],
+    [
+     86.999646,
+     52.000565
+    ],
+    [
+     86.999673,
+     50.000519
+    ],
+    [
+     83.999573,
+     50.000501
+    ]
+   ],
+   "bounds": [
+    [
+     83.99956215698619,
+     50.000501142445735
+    ],
+    [
+     85.028329,
+     50.675480754990964
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the M-45-А nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 23.9 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-m-45-a-g/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 11,
+    "bounds": [
+     83.99956215698619,
+     50.000501142445735,
+     85.028329,
+     50.675480754990964
+    ]
+   }
+  }
+ ]
+}

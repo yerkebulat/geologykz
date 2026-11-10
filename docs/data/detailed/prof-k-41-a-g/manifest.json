@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-k-41-a-g",
+   "label": "K-41-А Mangit · Geological map, 1:500,000",
+   "name": "K-41-А Mangit",
+   "mapType": "Geological map",
+   "scale": "1:500,000",
+   "group": "prof-geo500",
+   "groupLabel": "Geological 1:500,000",
+   "scanOnly": true,
+   "year": "1979",
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "К-41-А-mangit-geologicheskaya-karta-kazahskoy-ssr.jpg",
+   "coordinates": [
+    [
+     59.999006,
+     44.000149
+    ],
+    [
+     62.999077,
+     44.000182
+    ],
+    [
+     62.999116,
+     42.000138
+    ],
+    [
+     59.999047,
+     42.000106
+    ]
+   ],
+   "bounds": [
+    [
+     61.37742536500019,
+     43.480629
+    ],
+    [
+     62.999084861474195,
+     44.00018184428032
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the K-41-А nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 0.9 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-k-41-a-g/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 11,
+    "bounds": [
+     61.37742536500019,
+     43.480629,
+     62.999084861474195,
+     44.00018184428032
+    ]
+   }
+  }
+ ]
+}

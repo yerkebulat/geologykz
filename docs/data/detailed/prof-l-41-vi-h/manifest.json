@@ -1,0 +1,62 @@
+{
+ "sheets": [
+  {
+   "id": "prof-l-41-vi-h",
+   "label": "L-41-VI · Hydrogeological map, 1:200,000",
+   "name": "L-41-VI",
+   "mapType": "Hydrogeological map",
+   "scale": "1:200,000",
+   "group": "prof-hydro",
+   "groupLabel": "Hydrogeological",
+   "scanOnly": true,
+   "year": "1974",
+   "credit": "From the professor's shared collection of Soviet geological maps (Kazakhstan maps). Scan only.",
+   "sourceFile": "L-(41)-VI-gidrogeologicheskaya-karta-sssr-seriya-ulutau-kokchetavskaya.jpg",
+   "coordinates": [
+    [
+     64.999038,
+     48.00029
+    ],
+    [
+     65.999065,
+     48.000301
+    ],
+    [
+     65.99908,
+     47.33362
+    ],
+    [
+     64.999054,
+     47.333609
+    ]
+   ],
+   "bounds": [
+    [
+     64.99903775166334,
+     47.33360909930458
+    ],
+    [
+     65.99908032141418,
+     48.000301021507994
+    ]
+   ],
+   "license": "Rights remain with the original authors or rightsholders. Shared with this project as a teaching collection; no open license established. These scan-derived tiles are not covered by the repository code license.",
+   "accuracy": "Four frame corners read by hand from the L-41-VI nomenclature (Pulkovo 1942 to WGS84), projective fit. Expect errors of a few hundred metres; corner residual check 2.4 px.",
+   "limitations": "Scan only, no color classification. Clipped to the Kazakhstan border. Historic labels and boundaries are retained as printed.",
+   "rasterTiles": {
+    "tiles": [
+     "data/detailed/prof-l-41-vi-h/tiles/{z}/{x}/{y}.webp"
+    ],
+    "tileSize": 256,
+    "minzoom": 7,
+    "maxzoom": 12,
+    "bounds": [
+     64.99903775166334,
+     47.33360909930458,
+     65.99908032141418,
+     48.000301021507994
+    ]
+   }
+  }
+ ]
+}

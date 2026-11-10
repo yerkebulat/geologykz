@@ -1,0 +1,81 @@
+{
+ "id": "prof-m-44-xxii-f",
+ "source": "professor shared collection (Google Drive folder \"Kazakhstan maps\")",
+ "source_file": "М-44-XXII-charsk-karta-prognoza-poleznyh-iskopaemyh-zaysanskaya-seriya.jpg",
+ "source_bytes": 6353030,
+ "source_sha256": "319a022713c4d6b136eb2b7babfb2d488842096541423fe998a3e65383b52120",
+ "nomenclature": "M-44-XXII",
+ "scale": 200000,
+ "map_type": "mineral forecast map",
+ "year_read": null,
+ "extent_pulkovo": [
+  81,
+  49.333333333333336,
+  82,
+  50.0
+ ],
+ "corner_px_TL_TR_BL_BR": [
+  [
+   312,
+   825
+  ],
+  [
+   4534,
+   825
+  ],
+  [
+   312,
+   5194
+  ],
+  [
+   4534,
+   5194
+  ]
+ ],
+ "corners_wgs84": [
+  [
+   80.999474,
+   50.000481
+  ],
+  [
+   81.999506,
+   50.000488
+  ],
+  [
+   80.999485,
+   49.333799
+  ],
+  [
+   81.999517,
+   49.333806
+  ]
+ ],
+ "fit_crs": "+proj=lcc +lat_0=49.6666666666667 +lon_0=81.5 +lat_1=49.4444444444444 +lat_2=49.8888888888889 +x_0=0 +y_0=0 +ellps=krass +units=m +no_defs +type=crs",
+ "homography": [
+  [
+   0.05848296426973969,
+   -0.00044654953235437415,
+   2423.000000569644
+  ],
+  [
+   -9.775831743497537e-19,
+   -0.0594760935109034,
+   3031.562876582406
+  ],
+  [
+   3.506814132867417e-23,
+   -1.842961331916017e-07,
+   1.0
+  ]
+ ],
+ "diagnostics": {
+  "top_bottom_ratio_measured": 1.0,
+  "top_bottom_ratio_expected": 0.9864,
+  "left_right_scale_ratio": 1.0,
+  "height_width_scale_ratio": 1.0075,
+  "affine_misfit_max_px": 14.5,
+  "metres_per_source_px": 17.0
+ },
+ "tiles": 221,
+ "tile_bytes": 728034
+}
