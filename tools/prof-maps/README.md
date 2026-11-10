@@ -1,6 +1,6 @@
-# Professor's collection: scan-only sheets
+# Extra collection: scan-only sheets
 
-Soviet geological sheets from a professor's shared collection ("Kazakhstan maps"), published as georeferenced scans with no color classification.
+Soviet geological sheets from the Extra collection (shared scans), published as georeferenced scans with no color classification.
 
 - `gcp.json`: four frame-corner pixels per scan (TL, TR, BL, BR), read by hand from zoomed crops. Corners sit on the inner neatline.
 - `meta.json`: sheet id, type group, title and source file name.
