@@ -2,7 +2,7 @@
 
 Open geological map of Kazakhstan: interactive MapLibre showcase with Macrostrat geologic map data clipped to Kazakhstan.
 
-Live: https://yerkebulat.github.io/geologykz/
+Live: https://kzgeology.com
 
 ## Attribution
 
