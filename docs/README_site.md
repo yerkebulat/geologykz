@@ -1,6 +1,6 @@
 ## Website (GitHub Pages)
 
-Plain static files in `/docs` (no build step), live at https://yerkebulat.github.io/geologykz/
+Plain static files in `/docs` (no build step), live at https://kzgeology.com
 
 - MapLibre GL JS map with Macrostrat geologic units clipped to Kazakhstan
 - Layer toggles, opacity, popups, geolocate, Esri satellite basemap
