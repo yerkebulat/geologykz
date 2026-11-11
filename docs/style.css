@@ -317,6 +317,8 @@ h2 {
 .foot-inner p { margin: 0; }
 .foot-inner a { color: var(--muted); }
 .foot-inner a:hover { color: var(--text); }
+.foot-inner .foot-atlas { font-size: 11px; opacity: .55; text-decoration: none; align-self: flex-end; }
+.foot-inner .foot-atlas:hover { opacity: 1; }
 
 @media (max-width: 800px) {
   .legend-grid { grid-template-columns: 1fr; }
