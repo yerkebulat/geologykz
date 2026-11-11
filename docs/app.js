@@ -75,6 +75,7 @@
       attributionControl: { compact: true, customAttribution: ATTR },
       cooperativeGestures: true
     });
+    setupCollapsedAttribution(map);
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
     map.addControl(new maplibregl.FullscreenControl({ container: mapRoot }), "top-right");
     map.addControl(
@@ -291,16 +292,52 @@
       window.geologykzSetBasemap = setBasemap;
       window.geologykzMap = map;
       ["geo-toggle", "kz-toggle", "geo-opacity", "base-toggle"].forEach(id => document.getElementById(id).dispatchEvent(new Event(id.endsWith("opacity") ? "input" : "change")));
-      // Start the standard attribution disclosure closed, without removing credits or its toggle.
-      mapRoot.querySelectorAll('.maplibregl-ctrl-attrib.maplibregl-compact').forEach(control => {
-        control.classList.remove('maplibregl-compact-show');
-        control.removeAttribute('open');
-      });
       window.dispatchEvent(new CustomEvent("geologykz:load", { detail: map }));
       const resize = () => map.resize();
       document.addEventListener("fullscreenchange", resize);
       document.addEventListener("webkitfullscreenchange", resize);
     });
+  }
+
+
+  // MapLibre compact mode starts expanded (it adds maplibregl-compact-show on first
+  // _updateCompact) and can reopen that on resize or style/source updates. Keep it
+  // collapsed to the (i) button at every width unless the user opens it.
+  function setupCollapsedAttribution(map) {
+    let userExpanded = false;
+    const root = map.getContainer();
+    const controls = () => root.querySelectorAll(".maplibregl-ctrl-attrib");
+    const isExpanded = (el) => el.classList.contains("maplibregl-compact-show");
+    function collapse() {
+      controls().forEach((el) => {
+        el.classList.add("maplibregl-compact");
+        if (!userExpanded) {
+          el.classList.remove("maplibregl-compact-show");
+          el.removeAttribute("open");
+        }
+      });
+    }
+    function bind() {
+      controls().forEach((el) => {
+        const btn = el.querySelector(".maplibregl-ctrl-attrib-button");
+        if (!btn || btn.dataset.kzAttribBound) return;
+        btn.dataset.kzAttribBound = "1";
+        btn.addEventListener("click", () => {
+          requestAnimationFrame(() => {
+            userExpanded = isExpanded(el);
+          });
+        });
+      });
+    }
+    function sync() {
+      bind();
+      collapse();
+    }
+    sync();
+    map.on("load", sync);
+    map.on("resize", sync);
+    map.on("styledata", sync);
+    map.on("sourcedata", sync);
   }
 
   function initLayersToggle() {
