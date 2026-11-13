@@ -65,6 +65,89 @@
     419.2, "#B3E1B6", 443.8, "#009270", 485.4, "#7FA056", 541, "#F73563"
   ];
 
+  // Layout: full-screen map app (default) or the scrolling page with text below.
+  const LAYOUT_KEY = "geologykz-layout";
+  const root = document.documentElement;
+  function isAppLayout() {
+    return root.classList.contains("fs-app");
+  }
+  let layoutMap = null;
+  const layoutButtons = [];
+  function syncLayoutButtons() {
+    const app = isAppLayout();
+    layoutButtons.forEach((b) => {
+      const label = app ? "Exit full screen" : "Full screen";
+      b.setAttribute("aria-label", label);
+      b.title = app ? "Exit full screen (show page with legend and text)" : "Full screen map";
+      b.querySelector(".layout-text").textContent = label;
+      b.classList.toggle("is-app", app);
+    });
+  }
+  function setLayout(app, opts) {
+    opts = opts || {};
+    root.classList.toggle("fs-app", app);
+    if (opts.save !== false) {
+      try { localStorage.setItem(LAYOUT_KEY, app ? "full" : "page"); } catch (e) { /* storage optional */ }
+    }
+    if (layoutMap && layoutMap.cooperativeGestures) {
+      if (app) layoutMap.cooperativeGestures.disable();
+      else layoutMap.cooperativeGestures.enable();
+    }
+    if (app) window.scrollTo(0, 0);
+    syncLayoutButtons();
+    if (layoutMap) requestAnimationFrame(() => layoutMap.resize());
+  }
+  window.geologykzSetLayout = setLayout;
+  function LayoutControl(map) {
+    layoutMap = map;
+  }
+  LayoutControl.prototype.onAdd = function () {
+    const box = document.createElement("div");
+    box.className = "maplibregl-ctrl maplibregl-ctrl-group layout-ctrl";
+    const b = document.createElement("button");
+    b.type = "button";
+    b.id = "layout-toggle";
+    b.className = "layout-btn";
+    b.innerHTML =
+      '<svg class="layout-icon icon-exit" viewBox="0 0 16 16" aria-hidden="true"><path d="M6 1v5H1M10 1v5h5M6 15v-5H1M10 15v-5h5"/></svg>' +
+      '<svg class="layout-icon icon-enter" viewBox="0 0 16 16" aria-hidden="true"><path d="M1 6V1h5M15 6V1h-5M1 10v5h5M15 10v5h-5"/></svg>' +
+      '<span class="layout-text"></span>';
+    b.addEventListener("click", () => setLayout(!isAppLayout()));
+    box.appendChild(b);
+    layoutButtons.push(b);
+    syncLayoutButtons();
+    this._box = box;
+    return box;
+  };
+  LayoutControl.prototype.onRemove = function () {
+    this._box.remove();
+  };
+  // In-page links (Legend, Geology, legend cards) need the page layout to be reachable.
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || !isAppLayout()) return;
+    const id = a.getAttribute("href").slice(1);
+    const target = id && document.getElementById(id);
+    if (!target || target.closest("#map") || id === "top") return;
+    e.preventDefault();
+    setLayout(false);
+    if (target.tagName === "DETAILS") target.open = true;
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: "smooth" });
+      history.replaceState(null, "", "#" + id);
+    });
+  });
+
+  // Keep the top-right map controls (zoom, layout, locate) below the floating header.
+  (function trackTopbar() {
+    const bar = document.querySelector(".topbar");
+    if (!bar) return;
+    const set = () => root.style.setProperty("--topbar-h", bar.offsetHeight + "px");
+    set();
+    if (window.ResizeObserver) new ResizeObserver(set).observe(bar);
+    else window.addEventListener("resize", set);
+  })();
+
   function initMap() {
     const mapRoot = document.getElementById("map");
     const map = new maplibregl.Map({
@@ -73,11 +156,11 @@
       center: [66.9, 48.2],
       zoom: 4.2,
       attributionControl: { compact: true, customAttribution: ATTR },
-      cooperativeGestures: true
+      cooperativeGestures: !isAppLayout()
     });
     setupCollapsedAttribution(map);
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
-    map.addControl(new maplibregl.FullscreenControl({ container: mapRoot }), "top-right");
+    map.addControl(new LayoutControl(map), "top-right");
     map.addControl(
       new maplibregl.GeolocateControl({
         positionOptions: { enableHighAccuracy: true },
