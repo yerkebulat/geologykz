@@ -159,6 +159,7 @@
       cooperativeGestures: !isAppLayout()
     });
     setupCollapsedAttribution(map);
+    setupClickCoordinates(map);
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
     map.addControl(new LayoutControl(map), "top-right");
     map.addControl(
@@ -382,6 +383,50 @@
     });
   }
 
+
+  // Every map click shows the clicked point: appended to the geology popup that
+  // other handlers opened for this click, or in a small popup of its own.
+  function setupClickCoordinates(map) {
+    function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+      return new Promise((resolve, reject) => {
+        const t = document.createElement("textarea");
+        t.value = text; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.opacity = "0";
+        document.body.appendChild(t); t.select();
+        try { document.execCommand("copy") ? resolve() : reject(); } catch (e) { reject(e); } finally { t.remove(); }
+      });
+    }
+    function coordLine(text) {
+      const row = document.createElement("div");
+      row.className = "coord-line";
+      row.innerHTML = '<span class="coord-text"></span><button type="button" class="coord-copy">Copy</button>';
+      row.querySelector(".coord-text").textContent = text;
+      const btn = row.querySelector(".coord-copy");
+      let timer;
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        copyText(text).then(() => { btn.textContent = "Copied"; }, () => { btn.textContent = "Copy failed"; });
+        clearTimeout(timer);
+        timer = setTimeout(() => { btn.textContent = "Copy"; }, 1500);
+      });
+      return row;
+    }
+    map.on("click", (e) => {
+      const text = e.lngLat.lat.toFixed(5) + ", " + e.lngLat.lng.toFixed(5);
+      // Run after this click's layer handlers have opened (or closed) their popups.
+      setTimeout(() => {
+        const contents = map.getContainer().querySelectorAll(".maplibregl-popup-content");
+        const open = contents[contents.length - 1];
+        if (open) {
+          if (!open.querySelector(".coord-line")) open.appendChild(coordLine(text));
+          return;
+        }
+        const box = document.createElement("div");
+        box.appendChild(coordLine(text));
+        new maplibregl.Popup({ maxWidth: "260px", className: "coord-popup" }).setLngLat(e.lngLat).setDOMContent(box).addTo(map);
+      }, 0);
+    });
+  }
 
   // MapLibre compact mode starts expanded (it adds maplibregl-compact-show on first
   // _updateCompact) and can reopen that on resize or style/source updates. Keep it
