@@ -33,7 +33,7 @@ export const LAYERS = [
 const LAYER_BY_TYPE = Object.fromEntries(LAYERS.map((l) => [l.type, l]));
 const ALLOWED_TYPES = new Set(LAYERS.map((l) => l.type));
 
-const FIXED_ORIGINS = new Set(["https://kzgeology.com", "https://www.kzgeology.com"]);
+const FIXED_ORIGINS = new Set(["https://kzgeology.com", "https://www.kzgeology.com", "https://yerkebulat.github.io"]);
 const LOCALHOST_RE = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
 
 const KZ_LNG = [45, 90];
