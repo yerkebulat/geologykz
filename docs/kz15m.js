@@ -80,6 +80,7 @@
     map.on("mouseleave", "kz15m-fill", () => { if (hov !== null) map.setFeatureState({ source: "kz15m-units", id: hov }, { hover: false }); hov = null; map.getCanvas().style.cursor = ""; });
     map.on("click", "kz15m-fill", (e) => {
       if (window.geologykzDetailed?.hitUnits(e.point)) return;
+      if (window.geologykzEqazyna?.hit(e.point)) return;
       const f = e.features[0]; if (!f || !legend) return;
       new maplibregl.Popup({ maxWidth: "320px" }).setLngLat(e.lngLat).setHTML(popup(legend[f.properties.u])).addTo(map);
     });

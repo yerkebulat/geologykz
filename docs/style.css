@@ -434,3 +434,10 @@ html.fs-app #legends, html.fs-app #geology, html.fs-app .site-foot { display: no
 .coord-text { font-family:var(--mono); font-size:11.5px; color:var(--text); user-select:all; }
 .coord-copy { margin-left:auto; min-height:28px; padding:2px 10px; border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--text); font:inherit; font-size:12px; cursor:pointer; }
 .coord-copy:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+
+.eqazyna-pop { font-size: 13px; }
+.eqazyna-item + .eqazyna-item { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); }
+.eqazyna-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; }
+.eqazyna-links { margin-top: 6px; }
+.eqazyna-credit { margin-top: 8px; font-size: 12px; color: var(--muted); }
+.eqazyna-err { color: #9f1239; }

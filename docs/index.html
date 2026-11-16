@@ -57,6 +57,10 @@
       <div class="mode-switch" id="kz15m-mode" role="radiogroup" aria-label="1967 map display"><button type="button" role="radio" aria-checked="false" data-mode="scan">Scan</button><button type="button" role="radio" aria-checked="true" data-mode="colors" class="active">Colors</button></div>
       <label class="row opacity"><span>Opacity</span><input type="range" id="kz15m-opacity" min="0" max="1" step="0.05" value="0.85"></label>
       <details><summary>Details &amp; legend</summary><p>Geological map of the Kazakh SSR, 1:1,500,000 (1967). Historic source via Geokniga; approximate color segmentation and provisional georeferencing.</p><a href="#kz15m-card">National map legend and source information</a></details></section>
+      <section class="map-category" aria-labelledby="eqazyna-heading"><h2 id="eqazyna-heading">Subsoil use</h2>
+      <label class="row"><input type="checkbox" id="eqazyna-toggle"> <span>Subsoil use licenses (e-qazyna)</span></label>
+      <div id="eqazyna-status" class="detail-status" hidden></div>
+      <details><summary>Details &amp; source</summary><p>Solid-mineral licenses and contracts from the official Unified Subsoil Use Platform. Current register layers, plus revoked exploration licenses. Off by default.</p><div class="legend-scroll" id="eqazyna-legend"></div><p><a href="https://minerals.e-qazyna.kz/ru/contracts-map" target="_blank" rel="noopener">Source: Unified Subsoil Use Platform, minerals.e-qazyna.kz</a></p></details></section>
       <section class="map-category" aria-labelledby="global-heading"><h2 id="global-heading">Global geology</h2>
       <label class="row"><input type="checkbox" id="geo-toggle" checked><span>Show global overview</span></label>
       <label class="row opacity"><span>Opacity</span><input type="range" id="geo-opacity" min="0" max="1" step="0.05" value="0.7"></label>
@@ -123,6 +127,7 @@
     <p>Geologic map data &copy; <a href="https://macrostrat.org" target="_blank" rel="noopener">Macrostrat</a>, CC-BY 4.0. Sources: Chorlton, L.B. 2007, Generalized Geology of the World, GSC Open File 5529, doi:10.4095/223767; Asch, K. 2003, IGME 5000 International Geological Map of Europe 1:5M, BGR. Clipped to Kazakhstan and simplified. Border: Natural Earth. Basemaps: OpenFreeMap, Esri, OpenTopoMap / OpenStreetMap.</p>
     <p>Geological map of the Kazakh SSR, 1:1,500,000 (1967). Scan via geokniga.org. Georeferenced, mosaicked and vectorised by colour for this site; boundaries are approximate.</p>
     <p>Extra collection (shared scans): Soviet geological, mineral, forecast and hydrogeological sheets, georeferenced from frame corners and shown as scans only.</p>
+    <p>Solid-mineral licenses and contracts: <a href="https://minerals.e-qazyna.kz/ru/contracts-map" target="_blank" rel="noopener">Unified Subsoil Use Platform, minerals.e-qazyna.kz</a>. Relayed and reprojected for this map; the official site is the legal source.</p>
     <p><a href="https://github.com/yerkebulat/geologykz" target="_blank" rel="noopener">github.com/yerkebulat/geologykz</a></p>
   </details><a class="foot-atlas" href="https://atlas.kzgeology.com" rel="nofollow noopener" aria-label="Atlas (private)">&#128274; Atlas</a></div>
 </footer>
@@ -132,6 +137,8 @@
 <script src="preferences.js"></script>
 <script src="kz15m.js"></script>
 <script src="detailed.js"></script>
+<script src="eqazyna-config.js"></script>
+<script src="eqazyna.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
