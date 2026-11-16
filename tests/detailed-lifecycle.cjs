@@ -23,7 +23,7 @@ function env({ hold = false, fresh = false, storage, blocked = false, zoom = 10,
         });
     let ver = 3;
     try { ver = JSON.parse(raw).version; } catch (e) {}
-    const storeKey = ver === 5 ? "geologykz-ui-v5" : ver === 4 ? "geologykz-ui-v4" : "geologykz-ui-v3";
+    const storeKey = ver === 6 ? "geologykz-ui-v6" : ver === 5 ? "geologykz-ui-v5" : ver === 4 ? "geologykz-ui-v4" : "geologykz-ui-v3";
     w.localStorage.setItem(storeKey, raw);
   }
   if (blocked) Object.defineProperty(w, "localStorage", { get() { throw new Error("blocked"); } });
@@ -97,6 +97,10 @@ function env({ hold = false, fresh = false, storage, blocked = false, zoom = 10,
   assert.equal(fresh.w.document.querySelector('#kz15m-mode [aria-checked="true"]').dataset.mode, "colors");
   assert.equal(fresh.w.document.querySelectorAll("details[open]").length, 0);
   assert.equal(fresh.ids().length, 0);
+  assert(!fresh.w.document.getElementById("eqazyna-toggle").checked);
+  assert(!fresh.w.document.getElementById("detail-toggle").checked);
+  assert(fresh.w.document.getElementById("kz15m-toggle").checked);
+  assert(fresh.w.document.getElementById("geo-toggle").checked);
   assert(fresh.w.document.getElementById("enabled-count").textContent.startsWith("2"));
   assert(fresh.w.document.getElementById("detail-status").textContent.includes("1:200,000"));
   assert(!fresh.w.document.getElementById("detail-all-200k"));
@@ -128,7 +132,26 @@ function env({ hold = false, fresh = false, storage, blocked = false, zoom = 10,
   assert.equal(raster.tileSize, 256);
   assert(raster.tiles[0].includes("{z}/{x}/{y}"));
   assert.equal(migrated.layers["detail-m43xxxi-raster"].paint["raster-opacity"], 0.4);
+  assert(!migrated.w.document.getElementById("eqazyna-toggle").checked);
   migrated.close();
+
+  const fromV5 = env({ fresh: true, storage: JSON.stringify({
+    version: 5,
+    checks: { "detail-toggle": true, "geo-toggle": true, "kz15m-toggle": false, "kz-toggle": true, "base-toggle": true, "eqazyna-toggle": true },
+    ranges: { "detail-opacity": 0.55, "geo-opacity": 0.7, "kz15m-opacity": 0.85 },
+    nationalMode: "colors",
+    base: "terrain",
+    satellite: "esri"
+  }) });
+  await fromV5.flush();
+  assert(fromV5.w.document.getElementById("detail-toggle").checked);
+  assert(fromV5.w.document.getElementById("geo-toggle").checked);
+  assert(!fromV5.w.document.getElementById("kz15m-toggle").checked);
+  assert(!fromV5.w.document.getElementById("eqazyna-toggle").checked);
+  assert.equal(+fromV5.w.document.getElementById("detail-opacity").value, 0.55);
+  assert.equal(fromV5.w.geologykzPreferences.base, "terrain");
+  assert.equal(fromV5.w.geologykzPreferences.satellite, "esri");
+  fromV5.close();
 
   const a = env();
   await a.flush();
@@ -181,5 +204,5 @@ function env({ hold = false, fresh = false, storage, blocked = false, zoom = 10,
   assert(html.includes("Hold for more"));
   assert(html.includes("Source: Unified Subsoil Use Platform"));
   assert(!html.includes("Show all 1:200,000"));
-  console.log("PASS simplified detailed maps: one toggle, scans only, lazy in-view load, v4/v3 migration, hide/zoom, no color assets.");
+  console.log("PASS simplified detailed maps: one toggle, scans only, lazy in-view load, v5/v4/v3 migration, e-qazyna stays off until chosen, hide/zoom, no color assets.");
 })().catch((e) => { console.error(e); process.exit(1); });
