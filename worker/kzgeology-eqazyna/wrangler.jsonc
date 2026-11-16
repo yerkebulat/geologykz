@@ -1,0 +1,11 @@
+{
+  "name": "kzgeology-eqazyna",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-16",
+  "account_id": "7f7782b70fdf15f64ae8b7f9bf46b9af",
+  "workers_dev": true,
+  "observability": {
+    "enabled": true,
+    "traces": { "enabled": true }
+  }
+}

@@ -300,6 +300,7 @@
 
       map.on("click", "geo-fill", function (e) {
         if (window.geologykzDetailed?.hitUnits(e.point)) return;
+        if (window.geologykzEqazyna?.hit(e.point)) return;
         if (map.getLayer("kz15m-fill") && map.getLayoutProperty("kz15m-fill", "visibility") === "visible" &&
             map.queryRenderedFeatures(e.point, { layers: ["kz15m-fill"] }).length) return;
         const p = (e.features[0] || {}).properties || {};
