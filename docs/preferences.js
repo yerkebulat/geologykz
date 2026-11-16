@@ -1,13 +1,13 @@
 /* Versioned, validated local choices. Storage is optional; Info details never auto-open. */
 (function () {
-  const key = "geologykz-ui-v5", prev4 = "geologykz-ui-v4", prev3 = "geologykz-ui-v3";
+  const key = "geologykz-ui-v6", prev5 = "geologykz-ui-v5", prev4 = "geologykz-ui-v4", prev3 = "geologykz-ui-v3";
   const checks = ["detail-toggle", "geo-toggle", "kz15m-toggle", "kz-toggle", "base-toggle", "eqazyna-toggle"];
   const ranges = ["detail-opacity", "geo-opacity", "kz15m-opacity"];
   const on = ["geo-toggle", "kz15m-toggle", "kz-toggle", "base-toggle"];
   const SATS = ["eox", "esri", "maptiler"];
   const BASES = ["light", "dark", "satellite", "hybrid", "terrain", "topo", "otm"];
   const defaults = {
-    version: 5,
+    version: 6,
     checks: Object.fromEntries(checks.map((id) => [id, on.includes(id)])),
     ranges: { "detail-opacity": 1, "geo-opacity": 0.7, "kz15m-opacity": 0.85 },
     nationalMode: "colors",
@@ -24,17 +24,16 @@
     if (opts.satellite && !SATS.includes(s.satellite)) return false;
     return true;
   }
-  function fromLegacy(old) {
-    const anyDetail = !!(old.checks["detail-all-200k"] || old.checks["detail-all-500k"] || old.checks["detail-show"]);
+  function toV6(old, eqazynaOn) {
     return {
-      version: 5,
+      version: 6,
       checks: {
-        "detail-toggle": anyDetail,
+        "detail-toggle": !!old.checks["detail-toggle"],
         "geo-toggle": !!old.checks["geo-toggle"],
         "kz15m-toggle": !!old.checks["kz15m-toggle"],
         "kz-toggle": !!old.checks["kz-toggle"],
         "base-toggle": !!old.checks["base-toggle"],
-        "eqazyna-toggle": !!old.checks["eqazyna-toggle"]
+        "eqazyna-toggle": !!eqazynaOn
       },
       ranges: {
         "detail-opacity": old.ranges["detail-opacity"],
@@ -43,18 +42,38 @@
       },
       nationalMode: old.nationalMode,
       base: old.base,
-      satellite: "eox"
+      satellite: SATS.includes(old.satellite) ? old.satellite : "eox"
     };
   }
+  function fromLegacy(old) {
+    const anyDetail = !!(old.checks["detail-toggle"] || old.checks["detail-all-200k"] || old.checks["detail-all-500k"] || old.checks["detail-show"]);
+    return toV6({
+      checks: {
+        "detail-toggle": anyDetail,
+        "geo-toggle": old.checks["geo-toggle"],
+        "kz15m-toggle": old.checks["kz15m-toggle"],
+        "kz-toggle": old.checks["kz-toggle"],
+        "base-toggle": old.checks["base-toggle"]
+      },
+      ranges: old.ranges,
+      nationalMode: old.nationalMode,
+      base: old.base,
+      satellite: old.satellite
+    }, false);
+  }
   function migrate(s) {
-    if (valid(s, checks, 5, { satellite: true })) return s;
-    const v4checks = ["detail-all-200k", "detail-all-500k", "detail-show", "detail-coverage", "geo-toggle", "kz15m-toggle", "kz-toggle", "base-toggle", "eqazyna-toggle"];
-    const v3checks = v4checks.filter((id) => id !== "eqazyna-toggle");
+    if (valid(s, checks, 6, { satellite: true })) return s;
     function read(k) {
       try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; }
     }
     let old = s;
-    if (!valid(old, v4checks, 4)) old = read(prev4);
+    if (!valid(old, checks, 5, { satellite: true })) old = read(prev5);
+    // Keep other v5 choices, but always start e-qazyna off. A saved true may be
+    // from an earlier visit or test, not a deliberate choice on this panel.
+    if (valid(old, checks, 5, { satellite: true })) return toV6(old, false);
+    const v4checks = ["detail-all-200k", "detail-all-500k", "detail-show", "detail-coverage", "geo-toggle", "kz15m-toggle", "kz-toggle", "base-toggle", "eqazyna-toggle"];
+    const v3checks = v4checks.filter((id) => id !== "eqazyna-toggle");
+    old = read(prev4);
     if (valid(old, v4checks, 4)) return fromLegacy(old);
     old = read(prev3);
     if (valid(old, v3checks, 3)) {
@@ -73,7 +92,7 @@
   function save() {
     try {
       const value = {
-        version: 5,
+        version: 6,
         checks: Object.fromEntries(checks.map((id) => [id, document.getElementById(id).checked])),
         ranges: Object.fromEntries(ranges.map((id) => [id, +document.getElementById(id).value])),
         nationalMode: document.querySelector('#kz15m-mode [aria-checked="true"]').dataset.mode,
