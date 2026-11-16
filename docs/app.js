@@ -155,6 +155,7 @@
       style: "https://tiles.openfreemap.org/styles/positron",
       center: [66.9, 48.2],
       zoom: 4.2,
+      maxZoom: 19,
       attributionControl: { compact: true, customAttribution: ATTR },
       cooperativeGestures: !isAppLayout()
     });
@@ -205,12 +206,14 @@
       });
 
         // Raster underlays (below geology) + reference overlays (above geology).
+      // maxzoom = the deepest level Esri/OTM actually serve over Kazakhstan. Past it Esri returns
+      // grey "Map data not yet available" tiles, so MapLibre upscales the last real level instead.
       // Light = OpenFreeMap positron style only. Hybrid ≈ Google Satellite Hybrid look via Esri (no Google tiles).
       const UNDERLAYS = {
         satellite: {
           tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"],
           attribution: "Esri, Maxar, Earthstar Geographics",
-          maxzoom: 19
+          maxzoom: 17
         },
         terrain: {
           tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}"],
@@ -220,7 +223,7 @@
         topo: {
           tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"],
           attribution: "Esri, USGS, NOAA, TomTom",
-          maxzoom: 19
+          maxzoom: 17
         },
         otm: {
           tiles: ["https://tile.opentopomap.org/{z}/{x}/{y}.png"],
@@ -274,7 +277,7 @@
       map.addSource("base-transport", {
         type: "raster",
         tileSize: 256,
-        maxzoom: 19,
+        maxzoom: 17,
         tiles: [
           "https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}"
         ],
