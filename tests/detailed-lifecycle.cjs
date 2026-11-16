@@ -1,50 +1,185 @@
-const fs=require('fs'),assert=require('assert'),{JSDOM}=require('jsdom');
-const root=require('path').join(__dirname,'../docs/'),tick=()=>new Promise(r=>setImmediate(r));
-function env({hold=false,holdUnits=false,fresh=false,storage,blocked=false}={}){
- const d=new JSDOM(fs.readFileSync(root+'index.html','utf8'),{runScripts:'outside-only',url:'https://yerkebulat.github.io/geologykz/'}),w=d.window;
- if(!fresh||storage){const checks=Object.fromEntries(['detail-all-200k','detail-all-500k','detail-show','detail-coverage','geo-toggle','kz15m-toggle','kz-toggle','base-toggle'].map(id=>[id,['detail-coverage','kz-toggle','base-toggle'].includes(id)]));w.localStorage.setItem('geologykz-ui-v3',storage||JSON.stringify({version:3,checks,ranges:{'detail-opacity':1,'geo-opacity':.7,'kz15m-opacity':.85},sheet:'m43xxxi',mode:'scan',nationalMode:'scan',base:'light'}));}
- if(blocked)Object.defineProperty(w,'localStorage',{get(){throw new Error('blocked');}});
- w.eval(fs.readFileSync(root+'preferences.js','utf8'));
- let release,releaseUnits;const gate=new Promise(r=>release=r),ugate=new Promise(r=>releaseUnits=r),req=[],layers={},sources={},state={fits:0,closed:0,popups:[],removed:0,handlers:{},vectorActive:0,vectorPeak:0};if(!hold)release();if(!holdUnits)releaseUnits();
- w.fetch=async p=>{if(!String(p).endsWith('detailed-sheets.json'))req.push(String(p));let path=new URL(p,w.document.baseURI).pathname.replace(/^\/geologykz\//,'');if(path.includes('manifest'))await gate;if(path.endsWith('units.geojson')){state.vectorActive++;state.vectorPeak=Math.max(state.vectorPeak,state.vectorActive);await ugate;state.vectorActive--;return {json:async()=>({type:'FeatureCollection',features:[{id:0,properties:{candidates:'0',color:'#fff'},geometry:{type:'Polygon',coordinates:[]}}]})};}return {json:async()=>JSON.parse(fs.readFileSync(root+path,'utf8'))};};
- w.maplibregl={Popup:function(){return{setLngLat(){return this},setHTML(s){state.popups.push(s);return this},addTo(){return this},remove(){state.removed++;}}}};
- const canvas={style:{}};const map={getCanvas:()=>canvas,getSource:id=>sources[id],removeLayer:id=>delete layers[id],removeSource:id=>delete sources[id],setFeatureState(){},getLayer:id=>layers[id],addSource:(id,s)=>{assert(!sources[id],id);sources[id]=s;if(s.type==='geojson')Object.defineProperty(s,'setData',{value(d){this.data=d;}});},addLayer:l=>{assert(!layers[l.id],l.id);layers[l.id]=l;},setLayoutProperty:(id,k,v)=>(layers[id].layout||={})[k]=v,getLayoutProperty:(id,k)=>layers[id]?.layout?.[k]||'visible',queryRenderedFeatures:(point,{layers:l})=>l.includes(state.hitLayer)?[{id:0}]:[],setPaintProperty:(id,k,v)=>layers[id].paint[k]=v,on(event,id,handler){if(handler){let k=event+':'+id;assert(!state.handlers[k],k);state.handlers[k]=handler;}},fitBounds(bounds){state.fits++;state.lastBounds=bounds;}};
- w.geologykzSetLayersOpen=()=>state.closed++;w.eval(fs.readFileSync(root+'detailed.js','utf8'));w.dispatchEvent(new w.CustomEvent('geologykz:load',{detail:map}));
- const change=(id,value)=>{let e=w.document.getElementById('detail-'+id);if(e.type==='checkbox')e.checked=value;else e.value=value;e.dispatchEvent(new w.Event('change'));};
- return {w,release,releaseUnits,req,layers,sources,state,change,api:w.geologykzDetailed,ids:()=>Object.keys(sources).filter(id=>id.startsWith('detail-')),close:()=>w.close()};
+const fs = require("fs"), assert = require("assert"), { JSDOM } = require("jsdom");
+const root = require("path").join(__dirname, "../docs/");
+const tick = () => new Promise((r) => setImmediate(r));
+
+function env({ hold = false, fresh = false, storage, blocked = false, zoom = 10, bounds } = {}) {
+  const d = new JSDOM(fs.readFileSync(root + "index.html", "utf8"), { runScripts: "outside-only", url: "https://yerkebulat.github.io/geologykz/" });
+  const w = d.window;
+  if (!fresh || storage) {
+    const checks = Object.fromEntries(
+      ["detail-all-200k", "detail-all-500k", "detail-show", "detail-coverage", "geo-toggle", "kz15m-toggle", "kz-toggle", "base-toggle"].map((id) => [
+        id,
+        ["kz-toggle", "base-toggle"].includes(id)
+      ])
+    );
+    const raw = storage || JSON.stringify({
+          version: 3,
+          checks: { ...checks, "geo-toggle": true, "kz15m-toggle": true },
+          ranges: { "detail-opacity": 1, "geo-opacity": 0.7, "kz15m-opacity": 0.85 },
+          sheet: "m43xxxi",
+          mode: "scan",
+          nationalMode: "scan",
+          base: "light"
+        });
+    let ver = 3;
+    try { ver = JSON.parse(raw).version; } catch (e) {}
+    const storeKey = ver === 5 ? "geologykz-ui-v5" : ver === 4 ? "geologykz-ui-v4" : "geologykz-ui-v3";
+    w.localStorage.setItem(storeKey, raw);
+  }
+  if (blocked) Object.defineProperty(w, "localStorage", { get() { throw new Error("blocked"); } });
+  w.eval(fs.readFileSync(root + "preferences.js", "utf8"));
+  let release;
+  const gate = new Promise((r) => (release = r));
+  const req = [], layers = {}, sources = {};
+  const state = { fits: 0, closed: 0, popups: [], handlers: {}, zoom, bounds: bounds || { west: 71.5, south: 47.8, east: 74.2, north: 49.5 } };
+  if (!hold) release();
+  w.fetch = async (p) => {
+    const url = String(p);
+    if (!url.endsWith("detailed-sheets.json")) req.push(url);
+    let path = new URL(url, w.document.baseURI).pathname.replace(/^\/geologykz\//, "");
+    if (path.includes("manifest")) await gate;
+    if (path.endsWith("units.geojson") || path.endsWith("/legend.json")) throw new Error("should not load " + path);
+    return { ok: true, json: async () => JSON.parse(fs.readFileSync(root + path, "utf8")) };
+  };
+  w.maplibregl = { Popup: function () { return { setLngLat() { return this; }, setHTML(s) { state.popups.push(s); return this; }, addTo() { return this; }, remove() {} }; } };
+  const map = {
+    getCanvas: () => ({ style: {} }),
+    getZoom: () => state.zoom,
+    getBounds: () => ({
+      getWest: () => state.bounds.west,
+      getSouth: () => state.bounds.south,
+      getEast: () => state.bounds.east,
+      getNorth: () => state.bounds.north
+    }),
+    getStyle: () => ({ layers: Object.values(layers) }),
+    getSource: (id) => sources[id],
+    getLayer: (id) => layers[id],
+    removeLayer: (id) => { delete layers[id]; },
+    removeSource: (id) => { delete sources[id]; },
+    addSource: (id, s) => { assert(!sources[id], id); sources[id] = s; },
+    addLayer: (l) => { assert(!layers[l.id], l.id); layers[l.id] = l; },
+    setLayoutProperty: (id, k, v) => ((layers[id].layout ||= {})[k] = v),
+    getLayoutProperty: (id, k) => layers[id]?.layout?.[k] || "visible",
+    setPaintProperty: (id, k, v) => (layers[id].paint[k] = v),
+    queryRenderedFeatures: () => [],
+    on(event, a, b) {
+      const handler = typeof a === "function" ? a : b;
+      const key = typeof a === "string" && b ? event + ":" + a : event;
+      state.handlers[key] = handler;
+    },
+    fitBounds() { state.fits++; }
+  };
+  w.geologykzSetLayersOpen = () => state.closed++;
+  w.eval(fs.readFileSync(root + "detailed.js", "utf8"));
+  w.dispatchEvent(new w.CustomEvent("geologykz:load", { detail: map }));
+  const ready = async () => {
+    for (let i = 0; i < 20; i++) {
+      if (w.geologykzDetailed) return;
+      await tick();
+    }
+  };
+  return {
+    w, release, req, layers, sources, state,
+    api: w.geologykzDetailed,
+    ids: () => Object.keys(sources).filter((id) => id.startsWith("detail-")),
+    close: () => w.close(),
+    ready,
+    async flush() { await ready(); await this.api.load(); await tick(); }
+  };
 }
-(async()=>{
- const fresh=env({fresh:true,holdUnits:true});assert(!fresh.w.document.getElementById('detail-all-500k').checked);assert(!fresh.w.document.getElementById('detail-all-200k').checked);assert(!fresh.w.document.getElementById('detail-show').checked);assert(!fresh.w.document.getElementById('detail-coverage').checked);assert(fresh.w.document.getElementById('geo-toggle').checked);assert(fresh.w.document.getElementById('kz15m-toggle').checked);assert.equal(fresh.w.document.querySelector('#kz15m-mode [aria-checked="true"]').dataset.mode,'colors');assert.equal(fresh.w.document.querySelectorAll('details[open]').length,0);await tick();assert(fresh.state.vectorActive<=2);fresh.releaseUnits();await fresh.api.load();assert.equal(fresh.ids().length,0);assert(fresh.w.document.getElementById('enabled-count').textContent.startsWith('2'));
- fresh.w.document.getElementById('detail-coverage').checked=true;fresh.w.document.getElementById('detail-coverage').dispatchEvent(new fresh.w.Event('change'));await tick();assert.equal(fresh.sources['sheet-coverage'].data.features.length,29);
- fresh.w.document.getElementById('maps-hide-all').click();await fresh.api.load();assert.equal(fresh.ids().length,0);fresh.w.document.getElementById('maps-fit-all').click();await tick();assert.equal(fresh.state.fits,0);
- fresh.state.handlers['click:sheet-coverage-fill']({features:[{properties:{id:'m40xxxiii'}}],point:[0,0]});await fresh.api.load();assert.equal(fresh.ids().length,1);assert.equal(fresh.w.document.getElementById('detail-sheet').value,'m40xxxiii');fresh.w.document.getElementById('maps-fit-all').click();await tick();assert.equal(fresh.state.fits,1);assert.deepEqual(JSON.parse(JSON.stringify(fresh.state.lastBounds)),JSON.parse(fs.readFileSync(root+'data/detailed/m40xxxiii/manifest.json')).sheets[0].bounds);
- fresh.state.hitLayer='detail-m40xxxiii-fill';fresh.state.handlers['click:sheet-coverage-fill']({features:[{properties:{id:'alma'}}],point:[0,0]});assert.equal(fresh.w.document.getElementById('detail-sheet').value,'m40xxxiii');
- fresh.w.document.getElementById('detail-opacity').value='.4';fresh.w.document.getElementById('geo-toggle').checked=true;fresh.w.document.getElementById('geo-toggle').dispatchEvent(new fresh.w.Event('change',{bubbles:true}));await fresh.api.setMode('scan');const stored=fresh.w.localStorage.getItem('geologykz-ui-v3'),returned=env({fresh:true,storage:stored});await returned.api.load();assert.deepEqual(returned.ids(),['detail-m40xxxiii-raster']);assert(returned.w.document.getElementById('geo-toggle').checked);assert.equal(returned.layers['detail-m40xxxiii-raster'].paint['raster-opacity'],.4);assert.equal(returned.w.document.querySelectorAll('details[open]').length,0);
- const corrupt=env({fresh:true,storage:'{"version":2,"checks":{}}'}),blocked=env({fresh:true,blocked:true});await Promise.all([corrupt.api.load(),blocked.api.load()]);assert.equal(corrupt.ids().length,0);assert.equal(blocked.ids().length,0);
- [fresh,returned,corrupt,blocked].forEach(v=>v.close());console.log('PASS fresh national+global defaults; valid return preferences; invalid/blocked storage; closed Details; lightweight29outlines; unit click priority; hide-all/zero/union zoom.');
- const a=env();assert.equal(a.req.length,0);assert(!a.w.document.getElementById('detail-all-200k').checked);assert(!a.w.document.getElementById('detail-all-500k').checked);
- await a.api.show();assert.equal(a.req.length,1);assert.deepEqual(a.ids(),['detail-m43xxxi-raster']);const raster=a.sources[a.ids()[0]];assert.equal(raster.tileSize,256);assert.equal(raster.maxzoom,12);assert(raster.tiles[0].startsWith('https://yerkebulat.github.io/geologykz/'));assert(raster.tiles[0].includes('{z}/{x}/{y}'));
- a.change('all-200k',true);await a.api.load();assert.equal(a.ids().length,6);assert.equal(new Set(a.ids()).size,6);assert(!a.req.some(p=>p.includes('units.geojson')||p.endsWith('/legend.json')));
- a.change('all-500k',true);await a.api.load();assert.equal(a.ids().length,29);assert(a.ids().every(id=>id.endsWith('-raster')));
- a.change('show',false);a.change('all-200k',false);await a.api.load();assert.equal(a.ids().length,23);a.change('all-500k',false);await a.api.load();assert.equal(a.ids().length,0);
- a.change('all-200k',true);a.change('all-500k',true);await a.api.setMode('colors');assert.equal(a.ids().length,29);assert(a.ids().every(id=>id.endsWith('-units')));assert.equal(Object.keys(a.layers).filter(id=>id.startsWith('detail-')).length,58);assert(a.state.vectorPeak<=2);
- const slider=a.w.document.getElementById('detail-opacity');slider.value='.35';slider.dispatchEvent(new a.w.Event('input'));for(const [id,l] of Object.entries(a.layers))if(id.startsWith('detail-')&&id.endsWith('-fill'))assert.equal(l.paint['fill-opacity'],.35);
- const opts=[...a.w.document.getElementById('detail-sheet').options];assert.equal(opts.filter(o=>o.textContent.startsWith('1:200,000')).length,6);assert.equal(opts.filter(o=>o.textContent.startsWith('1:500,000')).length,23);
- assert.equal(opts.filter(o=>o.dataset.group?.startsWith('prof-')).length,44);
- for(const o of opts.filter(o=>!o.dataset.group)){const id=o.value,s=JSON.parse(fs.readFileSync(root+'data/detailed/'+id+'/manifest.json')).sheets.find(s=>s.id===id);a.state.handlers['click:detail-'+id+'-fill']({features:[{properties:{candidates:'0'}}],lngLat:[73,48]});const html=a.state.popups.at(-1);assert(html.includes(s.sourcePage),id);assert(html.includes('?sheet='+id),id);assert(html.includes(s.label),id);assert(!html.includes(s.limitations),id);assert(!html.includes('<details open'),id);}
- a.state.handlers['click:detail-south-l42g-fill']({features:[{properties:{candidates:'0,1'}}],lngLat:[70,46]});const tasty=a.state.popups.at(-1);assert(tasty.includes('Svkh. Tasty'));assert.equal((tasty.match(/View legend/g)||[]).length,1);assert.equal((tasty.match(/<li>/g)||[]).length,2);assert(tasty.includes('Plate 1 · col 1 · entry 1'));assert(!/Native legend reference|Исторические обозначения|Age:|Not transcribed|Native legend excerpt|experimental|\u2014/i.test(tasty));assert(!tasty.includes('<details open'));
- a.change('sheet','alma');assert(a.w.document.getElementById('detail-legend').href.endsWith('?sheet=alma'));await a.api.show();assert.equal(a.ids().length,29);a.change('all-500k',false);await a.api.load();assert.equal(a.ids().length,7);a.change('all-200k',false);await a.api.load();assert.deepEqual(a.ids(),['detail-alma-units']);a.change('show',false);await a.api.load();assert.equal(a.ids().length,0);assert(a.state.removed>0);
- const b=env({hold:true});b.change('all-200k',true);b.change('all-500k',true);assert.equal(b.req.length,2);b.change('all-200k',false);b.change('all-500k',false);b.release();await b.api.load();assert.equal(b.ids().length,0);assert(!b.req.some(p=>p.includes('units.geojson')));
- const c=env({holdUnits:true});c.change('all-200k',true);c.change('all-500k',true);c.api.setMode('colors');await tick();assert(c.state.vectorActive<=2);c.change('all-200k',false);c.change('all-500k',false);c.change('sheet','alma');c.change('show',true);c.api.setMode('scan');c.releaseUnits();await c.api.load();assert.deepEqual(c.ids(),['detail-alma-raster']);assert(c.state.vectorPeak<=2);c.change('show',false);await c.api.load();assert.equal(c.ids().length,0);
- const e=env({hold:true});e.w.document.getElementById('detail-fit').click();e.change('show',false);e.release();await e.api.load();await tick();assert.equal(e.state.fits,0);assert.equal(e.state.closed,0);assert.equal(e.ids().length,0);
- const f=env();f.w.document.getElementById('detail-fit').click();await f.api.load();await tick();assert.equal(f.state.fits,1);assert.equal(f.state.closed,1);await f.api.setMode('colors');await f.api.setMode('scan');assert(f.ids().every(id=>id.endsWith('-raster')));f.w.document.getElementById('detail-opacity').value='.4';f.w.document.getElementById('detail-opacity').dispatchEvent(new f.w.Event('input'));assert.equal(f.sources['detail-m43xxxi-raster'].type,'raster');assert.equal(f.layers['detail-m43xxxi-raster'].paint['raster-opacity'],.4);
- const g=env({hold:true});g.change('all-200k',true);g.change('all-500k',true);g.change('sheet','alma');g.w.document.getElementById('detail-fit').click();g.release();await g.api.load();await tick();assert.equal(g.state.fits,1);assert.equal(g.state.closed,1);assert.equal(g.ids().length,29);g.change('all-200k',false);g.change('all-500k',false);await g.api.load();assert.deepEqual(g.ids(),['detail-alma-raster']);
- const pr=env();await pr.api.setMode('colors');pr.change('all-prof-geo200',true);await pr.api.load();assert.equal(pr.ids().length,14);assert(pr.ids().every(id=>id.startsWith('detail-prof-')&&id.endsWith('-raster')));assert(!pr.req.some(p=>p.includes('units.geojson')||p.endsWith('legend.json')));
- for(const g of ['geo500','geo1m','mineral','hydro'])pr.change('all-prof-'+g,true);await pr.api.load();assert.equal(pr.ids().length,44);assert.equal(pr.sources['prof-coverage'].data.features.length,44);
- const pop=pr.api.profPopup({lng:65.5,lat:47.6});assert(pop);const ph=pr.state.popups.at(-1);assert.equal((ph.match(/<li>/g)||[]).length,3);assert(ph.includes('Extra collection (shared scans)'),ph);assert(!/professor/i.test(ph));assert(ph.includes('<details><summary>Details</summary>'));assert(!ph.includes('<details open'));assert(!/experimental|\u2014/i.test(ph));
- pr.change('sheet','prof-l-41-vi-g');assert(pr.w.document.getElementById('detail-legend').hidden);pr.change('sheet','alma');assert(!pr.w.document.getElementById('detail-legend').hidden);
- await pr.api.setMode('scan');assert.equal(pr.ids().length,44);pr.w.document.getElementById('maps-hide-all').click();await pr.api.load();assert.equal(pr.ids().length,0);assert.equal(pr.sources['prof-coverage'].data.features.length,0);
- for(const o of opts.filter(o=>o.dataset.group)){const s=JSON.parse(fs.readFileSync(root+'data/detailed/'+o.value+'/manifest.json')).sheets[0];assert.equal(s.id,o.value);assert.equal(s.label,o.textContent);assert(s.scanOnly&&!('experimental' in s));assert(!/experimental|\u2014/i.test(JSON.stringify(s)));assert(!/^1:[25]00,000/.test(s.label));}
- pr.close();console.log('PASS 44 Extra collection sheets: scan-only even in Colors, 5 groups, outlines when enabled, popup with closed Details, legend link hidden, manifests clean.');
- [a,b,c,e,f,g].forEach(v=>v.close());console.log('PASS groups6/23/29 independent+selected union/dedup; no initial or Scan vectors; max2 Colors loads; all29 correct source/legend popups; shared opacity, Scan/Colors exclusivity; pending off/mode/selection races, cancellation/fit, source removal.');
-})().catch(e=>{console.error(e);process.exit(1)});
+
+(async () => {
+  const fresh = env({ fresh: true });
+  await fresh.flush();
+  assert(!fresh.w.document.getElementById("detail-toggle").checked);
+  assert(fresh.w.document.getElementById("geo-toggle").checked);
+  assert(fresh.w.document.getElementById("kz15m-toggle").checked);
+  assert.equal(fresh.w.document.querySelector('#kz15m-mode [aria-checked="true"]').dataset.mode, "colors");
+  assert.equal(fresh.w.document.querySelectorAll("details[open]").length, 0);
+  assert.equal(fresh.ids().length, 0);
+  assert(fresh.w.document.getElementById("enabled-count").textContent.startsWith("2"));
+  assert(fresh.w.document.getElementById("detail-status").textContent.includes("1:200,000"));
+  assert(!fresh.w.document.getElementById("detail-all-200k"));
+  assert(!fresh.w.document.getElementById("detail-sheet"));
+  assert(!fresh.w.document.getElementById("detail-colors"));
+  fresh.w.document.getElementById("maps-hide-all").click();
+  await fresh.api.load();
+  assert.equal(fresh.ids().length, 0);
+  fresh.w.document.getElementById("maps-fit-all").click();
+  assert.equal(fresh.state.fits, 0);
+  fresh.close();
+
+  const migrated = env({ fresh: true, storage: JSON.stringify({
+    version: 4,
+    checks: { "detail-all-200k": true, "detail-all-500k": false, "detail-show": false, "detail-coverage": false, "geo-toggle": true, "kz15m-toggle": true, "kz-toggle": true, "base-toggle": true, "eqazyna-toggle": false },
+    ranges: { "detail-opacity": 0.4, "geo-opacity": 0.7, "kz15m-opacity": 0.85 },
+    sheet: "m43xxxi",
+    mode: "colors",
+    nationalMode: "scan",
+    base: "light"
+  }) });
+  await migrated.flush();
+  assert(migrated.w.document.getElementById("detail-toggle").checked);
+  assert.equal(+migrated.w.document.getElementById("detail-opacity").value, 0.4);
+  assert(migrated.ids().includes("detail-m43xxxi-raster"));
+  assert(migrated.ids().every((id) => id.endsWith("-raster")));
+  assert(!migrated.req.some((p) => p.includes("units.geojson") || p.endsWith("/legend.json")));
+  const raster = migrated.sources["detail-m43xxxi-raster"];
+  assert.equal(raster.tileSize, 256);
+  assert(raster.tiles[0].includes("{z}/{x}/{y}"));
+  assert.equal(migrated.layers["detail-m43xxxi-raster"].paint["raster-opacity"], 0.4);
+  migrated.close();
+
+  const a = env();
+  await a.flush();
+  assert(!a.w.document.getElementById("detail-toggle").checked);
+  await a.api.show();
+  await tick();
+  assert(a.w.document.getElementById("detail-toggle").checked);
+  assert(a.ids().includes("detail-m43xxxi-raster"));
+  assert(a.ids().length >= 1 && a.ids().length <= 12);
+  a.w.document.getElementById("detail-opacity").value = ".35";
+  a.w.document.getElementById("detail-opacity").dispatchEvent(new a.w.Event("input"));
+  assert.equal(a.layers["detail-m43xxxi-raster"].paint["raster-opacity"], 0.35);
+  a.w.document.getElementById("maps-fit-all").click();
+  assert.equal(a.state.fits, 1);
+  a.w.document.getElementById("maps-hide-all").click();
+  await a.api.load();
+  assert.equal(a.ids().length, 0);
+  assert(!a.w.document.getElementById("geo-toggle").checked);
+
+  a.state.zoom = 5;
+  await a.api.show();
+  await tick();
+  assert.equal(a.ids().length, 0);
+  assert(a.w.document.getElementById("detail-status").textContent.includes("Zoom in"));
+  a.state.zoom = 10;
+  if (a.state.handlers.zoomend) a.state.handlers.zoomend();
+  await a.api.load();
+  assert(a.ids().length >= 1);
+  a.close();
+
+  const far = env({ bounds: { west: 54, south: 47.9, east: 55.2, north: 48.8 } });
+  await far.flush();
+  await far.api.show();
+  await tick();
+  assert(far.ids().includes("detail-m40xxxi-raster"));
+  assert(!far.ids().includes("detail-m43xxxi-raster"));
+  assert(!far.req.some((p) => p.includes("units.geojson")));
+  far.close();
+
+  const corrupt = env({ fresh: true, storage: '{"version":2,"checks":{}}' });
+  const blocked = env({ fresh: true, blocked: true });
+  await Promise.all([corrupt.flush(), blocked.flush()]);
+  assert(!corrupt.w.document.getElementById("detail-toggle").checked);
+  assert(!blocked.w.document.getElementById("detail-toggle").checked);
+  assert.equal(corrupt.ids().length, 0);
+  [corrupt, blocked].forEach((v) => v.close());
+
+  const html = fs.readFileSync(root + "index.html", "utf8");
+  assert(html.includes("National geological map (1:1,500,000)"));
+  assert(html.includes("Hold for more"));
+  assert(html.includes("Source: Unified Subsoil Use Platform"));
+  assert(!html.includes("Show all 1:200,000"));
+  console.log("PASS simplified detailed maps: one toggle, scans only, lazy in-view load, v4/v3 migration, hide/zoom, no color assets.");
+})().catch((e) => { console.error(e); process.exit(1); });

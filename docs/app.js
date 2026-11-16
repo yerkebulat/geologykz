@@ -209,12 +209,33 @@
       // maxzoom = the deepest level Esri/OTM actually serve over Kazakhstan. Past it Esri returns
       // grey "Map data not yet available" tiles, so MapLibre upscales the last real level instead.
       // Light = OpenFreeMap positron style only. Hybrid ≈ Google Satellite Hybrid look via Esri (no Google tiles).
-      const UNDERLAYS = {
-        satellite: {
+      // Optional. Set a MapTiler key later to offer MapTiler Satellite in the picker.
+      const MAPTILER_KEY = "";
+      const SATELLITE_SOURCES = {
+        eox: {
+          label: "EOX Sentinel-2 Cloudless",
+          tiles: ["https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2023_3857/default/g/{z}/{y}/{x}.jpg"],
+          attribution: 'Sentinel-2 cloudless by <a href="https://s2maps.eu" target="_blank" rel="noopener">EOX IT Services GmbH</a> (Contains modified Copernicus Sentinel data 2023), <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>',
+          maxzoom: 15
+        },
+        esri: {
+          label: "Esri World Imagery",
           tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"],
           attribution: "Esri, Maxar, Earthstar Geographics",
           maxzoom: 17
-        },
+        }
+      };
+      if (MAPTILER_KEY) {
+        SATELLITE_SOURCES.maptiler = {
+          label: "MapTiler Satellite",
+          tiles: ["https://api.maptiler.com/tiles/satellite-v2/{z}/{x}/{y}.jpg?key=" + encodeURIComponent(MAPTILER_KEY)],
+          attribution: '<a href="https://www.maptiler.com/copyright/" target="_blank" rel="noopener">&copy; MapTiler</a>',
+          maxzoom: 20
+        };
+      }
+      let satelliteSource = SATELLITE_SOURCES.eox ? "eox" : "esri";
+      const UNDERLAYS = {
+        satellite: SATELLITE_SOURCES[satelliteSource],
         terrain: {
           tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}"],
           attribution: "Esri, USGS",
@@ -364,11 +385,124 @@
           map.setPaintProperty("geo-fill", "fill-opacity", +op.value);
           map.setPaintProperty("geo-line", "line-opacity", +op.value);
         });
+      function applySatelliteSource(id, opts) {
+        opts = opts || {};
+        if (!SATELLITE_SOURCES[id]) id = "eox";
+        if (!SATELLITE_SOURCES[id]) id = Object.keys(SATELLITE_SOURCES)[0];
+        satelliteSource = id;
+        UNDERLAYS.satellite = SATELLITE_SOURCES[id];
+        const vis = map.getLayer("base-satellite") ? map.getLayoutProperty("base-satellite", "visibility") : "none";
+        if (map.getLayer("base-satellite")) map.removeLayer("base-satellite");
+        if (map.getSource("base-satellite")) map.removeSource("base-satellite");
+        const cfg = UNDERLAYS.satellite;
+        map.addSource("base-satellite", {
+          type: "raster",
+          tileSize: 256,
+          maxzoom: cfg.maxzoom,
+          tiles: cfg.tiles,
+          attribution: cfg.attribution
+        });
+        map.addLayer(
+          {
+            id: "base-satellite",
+            type: "raster",
+            source: "base-satellite",
+            layout: { visibility: vis || "none" },
+            paint: { "raster-opacity": 1 }
+          },
+          "geo-fill"
+        );
+        if (!opts.silent) {
+          if (baseName === "hybrid") setBasemap("hybrid");
+          else if (baseName === "satellite" || opts.select) setBasemap("satellite");
+          window.geologykzPreferences?.save();
+        }
+        const pop = document.getElementById("sat-popover");
+        if (pop) {
+          pop.querySelectorAll("[data-sat]").forEach((b) => {
+            const on = b.getAttribute("data-sat") === satelliteSource;
+            b.classList.toggle("active", on);
+            b.setAttribute("aria-checked", on ? "true" : "false");
+          });
+        }
+      }
+
+      function closeSatPicker() {
+        const pop = document.getElementById("sat-popover");
+        const btn = document.getElementById("basemap-satellite");
+        if (pop) pop.hidden = true;
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      }
+      function openSatPicker() {
+        let pop = document.getElementById("sat-popover");
+        const btn = document.getElementById("basemap-satellite");
+        if (!pop) {
+          pop = document.createElement("div");
+          pop.id = "sat-popover";
+          pop.className = "sat-popover";
+          pop.setAttribute("role", "dialog");
+          pop.setAttribute("aria-label", "Satellite imagery source");
+          const keys = Object.keys(SATELLITE_SOURCES);
+          pop.innerHTML = keys.map((id) => {
+            const s = SATELLITE_SOURCES[id];
+            const on = id === satelliteSource;
+            return '<button type="button" role="radio" data-sat="' + id + '" class="' + (on ? "active" : "") + '" aria-checked="' + (on ? "true" : "false") + '">' + s.label + "</button>";
+          }).join("") + (MAPTILER_KEY ? "" : '<button type="button" disabled>MapTiler Satellite (needs key)</button>');
+          document.body.appendChild(pop);
+          pop.addEventListener("click", (e) => {
+            const b = e.target.closest("button[data-sat]");
+            if (!b) return;
+            applySatelliteSource(b.getAttribute("data-sat"), { select: true });
+            closeSatPicker();
+          });
+        }
+        const r = btn.getBoundingClientRect();
+        pop.style.top = Math.round(r.bottom + 6) + "px";
+        pop.style.left = Math.round(Math.max(8, Math.min(r.left, window.innerWidth - 260))) + "px";
+        pop.hidden = false;
+        btn.setAttribute("aria-expanded", "true");
+      }
+
       if (baseSwitch)
         baseSwitch.addEventListener("click", (e) => {
           const btn = e.target.closest("button[data-base]");
-          if (btn) setBasemap(btn.getAttribute("data-base"));
+          if (!btn || btn.id === "basemap-satellite") return;
+          closeSatPicker();
+          setBasemap(btn.getAttribute("data-base"));
         });
+
+      const satBtn = document.getElementById("basemap-satellite");
+      if (satBtn) {
+        let pressTimer = 0, pressOpened = false, lastTap = 0;
+        const clearPress = () => { if (pressTimer) { clearTimeout(pressTimer); pressTimer = 0; } };
+        satBtn.addEventListener("pointerdown", (e) => {
+          if (e.pointerType === "mouse" && e.button !== 0) return;
+          pressOpened = false;
+          clearPress();
+          pressTimer = setTimeout(() => { pressOpened = true; openSatPicker(); }, 500);
+        });
+        ["pointerup", "pointerleave", "pointercancel"].forEach((ev) => satBtn.addEventListener(ev, clearPress));
+        satBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (pressOpened) { pressOpened = false; return; }
+          const now = Date.now();
+          if (now - lastTap < 350) { lastTap = 0; openSatPicker(); return; }
+          lastTap = now;
+          closeSatPicker();
+          setBasemap("satellite");
+        });
+        satBtn.addEventListener("dblclick", (e) => { e.preventDefault(); e.stopPropagation(); openSatPicker(); });
+        document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeSatPicker(); });
+        document.addEventListener("pointerdown", (e) => {
+          const pop = document.getElementById("sat-popover");
+          if (!pop || pop.hidden) return;
+          if (pop.contains(e.target) || satBtn.contains(e.target)) return;
+          closeSatPicker();
+        });
+      }
+      window.geologykzSetSatellite = (id) => applySatelliteSource(id, { silent: true });
+      window.geologykzGetSatellite = () => satelliteSource;
 
       const baseTg = document.getElementById("base-toggle");
       if (baseTg)

@@ -371,8 +371,6 @@ h2 {
 }
 
 .detailed-group { border: 1px solid var(--line); padding: 8px; border-radius: 8px; margin-bottom: 8px; }
-.detail-fit { min-height: 44px; padding: 4px 8px; margin: 4px 8px 4px 0; border: 1px solid var(--line); border-radius: 6px; background: #fff; color: var(--text); font: inherit; font-size: 12px; cursor: pointer; }
-.detail-fit:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .detail-status { font-size: 11px; line-height: 1.4; color: var(--muted); }
 
 /* Purpose-first controls; dock/fullscreen/mobile anchoring remains unchanged. */
@@ -441,3 +439,32 @@ html.fs-app #legends, html.fs-app #geology, html.fs-app .site-foot { display: no
 .eqazyna-links { margin-top: 6px; }
 .eqazyna-credit { margin-top: 8px; font-size: 12px; color: var(--muted); }
 .eqazyna-err { color: #9f1239; }
+
+.layer-info { margin: 0 0 4px; }
+.layer-info summary { min-height: 0; padding: 4px 0; font-weight: 500; font-size: 12px; color: var(--muted); display: inline-flex; align-items: center; }
+.layer-info p, .layer-info a { font-size: 12px; line-height: 1.45; margin: 0 0 8px; }
+.layer-credit { font-size: 11px; line-height: 1.4; margin: 2px 0 6px; }
+.layer-credit a { min-height: 0; }
+.map-actions { margin: 4px 0 2px; }
+.map-category h2 { font-size: 13px; }
+.sat-wrap { display: flex; flex-direction: column; align-items: stretch; }
+.sat-hint { font-size: 10px; line-height: 1.2; color: var(--muted); text-align: center; margin-top: 2px; }
+.sat-popover {
+  position: fixed; z-index: 80;
+  min-width: 240px; max-width: min(320px, calc(100vw - 16px));
+  background: var(--card, #fff);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+  padding: 6px;
+}
+.sat-popover button {
+  display: block; width: 100%; text-align: left;
+  font: inherit; font-size: 13px;
+  padding: 10px 12px; margin: 0; border: 0; border-radius: 6px;
+  background: transparent; color: var(--text); cursor: pointer;
+}
+.sat-popover button.active { background: #1c1917; color: #fff; }
+.sat-popover button:disabled { opacity: .5; cursor: not-allowed; }
+.sat-popover button:not(:disabled):hover { background: #f5f5f4; }
+.sat-popover button.active:hover { background: #1c1917; }
