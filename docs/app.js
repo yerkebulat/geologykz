@@ -473,15 +473,23 @@
 
       const satBtn = document.getElementById("basemap-satellite");
       if (satBtn) {
-        let pressTimer = 0, pressOpened = false, lastTap = 0;
+        let pressTimer = 0, pressOpened = false, lastTap = 0, pressStart = 0;
         const clearPress = () => { if (pressTimer) { clearTimeout(pressTimer); pressTimer = 0; } };
         satBtn.addEventListener("pointerdown", (e) => {
           if (e.pointerType === "mouse" && e.button !== 0) return;
           pressOpened = false;
+          pressStart = Date.now();
           clearPress();
           pressTimer = setTimeout(() => { pressOpened = true; openSatPicker(); }, 500);
         });
-        ["pointerup", "pointerleave", "pointercancel"].forEach((ev) => satBtn.addEventListener(ev, clearPress));
+        satBtn.addEventListener("pointerup", () => {
+          if (!pressOpened && pressStart && Date.now() - pressStart >= 500) {
+            pressOpened = true;
+            openSatPicker();
+          }
+          clearPress();
+        });
+        ["pointerleave", "pointercancel"].forEach((ev) => satBtn.addEventListener(ev, clearPress));
         satBtn.addEventListener("click", (e) => {
           e.preventDefault();
           e.stopPropagation();
