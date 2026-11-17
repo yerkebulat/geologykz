@@ -67,7 +67,7 @@
         "fill-color": ["coalesce", ["get", "color"], "#1d6fa8"],
         "fill-opacity": ["case", ["==", ["get", "group"], "revoked"], 0.2, 0.35]
       }
-    }, "kz-line");
+    });
     map.addLayer({
       id: "eqazyna-line",
       type: "line",
@@ -78,7 +78,13 @@
         "line-width": ["case", ["boolean", ["feature-state", "hover"], false], 2, 0.9],
         "line-opacity": 0.9
       }
-    }, "kz-line");
+    });
+
+    function raise() {
+      if (map.getLayer("eqazyna-fill")) map.moveLayer("eqazyna-fill");
+      if (map.getLayer("eqazyna-line")) map.moveLayer("eqazyna-line");
+    }
+    raise();
 
     let loaded = null, hover = null, popup = null;
 
@@ -90,6 +96,7 @@
 
     function visible(on) {
       ["eqazyna-fill", "eqazyna-line"].forEach((id) => map.setLayoutProperty(id, "visibility", on ? "visible" : "none"));
+      if (on) raise();
     }
 
     function load() {

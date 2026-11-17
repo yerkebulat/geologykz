@@ -16,6 +16,7 @@ function boot(storageKey, storageVal) {
   const map = {
     addSource: (id, s) => { sources[id] = Object.assign({ setData() {} }, s); },
     addLayer: (l) => { layers[l.id] = l; },
+    moveLayer() {},
     getSource: (id) => sources[id],
     getLayer: (id) => layers[id],
     setLayoutProperty: (id, k, v) => ((layers[id].layout ||= {})[k] = v),
