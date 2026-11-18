@@ -248,6 +248,11 @@
         .setLngLat(lngLat)
         .setHTML('<div style="max-height:45vh;overflow:auto"><p>Sheet scan</p><ul class="candidate-list">' + items + '</ul><details><summary>Details</summary>' + det + "</details></div>")
         .addTo(map);
+      if (window.geologykzSelect && sheets[0] && sheets[0].coordinates) {
+        const ring = sheets[0].coordinates.map((pt) => [pt[0], pt[1]]);
+        if (ring.length && (ring[0][0] !== ring[ring.length - 1][0] || ring[0][1] !== ring[ring.length - 1][1])) ring.push(ring[0]);
+        window.geologykzSelect.set({ type: "Feature", geometry: { type: "Polygon", coordinates: [ring] }, properties: { label: sheets[0].label } });
+      }
       return true;
     }
 

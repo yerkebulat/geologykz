@@ -36,6 +36,7 @@ function boot() {
   ["geo-fill", "geo-line", "kz15m-raster", "kz15m-fill", "kz15m-hover", "kz-line", "base-labels", "base-transport"].forEach((id) => {
     map.addLayer({ id, type: "fill", layout: { visibility: "visible" } });
   });
+  w.eval(fs.readFileSync(root + "select.js", "utf8"));
   w.eval(fs.readFileSync(root + "eqazyna.js", "utf8"));
   w.dispatchEvent(new w.CustomEvent("geologykz:load", { detail: map }));
   return { w, map, order, addedWith, layers };
@@ -45,7 +46,8 @@ function boot() {
   const { w, map, order, addedWith } = boot();
   assert.equal(addedWith["eqazyna-fill"], undefined);
   assert.equal(addedWith["eqazyna-line"], undefined);
-  assert.deepEqual(order.slice(-2), ["eqazyna-fill", "eqazyna-line"]);
+  assert(order.indexOf("eqazyna-fill") < order.indexOf("geologykz-sel-fill"));
+  assert(order.indexOf("eqazyna-line") < order.indexOf("geologykz-sel-line"));
   assert(order.indexOf("eqazyna-fill") > order.indexOf("kz-line"));
   assert(order.indexOf("eqazyna-fill") > order.indexOf("kz15m-raster"));
   assert(order.indexOf("eqazyna-fill") > order.indexOf("geo-fill"));
@@ -61,9 +63,11 @@ function boot() {
   const tg = w.document.getElementById("eqazyna-toggle");
   tg.checked = true;
   tg.dispatchEvent(new w.Event("change"));
-  assert.deepEqual(order.slice(-2), ["eqazyna-fill", "eqazyna-line"]);
   assert(order.indexOf("eqazyna-fill") > order.indexOf("late-overlay"));
   assert(order.indexOf("eqazyna-fill") > order.indexOf("detail-m43xxxi-raster"));
+  assert(order.indexOf("geologykz-sel-fill") > order.indexOf("eqazyna-line"));
+  assert(order.indexOf("geologykz-sel-line") > order.indexOf("eqazyna-line"));
+  assert.deepEqual(order.slice(-3), ["geologykz-sel-fill", "geologykz-sel-line", "geologykz-sel-line-inner"]);
 
-  console.log("PASS e-qazyna license layers stay on top of other overlays regardless of add order.");
+  console.log("PASS e-qazyna license layers stay on top of other overlays; the click highlight sits above the licenses.");
 })();

@@ -83,6 +83,7 @@
     function raise() {
       if (map.getLayer("eqazyna-fill")) map.moveLayer("eqazyna-fill");
       if (map.getLayer("eqazyna-line")) map.moveLayer("eqazyna-line");
+      if (window.geologykzSelect && window.geologykzSelect.raise) window.geologykzSelect.raise();
     }
     raise();
 
@@ -158,6 +159,7 @@
       if (window.geologykzDetailed?.hitUnits(e.point)) return;
       const hits = e.features || [];
       if (!hits.length) return;
+      if (window.geologykzSelect) window.geologykzSelect.set(hits[0]);
       const seed = hits.map((f) => ({
         id: f.properties.id || f.id,
         type: f.properties.type,

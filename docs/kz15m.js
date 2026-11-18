@@ -82,6 +82,7 @@
       if (window.geologykzDetailed?.hitUnits(e.point)) return;
       if (window.geologykzEqazyna?.hit(e.point)) return;
       const f = e.features[0]; if (!f || !legend) return;
+      if (window.geologykzSelect) window.geologykzSelect.set(f);
       new maplibregl.Popup({ maxWidth: "320px" }).setLngLat(e.lngLat).setHTML(popup(legend[f.properties.u])).addTo(map);
     });
     window.geologykzKz15m = { mode: (m) => modeEl.querySelector('[data-mode="' + m + '"]').click(), show: () => { tg.checked = true; set(); return load(); } };
