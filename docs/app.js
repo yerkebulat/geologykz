@@ -327,8 +327,9 @@
         if (window.geologykzEqazyna?.hit(e.point)) return;
         if (map.getLayer("kz15m-fill") && map.getLayoutProperty("kz15m-fill", "visibility") === "visible" &&
             map.queryRenderedFeatures(e.point, { layers: ["kz15m-fill"] }).length) return;
-        const p = (e.features[0] || {}).properties || {};
-        new maplibregl.Popup({ maxWidth: "300px" }).setLngLat(e.lngLat).setHTML(popupHtml(p)).addTo(map);
+        const f = e.features[0]; if (!f) return;
+        if (window.geologykzSelect) window.geologykzSelect.set(f);
+        new maplibregl.Popup({ maxWidth: "300px" }).setLngLat(e.lngLat).setHTML(popupHtml(f.properties || {})).addTo(map);
       });
       map.on("mouseenter", "geo-fill", () => (map.getCanvas().style.cursor = "pointer"));
       map.on("mouseleave", "geo-fill", () => (map.getCanvas().style.cursor = ""));
