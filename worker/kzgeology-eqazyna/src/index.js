@@ -30,10 +30,24 @@ export const LAYERS = [
   { type: "ТПИ_Лицензия_Разведка_Отозван", group: "revoked", kind: "revoked-exploration", label: "Revoked exploration license", color: "#6b7280" }
 ];
 
-const LAYER_BY_TYPE = Object.fromEntries(LAYERS.map((l) => [l.type, l]));
-const ALLOWED_TYPES = new Set(LAYERS.map((l) => l.type));
+// Official hydrocarbon and uranium PUGFN territories. Not part of the default
+// /layers bundle, and not open for solid-mineral (TPI) exploration licenses.
+export const PUGFN_LAYERS = [
+  { type: "УВ_ПУГФН_Аукцион", group: "pugfn", kind: "hc-auction", label: "Oil and gas auction", color: "#d97706" },
+  { type: "УВ_ПУГФН_НацКомпании", group: "pugfn", kind: "hc-national", label: "Oil and gas, national companies", color: "#b45309" },
+  { type: "Уран_ПУГФН_Добыча", group: "pugfn", kind: "uranium", label: "Uranium", color: "#7c3aed" }
+];
 
-const FIXED_ORIGINS = new Set(["https://kzgeology.com", "https://www.kzgeology.com", "https://yerkebulat.github.io", "https://atlas.kzgeology.com"]);
+const ALL_LAYERS = [...LAYERS, ...PUGFN_LAYERS];
+const LAYER_BY_TYPE = Object.fromEntries(ALL_LAYERS.map((l) => [l.type, l]));
+const ALLOWED_TYPES = new Set(ALL_LAYERS.map((l) => l.type));
+
+const FIXED_ORIGINS = new Set([
+  "https://kzgeology.com",
+  "https://www.kzgeology.com",
+  "https://yerkebulat.github.io",
+  "https://atlas.kzgeology.com"
+]);
 const LOCALHOST_RE = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
 
 const KZ_LNG = [45, 90];
@@ -74,17 +88,37 @@ function health() {
     source: ORIGIN + "/ru/contracts-map",
     crs: { in: "EPSG:4284", out: "EPSG:4326", operation: "EPSG:15865" },
     layers: LAYERS.map(({ type, group, kind, label, color }) => ({ type, group, kind, label, color })),
-    note: "Solid-mineral (TPI) licenses and contracts. System register layers plus revoked exploration licenses."
+    pugfnLayers: PUGFN_LAYERS.map(({ type, group, kind, label, color }) => ({ type, group, kind, label, color })),
+    note: "Solid-mineral (TPI) licenses and contracts, plus optional official hydrocarbon and uranium PUGFN layers at /layers?group=pugfn. Those PUGFN areas are not open for TPI exploration licenses."
   });
 }
 
 async function handleLayers(url, ctx) {
   const type = url.searchParams.get("type");
+  const group = url.searchParams.get("group");
   if (type) {
     if (!ALLOWED_TYPES.has(type)) return json({ error: "layer type not allowed" }, 400);
     return cachedResponse("layer:" + type, CACHE_TTL_S, ctx, () => buildOneLayer(type));
   }
+  if (group === "pugfn") {
+    return cachedResponse("layer:pugfn", CACHE_TTL_S, ctx, () => buildPugfnLayers());
+  }
+  if (group) return json({ error: "layer group not allowed" }, 400);
   return cachedResponse("layer:all", CACHE_TTL_S, ctx, () => buildAllLayers());
+}
+
+async function buildPugfnLayers() {
+  const all = [];
+  const counts = {};
+  for (let i = 0; i < PUGFN_LAYERS.length; i++) {
+    if (i) await sleep(ORIGIN_GAP_MS);
+    const meta = PUGFN_LAYERS[i];
+    const raw = await fetchOriginLayer(meta.type);
+    const shifted = transformFeatureCollection(raw, pulkovoToWgs84);
+    counts[meta.type] = shifted.features.length;
+    for (const f of shifted.features) all.push(annotate(f, meta));
+  }
+  return collectionBody({ type: "FeatureCollection", features: all }, { types: PUGFN_LAYERS.map((l) => l.type), count: all.length, counts, group: "pugfn" });
 }
 
 async function buildOneLayer(type) {
