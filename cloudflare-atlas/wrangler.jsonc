@@ -6,7 +6,10 @@
   "account_id": "7f7782b70fdf15f64ae8b7f9bf46b9af",
   "workers_dev": true,
   "preview_urls": false,
-  "observability": { "enabled": false },
+  "observability": {
+    "enabled": true,
+    "logs": { "enabled": true, "invocation_logs": true, "head_sampling_rate": 0.1 }
+  },
   "vars": {
     "SITE_MODE": "public",
     "ALLOWED_HOSTS": "kzgeology-public.yerkebulantazabek.workers.dev,kzgeology-atlas-app.yerkebulantazabek.workers.dev,kzgeology.com,www.kzgeology.com,atlas.kzgeology.com"
@@ -37,7 +40,10 @@
       "name": "kzgeology-atlas-app",
       "workers_dev": true,
       "preview_urls": false,
-      "observability": { "enabled": false },
+      "observability": {
+    "enabled": true,
+    "logs": { "enabled": true, "invocation_logs": true, "head_sampling_rate": 0.1 }
+  },
       "vars": {
         "SITE_MODE": "atlas",
         "ALLOWED_HOSTS": "kzgeology-public.yerkebulantazabek.workers.dev,kzgeology-atlas-app.yerkebulantazabek.workers.dev,kzgeology.com,www.kzgeology.com,atlas.kzgeology.com"
