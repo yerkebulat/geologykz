@@ -254,3 +254,34 @@ body.sketch-on #mapview .maplibregl-canvas{touch-action:manipulation}
   .sketch-btn{width:36px;height:36px}
   .sketch-bar button{width:36px;height:36px}
 }
+
+.topbar nav .donate-btn{margin:0;padding:0;border:0;background:none;color:var(--muted);font:inherit;font-size:13px;cursor:pointer;line-height:inherit}
+.topbar nav .donate-btn:hover{color:var(--text)}
+.donate-short{display:none}
+@media (max-width:700px){
+  .donate-full{display:none}
+  .donate-short{display:inline}
+}
+body.donate-open{overflow:hidden}
+.donate-modal{position:fixed;inset:0;z-index:20;background:rgba(28,25,23,.45);display:flex;align-items:center;justify-content:center;padding:16px}
+.donate-modal[hidden]{display:none}
+.donate-card{width:min(440px,100%);max-height:min(92vh,720px);overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:18px 18px 16px}
+.donate-card h2{margin:0 0 6px;font-size:16px}
+.donate-lead{margin:0 0 12px;color:var(--muted);font-size:13px}
+#donate-form{display:flex;flex-direction:column;gap:8px}
+#donate-form label{display:flex;flex-direction:column;gap:3px;font-size:13px;font-weight:500}
+#donate-form input[type="text"],#donate-form input[type="email"],#donate-form textarea,#donate-form input[type="file"]{font:inherit;font-weight:400;padding:7px 9px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text)}
+#donate-form textarea{resize:vertical;min-height:64px}
+.donate-opt{font-weight:400;color:var(--muted);font-size:12px}
+.donate-hint{margin:0;color:var(--muted);font-size:12px}
+.donate-check{flex-direction:row !important;align-items:flex-start;gap:8px;font-weight:400 !important}
+.donate-check input{margin-top:3px}
+.donate-turnstile{min-height:20px}
+.donate-msg{margin:0;font-size:13px}
+.donate-msg.err{color:#9f1239}
+.donate-msg.ok{color:#166534}
+.donate-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:6px}
+.donate-cancel,.donate-send{font:inherit;font-size:13px;padding:7px 12px;border-radius:9px;cursor:pointer}
+.donate-cancel{border:1px solid var(--line);background:var(--card);color:var(--text)}
+.donate-send{border:1px solid var(--text);background:var(--text);color:#fff}
+.donate-send:disabled{opacity:.6;cursor:default}

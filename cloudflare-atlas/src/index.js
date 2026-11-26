@@ -1,3 +1,5 @@
+import { EmailMessage } from "cloudflare:email";
+
 /* Same app for the public site and the password-gated atlas.
    Data is served from R2 (processed layers and PMTiles only). */
 
@@ -228,10 +230,8 @@ function parseRange(header, size) {
   return { offset: start, length: Math.min(end, size - 1) - start + 1, start, end: Math.min(end, size - 1) };
 }
 
-async function rateLimit(request, env, bucket) {
+async function rateLimit(request, env, bucket, limit = 180, windowSec = 60) {
   const ip = request.headers.get("cf-connecting-ip") || "0";
-  const windowSec = 60;
-  const limit = 180;
   const slot = Math.floor(Date.now() / 1000 / windowSec);
   const key = new Request(`https://atlas-rl.invalid/${bucket}/${ip}/${slot}`);
   try {
@@ -252,6 +252,9 @@ async function rateLimit(request, env, bucket) {
 
 
 async function serveR2(env, key, request, indexable, typeKey = key) {
+  const k = String(key || "").replace(/^\/+/, "");
+  const tk = String(typeKey || "").replace(/^\/+/, "");
+  if (k.startsWith("inbox/") || tk.startsWith("inbox/")) return deny(404, "Not found");
   const obj = await env.TILES.head(key);
   if (!obj) return deny(404, "Not found");
   const size = obj.size;
@@ -279,6 +282,220 @@ async function serveR2(env, key, request, indexable, typeKey = key) {
   return new Response(bodyObj.body, { status: 200, headers });
 }
 
+const DONATE_MAX = 95 * 1024 * 1024;
+const DONATE_EXTS = new Set(["pdf", "jpg", "jpeg", "png", "tif", "tiff", "kmz", "kml", "geojson", "zip"]);
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function jsonRes(status, obj, headersOut) {
+  return new Response(JSON.stringify(obj), {
+    status,
+    headers: {
+      ...headersOut,
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-store",
+    },
+  });
+}
+
+function cleanField(value, max) {
+  return String(value || "")
+    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "")
+    .replace(/\r\n|\r|\n/g, " ")
+    .trim()
+    .slice(0, max);
+}
+
+function fileExt(name) {
+  const m = /\.([a-z0-9]+)$/i.exec(name || "");
+  return m ? m[1].toLowerCase() : "";
+}
+
+function safeFileName(name, ext) {
+  let base = String(name || "file").split(/[/\\]/).pop() || "file";
+  base = base.replace(/[^A-Za-z0-9._-]+/g, "_").slice(0, 120) || "file";
+  if (ext && !base.toLowerCase().endsWith("." + ext)) base += "." + ext;
+  return base;
+}
+
+function magicOk(ext, bytes) {
+  const at = (i) => bytes[i] || 0;
+  const starts = (arr) => arr.every((v, i) => at(i) === v);
+  const text = new TextDecoder("utf-8", { fatal: false })
+    .decode(bytes.subarray(0, Math.min(bytes.length, 256)))
+    .replace(/^\uFEFF/, "")
+    .trimStart();
+  if (ext === "pdf") return starts([0x25, 0x50, 0x44, 0x46]);
+  if (ext === "jpg" || ext === "jpeg") return starts([0xff, 0xd8, 0xff]);
+  if (ext === "png") return starts([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+  if (ext === "tif" || ext === "tiff") {
+    return starts([0x49, 0x49, 0x2a, 0x00]) || starts([0x4d, 0x4d, 0x00, 0x2a]);
+  }
+  if (ext === "zip" || ext === "kmz") {
+    return starts([0x50, 0x4b, 0x03, 0x04]) || starts([0x50, 0x4b, 0x05, 0x06]) || starts([0x50, 0x4b, 0x07, 0x08]);
+  }
+  if (ext === "kml") return text.startsWith("<") && /kml/i.test(text.slice(0, 256));
+  if (ext === "geojson") {
+    return text.startsWith("{") && /Feature|FeatureCollection|GeometryCollection|"type"/i.test(text.slice(0, 1024));
+  }
+  return false;
+}
+
+async function verifyTurnstile(token, env, ip) {
+  const secret = env.TURNSTILE_SECRET;
+  if (!secret || !token) return false;
+  try {
+    const body = new URLSearchParams();
+    body.set("secret", secret);
+    body.set("response", token);
+    if (ip) body.set("remoteip", ip);
+    const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      body,
+    });
+    const data = await res.json();
+    return !!(data && data.success);
+  } catch (e) {
+    return false;
+  }
+}
+
+function rfc2047(s) {
+  const bytes = enc.encode(String(s || ""));
+  let bin = "";
+  for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i]);
+  return "=?UTF-8?B?" + btoa(bin) + "?=";
+}
+
+function donateEmailRaw(from, to, subject, body) {
+  return [
+    "From: " + from,
+    "To: " + to,
+    "Subject: " + rfc2047(subject),
+    "MIME-Version: 1.0",
+    "Content-Type: text/plain; charset=utf-8",
+    "Content-Transfer-Encoding: 8bit",
+    "",
+    body,
+  ].join("\r\n");
+}
+
+async function notifyDonate(env, meta) {
+  const to = cleanField(env.DONATE_NOTIFY || "yerkebulantazabek@gmail.com", 200);
+  const from = "donate@kzgeology.com";
+  if (!env.SEND_EMAIL) return;
+  const lines = [
+    "A map donation was received.",
+    "",
+    "Title: " + meta.title,
+    "Name: " + meta.name,
+    "Email: " + meta.email,
+    "Source or year: " + (meta.source || "(none)"),
+    "Note: " + (meta.note || "(none)"),
+    "Rights confirmed: yes",
+    "File: " + meta.file.name + " (" + meta.file.size + " bytes, " + meta.file.ext + ")",
+    "Site: " + meta.site,
+    "Received: " + meta.receivedAt,
+    "Inbox prefix: " + meta.prefix,
+    "",
+    "The file is not public. Open the R2 bucket kzgeology-atlas-tiles and look under " + meta.prefix + ".",
+  ];
+  const raw = donateEmailRaw(from, to, "Map donation: " + meta.title, lines.join("\n"));
+  await env.SEND_EMAIL.send(new EmailMessage(from, to, raw));
+}
+
+async function handleDonate(request, env, isAtlas, headersOut) {
+  if (!refererAllowed(request, env)) return jsonRes(403, { ok: false, error: "Forbidden" }, headersOut);
+  const cl = Number(request.headers.get("content-length") || 0);
+  if (Number.isFinite(cl) && cl > DONATE_MAX + 256 * 1024) {
+    return jsonRes(413, { ok: false, error: "The file is larger than 95 MB." }, headersOut);
+  }
+  if (!(await rateLimit(request, env, "donate", 4, 3600))) {
+    return jsonRes(429, { ok: false, error: "Too many submissions. Please try again later." }, headersOut);
+  }
+  let form;
+  try {
+    form = await request.formData();
+  } catch (e) {
+    return jsonRes(400, { ok: false, error: "Could not read the form." }, headersOut);
+  }
+  const name = cleanField(form.get("name"), 120);
+  const email = cleanField(form.get("email"), 200);
+  const title = cleanField(form.get("title"), 200);
+  const source = cleanField(form.get("source"), 200);
+  const note = cleanField(form.get("note"), 2000);
+  const rights = String(form.get("rights") || "").toLowerCase();
+  const token = String(form.get("cf-turnstile-response") || "");
+  const file = form.get("file");
+  if (!name || !email || !title) {
+    return jsonRes(400, { ok: false, error: "Please fill in your name, email, and the map title." }, headersOut);
+  }
+  if (!EMAIL_RE.test(email)) {
+    return jsonRes(400, { ok: false, error: "Please enter a valid email address." }, headersOut);
+  }
+  if (rights !== "1" && rights !== "true" && rights !== "on" && rights !== "yes") {
+    return jsonRes(400, { ok: false, error: "Please confirm that you have the right to share this map." }, headersOut);
+  }
+  const ip = request.headers.get("cf-connecting-ip") || "";
+  if (!(await verifyTurnstile(token, env, ip))) {
+    return jsonRes(400, { ok: false, error: "Please complete the verification check." }, headersOut);
+  }
+  if (!file || typeof file === "string" || !file.size) {
+    return jsonRes(400, { ok: false, error: "Please choose a file." }, headersOut);
+  }
+  if (file.size > DONATE_MAX) {
+    return jsonRes(413, { ok: false, error: "The file is larger than 95 MB." }, headersOut);
+  }
+  const ext = fileExt(file.name);
+  if (!DONATE_EXTS.has(ext)) {
+    return jsonRes(415, { ok: false, error: "That file type is not accepted." }, headersOut);
+  }
+  let peek;
+  try {
+    peek = new Uint8Array(await file.slice(0, 1024).arrayBuffer());
+  } catch (e) {
+    return jsonRes(400, { ok: false, error: "Could not read the file." }, headersOut);
+  }
+  if (!magicOk(ext, peek)) {
+    return jsonRes(415, { ok: false, error: "That file type is not accepted." }, headersOut);
+  }
+  const now = new Date();
+  const day = now.toISOString().slice(0, 10);
+  const id = crypto.randomUUID().replace(/-/g, "").slice(0, 12);
+  const prefix = "inbox/" + day + "-" + id + "/";
+  const fname = safeFileName(file.name, ext);
+  const fileKey = prefix + fname;
+  const metaKey = prefix + "metadata.json";
+  const meta = {
+    id,
+    receivedAt: now.toISOString(),
+    site: isAtlas ? "atlas" : "public",
+    name,
+    email,
+    title,
+    source: source || "",
+    note: note || "",
+    rightsConfirmed: true,
+    file: { name: fname, originalName: cleanField(file.name, 200), size: file.size, type: file.type || "", ext },
+    country: request.headers.get("cf-ipcountry") || "",
+    prefix,
+  };
+  try {
+    await env.TILES.put(fileKey, file.stream(), {
+      httpMetadata: { contentType: file.type || "application/octet-stream" },
+    });
+    await env.TILES.put(metaKey, JSON.stringify(meta, null, 2), {
+      httpMetadata: { contentType: "application/json" },
+    });
+  } catch (e) {
+    return jsonRes(500, { ok: false, error: "Could not store the file. Please try again." }, headersOut);
+  }
+  try {
+    await notifyDonate(env, meta);
+  } catch (e) {}
+  return jsonRes(200, { ok: true }, headersOut);
+}
+
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -298,7 +515,10 @@ export default {
     }
 
     if (path === "/config.js") {
-      const body = `window.ATLAS_SITE=${JSON.stringify({ mode })};`;
+      const body = `window.ATLAS_SITE=${JSON.stringify({
+        mode,
+        turnstileSiteKey: env.TURNSTILE_SITE_KEY || "",
+      })};`;
       return new Response(body, {
         headers: { ...headersOut, "Cache-Control": "private, max-age=300", "Content-Type": "text/javascript; charset=utf-8" },
       });
@@ -345,6 +565,16 @@ export default {
           "Set-Cookie": `${COOKIE}=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax`,
         },
       });
+    }
+
+    if (path === "/inbox" || path.startsWith("/inbox/")) {
+      return deny(404, "Not found");
+    }
+
+    if (path === "/__donate") {
+      if (request.method !== "POST") return deny(404, "Not found");
+      if (isAtlas && !session) return deny(401, "Unauthorized");
+      return handleDonate(request, env, isAtlas, headersOut);
     }
 
     if (RAW_RE.test(path) || path.startsWith("/docs/")) {
