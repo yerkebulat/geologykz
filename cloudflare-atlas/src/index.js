@@ -649,7 +649,7 @@ export default {
 
     if (request.method !== "GET" && request.method !== "HEAD") return deny(405, "Method not allowed");
     const assetReq = isSitePage(path)
-      ? new Request(new URL("/index.html", request.url), request)
+      ? new Request(new URL("/", request.url), request)
       : request;
     const asset = await env.ASSETS.fetch(assetReq);
     const headers = new Headers(asset.headers);
@@ -661,6 +661,7 @@ export default {
     if (path === "/" || path.endsWith(".html") || path === "/driller" || path === "/game" || path === "/strata" || isSitePage(path)) {
       headers.set("Cache-Control", "private, max-age=0, must-revalidate");
     }
-    return new Response(asset.body, { status: asset.status, headers });
+    const status = isSitePage(path) ? 200 : asset.status;
+    return new Response(asset.body, { status, headers });
   },
 };
