@@ -1477,21 +1477,12 @@
     }
   }
   function initScaleChrome() {
-    const STORE = 'atlas-scale-v1';
-    let on = true;
-    try { if (localStorage.getItem(STORE) === '0') on = false; } catch (e) {}
     const wrap = $('map-scale');
-    const btn = $('scale-toggle');
     const bar = $('scalebar');
+    if (!wrap || !bar) return;
+    wrap.classList.remove('scale-off');
     const track = bar.querySelector('.scalebar-track');
     const labelEl = bar.querySelector('.scalebar-n');
-    function apply(v, persist) {
-      on = v;
-      wrap.classList.toggle('scale-off', !on);
-      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      if (persist) { try { localStorage.setItem(STORE, on ? '1' : '0'); } catch (e) {} }
-      if (on) updateScale();
-    }
     function formatMetres(m) {
       if (m >= 1000) return (m / 1000) + ' km';
       if (m >= 1) return Math.round(m) + ' m';
@@ -1507,7 +1498,6 @@
     }
     function updateScale() {
       updateNorth();
-      if (!on) return;
       const maxPx = phone ? 96 : 120;
       const box = map.getContainer();
       const y = box.clientHeight / 2;
@@ -1526,7 +1516,6 @@
       bar.setAttribute('aria-label', text);
       if (track.children.length !== 4) track.innerHTML = '<i></i><i></i><i></i><i></i>';
     }
-    btn.addEventListener('click', () => apply(!on, true));
     function canPitch() {
       try {
         if (typeof map.getMaxPitch === 'function' && map.getMaxPitch() <= 0) return false;
@@ -1558,7 +1547,6 @@
       ev.preventDefault();
       resetPlanView(300);
     });
-    apply(on, false);
     map.on('move', updateScale);
     map.on('resize', () => { placeScale(); updateScale(); });
     placeScale();
