@@ -175,6 +175,14 @@ function filterMaps(data) {
   };
 }
 
+function r2MapsKey(isAtlas) {
+  return isAtlas ? "atlas/maps.json" : "public/maps.json";
+}
+
+function r2DataKey(key) {
+  return isPaleoPath(key) ? "paleo/" + key : "public/" + key;
+}
+
 function contentType(key) {
   const name = String(key || "").split("?")[0].toLowerCase();
   const base = name.replace(/\/+$/, "");
@@ -243,21 +251,15 @@ async function rateLimit(request, env, bucket) {
 }
 
 
-async function readAsset(env, pathname) {
-  const res = await env.ASSETS.fetch(new Request(new URL(pathname, "https://assets.local")));
-  if (!res || !res.ok) return null;
-  return res.text();
-}
-
-async function serveR2(env, key, request, indexable) {
+async function serveR2(env, key, request, indexable, typeKey = key) {
   const obj = await env.TILES.head(key);
   if (!obj) return deny(404, "Not found");
   const size = obj.size;
   const range = parseRange(request.headers.get("Range"), size);
   const headers = {
     ...baseHeaders(indexable),
-    "Content-Type": resolvedType(key),
-    "Cache-Control": cacheFor(key),
+    "Content-Type": resolvedType(typeKey),
+    "Cache-Control": cacheFor(typeKey),
     "Accept-Ranges": "bytes",
   };
   if (request.method === "HEAD" && !range) {
@@ -365,12 +367,9 @@ export default {
 
       if (path === "/maps.json") {
         if (isAtlas && !session) return deny(401, "Unauthorized");
-        let raw = await readAsset(env, "/maps.json");
-        if (raw == null) {
-          const obj = await env.TILES.get("maps.json");
-          if (!obj) return deny(404, "Not found");
-          raw = await obj.text();
-        }
+        const obj = await env.TILES.get(r2MapsKey(isAtlas));
+        if (!obj) return deny(404, "Not found");
+        const raw = await obj.text();
         let data;
         try {
           data = JSON.parse(raw);
@@ -395,18 +394,7 @@ export default {
         } else if (isAtlas && !session) {
           return deny(401, "Unauthorized");
         }
-        const asset = await env.ASSETS.fetch(new Request(new URL("/" + key, "https://assets.local"), { method: request.method, headers: request.headers }));
-        if (asset && asset.status === 200) {
-          const headers = {
-            ...headersOut,
-            "Content-Type": resolvedType(key, asset.headers.get("content-type")),
-            "Cache-Control": cacheFor(key),
-          };
-          const cl = asset.headers.get("content-length");
-          if (cl) headers["Content-Length"] = cl;
-          return new Response(asset.body, { status: 200, headers });
-        }
-        return serveR2(env, key, request, indexable);
+        return serveR2(env, r2DataKey(key), request, indexable, key);
       }
     }
 
