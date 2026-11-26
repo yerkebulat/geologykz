@@ -28,7 +28,7 @@ npx wrangler deploy --env atlas
 #   printf '%s' "$ATLAS_PASSWORD_HASH" | npx wrangler secret put ATLAS_PASSWORD_HASH --env atlas
 ```
 
-Workers Builds (auto-deploy from GitHub) is not turned on here. To add it later: in the Cloudflare dashboard, open Workers & Pages, connect the `yerkebulat/geologykz` repo, set the root to this `cloudflare-atlas` folder, and deploy `kzgeology-public` plus an atlas environment. Secrets must be added in the dashboard, never in the repo. That GitHub connection has to be clicked by the account owner.
+Workers Builds is connected for the `main` branch, with this `cloudflare-atlas` folder as the root. Secrets stay in the dashboard, never in the repo.
 
 ## Cutover (not done in phase 1)
 
