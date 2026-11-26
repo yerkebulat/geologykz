@@ -6,9 +6,10 @@
 <base href="/">
 <title>kzgeology</title>
 <!-- workers builds hook check -->
+<link rel="preload" href="fonts/source-serif-pro-semibold.woff2" as="font" type="font/woff2" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css" rel="stylesheet">
-<link href="style.css?v=cf10" rel="stylesheet">
+<link href="style.css?v=cf11" rel="stylesheet">
 </head>
 <body>
 <header class="topbar">
@@ -90,83 +91,110 @@
   </div>
   <div class="about-wrap">
     <section class="about-block" id="about" data-path="/about">
-      <h1>About</h1>
-      <p>kzgeology is a public geological map of Kazakhstan. It gathers published geological maps and official subsoil data in a single viewer that can be used without an account.</p>
-      <p>The public catalog currently includes:</p>
-      <ul class="about-list">
-        <li>487 Gosgeolkarta geological map sheets at 1:200,000</li>
-        <li>the 1:1,500,000 geological map of the Kazakh SSR (1967), together with the fault and mineral-deposit layers digitized from it</li>
-        <li>structural, mineral, and geoenvironmental layers</li>
-        <li>official subsoil-use and licence data</li>
-      </ul>
-      <p>These figures are taken from the catalog served by this site.</p>
-      <p>kzgeology is a non-profit project and does not seek profit. Organizations interested in sponsoring or supporting the project may get in touch at <a href="https://yerkebulan.dev" target="_blank" rel="noopener">yerkebulan.dev</a>.</p>
+      <figure class="about-plate">
+        <img src="about-geo.webp" alt="Geological map of Kazakhstan, compiled in 1967 at a scale of 1:1,500,000." width="2560" height="1056" decoding="async">
+        <figcaption>Geological map of the Kazakh SSR and adjacent territories, 1:1,500,000. All-Union Aerogeological Trust, 1967.</figcaption>
+      </figure>
+      <div class="about-mast">
+        <h1>About</h1>
+        <div class="about-col">
+          <p class="about-lead">kzgeology is a public geological map of Kazakhstan. It brings together published maps and official subsoil data so they can be read in one place, without a login.</p>
+          <ol class="about-inventory">
+            <li><span class="n" data-count="487">487</span><span class="t">Gosgeolkarta geological sheets at 1:200,000</span></li>
+            <li><span class="n">1967</span><span class="t">Geological map of the Kazakh SSR at 1:1,500,000, with its fault and mineral-deposit layers</span></li>
+            <li><span class="n"></span><span class="t">Structural, mineral, and geoenvironmental layers</span></li>
+            <li><span class="n"></span><span class="t">Official subsoil-use and licence data</span></li>
+          </ol>
+          <p>kzgeology is a non-profit project and does not seek profit. Organizations interested in sponsoring or supporting the project may get in touch at <a href="https://yerkebulan.dev" target="_blank" rel="noopener">yerkebulan.dev</a>.</p>
+        </div>
+      </div>
     </section>
 
     <section class="about-block" id="about-made" data-path="/about/made">
-      <h1>How it's made</h1>
-      <p>Printed and scanned map sheets are georeferenced and divided into tiles so that only the visible area is loaded. Vector layers are digitized from those sheets and from figures in published papers, then drawn over the map.</p>
-      <p>The viewer is a static web application delivered from Cloudflare. Map data are stored and served separately from the application code.</p>
+      <div class="about-mast">
+        <h1>How it's made</h1>
+        <div class="about-col">
+          <p>The maps begin as printed sheets and published figures. Each sheet is georeferenced, then cut into tiles so that only the area in view is loaded. Vector layers are traced from those sources and drawn over the map.</p>
+        </div>
+      </div>
+      <figure class="about-plate">
+        <img src="about-sheets.webp" alt="Index of the 1:200,000 geological map sheets covering Kazakhstan." width="2560" height="1056" loading="lazy" decoding="async">
+        <figcaption>Index of the 487 geological sheets at 1:200,000 on this map.</figcaption>
+      </figure>
     </section>
 
     <section class="about-block" id="about-sources" data-path="/sources">
-      <h1>Sources</h1>
-      <p>Bibliographic credits previously shown at the bottom of the Layers panel are listed here.</p>
+      <div class="about-mast">
+        <h1>Sources</h1>
+        <div class="about-col">
+          <p class="about-lead">The layers on this map are drawn from the following published sources.</p>
 
-      <h2>National geological map, 1:1,500,000</h2>
-      <p>The geological map, detailed faults, and mineral deposits at this scale are taken from the 1967 national map, compiled by the All-Union Aerogeological Trust. V. F. Bespalov was the editor, not the compiling organization.</p>
-      <ul class="about-refs">
-        <li>All-Union Aerogeological Trust, 1967. <em>Geological map of the Kazakh Soviet Socialist Republic and adjacent territories of the union republics</em>, scale 1:1,500,000. Editor: V. F. Bespalov. <a href="https://www.geokniga.org/maps/45151" target="_blank" rel="noopener">geokniga.org/maps/45151</a></li>
-      </ul>
+          <h2>Regional geological maps</h2>
+          <ul class="about-refs">
+            <li>All-Union Aerogeological Trust, 1967. <em>Geological map of the Kazakh Soviet Socialist Republic and adjacent territories of the union republics</em>. Scale 1:1,500,000. Editor: V. F. Bespalov. <a href="https://www.geokniga.org/maps/45151" target="_blank" rel="noopener">geokniga.org/maps/45151</a></li>
+            <li>Daukeev, S. Zh., Uzhkenov, B. S., et al. (eds.). <em>Atlas of the Lithology-Paleogeographical, Structural, Palinspastic and Geoenvironmental Maps of Central Eurasia</em>. ISBN 9965-13-566-5. Used here for main tectonic structures, sedimentary cover structure, historic-geological sections, and the geoenvironmental maps.</li>
+          </ul>
 
-      <h2>Geological map sheets, 1:200,000</h2>
-      <p>Gosgeolkarta 1:200,000 geological sheets. 487 sheets are on the map. Scans were obtained from <a href="https://cloud.mail.ru/public/LrNy/Ki1QkR1tA" target="_blank" rel="noopener">Mail.ru</a> and <a href="https://www.geokniga.org/maps" target="_blank" rel="noopener">Geokniga</a>.</p>
+          <h2>1:200,000 sheets</h2>
+          <ul class="about-refs">
+            <li>Gosgeolkarta. Geological map of the USSR, scale 1:200,000. 487 sheets covering Kazakhstan. Scans from <a href="https://cloud.mail.ru/public/LrNy/Ki1QkR1tA" target="_blank" rel="noopener">Mail.ru</a> and <a href="https://www.geokniga.org/maps" target="_blank" rel="noopener">Geokniga</a>.</li>
+          </ul>
 
-      <h2>Other compiled maps</h2>
-      <ul class="about-refs">
-        <li>Daukeev, S. Zh., Uzhkenov, B. S., et al. (eds.). <em>Atlas of the Lithology-Paleogeographical, Structural, Palinspastic and Geoenvironmental Maps of Central Eurasia</em>. ISBN 9965-13-566-5. Used here for main tectonic structures, sedimentary cover structure, historic-geological sections, and the geoenvironmental maps.</li>
-        <li>Regional faults and ore occurrences: industry compilation.</li>
-      </ul>
+          <h2>Mineral deposits and faults</h2>
+          <ul class="about-refs">
+            <li>Detailed faults and mineral deposits, digitized from All-Union Aerogeological Trust, 1967 (cited above).</li>
+            <li>Regional faults and ore occurrences: industry compilation.</li>
+          </ul>
 
-      <h2>Papers</h2>
-      <ul class="about-refs">
-        <li>Windley, B. F., Alexeiev, D., Xiao, W., Kröner, A. and Badarch, G., 2007. Tectonic models for accretion of the Central Asian Orogenic Belt. <em>Journal of the Geological Society</em>, 164, 31-47. <a href="https://doi.org/10.1144/0016-76492006-022" target="_blank" rel="noopener">doi:10.1144/0016-76492006-022</a></li>
-        <li>Li, P., Sun, M., Rosenbaum, G., Yuan, C., Safonova, I., Cai, K., Jiang, Y. and Zhang, Y., 2018. Geometry, kinematics and tectonic models of the Kazakhstan Orocline, Central Asian Orogenic Belt. <em>Journal of Asian Earth Sciences</em>, 153, 42-56. <a href="https://doi.org/10.1016/j.jseaes.2017.07.029" target="_blank" rel="noopener">doi:10.1016/j.jseaes.2017.07.029</a></li>
-        <li>Safonova, I. and Perfilova, A., 2023. Survived and disappeared intra-oceanic arcs of the Paleo-Asian Ocean: evidence from Kazakhstan. <em>National Science Review</em>, 10(2), nwac215. <a href="https://doi.org/10.1093/nsr/nwac215" target="_blank" rel="noopener">doi:10.1093/nsr/nwac215</a></li>
-        <li>Safonova, I., Savinskiy, I., Perfilova, A., Obut, O., Gurova, A. and Krivonogov, S., 2024. A new tectonic model for the Itmurundy Zone, central Kazakhstan: linking ocean plate stratigraphy, timing of accretion and subduction polarity. <em>Geoscience Frontiers</em>, 15(4), 101814. <a href="https://doi.org/10.1016/j.gsf.2024.101814" target="_blank" rel="noopener">doi:10.1016/j.gsf.2024.101814</a></li>
-      </ul>
-      <p>Short forms used on the map (for example, Li et al. 2018) refer to these papers.</p>
+          <h2>Research papers</h2>
+          <ul class="about-refs">
+            <li>Windley, B. F., Alexeiev, D., Xiao, W., Kröner, A. and Badarch, G., 2007. Tectonic models for accretion of the Central Asian Orogenic Belt. <em>Journal of the Geological Society</em>, 164, 31-47. <a href="https://doi.org/10.1144/0016-76492006-022" target="_blank" rel="noopener">doi:10.1144/0016-76492006-022</a></li>
+            <li>Li, P., Sun, M., Rosenbaum, G., Yuan, C., Safonova, I., Cai, K., Jiang, Y. and Zhang, Y., 2018. Geometry, kinematics and tectonic models of the Kazakhstan Orocline, Central Asian Orogenic Belt. <em>Journal of Asian Earth Sciences</em>, 153, 42-56. <a href="https://doi.org/10.1016/j.jseaes.2017.07.029" target="_blank" rel="noopener">doi:10.1016/j.jseaes.2017.07.029</a></li>
+            <li>Safonova, I. and Perfilova, A., 2023. Survived and disappeared intra-oceanic arcs of the Paleo-Asian Ocean: evidence from Kazakhstan. <em>National Science Review</em>, 10(2), nwac215. <a href="https://doi.org/10.1093/nsr/nwac215" target="_blank" rel="noopener">doi:10.1093/nsr/nwac215</a></li>
+            <li>Safonova, I., Savinskiy, I., Perfilova, A., Obut, O., Gurova, A. and Krivonogov, S., 2024. A new tectonic model for the Itmurundy Zone, central Kazakhstan: linking ocean plate stratigraphy, timing of accretion and subduction polarity. <em>Geoscience Frontiers</em>, 15(4), 101814. <a href="https://doi.org/10.1016/j.gsf.2024.101814" target="_blank" rel="noopener">doi:10.1016/j.gsf.2024.101814</a></li>
+          </ul>
 
-      <h2>Official data</h2>
-      <ul class="about-refs">
-        <li>Unified Subsoil Use Platform (licences and subsoil use): <a href="https://minerals.e-qazyna.kz/" target="_blank" rel="noopener">minerals.e-qazyna.kz</a>.</li>
-        <li>PUGFN (oil, gas, uranium), from the same platform: <a href="https://minerals.e-qazyna.kz/ru/contracts-map" target="_blank" rel="noopener">contracts map</a>.</li>
-        <li>Geological maps are also listed on <a href="https://nedra.kz/map/" target="_blank" rel="noopener">nedra.kz/map</a>. This is a text link only; images from that site are not republished here.</li>
-      </ul>
+          <h2>Subsoil use data</h2>
+          <ul class="about-refs">
+            <li>Unified Subsoil Use Platform (licences and subsoil use): <a href="https://minerals.e-qazyna.kz/" target="_blank" rel="noopener">minerals.e-qazyna.kz</a></li>
+            <li>PUGFN (oil, gas, uranium), from the same platform: <a href="https://minerals.e-qazyna.kz/ru/contracts-map" target="_blank" rel="noopener">contracts map</a></li>
+            <li>Geological maps listed on <a href="https://nedra.kz/map/" target="_blank" rel="noopener">nedra.kz/map</a></li>
+          </ul>
 
-      <h2>Terrain</h2>
-      <ul class="about-refs">
-        <li>Mapzen/Tilezen terrain tiles via AWS Open Data. Elevation data courtesy of the U.S. Geological Survey (SRTM, GMTED2010) and NOAA (ETOPO1).</li>
-      </ul>
+          <h2>Terrain</h2>
+          <ul class="about-refs">
+            <li>Mapzen/Tilezen terrain tiles via AWS Open Data. Elevation data courtesy of the U.S. Geological Survey (SRTM, GMTED2010) and NOAA (ETOPO1).</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <section class="about-block" id="about-contribute" data-path="/contribute">
-      <h1>Contribute</h1>
-      <h2>Individuals</h2>
-      <p>A map may be submitted with the Donate maps form if the sender has the right to share it. Each submission is reviewed before it is added to the catalog.</p>
-      <p><button type="button" class="about-cta" id="about-donate">Donate maps</button></p>
-      <h2>Institutions</h2>
-      <p>Mining companies, geological surveys, and other institutions may contribute maps or datasets. Attribution will be given. Use the same form and name the institution in the note.</p>
-      <h2>Sponsorship</h2>
-      <p>kzgeology is a non-profit project and does not seek profit. Organizations interested in sponsoring or supporting the project may get in touch at <a href="https://yerkebulan.dev" target="_blank" rel="noopener">yerkebulan.dev</a>.</p>
-      <h2>Copyright</h2>
-      <p>If you hold rights in a map or dataset shown here and believe that it is copyrighted, please write through the form. The material will be removed on request.</p>
+      <div class="about-mast">
+        <h1>Contribute</h1>
+        <div class="about-col">
+          <p class="about-lead">You can add a map to this project, or ask for one to be taken down.</p>
+          <h2>Individuals</h2>
+          <p>If you have the right to share a map, submit it with the Donate maps form. Each submission is reviewed before it is added.</p>
+          <p><button type="button" class="about-cta" id="about-donate">Donate maps</button></p>
+          <h2>Institutions</h2>
+          <p>Mining companies, geological surveys, and other institutions may contribute maps or datasets. Work that is included will be credited. Use the same form and name the institution in the note.</p>
+          <h2>Sponsorship</h2>
+          <p>kzgeology is a non-profit project and does not seek profit. Organizations interested in sponsoring or supporting the project may get in touch at <a href="https://yerkebulan.dev" target="_blank" rel="noopener">yerkebulan.dev</a>.</p>
+          <h2>Copyright</h2>
+          <p>If you hold rights in a map or dataset on this site and believe it should not be shown, please write through the form. It will be removed on request.</p>
+        </div>
+      </div>
     </section>
 
     <section class="about-block" id="about-code" data-path="/open-source">
-      <h1>Open source</h1>
-      <p>The application code is open. The geological data remain hosted outside the repository.</p>
-      <p><a class="about-cta" href="https://github.com/yerkebulat/geologykz" target="_blank" rel="noopener">View the code on GitHub</a></p>
+      <div class="about-mast">
+        <h1>Open source</h1>
+        <div class="about-col">
+          <p class="about-lead">The code that runs this site is public. The map data are hosted separately.</p>
+          <p><a class="about-cta" href="https://github.com/yerkebulat/geologykz" target="_blank" rel="noopener">View the code on GitHub</a></p>
+        </div>
+      </div>
     </section>
   </div>
 </article>
@@ -180,7 +208,7 @@
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script src="config.js"></script>
 <script src="donate.js?v=cf10"></script>
-<script src="about.js?v=cf10"></script>
+<script src="about.js?v=cf11"></script>
 <script src="app.js?v=cf10"></script>
 </body>
 </html>

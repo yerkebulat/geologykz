@@ -20,7 +20,6 @@
   var reduce = false;
   try { reduce = matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
   var open = false;
-  var io = null;
 
   function $(id) { return document.getElementById(id); }
   function pathOf() {
@@ -69,6 +68,10 @@
         if (href === path) links[i].setAttribute("aria-current", "page");
         else links[i].removeAttribute("aria-current");
       }
+      var current = nav.querySelector("a[aria-current='page']");
+      if (current && current.scrollIntoView) {
+        try { current.scrollIntoView({ inline: "center", block: "nearest" }); } catch (e) {}
+      }
     }
     var top = $("about-btn");
     if (top) {
@@ -78,29 +81,54 @@
     var mapBtn = $("map-return");
     if (mapBtn) mapBtn.hidden = !ROUTES[path];
   }
-  function observe() {
-    if (io) return;
-    var scroller = document.querySelector(".about-wrap");
-    var blocks = document.querySelectorAll(".about-block");
-    if (reduce) {
-      for (var i = 0; i < blocks.length; i++) blocks[i].classList.add("in");
-      return;
+  function runCounts(root) {
+    var nodes = root.querySelectorAll("[data-count]");
+    for (var i = 0; i < nodes.length; i++) {
+      (function (el) {
+        if (el.getAttribute("data-counted")) return;
+        el.setAttribute("data-counted", "1");
+        var end = parseInt(el.getAttribute("data-count"), 10);
+        if (!end && end !== 0) return;
+        if (reduce) { el.textContent = String(end); return; }
+        var start = performance.now();
+        var dur = 900;
+        function tick(now) {
+          var t = Math.min(1, (now - start) / dur);
+          var eased = 1 - Math.pow(1 - t, 3);
+          el.textContent = String(Math.round(end * eased));
+          if (t < 1) requestAnimationFrame(tick);
+        }
+        el.textContent = "0";
+        requestAnimationFrame(tick);
+      })(nodes[i]);
     }
-    io = new IntersectionObserver(function (entries) {
-      for (var i = 0; i < entries.length; i++) {
-        if (entries[i].isIntersecting) entries[i].target.classList.add("in");
-      }
-    }, { root: scroller || null, threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
-    for (var j = 0; j < blocks.length; j++) io.observe(blocks[j]);
   }
-  function scrollToId(id, instant) {
+  function showSection(path) {
+    var id = ROUTES[path];
+    var blocks = document.querySelectorAll(".about-block");
+    var target = id ? $(id) : null;
+    for (var i = 0; i < blocks.length; i++) {
+      if (blocks[i] === target) {
+        blocks[i].classList.add("on");
+      } else {
+        blocks[i].classList.remove("on", "in");
+      }
+    }
     var scroller = document.querySelector(".about-wrap");
-    var el = $(id);
-    if (!scroller || !el) return;
-    var nav = $("about-nav");
-    var offset = 8;
-    var top = el.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop - offset;
-    scroller.scrollTo({ top: Math.max(0, top), behavior: instant || reduce ? "auto" : "smooth" });
+    if (scroller) scroller.scrollTop = 0;
+    if (!target) return;
+    function enter() {
+      if (!target.classList.contains("on")) return;
+      if (reduce) {
+        target.classList.add("in");
+        runCounts(target);
+        return;
+      }
+      void target.offsetWidth;
+      target.classList.add("in");
+      runCounts(target);
+    }
+    requestAnimationFrame(function () { requestAnimationFrame(enter); });
   }
   function showPages() {
     var pages = $("site-pages");
@@ -110,20 +138,21 @@
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
     setMapLive(false);
-    observe();
   }
   function hidePages() {
     var pages = $("site-pages");
     if (pages) pages.hidden = true;
     var scroller = document.querySelector(".about-wrap");
     if (scroller) scroller.scrollTop = 0;
+    var blocks = document.querySelectorAll(".about-block");
+    for (var i = 0; i < blocks.length; i++) blocks[i].classList.remove("on", "in");
     document.body.classList.remove("about-on");
     open = false;
     markNav("/");
     setTitle("/");
     setMapLive(true);
   }
-  function goTo(path, push, instant) {
+  function goTo(path, push) {
     if (!ROUTES[path]) {
       hidePages();
       if (push && pathOf() !== "/") history.pushState({ about: false }, "", "/");
@@ -133,10 +162,8 @@
     open = true;
     setTitle(path);
     markNav(path);
+    showSection(path);
     if (push && pathOf() !== path) history.pushState({ about: true, path: path }, "", path);
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () { scrollToId(ROUTES[path], instant); });
-    });
   }
   function onLinkClick(e) {
     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -149,7 +176,7 @@
     if (path.length > 1 && path.charAt(path.length - 1) === "/") path = path.slice(0, -1);
     if (path === "/" || ROUTES[path]) {
       e.preventDefault();
-      goTo(path, true, false);
+      goTo(path, true);
     }
   }
 
@@ -171,7 +198,7 @@
     try { reduce = matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
     lockBrowserPageZoom();
     var mapBtn = $("map-return");
-    if (mapBtn) mapBtn.addEventListener("click", function () { goTo("/", true, true); });
+    if (mapBtn) mapBtn.addEventListener("click", function () { goTo("/", true); });
     var donate = $("about-donate");
     if (donate) {
       donate.addEventListener("click", function () {
@@ -182,11 +209,11 @@
     document.addEventListener("click", onLinkClick);
     window.addEventListener("popstate", function () {
       var p = pathOf();
-      if (ROUTES[p]) goTo(p, false, true);
+      if (ROUTES[p]) goTo(p, false);
       else hidePages();
     });
     var start = pathOf();
-    if (ROUTES[start]) goTo(start, false, true);
+    if (ROUTES[start]) goTo(start, false);
     else hidePages();
   });
 })();
