@@ -46,7 +46,9 @@ const FIXED_ORIGINS = new Set([
   "https://kzgeology.com",
   "https://www.kzgeology.com",
   "https://yerkebulat.github.io",
-  "https://atlas.kzgeology.com"
+  "https://atlas.kzgeology.com",
+  "https://kzgeology-public.yerkebulantazabek.workers.dev",
+  "https://kzgeology-atlas-app.yerkebulantazabek.workers.dev"
 ]);
 const LOCALHOST_RE = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
 
