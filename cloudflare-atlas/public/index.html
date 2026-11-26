@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>kzgeology</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<link href="style.css?v=cf1" rel="stylesheet">
+</head>
+<body>
+<header class="topbar">
+  <span class="brand">Atlas</span>
+  <span class="sub">Lithology-paleogeographical, structural and geoenvironmental maps of Central Eurasia</span>
+  <nav><a href="/game.html">Play</a><a href="/__auth/logout">Log out</a></nav>
+</header>
+<main class="wrap">
+  <div id="mapview"></div>
+  <button type="button" class="layers-btn" id="layers-btn" aria-expanded="true" aria-controls="panel">Hide maps</button>
+  <aside class="panel" id="panel" aria-label="Maps">
+    <div class="panel-head">
+      <strong>Maps</strong>
+    </div>
+    <div class="act" id="active-layers" hidden></div>
+    <div class="bm" role="group" aria-label="Basemap"><button type="button" class="bm-btn" data-bm="map">Map</button><div class="bm-sat" id="bm-sat"><button type="button" class="bm-btn" data-bm="sat">Satellite</button><button type="button" class="bm-chev" id="sat-picker-btn" aria-label="Satellite source" aria-haspopup="listbox" aria-expanded="false" title="Satellite source"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.7 9.2 12 14.5l5.3-5.3 1.4 1.4L12 17.3 5.3 10.6z"/></svg></button></div></div>
+    <div id="groups"></div>
+    <div class="docs">
+      <strong>Explanatory notes</strong>
+      <a href="docs/Notes_engl.pdf" target="_blank">English</a>
+      <a href="docs/Notes_rus.pdf" target="_blank">Russian</a>
+      <a href="docs/TITLE.pdf" target="_blank">Title</a>
+      <a href="docs/CONTENT.pdf" target="_blank">Contents</a>
+    </div>
+    <p class="note" id="rights-note">If you hold rights to a map and object to its use here, contact us and we will remove it.</p>
+  </aside>
+  <div class="right-stack" id="right-stack">
+    <aside class="legend" id="legend" hidden>
+      <div class="legend-head"><strong id="legend-title"></strong><button type="button" id="legend-toggle" aria-expanded="true">Hide</button></div>
+      <div id="legend-body"></div>
+    </aside>
+    <button type="button" class="scale-toggle" id="scale-toggle" aria-pressed="true" aria-label="Scale" title="Scale"><svg class="scale-ico" viewBox="0 0 22 10" aria-hidden="true"><rect x="0.75" y="2.75" width="20.5" height="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="0.75" y="2.75" width="5.125" height="6.5" fill="currentColor"/><rect x="11" y="2.75" width="5.125" height="6.5" fill="currentColor"/></svg></button>
+  </div>
+  <div class="map-scale" id="map-scale">
+    <div class="north-tools">
+    <button type="button" class="plan-btn" id="plan-btn" aria-label="Top view (D)" title="Top view (D)">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3.2" y="3.2" width="13.2" height="13.2" fill="none" stroke="currentColor" stroke-width="1.7" rx="1.2"/>
+        <circle cx="9.8" cy="9.8" r="1.5" fill="currentColor"/>
+        <text x="23" y="22.2" text-anchor="end" fill="currentColor" font-size="8" font-family="Inter,system-ui,sans-serif" font-weight="700">D</text>
+      </svg>
+    </button>
+    <button type="button" class="north" id="map-north" aria-label="Reset north">
+      <span class="north-wrap">
+        <svg class="north-svg" viewBox="0 0 56 56" aria-hidden="true">
+          <g class="north-rot">
+            <circle cx="28" cy="28" r="13.5" fill="rgba(28,25,23,.78)" stroke="#fafaf9" stroke-width="1.25"/>
+            <polygon points="28,13 33.2,28 28,25.2 22.8,28" fill="#fafaf9"/>
+            <polygon points="28,43 33.2,28 28,30.8 22.8,28" fill="#1c1917"/>
+            <circle cx="28" cy="28" r="2.1" fill="#fafaf9" stroke="#1c1917" stroke-width="0.8"/>
+            <text x="28" y="11.4" text-anchor="middle" fill="#fafaf9" stroke="#1c1917" stroke-width="3" paint-order="stroke" font-size="8.5" font-family="Inter,system-ui,sans-serif" font-weight="700">N</text>
+          </g>
+        </svg>
+      </span>
+    </button>
+    </div>
+    <div class="scalebar" id="scalebar" role="img">
+      <div class="scalebar-labels"><span class="scalebar-0">0</span><span class="scalebar-n"></span></div>
+      <div class="scalebar-track"></div>
+    </div>
+  </div>
+  <div class="loading" id="loading" hidden>Loading map…</div>
+</main>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="eqazyna-config.js"></script>
+<script src="eqazyna.js?v=cf1"></script>
+<script src="https://unpkg.com/pmtiles@3.2.1/dist/pmtiles.js"></script>
+<script src="process-layers.js?v=cf1"></script>
+<script src="geo200-pilot.js?v=cf1"></script>
+<script src="config.js"></script>
+<script src="app.js?v=cf1"></script>
+</body>
+</html>
