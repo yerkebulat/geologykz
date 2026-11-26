@@ -185,10 +185,7 @@
     }
 
     function renderPanelLegend() {
-      if (!legend) return;
-      if (!on || !meta) { legend.hidden = true; legend.innerHTML = ""; return; }
-      legend.innerHTML = legendRows(meta);
-      legend.hidden = !legend.innerHTML;
+      if (hooksSafe.onUpdate) hooksSafe.onUpdate();
     }
 
     function visible(show) {
@@ -223,9 +220,8 @@
         meta = info;
         renderPanelLegend();
         map.getSource("eqazyna").setData(fc);
-        const n = (fc.features || []).length;
-        doneText = (n ? n + " blocks" : "No blocks") + " from e-qazyna.";
-        if (on) setStatus(doneText, true);
+        doneText = "";
+        if (on) setStatus("", false);
         loading = false;
         if (hooksSafe.onUpdate) hooksSafe.onUpdate();
         return fc;

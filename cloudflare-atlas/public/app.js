@@ -1,7 +1,7 @@
 (async function () {
   const $ = (id) => document.getElementById(id);
   const phone = matchMedia('(max-width:700px)').matches;
-  const cfg = await (await fetch('maps.json?v=md1', { credentials: 'same-origin' })).json();
+  const cfg = await (await fetch('maps.json?v=md2', { credentials: 'same-origin' })).json();
   const all = {};
   const SITE = window.ATLAS_SITE || { mode: 'atlas' };
   function isPaleoGroup(g) {
@@ -1247,12 +1247,48 @@
     });
     return h;
   }
+  function stripLgMap(html) {
+    return String(html || '').replace(/^<div class="lg-map">[\s\S]*?<\/div>/, '');
+  }
+  function fillRowLegend(id, html) {
+    const el = $(id);
+    if (!el) return;
+    const body = el.querySelector('.row-legend-body') || el;
+    if (!html) {
+      el.hidden = true;
+      body.innerHTML = '';
+      return;
+    }
+    body.innerHTML = html;
+    el.hidden = false;
+    if (!el.dataset.inited) {
+      el.dataset.inited = '1';
+      if (el.tagName === 'DETAILS') el.open = body.querySelectorAll('.lg-row').length <= 8;
+    }
+  }
+  function layerBlock(btn, legendId) {
+    return '<div class="layer-block">' + btn +
+      '<details class="row-legend" id="' + legendId + '" hidden><summary>Legend</summary><div class="row-legend-body"></div></details></div>';
+  }
   function renderLegend() {
     const shown = Object.values(ovs).filter(m => ovOn.has(m.id)).sort((a, b) => OV_ORDER[b.kind] - OV_ORDER[a.kind]);
     activeKeys().filter(k => k.startsWith('m:')).forEach(k => { if (all[k.slice(2)]) shown.push(all[k.slice(2)]); });
     const eqOn = !!(window.atlasEqazyna && window.atlasEqazyna.isOn());
     const prOn = !!(window.atlasProcess && window.atlasProcess.anyOn && window.atlasProcess.anyOn());
     const geoOn = !!(window.atlasGeo200 && window.atlasGeo200.isOn && window.atlasGeo200.isOn());
+    const pr = window.atlasProcess;
+    shown.forEach(m => fillRowLegend((m.overlay ? 'row-legend-ov-' : 'row-legend-m-') + m.id, legendRows(m, m.legend || [])));
+    document.querySelectorAll('.row-legend[id^="row-legend-ov-"], .row-legend[id^="row-legend-m-"]').forEach(el => {
+      const mid = el.id.replace(/^row-legend-(ov|m)-/, '');
+      if (!shown.some(m => m.id === mid)) fillRowLegend(el.id, '');
+    });
+    fillRowLegend('row-legend-geo200', geoOn && window.atlasGeo200 && window.atlasGeo200.legendHtml ? stripLgMap(window.atlasGeo200.legendHtml() || '') : '');
+    fillRowLegend('row-legend-fig1b', fig1bOn ? fig1bLegendHtml(true) : '');
+    fillRowLegend('row-legend-itm', itmOn ? itmLegendHtml(true) : '');
+    fillRowLegend('process-open-legend', pr && pr.legendHtmlFor ? pr.legendHtmlFor('open') : '');
+    fillRowLegend('process-auction-legend', pr && pr.legendHtmlFor ? pr.legendHtmlFor('auction') : '');
+    fillRowLegend('process-pugfn-legend', pr && pr.legendHtmlFor ? pr.legendHtmlFor('pugfn') : '');
+    fillRowLegend('eqazyna-legend', eqOn && window.atlasEqazyna && window.atlasEqazyna.legendHtml ? stripLgMap(window.atlasEqazyna.legendHtml() || '') : '');
     if (!shown.length && !eqOn && !prOn && !geoOn && !fig1bOn && !itmOn) { $('legend').hidden = true; return; }
     $('legend').hidden = false;
     const extra = (eqOn ? 1 : 0) + (prOn ? 1 : 0) + (geoOn ? 1 : 0) + (fig1bOn ? 1 : 0) + (itmOn ? 1 : 0);
@@ -1265,7 +1301,6 @@
     if (itmOn) h += itmLegendHtml(!h && !shown.length);
     shown.forEach(m => {
       if (shown.length > 1 || h) h += `<div class="lg-map">${esc(m.title)}</div>`;
-      if (m.cite) h += `<p class="lg-cite">${esc(m.cite)}</p>`;
       h += legendRows(m, m.legend);
     });
     if (!h) { $('legend').hidden = true; return; }
@@ -1274,7 +1309,7 @@
   // Li et al. 2018: georeferenced raster (Web Mercator image), off by default, below vector maps and licenses.
   const FIG1B = {
     id: 'atlas-fig1b', url: 'data/li2018-fig1b.webp?v=1',
-    title: 'Kazakhstan Orocline (Li et al. 2018)',
+    title: 'Kazakhstan Orocline',
     coords: [[59.459664, 54.730814], [93.065433, 54.730814], [93.065433, 38.774749], [59.459664, 38.774749]],
     cite: 'Li et al. 2018',
     legend: [
@@ -1291,7 +1326,6 @@
   let fig1bOn = !!LS.fig1b;
   function fig1bLegendHtml(solo) {
     let h = solo ? '' : `<div class="lg-map">${esc(FIG1B.title)}</div>`;
-    if (FIG1B.cite) h += `<p class="lg-cite">${esc(FIG1B.cite)}</p>`;
     FIG1B.legend.forEach(e => { h += `<div class="lg-row"><span class="sw ${e[2] || ''}" style="background:${esc(e[0])}"></span><span>${esc(e[1])}</span></div>`; });
     return h;
   }
@@ -1316,13 +1350,12 @@
   // Safonova et al. 2024 Itmurundy zone: georeferenced raster plus dated sample points, one layer.
   const ITM = {
     id: 'atlas-itm', url: 'data/safonova2024-itmurundy.webp?v=1', pts: 'data/safonova2024-itmurundy-points.json?v=1',
-    title: 'Itmurundy zone (Safonova et al. 2024)', cite: 'Safonova et al. 2024',
+    title: 'Itmurundy zone', cite: 'Safonova et al. 2024',
     coords: [[76.007306, 46.985058], [76.869677, 46.985058], [76.869677, 46.665591], [76.007306, 46.665591]]
   };
   let itmOn = !!LS.itm;
   function itmLegendHtml(solo) {
     let h = solo ? '' : `<div class="lg-map">${esc(ITM.title)}</div>`;
-    if (ITM.cite) h += `<p class="lg-cite">${esc(ITM.cite)}</p>`;
     [['#e11d2a', 'U-Pb dated granitoids'], ['#facc15', 'U-Pb dated sandstones'], ['#111111', 'Microfossil sites']]
       .forEach(e => { h += `<div class="lg-row"><span class="sw point" style="background:${e[0]}"></span><span>${e[1]}</span></div>`; });
     return h;
@@ -1349,49 +1382,73 @@
     syncList();
     renderLegend();
   }
+  function mapBtn(m, overlay) {
+    const ov = overlay ? ' data-ov="1"' : '';
+    return `<button type="button" class="map-btn ov-btn"${ov} data-id="${m.id}" aria-pressed="false"><span class="ov-box"></span>${esc(m.title)}</button>`;
+  }
+  function renderCredits() {
+    const box = $('credits');
+    if (!box) return;
+    const seen = new Set();
+    const lines = [];
+    function add(s) {
+      const text = String(s || '').trim();
+      if (!text || seen.has(text)) return;
+      seen.add(text);
+      lines.push(text);
+    }
+    cfg.groups.forEach(g => {
+      if (SITE.mode === 'public' && isPaleoGroup(g)) return;
+      (g.maps || []).forEach(m => add(m.cite));
+    });
+    add('Gosgeolkarta 1:200,000 geological sheets. Scans from Mail.ru and geokniga.org.');
+    add(FIG1B.cite);
+    add(ITM.cite);
+    add('Subsoil use: Unified Subsoil Use Platform, minerals.e-qazyna.kz');
+    box.innerHTML = '<strong>Credits</strong>' + lines.map(s => '<p>' + esc(s) + '</p>').join('');
+  }
   // panel
   let h = '';
   cfg.groups.forEach(g => {
     if (SITE.mode === 'public' && isPaleoGroup(g)) return;
     if (!g.maps.length) return;
     h += `<section class="group"${g.id ? ` data-gid="${esc(g.id)}"` : ''}><h3>${esc(g.name)}</h3>`;
-    g.maps.forEach(m => { h += g.overlay
-      ? `<button type="button" class="map-btn ov-btn" data-ov="1" data-id="${m.id}" aria-pressed="false"><span class="ov-box"></span>${esc(m.title)}</button>`
-      : `<button type="button" class="map-btn ov-btn" data-id="${m.id}" aria-pressed="false"><span class="ov-box"></span>${esc(m.title)}</button>`; });
+    g.maps.forEach(m => {
+      h += layerBlock(mapBtn(m, !!g.overlay), (g.overlay ? 'row-legend-ov-' : 'row-legend-m-') + m.id);
+    });
     h += '</section>';
   });
   $('groups').innerHTML = h;
+  const geology = $('groups').querySelector('[data-gid="geology"]') || $('groups').querySelector('.group');
+  const geo200Btn = document.createElement('div');
+  geo200Btn.innerHTML = layerBlock('<button type="button" class="map-btn ov-btn" id="geo200-toggle" aria-pressed="false"><span class="ov-box"></span>Geological maps 1:200k</button>', 'row-legend-geo200');
+  const geo200Block = geo200Btn.firstElementChild;
+  if (geology) {
+    const firstBlock = geology.querySelector('.layer-block');
+    if (firstBlock) firstBlock.after(geo200Block);
+    else geology.appendChild(geo200Block);
+  }
+  const ibWrap = document.createElement('div');
+  ibWrap.innerHTML = layerBlock('<button type="button" class="map-btn ov-btn" id="itm-toggle" aria-pressed="false"><span class="ov-box"></span>' + esc(ITM.title) + '</button>', 'row-legend-itm');
+  const ib = ibWrap.querySelector('#itm-toggle');
+  ib.addEventListener('click', () => setItm(!itmOn));
+  if (geology) geology.appendChild(ibWrap.firstElementChild);
+  const fbWrap = document.createElement('div');
+  fbWrap.innerHTML = layerBlock('<button type="button" class="map-btn ov-btn" id="fig1b-toggle" aria-pressed="false"><span class="ov-box"></span>' + esc(FIG1B.title) + '</button>', 'row-legend-fig1b');
+  const fb = fbWrap.querySelector('#fig1b-toggle');
+  fb.addEventListener('click', () => setFig1b(!fig1bOn));
+  if (geology) geology.appendChild(fbWrap.firstElementChild);
   const sub = document.createElement('section');
   sub.className = 'group';
   sub.innerHTML = '<h3>Subsoil use</h3>' +
-    '<button type="button" class="map-btn ov-btn" id="process-open-toggle" aria-pressed="false"><span class="ov-box"></span>Open to apply</button>' +
-    '<button type="button" class="map-btn ov-btn" id="process-auction-toggle" aria-pressed="false"><span class="ov-box"></span>At auction</button>' +
-    '<button type="button" class="map-btn ov-btn" id="eqazyna-toggle" aria-pressed="false"><span class="ov-box"></span>Active licenses</button>' +
+    layerBlock('<button type="button" class="map-btn ov-btn" id="process-open-toggle" aria-pressed="false"><span class="ov-box"></span>Open to apply</button>', 'process-open-legend') +
+    layerBlock('<button type="button" class="map-btn ov-btn" id="process-auction-toggle" aria-pressed="false"><span class="ov-box"></span>At auction</button>', 'process-auction-legend') +
+    layerBlock('<button type="button" class="map-btn ov-btn" id="eqazyna-toggle" aria-pressed="false"><span class="ov-box"></span>Active licenses</button>', 'eqazyna-legend') +
     '<div id="eqazyna-status" class="eqazyna-status" hidden></div>' +
-    '<div id="eqazyna-legend" class="eqazyna-legend" hidden></div>' +
-    '<button type="button" class="map-btn ov-btn" id="process-pugfn-toggle" aria-pressed="false"><span class="ov-box"></span>PUGFN: oil, gas, uranium</button>' +
-    '<div id="process-status" class="eqazyna-status" hidden></div>' +
-    '<div id="process-legend" class="eqazyna-legend" hidden></div>';
-  const firstGroup = $('groups').querySelector('.group');
-  if (firstGroup) firstGroup.after(sub); else $('groups').appendChild(sub);
-  const geoSec = document.createElement('section');
-  geoSec.className = 'group';
-  geoSec.innerHTML = '<h3>Geological maps</h3>' +
-    '<button type="button" class="map-btn ov-btn" id="geo200-toggle" aria-pressed="false"><span class="ov-box"></span>Geological maps 1:200k</button>';
-  sub.after(geoSec);
-  const ib = document.createElement('button');
-  ib.type = 'button'; ib.className = 'map-btn ov-btn'; ib.id = 'itm-toggle'; ib.setAttribute('aria-pressed', 'false');
-  ib.innerHTML = '<span class="ov-box"></span>' + esc(ITM.title);
-  ib.addEventListener('click', () => setItm(!itmOn));
-  geoSec.appendChild(ib);
-  const papers = $('groups').querySelector('[data-gid="papers"]');
-  if (papers) {
-    const fb = document.createElement('button');
-    fb.type = 'button'; fb.className = 'map-btn ov-btn'; fb.id = 'fig1b-toggle'; fb.setAttribute('aria-pressed', 'false');
-    fb.innerHTML = '<span class="ov-box"></span>' + esc(FIG1B.title);
-    fb.addEventListener('click', () => setFig1b(!fig1bOn));
-    papers.appendChild(fb);
-  }
+    layerBlock('<button type="button" class="map-btn ov-btn" id="process-pugfn-toggle" aria-pressed="false"><span class="ov-box"></span>PUGFN: oil, gas, uranium</button>', 'process-pugfn-legend') +
+    '<div id="process-status" class="eqazyna-status" hidden></div>';
+  $('groups').appendChild(sub);
+  renderCredits();
   $('groups').addEventListener('click', e => {
     const b = e.target.closest('.map-btn'); if (!b) return;
     if (b.id === 'eqazyna-toggle' || b.id === 'geo200-toggle' || b.id === 'fig1b-toggle' || b.id === 'itm-toggle' || (b.id && b.id.startsWith('process-'))) return;

@@ -266,22 +266,21 @@
       el.textContent = text || "";
     }
 
-    function renderPanelLegend() {
-      const el = document.getElementById("process-legend");
-      if (!el) return;
+    function legendRowsFor(id) {
       const rows = [];
-      if (state.open) rows.push([OPEN_COLOR, "Open to apply · from 6 Nov 2026"]);
-      if (state.auction) rows.push([AUCTION_COLOR, "At auction"]);
-      if (state.pugfn) {
+      if (id === "open" && state.open) rows.push([OPEN_COLOR, "Open to apply · from 6 Nov 2026"]);
+      if (id === "auction" && state.auction) rows.push([AUCTION_COLOR, "At auction"]);
+      if (id === "pugfn" && state.pugfn) {
         rows.push(["#d97706", "Oil and gas auction"]);
         rows.push(["#b45309", "Oil and gas, national companies"]);
         rows.push(["#7c3aed", "Uranium"]);
       }
-      if (!rows.length) { el.hidden = true; el.innerHTML = ""; return; }
-      el.innerHTML = rows.map((r) =>
+      return rows.map((r) =>
         '<div class="lg-row"><span class="sw" style="background:' + r[0] + '"></span><span>' + esc(r[1]) + "</span></div>"
       ).join("");
-      el.hidden = false;
+    }
+    function renderPanelLegend() {
+      if (hooksSafe.onUpdate) hooksSafe.onUpdate();
     }
 
     function fetchJson(url) {
@@ -543,17 +542,11 @@
     }
 
     function legendHtml() {
-      const parts = [];
-      if (state.open) parts.push('<div class="lg-row"><span class="sw" style="background:' + OPEN_COLOR + '"></span><span>Open to apply</span></div>');
-      if (state.auction) parts.push('<div class="lg-row"><span class="sw" style="background:' + AUCTION_COLOR + '"></span><span>At auction</span></div>');
-      if (state.pugfn) {
-        parts.push('<div class="lg-row"><span class="sw" style="background:#d97706"></span><span>PUGFN oil and gas auction</span></div>');
-        parts.push('<div class="lg-row"><span class="sw" style="background:#b45309"></span><span>PUGFN national companies</span></div>');
-        parts.push('<div class="lg-row"><span class="sw" style="background:#7c3aed"></span><span>PUGFN uranium</span></div>');
-      }
+      const parts = ["open", "auction", "pugfn"].map(legendRowsFor).filter(Boolean);
       if (!parts.length) return "";
       return '<div class="lg-map">Subsoil use</div>' + parts.join("");
     }
+    function legendHtmlFor(id) { return legendRowsFor(id); }
 
     function anyOn() { return !!(state.open || state.auction || state.pugfn); }
 
@@ -582,6 +575,7 @@
       hits,
       popupHtml,
       legendHtml,
+      legendHtmlFor,
       sourceData,
       fillLayerIds: () => FILL_IDS.concat(DOT_IDS).filter((id) => map.getLayer(id) && map.getLayoutProperty(id, "visibility") !== "none"),
       placeUnderLicenses
