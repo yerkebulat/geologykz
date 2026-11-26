@@ -7,36 +7,44 @@ One app, two Workers, same code:
 
 Processed map layers and 1:200,000 PMTiles live in the private R2 bucket `kzgeology-atlas-tiles`. They are not in this repository. Raw TIFF, KMZ and PDF originals are not served.
 
-## Test links (workers.dev, phase 1)
+R2 key prefixes:
 
-DNS is unchanged. Live Vercel sites stay up.
+- `public/` — public `maps.json` and non-paleo layers
+- `paleo/` — atlas-only paleo layers
+- `atlas/maps.json` — full atlas catalog
+- `200k/` — PMTiles
 
-- Public: https://kzgeology-public.yerkebulantazabek.workers.dev
-- Atlas: https://kzgeology-atlas-app.yerkebulantazabek.workers.dev
+The `public/` folder in this repo is the site shell only (HTML, CSS, JS, fonts). A CI deploy from git does not need any local data files.
 
-## Deploy (manual, from this folder)
+## Deploy
 
-Needs Wrangler logged in to the Cloudflare account that already has the R2 bucket.
+From this folder, after `npm install`:
 
 ```bash
-npm install
-# first time, or after adding/changing processed layers:
-#   DATA_ROOT=/absolute/path/to/atlas-public node scripts/upload-data.mjs
 npx wrangler deploy
 npx wrangler deploy --env atlas
-# atlas only, once per account, value from local secret file via stdin (do not paste in chat or commit):
-#   printf '%s' "$ATLAS_PASSWORD_HASH" | npx wrangler secret put ATLAS_PASSWORD_HASH --env atlas
 ```
 
-Workers Builds is connected for the `main` branch, with this `cloudflare-atlas` folder as the root. Secrets stay in the dashboard, never in the repo.
+The first command updates `kzgeology-public`. The second updates `kzgeology-atlas-app`. Both read layers from R2, so they work from a clean checkout.
 
-## Cutover (not done in phase 1)
+Workers Builds should use this `cloudflare-atlas` folder as the root, on the `main` branch:
 
-1. Add kzgeology.com as a Cloudflare zone (it is currently on Vercel DNS: ns1/ns2.vercel-dns.com).
-2. Copy existing records first: apex and www stay pointed at Vercel; do not change nameservers until those records exist.
-3. Change nameservers at the registrar to Cloudflare.
-4. Attach `kzgeology.com` / `www` or keep the public site on Vercel until you are ready, then point them at `kzgeology-public`. Attach `atlas.kzgeology.com` to `kzgeology-atlas-app` as a Worker custom domain.
-5. Leave the Vercel deployments in place until the Worker sites are confirmed. Rollback is pointing the records back to Vercel.
+- Public hook: `npx wrangler deploy`
+- Atlas hook (a separate Workers Builds connection on `kzgeology-atlas-app`): `npx wrangler deploy --env atlas`
+
+Do not use `--env atlas` on the public hook. Secrets stay in the dashboard, never in the repo.
+
+To replace processed layers (not part of a normal deploy):
+
+```bash
+PUBLIC_ROOT=/path/to/public-assets ATLAS_ROOT=/path/to/atlas-assets node scripts/upload-data.mjs
+```
+
+To set the atlas password hash once:
+
+```bash
+printf '%s' "$ATLAS_PASSWORD_HASH" | npx wrangler secret put ATLAS_PASSWORD_HASH --env atlas
+```
 
 ## Credits
 
