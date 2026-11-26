@@ -17,6 +17,10 @@
     "run_worker_first": [
       "/",
       "/*.html",
+      "/robots.txt",
+      "/driller",
+      "/game",
+      "/strata",
       "/__auth/*",
       "/data/*",
       "/docs/*",
@@ -44,6 +48,10 @@
         "run_worker_first": [
           "/",
           "/*.html",
+          "/robots.txt",
+          "/driller",
+          "/game",
+          "/strata",
           "/__auth/*",
           "/data/*",
           "/docs/*",

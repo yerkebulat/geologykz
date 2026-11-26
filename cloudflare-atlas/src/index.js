@@ -5,12 +5,25 @@ const COOKIE = "atlas_session";
 const MAX_AGE = 60 * 60 * 24 * 30;
 const enc = new TextEncoder();
 
-const NOINDEX = {
-  "X-Robots-Tag": "noindex, nofollow, noarchive",
+const SECURITY = {
   "Referrer-Policy": "same-origin",
   "X-Frame-Options": "DENY",
   "X-Content-Type-Options": "nosniff",
 };
+
+const NOINDEX = {
+  "X-Robots-Tag": "noindex, nofollow, noarchive",
+};
+
+function isIndexable(request, isAtlas) {
+  if (isAtlas) return false;
+  const host = new URL(request.url).hostname.toLowerCase();
+  return host === "kzgeology.com" || host === "www.kzgeology.com";
+}
+
+function baseHeaders(indexable) {
+  return indexable ? { ...SECURITY } : { ...SECURITY, ...NOINDEX };
+}
 
 const TILE_RE = /^200k\/[A-Za-z0-9][A-Za-z0-9._-]*\.(pmtiles|json)$/;
 const DATA_RE = /^data\/[A-Za-z0-9._/-]+$/;
@@ -128,14 +141,14 @@ form{display:flex;gap:8px}input{flex:1;min-width:0;padding:11px 14px;border:1px 
 <form method="post" action="/__auth/login"><input type="password" name="password" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Password" required autofocus><button type="submit">Enter</button></form>${msg ? `<p class="e">${msg}</p>` : ""}</div></body></html>`;
   return new Response(html, {
     status,
-    headers: { ...NOINDEX, "Cache-Control": "private, no-store", "Content-Type": "text/html; charset=utf-8" },
+    headers: { ...SECURITY, ...NOINDEX, "Cache-Control": "private, no-store", "Content-Type": "text/html; charset=utf-8" },
   });
 }
 
 function deny(status, msg) {
   return new Response(msg, {
     status,
-    headers: { ...NOINDEX, "Cache-Control": "no-store", "Content-Type": "text/plain; charset=utf-8" },
+    headers: { ...SECURITY, ...NOINDEX, "Cache-Control": "no-store", "Content-Type": "text/plain; charset=utf-8" },
   });
 }
 
@@ -163,12 +176,30 @@ function filterMaps(data) {
 }
 
 function contentType(key) {
-  if (key.endsWith(".pmtiles")) return "application/vnd.pmtiles";
-  if (key.endsWith(".json.gz")) return "application/json";
-  if (key.endsWith(".json")) return "application/json; charset=utf-8";
-  if (key.endsWith(".webp")) return "image/webp";
-  if (key.endsWith(".js")) return "text/javascript; charset=utf-8";
-  return "application/octet-stream";
+  const name = String(key || "").split("?")[0].toLowerCase();
+  const base = name.replace(/\/+$/, "");
+  const file = base.split("/").pop() || "";
+  if (name.endsWith(".html") || file === "" || file === "index" || file === "driller" || file === "game" || file === "strata") {
+    return "text/html; charset=utf-8";
+  }
+  if (name.endsWith(".css")) return "text/css; charset=utf-8";
+  if (name.endsWith(".js") || name.endsWith(".mjs")) return "text/javascript; charset=utf-8";
+  if (name.endsWith(".json.gz")) return "application/json";
+  if (name.endsWith(".json")) return "application/json; charset=utf-8";
+  if (name.endsWith(".pmtiles")) return "application/vnd.pmtiles";
+  if (name.endsWith(".webp")) return "image/webp";
+  if (name.endsWith(".png")) return "image/png";
+  if (name.endsWith(".jpg") || name.endsWith(".jpeg")) return "image/jpeg";
+  if (name.endsWith(".svg")) return "image/svg+xml";
+  if (name.endsWith(".woff2")) return "font/woff2";
+  if (name.endsWith(".woff")) return "font/woff";
+  if (name.endsWith(".ttf")) return "font/ttf";
+  if (name.endsWith(".txt")) return "text/plain; charset=utf-8";
+  return null;
+}
+
+function resolvedType(key, fallback) {
+  return contentType(key) || (fallback && fallback !== "application/octet-stream" ? fallback : "application/octet-stream");
 }
 
 function cacheFor(key) {
@@ -218,14 +249,14 @@ async function readAsset(env, pathname) {
   return res.text();
 }
 
-async function serveR2(env, key, request) {
+async function serveR2(env, key, request, indexable) {
   const obj = await env.TILES.head(key);
   if (!obj) return deny(404, "Not found");
   const size = obj.size;
   const range = parseRange(request.headers.get("Range"), size);
   const headers = {
-    ...NOINDEX,
-    "Content-Type": contentType(key),
+    ...baseHeaders(indexable),
+    "Content-Type": resolvedType(key),
     "Cache-Control": cacheFor(key),
     "Accept-Ranges": "bytes",
   };
@@ -254,17 +285,20 @@ export default {
     const isAtlas = mode === "atlas";
     const secret = env.ATLAS_PASSWORD_HASH;
     const session = isAtlas ? await validSession(request, secret) : false;
+    const indexable = isIndexable(request, isAtlas);
+    const headersOut = baseHeaders(indexable);
 
     if (path === "/robots.txt") {
-      return new Response("User-agent: *\nDisallow: /\n", {
-        headers: { ...NOINDEX, "Cache-Control": "no-store", "Content-Type": "text/plain; charset=utf-8" },
+      const body = indexable ? "User-agent: *\nAllow: /\n" : "User-agent: *\nDisallow: /\n";
+      return new Response(body, {
+        headers: { ...headersOut, "Cache-Control": "no-store", "Content-Type": "text/plain; charset=utf-8" },
       });
     }
 
     if (path === "/config.js") {
       const body = `window.ATLAS_SITE=${JSON.stringify({ mode })};`;
       return new Response(body, {
-        headers: { ...NOINDEX, "Cache-Control": "private, max-age=300", "Content-Type": "text/javascript; charset=utf-8" },
+        headers: { ...headersOut, "Cache-Control": "private, max-age=300", "Content-Type": "text/javascript; charset=utf-8" },
       });
     }
 
@@ -289,6 +323,7 @@ export default {
       return new Response(null, {
         status: 303,
         headers: {
+          ...SECURITY,
           ...NOINDEX,
           Location: "/",
           "Cache-Control": "no-store",
@@ -301,6 +336,7 @@ export default {
       return new Response(null, {
         status: 303,
         headers: {
+          ...SECURITY,
           ...NOINDEX,
           Location: "/",
           "Cache-Control": "no-store",
@@ -324,7 +360,7 @@ export default {
         if (isAtlas && !session) return deny(401, "Unauthorized");
         const key = path.slice("/tiles/".length).replace(/^\/+/, "");
         if (!TILE_RE.test(key)) return deny(404, "Not found");
-        return serveR2(env, key, request);
+        return serveR2(env, key, request, indexable);
       }
 
       if (path === "/maps.json") {
@@ -344,7 +380,7 @@ export default {
         if (!isAtlas || !session) data = filterMaps(data);
         return new Response(JSON.stringify(data), {
           headers: {
-            ...NOINDEX,
+            ...headersOut,
             "Content-Type": "application/json; charset=utf-8",
             "Cache-Control": cacheFor("maps.json"),
           },
@@ -362,15 +398,15 @@ export default {
         const asset = await env.ASSETS.fetch(new Request(new URL("/" + key, "https://assets.local"), { method: request.method, headers: request.headers }));
         if (asset && asset.status === 200) {
           const headers = {
-            ...NOINDEX,
-            "Content-Type": asset.headers.get("content-type") || contentType(key),
+            ...headersOut,
+            "Content-Type": resolvedType(key, asset.headers.get("content-type")),
             "Cache-Control": cacheFor(key),
           };
           const cl = asset.headers.get("content-length");
           if (cl) headers["Content-Length"] = cl;
           return new Response(asset.body, { status: 200, headers });
         }
-        return serveR2(env, key, request);
+        return serveR2(env, key, request, indexable);
       }
     }
 
@@ -386,10 +422,12 @@ export default {
     if (request.method !== "GET" && request.method !== "HEAD") return deny(405, "Method not allowed");
     const asset = await env.ASSETS.fetch(request);
     const headers = new Headers(asset.headers);
-    headers.set("X-Robots-Tag", "noindex, nofollow, noarchive");
-    headers.set("Referrer-Policy", "same-origin");
-    headers.set("X-Frame-Options", "DENY");
-    if (path === "/" || path.endsWith(".html")) {
+    for (const [k, v] of Object.entries(headersOut)) headers.set(k, v);
+    if (indexable) headers.delete("X-Robots-Tag");
+    const typeKey = path === "/" ? "index.html" : path;
+    const mapped = contentType(typeKey);
+    if (mapped) headers.set("Content-Type", mapped);
+    if (path === "/" || path.endsWith(".html") || path === "/driller" || path === "/game" || path === "/strata") {
       headers.set("Cache-Control", "private, max-age=0, must-revalidate");
     }
     return new Response(asset.body, { status: asset.status, headers });
