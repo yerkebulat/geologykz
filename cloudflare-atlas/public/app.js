@@ -1,7 +1,7 @@
 (async function () {
   const $ = (id) => document.getElementById(id);
   const phone = matchMedia('(max-width:700px)').matches;
-  const cfg = await (await fetch('maps.json?v=md3', { credentials: 'same-origin' })).json();
+  const cfg = await (await fetch('maps.json?v=md4', { credentials: 'same-origin' })).json();
   const all = {};
   const SITE = window.ATLAS_SITE || { mode: 'atlas' };
   function isPaleoGroup(g) {
@@ -1309,7 +1309,7 @@
   // Li et al. 2018: georeferenced raster (Web Mercator image), off by default, below vector maps and licenses.
   const FIG1B = {
     id: 'atlas-fig1b', url: 'data/li2018-fig1b.webp?v=1',
-    title: 'Kazakhstan Orocline',
+    title: 'Kazakhstan orocline',
     coords: [[59.459664, 54.730814], [93.065433, 54.730814], [93.065433, 38.774749], [59.459664, 38.774749]],
     cite: 'Li et al. 2018',
     legend: [
