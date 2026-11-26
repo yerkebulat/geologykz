@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#181818">
+<title>Play</title>
+<link rel="stylesheet" href="game.css?v=p5">
+</head>
+<body>
+  <header class="bar">
+    <h1>Play</h1>
+    <a class="back" href="/" id="back">Back to atlas</a>
+  </header>
+  <main class="stage" id="stage">
+    <div class="picks">
+      <a class="pick" href="/strata.html" id="pick-strata">
+        <canvas width="96" height="64" id="prev-strata" aria-hidden="true"></canvas>
+        <span class="name">Strata</span>
+        <span class="tag">Stack the rocks</span>
+      </a>
+      <a class="pick" href="/driller.html" id="pick-driller">
+        <canvas width="96" height="64" id="prev-driller" aria-hidden="true"></canvas>
+        <span class="name">Core Driller</span>
+        <span class="tag">Dig the strata</span>
+      </a>
+    </div>
+  </main>
+  <script src="game.js?v=p5"></script>
+</body>
+</html>

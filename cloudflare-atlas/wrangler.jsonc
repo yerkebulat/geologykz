@@ -1,0 +1,60 @@
+{
+  "$schema": "https://unpkg.com/wrangler@4/config-schema.json",
+  "name": "kzgeology-public",
+  "main": "src/index.js",
+  "compatibility_date": "2026-11-26",
+  "account_id": "7f7782b70fdf15f64ae8b7f9bf46b9af",
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": { "enabled": false },
+  "vars": {
+    "SITE_MODE": "public",
+    "ALLOWED_HOSTS": "kzgeology-public.yerkebulantazabek.workers.dev,kzgeology-atlas-app.yerkebulantazabek.workers.dev,kzgeology.com,www.kzgeology.com,atlas.kzgeology.com"
+  },
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": [
+      "/",
+      "/*.html",
+      "/__auth/*",
+      "/data/*",
+      "/docs/*",
+      "/maps.json",
+      "/tiles/*",
+      "/config.js"
+    ]
+  },
+  "r2_buckets": [
+    { "binding": "TILES", "bucket_name": "kzgeology-atlas-tiles" }
+  ],
+  "env": {
+    "atlas": {
+      "name": "kzgeology-atlas-app",
+      "workers_dev": true,
+      "preview_urls": false,
+      "observability": { "enabled": false },
+      "vars": {
+        "SITE_MODE": "atlas",
+        "ALLOWED_HOSTS": "kzgeology-public.yerkebulantazabek.workers.dev,kzgeology-atlas-app.yerkebulantazabek.workers.dev,kzgeology.com,www.kzgeology.com,atlas.kzgeology.com"
+      },
+      "assets": {
+        "directory": "./public",
+        "binding": "ASSETS",
+        "run_worker_first": [
+          "/",
+          "/*.html",
+          "/__auth/*",
+          "/data/*",
+          "/docs/*",
+          "/maps.json",
+          "/tiles/*",
+          "/config.js"
+        ]
+      },
+      "r2_buckets": [
+        { "binding": "TILES", "bucket_name": "kzgeology-atlas-tiles" }
+      ]
+    }
+  }
+}

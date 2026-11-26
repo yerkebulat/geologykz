@@ -1,0 +1,15 @@
+{
+  "name": "kzgeology-cloudflare",
+  "private": true,
+  "description": "Cloudflare Workers app for kzgeology.com and the password-gated atlas. Data stays in R2, not in git.",
+  "scripts": {
+    "dev:public": "wrangler dev",
+    "dev:atlas": "wrangler dev --env atlas",
+    "deploy:public": "wrangler deploy",
+    "deploy:atlas": "wrangler deploy --env atlas",
+    "upload-data": "node scripts/upload-data.mjs"
+  },
+  "devDependencies": {
+    "wrangler": "4.168.0"
+  }
+}

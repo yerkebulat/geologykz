@@ -1,0 +1,323 @@
+/* Solid-mineral licenses and contracts via the kzgeology-eqazyna relay. On by default. */
+(function () {
+  const CREDIT = 'Source: <a href="https://minerals.e-qazyna.kz/ru/contracts-map" target="_blank" rel="noopener">Unified Subsoil Use Platform, minerals.e-qazyna.kz</a>';
+  const esc = (s) => String(s == null || s === "" ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const cfg = () => window.EQAZYNA_CONFIG || {};
+  const worker = () => String(cfg().workerUrl || "").replace(/\/+$/, "");
+
+  const SHORT_LABEL = {
+    "Exploration license": "Exploration",
+    "Extraction license": "Extraction",
+    "Exploration and extraction license": "Exploration and extraction",
+    "Exploration contract": "Exploration contract",
+    "Extraction contract": "Extraction contract",
+    "Exploration and extraction contract": "Exploration and extraction contract",
+    "Revoked exploration license": "Revoked"
+  };
+  function licenseNext(it) {
+    if (it.group === "revoked") return "This license was revoked, so it is not an active right.";
+    return "This land already has a license or contract, so it is not open to apply.";
+  }
+  function popupHtml(items, loading, err) {
+    const rows = (items || []).map((it) => {
+      const links = [];
+      if (it.locUrl) links.push('<a href="' + esc(it.locUrl) + '" target="_blank" rel="noopener">Official registry</a>');
+      if (it.applicantUrl) links.push('<a href="' + esc(it.applicantUrl) + '" target="_blank" rel="noopener">Holder record</a>');
+      const label = SHORT_LABEL[it.label] || it.label;
+      return (
+        '<div class="eqazyna-item">' +
+        '<div class="eqazyna-head"><span class="popup-swatch" style="background:' + esc(it.color || "#888") + '"></span><strong>' +
+        esc(it.title || it.company || "Unknown holder") + "</strong></div>" +
+        (label ? "<div>" + esc(label) + "</div>" : "") +
+        '<p class="process-next">' + esc(licenseNext(it)) + "</p>" +
+        (it.number ? "<div>Number: " + esc(it.number) + "</div>" : "") +
+        (it.status ? "<div>Status: " + esc(it.status) + "</div>" : "") +
+        (it.issued ? "<div>Issued: " + esc(it.issued) + "</div>" : "") +
+        (links.length ? '<div class="eqazyna-links">' + links.join(" · ") + "</div>" : "") +
+        "</div>"
+      );
+    }).join("");
+    return (
+      '<div class="eqazyna-pop"><div class="eqazyna-body">' +
+      (err ? '<p class="eqazyna-err">' + esc(err) + "</p>" : "") +
+      (loading && !rows ? "<p>Loading details…</p>" : "") +
+      (loading && rows ? '<p class="eqazyna-loading">Loading details…</p>' : "") +
+      (rows || (!loading && !err ? "<p>No attributes for this block.</p>" : "")) +
+      '<p class="eqazyna-credit">' + CREDIT + "</p></div></div>"
+    );
+  }
+
+  function legendRows(meta) {
+    if (!meta || !meta.layers) return "";
+    return meta.layers.map((l) =>
+      '<div class="lg-row"><span class="sw" style="background:' + esc(l.color) + '"></span><span>' + esc(SHORT_LABEL[l.label] || l.label) + "</span></div>"
+    ).join("");
+  }
+
+  window.initAtlasEqazyna = function (map, hooks) {
+    const tg = document.getElementById("eqazyna-toggle");
+    const status = document.getElementById("eqazyna-status");
+    const legend = document.getElementById("eqazyna-legend");
+    if (!tg || !map) return;
+
+    const hooksSafe = hooks || {};
+    const EMPTY = { type: "FeatureCollection", features: [] };
+    if (!map.getSource("eqazyna")) {
+      map.addSource("eqazyna", {
+        type: "geojson",
+        data: EMPTY,
+        generateId: true,
+        promoteId: "id",
+        attribution: "Unified Subsoil Use Platform, minerals.e-qazyna.kz"
+      });
+    }
+
+    function firstSymbolId() {
+      const layers = map.getStyle().layers || [];
+      const l = layers.find((x) => x.type === "symbol");
+      return l && l.id;
+    }
+
+    // Park license fill+outline just under basemap labels, and above every
+    // atlas overlay and main-map layer, regardless of the order they were added.
+    function beforeId() {
+      return firstSymbolId();
+    }
+
+    function addLayers() {
+      const before = beforeId();
+      if (!map.getLayer("eqazyna-fill")) {
+        map.addLayer({
+          id: "eqazyna-fill",
+          type: "fill",
+          source: "eqazyna",
+          layout: { visibility: "none" },
+          paint: {
+            "fill-color": ["coalesce", ["get", "color"], "#1d6fa8"],
+            "fill-opacity": ["case", ["==", ["get", "group"], "revoked"], 0.3, 0.55]
+          }
+        }, before);
+      }
+      // White casing under the colored outline so block edges stay readable
+      // over dark faults and busy lithology.
+      if (!map.getLayer("eqazyna-casing")) {
+        map.addLayer({
+          id: "eqazyna-casing",
+          type: "line",
+          source: "eqazyna",
+          layout: { visibility: "none" },
+          paint: {
+            "line-color": "#ffffff",
+            "line-width": ["interpolate", ["linear"], ["zoom"], 4, 1.6, 9, 3.2],
+            "line-opacity": 0.85
+          }
+        }, before);
+      }
+      if (!map.getLayer("eqazyna-line")) {
+        map.addLayer({
+          id: "eqazyna-line",
+          type: "line",
+          source: "eqazyna",
+          layout: { visibility: "none" },
+          paint: {
+            "line-color": ["coalesce", ["get", "color"], "#1d6fa8"],
+            "line-width": ["interpolate", ["linear"], ["zoom"],
+              4, ["case", ["boolean", ["feature-state", "hover"], false], 2.2, 0.9],
+              9, ["case", ["boolean", ["feature-state", "hover"], false], 3, 1.8]],
+            "line-opacity": 1
+          }
+        }, before);
+      }
+      syncOrder();
+    }
+
+    const LIC_IDS = ["eqazyna-fill", "eqazyna-casing", "eqazyna-line"];
+    const isSel = (id) => id.startsWith("atlas-sel-");
+
+    // True when licenses already sit directly under the basemap labels, with
+    // only the click-selection highlight between them and the labels.
+    function inOrder() {
+      const layers = map.getStyle().layers || [];
+      const ids = layers.map((l) => l.id);
+      const pos = LIC_IDS.map((id) => ids.indexOf(id));
+      if (pos.some((p) => p < 0)) return true;
+      if (!(pos[0] < pos[1] && pos[1] < pos[2])) return false;
+      for (let i = pos[0] + 1; i < layers.length; i++) {
+        const l = layers[i];
+        if (LIC_IDS.includes(l.id) || isSel(l.id) || l.type === "symbol") continue;
+        return false;
+      }
+      // No data layer may hide among the labels either.
+      return !layers.slice(pos[2] + 1).some((l) => l.id.startsWith("atlas-") && !isSel(l.id));
+    }
+
+    // Licenses go on top of every data layer (lithology, faults, deposits,
+    // main atlas maps, any overlay added later), under basemap labels only.
+    function syncOrder() {
+      if (LIC_IDS.some((id) => !map.getLayer(id))) return;
+      if (inOrder()) return;
+      const before = beforeId();
+      try {
+        const layers = map.getStyle().layers || [];
+        const idx = before ? layers.findIndex((l) => l.id === before) : layers.length;
+        // Pull data layers that were added above the labels back under them.
+        if (idx >= 0) {
+          layers.slice(idx).filter((l) => l.type !== "symbol" && !LIC_IDS.includes(l.id) && !isSel(l.id)).forEach((l) => {
+            map.moveLayer(l.id, before);
+          });
+        }
+        LIC_IDS.forEach((id) => map.moveLayer(id, before));
+        if (window.atlasRaiseSel) window.atlasRaiseSel();
+      } catch (e) {}
+    }
+
+    const EQ_STORE = "atlas-eqazyna-v2";
+    let loaded = null, hover = null, popup = null, meta = null, on = true, loading = false;
+    try {
+      const s = localStorage.getItem(EQ_STORE);
+      if (s !== null) on = s === "1";
+    } catch (e) {}
+
+    function setStatus(text, show) {
+      if (!status) return;
+      status.hidden = !show;
+      status.textContent = text || "";
+    }
+
+    function renderPanelLegend() {
+      if (!legend) return;
+      if (!on || !meta) { legend.hidden = true; legend.innerHTML = ""; return; }
+      legend.innerHTML = legendRows(meta);
+      legend.hidden = !legend.innerHTML;
+    }
+
+    function visible(show) {
+      LIC_IDS.forEach((id) => {
+        if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", show ? "visible" : "none");
+      });
+    }
+
+    function syncToggle() {
+      tg.classList.toggle("on", on);
+      tg.setAttribute("aria-pressed", on);
+    }
+
+    let doneText = "";
+    function load() {
+      if (loaded) { if (doneText) setStatus(doneText, true); return loaded; }
+      const base = worker();
+      if (!base) {
+        setStatus("Relay URL is missing.", true);
+        return Promise.reject(new Error("missing worker url"));
+      }
+      setStatus("Loading licenses…", true);
+      loading = true;
+      if (hooksSafe.onUpdate) hooksSafe.onUpdate();
+      loaded = Promise.all([
+        fetch(base + "/").then((r) => r.json()),
+        fetch(base + "/layers").then((r) => {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.json();
+        })
+      ]).then(([info, fc]) => {
+        meta = info;
+        renderPanelLegend();
+        map.getSource("eqazyna").setData(fc);
+        const n = (fc.features || []).length;
+        doneText = (n ? n + " blocks" : "No blocks") + " from e-qazyna.";
+        if (on) setStatus(doneText, true);
+        loading = false;
+        if (hooksSafe.onUpdate) hooksSafe.onUpdate();
+        return fc;
+      }).catch((err) => {
+        loaded = null;
+        loading = false;
+        console.error("e-qazyna layer failed", err);
+        setStatus("Could not load licenses. Try again, or open the official map.", true);
+        if (hooksSafe.onUpdate) hooksSafe.onUpdate();
+        throw err;
+      });
+      return loaded;
+    }
+
+    function set(next) {
+      on = !!next;
+      try { localStorage.setItem(EQ_STORE, on ? "1" : "0"); } catch (e) {}
+      syncToggle();
+      visible(on);
+      renderPanelLegend();
+      if (on) {
+        syncOrder();
+        load();
+      }
+      else {
+        if (popup) { popup.remove(); popup = null; }
+        setStatus("", false);
+      }
+      if (hooksSafe.onUpdate) hooksSafe.onUpdate();
+    }
+
+    addLayers();
+    // Safety net: any layer added or moved later (lazy overlays, main maps,
+    // basemap changes) triggers styledata; restore licenses on top if needed.
+    let pending = false;
+    map.on("styledata", () => {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(() => { pending = false; syncOrder(); });
+    });
+    tg.addEventListener("click", (e) => { e.stopPropagation(); set(!on); });
+    syncToggle();
+    if (on) set(true);
+
+    map.on("mousemove", "eqazyna-fill", (e) => {
+      const f = e.features && e.features[0];
+      if (!f) return;
+      if (hover !== null) map.setFeatureState({ source: "eqazyna", id: hover }, { hover: false });
+      hover = f.id;
+      map.setFeatureState({ source: "eqazyna", id: hover }, { hover: true });
+    });
+    map.on("mouseleave", "eqazyna-fill", () => {
+      if (hover !== null) map.setFeatureState({ source: "eqazyna", id: hover }, { hover: false });
+      hover = null;
+    });
+
+    function licenseHits(point) {
+      if (!on || !map.getLayer("eqazyna-fill")) return [];
+      const fs = map.queryRenderedFeatures(point, { layers: ["eqazyna-fill"] });
+      const seen = new Set(), out = [];
+      fs.forEach((f) => {
+        const id = String((f.properties && f.properties.id) || f.id || "");
+        if (seen.has(id)) return;
+        seen.add(id);
+        out.push(f);
+      });
+      return out;
+    }
+
+    window.atlasEqazyna = {
+      isOn: () => on,
+      hit: (point) => licenseHits(point).length > 0,
+      hits: (point) => licenseHits(point),
+      popupHtml,
+      clickDetails: (lngLat) => {
+        const base = worker();
+        const q = base + "/click?lng=" + encodeURIComponent(lngLat.lng) + "&lat=" + encodeURIComponent(lngLat.lat);
+        return fetch(q).then((r) => {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.json();
+        }).then((data) => (data.features && data.features.length ? data.features : []));
+      },
+      closePopup: () => { if (popup) { popup.remove(); popup = null; } },
+      syncOrder,
+      legendHtml: () => {
+        if (!on || !meta) return "";
+        return '<div class="lg-map">Active licenses</div>' + legendRows(meta);
+      },
+      layers: () => (on ? LIC_IDS.filter((id) => map.getLayer(id)) : []),
+      setOn: set,
+      isLoading: () => !!loading,
+      stack: () => (map.getStyle().layers || []).map((l) => ({ id: l.id, type: l.type }))
+    };
+  };
+})();

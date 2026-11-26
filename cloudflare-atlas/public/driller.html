@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#181818">
+<title>Core Driller</title>
+<link rel="stylesheet" href="driller.css?v=9">
+</head>
+<body>
+  <header class="bar">
+    <h1>Core Driller</h1>
+    <nav class="links">
+      <a class="back" href="/game.html" id="games">Games</a>
+      <a class="back" href="/" id="back">Back to atlas</a>
+    </nav>
+  </header>
+  <div class="hud" id="hud" hidden>
+    <div class="hud-row">
+      <span>Depth <b id="depth">0m</b></span>
+      <span>Score <b id="score">0</b></span>
+      <span>Best <b id="best">0</b></span>
+    </div>
+    <div class="hud-row">
+      <span class="era" id="era">Quaternary</span>
+      <span class="combo" id="combo"></span>
+      <span class="fuelwrap">Fuel <span id="fuel" class="fuelbar" role="meter" aria-label="Fuel" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><i id="fuel-fill" class="fuel-fill"></i></span></span>
+    </div>
+  </div>
+  <div class="stage" id="stage">
+    <canvas id="view" width="192" height="176" aria-label="Core Driller"></canvas>
+    <div class="cover" id="cover">
+      <h2>Core Driller</h2>
+      <p>Steer left and right. The drill does the rest. Last about a minute. Watch for water and cave-ins.</p>
+      <p class="bestline">Best <b id="best-title">0m</b></p>
+      <p class="bestline">Today <b id="today-title">0m</b></p>
+      <div class="menu">
+        <button type="button" id="btn-play">Play</button>
+        <button type="button" id="btn-daily">Daily</button>
+        <button type="button" id="btn-col">Collection</button>
+      </div>
+      <p class="hint">Arrows or A D. On a phone, hold the left or right side.</p>
+      <div class="legend" aria-hidden="true">
+        <span><canvas id="leg-fuel" width="16" height="16"></canvas> refuel</span>
+        <span><canvas id="leg-danger" width="16" height="16"></canvas> danger</span>
+        <span><canvas id="leg-ore" width="16" height="16"></canvas> ore</span>
+      </div>
+    </div>
+    <div class="dead" id="dead" hidden>
+      <h2>Dive over</h2>
+      <p id="endscore"></p>
+      <p id="endfact" class="fact"></p>
+      <p class="hint">Play again</p>
+    </div>
+    <div class="cards" id="cards" hidden>
+      <h2>Collection</h2>
+      <div class="card-grid" id="card-grid"></div>
+      <button type="button" id="btn-cards-back">Back</button>
+    </div>
+    <div class="toast" id="toast" hidden></div>
+  </div>
+  <div class="toolbar">
+    <button type="button" id="btn-music" aria-pressed="false">Music</button>
+    <button type="button" id="btn-sfx" aria-pressed="false">SFX</button>
+  </div>
+  <script src="game-audio.js?v=2"></script>
+  <script src="driller.js?v=9"></script>
+</body>
+</html>
