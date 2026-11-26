@@ -12,7 +12,9 @@
   },
   "vars": {
     "SITE_MODE": "public",
-    "ALLOWED_HOSTS": "kzgeology-public.yerkebulantazabek.workers.dev,kzgeology-atlas-app.yerkebulantazabek.workers.dev,kzgeology.com,www.kzgeology.com,atlas.kzgeology.com"
+    "ALLOWED_HOSTS": "kzgeology-public.yerkebulantazabek.workers.dev,kzgeology-atlas-app.yerkebulantazabek.workers.dev,kzgeology.com,www.kzgeology.com,atlas.kzgeology.com",
+    "TURNSTILE_SITE_KEY": "0x4AAAAAAGUvxIjwaV8EcqS0",
+    "DONATE_NOTIFY": "yerkebulantazabek@gmail.com"
   },
   "assets": {
     "directory": "./public",
@@ -29,11 +31,17 @@
       "/docs/*",
       "/maps.json",
       "/tiles/*",
-      "/config.js"
+      "/config.js",
+      "/__donate",
+      "/inbox",
+      "/inbox/*"
     ]
   },
   "r2_buckets": [
     { "binding": "TILES", "bucket_name": "kzgeology-atlas-tiles" }
+  ],
+  "send_email": [
+    { "name": "SEND_EMAIL", "destination_address": "yerkebulantazabek@gmail.com" }
   ],
   "env": {
     "atlas": {
@@ -41,12 +49,14 @@
       "workers_dev": true,
       "preview_urls": false,
       "observability": {
-    "enabled": true,
-    "logs": { "enabled": true, "invocation_logs": true, "head_sampling_rate": 0.1 }
-  },
+        "enabled": true,
+        "logs": { "enabled": true, "invocation_logs": true, "head_sampling_rate": 0.1 }
+      },
       "vars": {
         "SITE_MODE": "atlas",
-        "ALLOWED_HOSTS": "kzgeology-public.yerkebulantazabek.workers.dev,kzgeology-atlas-app.yerkebulantazabek.workers.dev,kzgeology.com,www.kzgeology.com,atlas.kzgeology.com"
+        "ALLOWED_HOSTS": "kzgeology-public.yerkebulantazabek.workers.dev,kzgeology-atlas-app.yerkebulantazabek.workers.dev,kzgeology.com,www.kzgeology.com,atlas.kzgeology.com",
+        "TURNSTILE_SITE_KEY": "0x4AAAAAAGUvxIjwaV8EcqS0",
+        "DONATE_NOTIFY": "yerkebulantazabek@gmail.com"
       },
       "assets": {
         "directory": "./public",
@@ -63,11 +73,17 @@
           "/docs/*",
           "/maps.json",
           "/tiles/*",
-          "/config.js"
+          "/config.js",
+          "/__donate",
+          "/inbox",
+          "/inbox/*"
         ]
       },
       "r2_buckets": [
         { "binding": "TILES", "bucket_name": "kzgeology-atlas-tiles" }
+      ],
+      "send_email": [
+        { "name": "SEND_EMAIL", "destination_address": "yerkebulantazabek@gmail.com" }
       ]
     }
   }

@@ -7,13 +7,17 @@
 <!-- workers builds hook check -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css" rel="stylesheet">
-<link href="style.css?v=cf7" rel="stylesheet">
+<link href="style.css?v=cf8" rel="stylesheet">
 </head>
 <body>
 <header class="topbar">
   <span class="brand">Atlas</span>
   <span class="sub">Geological maps of Kazakhstan</span>
-  <nav><a href="/game.html">Play</a><a href="/__auth/logout">Log out</a></nav>
+  <nav>
+    <button type="button" class="donate-btn" id="donate-btn" aria-haspopup="dialog" aria-controls="donate-modal"><span class="donate-full">Donate maps</span><span class="donate-short">Donate</span></button>
+    <a href="/game.html">Play</a>
+    <a href="/__auth/logout">Log out</a>
+  </nav>
 </header>
 <main class="wrap">
   <div id="mapview"></div>
@@ -77,7 +81,9 @@
 <script src="https://unpkg.com/pmtiles@3.2.1/dist/pmtiles.js"></script>
 <script src="process-layers.js?v=cf2"></script>
 <script src="geo200-pilot.js?v=cf2"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script src="config.js"></script>
-<script src="app.js?v=cf7"></script>
+<script src="donate.js?v=cf8"></script>
+<script src="app.js?v=cf8"></script>
 </body>
 </html>

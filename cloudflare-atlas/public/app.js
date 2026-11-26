@@ -1,7 +1,7 @@
 (async function () {
   const $ = (id) => document.getElementById(id);
   const phone = matchMedia('(max-width:700px)').matches;
-  const cfg = await (await fetch('maps.json?v=md4', { credentials: 'same-origin' })).json();
+  const cfg = await (await fetch('maps.json?v=md5', { credentials: 'same-origin' })).json();
   const all = {};
   const SITE = window.ATLAS_SITE || { mode: 'atlas' };
   function isPaleoGroup(g) {
@@ -1247,28 +1247,8 @@
     });
     return h;
   }
-  function stripLgMap(html) {
-    return String(html || '').replace(/^<div class="lg-map">[\s\S]*?<\/div>/, '');
-  }
-  function fillRowLegend(id, html) {
-    const el = $(id);
-    if (!el) return;
-    const body = el.querySelector('.row-legend-body') || el;
-    if (!html) {
-      el.hidden = true;
-      body.innerHTML = '';
-      return;
-    }
-    body.innerHTML = html;
-    el.hidden = false;
-    if (!el.dataset.inited) {
-      el.dataset.inited = '1';
-      if (el.tagName === 'DETAILS') el.open = body.querySelectorAll('.lg-row').length <= 8;
-    }
-  }
-  function layerBlock(btn, legendId) {
-    return '<div class="layer-block">' + btn +
-      '<details class="row-legend" id="' + legendId + '" hidden><summary>Legend</summary><div class="row-legend-body"></div></details></div>';
+  function layerBlock(btn) {
+    return '<div class="layer-block">' + btn + '</div>';
   }
   function renderLegend() {
     const shown = Object.values(ovs).filter(m => ovOn.has(m.id)).sort((a, b) => OV_ORDER[b.kind] - OV_ORDER[a.kind]);
@@ -1277,18 +1257,6 @@
     const prOn = !!(window.atlasProcess && window.atlasProcess.anyOn && window.atlasProcess.anyOn());
     const geoOn = !!(window.atlasGeo200 && window.atlasGeo200.isOn && window.atlasGeo200.isOn());
     const pr = window.atlasProcess;
-    shown.forEach(m => fillRowLegend((m.overlay ? 'row-legend-ov-' : 'row-legend-m-') + m.id, legendRows(m, m.legend || [])));
-    document.querySelectorAll('.row-legend[id^="row-legend-ov-"], .row-legend[id^="row-legend-m-"]').forEach(el => {
-      const mid = el.id.replace(/^row-legend-(ov|m)-/, '');
-      if (!shown.some(m => m.id === mid)) fillRowLegend(el.id, '');
-    });
-    fillRowLegend('row-legend-geo200', geoOn && window.atlasGeo200 && window.atlasGeo200.legendHtml ? stripLgMap(window.atlasGeo200.legendHtml() || '') : '');
-    fillRowLegend('row-legend-fig1b', fig1bOn ? fig1bLegendHtml(true) : '');
-    fillRowLegend('row-legend-itm', itmOn ? itmLegendHtml(true) : '');
-    fillRowLegend('process-open-legend', pr && pr.legendHtmlFor ? pr.legendHtmlFor('open') : '');
-    fillRowLegend('process-auction-legend', pr && pr.legendHtmlFor ? pr.legendHtmlFor('auction') : '');
-    fillRowLegend('process-pugfn-legend', pr && pr.legendHtmlFor ? pr.legendHtmlFor('pugfn') : '');
-    fillRowLegend('eqazyna-legend', eqOn && window.atlasEqazyna && window.atlasEqazyna.legendHtml ? stripLgMap(window.atlasEqazyna.legendHtml() || '') : '');
     if (!shown.length && !eqOn && !prOn && !geoOn && !fig1bOn && !itmOn) { $('legend').hidden = true; return; }
     $('legend').hidden = false;
     const extra = (eqOn ? 1 : 0) + (prOn ? 1 : 0) + (geoOn ? 1 : 0) + (fig1bOn ? 1 : 0) + (itmOn ? 1 : 0);
@@ -1415,7 +1383,7 @@
     if (!g.maps.length) return;
     h += `<section class="group"${g.id ? ` data-gid="${esc(g.id)}"` : ''}><h3>${esc(g.name)}</h3>`;
     g.maps.forEach(m => {
-      h += layerBlock(mapBtn(m, !!m.overlay), (m.overlay ? 'row-legend-ov-' : 'row-legend-m-') + m.id);
+      h += layerBlock(mapBtn(m, !!m.overlay));
     });
     h += '</section>';
   });
@@ -1432,7 +1400,7 @@
   }
   const geology = $('groups').querySelector('[data-gid="geology"]');
   const geo200Wrap = document.createElement('div');
-  geo200Wrap.innerHTML = layerBlock('<button type="button" class="map-btn ov-btn" id="geo200-toggle" aria-pressed="false"><span class="ov-box"></span>Geological maps 1:200k</button>', 'row-legend-geo200');
+  geo200Wrap.innerHTML = layerBlock('<button type="button" class="map-btn ov-btn" id="geo200-toggle" aria-pressed="false"><span class="ov-box"></span>Geological maps 1:200k</button>');
   if (geology) {
     const firstBlock = geology.querySelector('.layer-block');
     if (firstBlock) firstBlock.after(geo200Wrap.firstElementChild);
@@ -1441,17 +1409,17 @@
   const mining = $('groups').querySelector('[data-gid="mining"]');
   const subWrap = document.createElement('div');
   subWrap.innerHTML =
-    layerBlock('<button type="button" class="map-btn ov-btn" id="process-open-toggle" aria-pressed="false"><span class="ov-box"></span>Open to apply</button>', 'process-open-legend') +
-    layerBlock('<button type="button" class="map-btn ov-btn" id="process-auction-toggle" aria-pressed="false"><span class="ov-box"></span>At auction</button>', 'process-auction-legend') +
-    layerBlock('<button type="button" class="map-btn ov-btn" id="eqazyna-toggle" aria-pressed="false"><span class="ov-box"></span>Active licenses</button>', 'eqazyna-legend') +
+    layerBlock('<button type="button" class="map-btn ov-btn" id="process-open-toggle" aria-pressed="false"><span class="ov-box"></span>Open to apply</button>') +
+    layerBlock('<button type="button" class="map-btn ov-btn" id="process-auction-toggle" aria-pressed="false"><span class="ov-box"></span>At auction</button>') +
+    layerBlock('<button type="button" class="map-btn ov-btn" id="eqazyna-toggle" aria-pressed="false"><span class="ov-box"></span>Active licenses</button>') +
     '<div id="eqazyna-status" class="eqazyna-status" hidden></div>' +
-    layerBlock('<button type="button" class="map-btn ov-btn" id="process-pugfn-toggle" aria-pressed="false"><span class="ov-box"></span>PUGFN: oil, gas, uranium</button>', 'process-pugfn-legend') +
+    layerBlock('<button type="button" class="map-btn ov-btn" id="process-pugfn-toggle" aria-pressed="false"><span class="ov-box"></span>PUGFN: oil, gas, uranium</button>') +
     '<div id="process-status" class="eqazyna-status" hidden></div>';
   insertAfterHead(mining, Array.from(subWrap.childNodes).filter(n => n.nodeType === 1));
   const other = $('groups').querySelector('[data-gid="other"]');
   const ibWrap = document.createElement('div');
-  ibWrap.innerHTML = layerBlock('<button type="button" class="map-btn ov-btn" id="itm-toggle" aria-pressed="false"><span class="ov-box"></span>' + esc(ITM.title) + '</button>', 'row-legend-itm') +
-    layerBlock('<button type="button" class="map-btn ov-btn" id="fig1b-toggle" aria-pressed="false"><span class="ov-box"></span>' + esc(FIG1B.title) + '</button>', 'row-legend-fig1b');
+  ibWrap.innerHTML = layerBlock('<button type="button" class="map-btn ov-btn" id="itm-toggle" aria-pressed="false"><span class="ov-box"></span>' + esc(ITM.title) + '</button>') +
+    layerBlock('<button type="button" class="map-btn ov-btn" id="fig1b-toggle" aria-pressed="false"><span class="ov-box"></span>' + esc(FIG1B.title) + '</button>');
   const ib = ibWrap.querySelector('#itm-toggle');
   const fb = ibWrap.querySelector('#fig1b-toggle');
   ib.addEventListener('click', () => setItm(!itmOn));
