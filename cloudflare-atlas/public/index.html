@@ -9,7 +9,7 @@
 <link rel="preload" href="fonts/source-serif-pro-semibold.woff2" as="font" type="font/woff2" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css" rel="stylesheet">
-<link href="style.css?v=cf11" rel="stylesheet">
+<link href="style.css?v=cf12" rel="stylesheet">
 </head>
 <body>
 <header class="topbar">
@@ -88,6 +88,7 @@
       <a href="/contribute" data-about="contribute">Contribute</a>
       <a href="/open-source" data-about="code">Open source</a>
     </nav>
+    <a href="/about#support" class="about-nav-sponsor" data-support>Sponsor</a>
   </div>
   <div class="about-wrap">
     <section class="about-block" id="about" data-path="/about">
@@ -105,7 +106,11 @@
             <li><span class="n"></span><span class="t">Structural, mineral, and geoenvironmental layers</span></li>
             <li><span class="n"></span><span class="t">Official subsoil-use and licence data</span></li>
           </ol>
-          <p>kzgeology is a non-profit project and does not seek profit. Organizations interested in sponsoring or supporting the project may get in touch at <a href="https://yerkebulan.dev" target="_blank" rel="noopener">yerkebulan.dev</a>.</p>
+          <aside class="about-support">
+            <h2>Support the project</h2>
+            <p>kzgeology is a non-profit project and is free for everyone. Sponsors help keep the maps free and bring new ones online.</p>
+            <p><a class="about-cta about-cta-primary" href="https://yerkebulan.dev" target="_blank" rel="noopener">Become a sponsor</a></p>
+          </aside>
         </div>
       </div>
     </section>
@@ -179,8 +184,11 @@
           <p><button type="button" class="about-cta" id="about-donate">Donate maps</button></p>
           <h2>Institutions</h2>
           <p>Mining companies, geological surveys, and other institutions may contribute maps or datasets. Work that is included will be credited. Use the same form and name the institution in the note.</p>
-          <h2>Sponsorship</h2>
-          <p>kzgeology is a non-profit project and does not seek profit. Organizations interested in sponsoring or supporting the project may get in touch at <a href="https://yerkebulan.dev" target="_blank" rel="noopener">yerkebulan.dev</a>.</p>
+          <aside class="about-support">
+            <h2>Support the project</h2>
+            <p>kzgeology is a non-profit project and is free for everyone. Sponsors help keep the maps free and bring new ones online.</p>
+            <p><a class="about-cta about-cta-primary" href="https://yerkebulan.dev" target="_blank" rel="noopener">Become a sponsor</a></p>
+          </aside>
           <h2>Copyright</h2>
           <p>If you hold rights in a map or dataset on this site and believe it should not be shown, please write through the form. It will be removed on request.</p>
         </div>
@@ -208,7 +216,7 @@
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script src="config.js"></script>
 <script src="donate.js?v=cf10"></script>
-<script src="about.js?v=cf11"></script>
+<script src="about.js?v=cf12"></script>
 <script src="app.js?v=cf10"></script>
 </body>
 </html>

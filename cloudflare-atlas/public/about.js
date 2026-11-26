@@ -27,6 +27,11 @@
     if (p.length > 1 && p.charAt(p.length - 1) === "/") p = p.slice(0, -1);
     return p;
   }
+  function hashOf() {
+    var h = location.hash || "";
+    if (h.charAt(0) === "#") h = h.slice(1);
+    return h === "support" ? "support" : "";
+  }
   function brandName() {
     return (window.ATLAS_SITE && window.ATLAS_SITE.mode === "atlas") ? "Atlas" : "kzgeology";
   }
@@ -59,17 +64,19 @@
       try { map.resize(); } catch (e) {}
     }
   }
-  function markNav(path) {
+  function markNav(path, hash) {
     var nav = $("about-nav");
     if (nav) {
-      var links = nav.querySelectorAll("a[data-about]");
+      var links = nav.querySelectorAll("a[data-about], a[data-support]");
       for (var i = 0; i < links.length; i++) {
-        var href = links[i].getAttribute("href");
-        if (href === path) links[i].setAttribute("aria-current", "page");
+        var isSupport = links[i].hasAttribute("data-support");
+        var href = (links[i].getAttribute("href") || "").split("#")[0];
+        var on = hash === "support" ? isSupport : (!isSupport && href === path);
+        if (on) links[i].setAttribute("aria-current", "page");
         else links[i].removeAttribute("aria-current");
       }
       var current = nav.querySelector("a[aria-current='page']");
-      if (current && current.scrollIntoView) {
+      if (current && current.scrollIntoView && !current.hasAttribute("data-support")) {
         try { current.scrollIntoView({ inline: "center", block: "nearest" }); } catch (e) {}
       }
     }
@@ -130,6 +137,13 @@
     }
     requestAnimationFrame(function () { requestAnimationFrame(enter); });
   }
+  function scrollSupport() {
+    var scroller = document.querySelector(".about-wrap");
+    var section = document.querySelector(".about-block.on .about-support");
+    if (!scroller || !section) return;
+    var top = section.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop - 12;
+    scroller.scrollTo({ top: Math.max(0, top), behavior: reduce ? "auto" : "smooth" });
+  }
   function showPages() {
     var pages = $("site-pages");
     if (!pages) return;
@@ -148,22 +162,31 @@
     for (var i = 0; i < blocks.length; i++) blocks[i].classList.remove("on", "in");
     document.body.classList.remove("about-on");
     open = false;
-    markNav("/");
+    markNav("/", "");
     setTitle("/");
     setMapLive(true);
   }
-  function goTo(path, push) {
+  function goTo(path, push, hash) {
+    hash = hash === "support" ? "support" : "";
     if (!ROUTES[path]) {
       hidePages();
-      if (push && pathOf() !== "/") history.pushState({ about: false }, "", "/");
+      if (push && (pathOf() !== "/" || hashOf())) history.pushState({ about: false }, "", "/");
       return;
     }
     showPages();
     open = true;
     setTitle(path);
-    markNav(path);
+    markNav(path, hash);
     showSection(path);
-    if (push && pathOf() !== path) history.pushState({ about: true, path: path }, "", path);
+    var url = path + (hash ? "#" + hash : "");
+    if (push && (pathOf() !== path || hashOf() !== hash)) {
+      history.pushState({ about: true, path: path, hash: hash }, "", url);
+    }
+    if (hash === "support") {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { scrollSupport(); });
+      });
+    }
   }
   function onLinkClick(e) {
     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
@@ -173,10 +196,18 @@
     if (!href || href.charAt(0) !== "/") return;
     if (a.getAttribute("target") === "_blank") return;
     var path = href.split("?")[0].split("#")[0];
+    var hash = href.split("#")[1] || "";
     if (path.length > 1 && path.charAt(path.length - 1) === "/") path = path.slice(0, -1);
+    if (a.hasAttribute("data-support") || hash === "support") {
+      e.preventDefault();
+      var here = pathOf();
+      if (here === "/about" || here === "/contribute") goTo(here, true, "support");
+      else goTo("/about", true, "support");
+      return;
+    }
     if (path === "/" || ROUTES[path]) {
       e.preventDefault();
-      goTo(path, true);
+      goTo(path, true, "");
     }
   }
 
@@ -209,11 +240,11 @@
     document.addEventListener("click", onLinkClick);
     window.addEventListener("popstate", function () {
       var p = pathOf();
-      if (ROUTES[p]) goTo(p, false);
+      if (ROUTES[p]) goTo(p, false, hashOf());
       else hidePages();
     });
     var start = pathOf();
-    if (ROUTES[start]) goTo(start, false);
+    if (ROUTES[start]) goTo(start, false, hashOf());
     else hidePages();
   });
 })();
