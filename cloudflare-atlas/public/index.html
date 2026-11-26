@@ -3,17 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<base href="/">
 <title>kzgeology</title>
 <!-- workers builds hook check -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css" rel="stylesheet">
-<link href="style.css?v=cf8" rel="stylesheet">
+<link href="style.css?v=cf9" rel="stylesheet">
 </head>
 <body>
 <header class="topbar">
   <span class="brand">Atlas</span>
   <span class="sub">Geological maps of Kazakhstan</span>
   <nav>
+    <a href="/about" id="about-btn">About</a>
     <button type="button" class="donate-btn" id="donate-btn" aria-haspopup="dialog" aria-controls="donate-modal"><span class="donate-full">Donate maps</span><span class="donate-short">Donate</span></button>
     <a href="/game.html">Play</a>
     <a href="/__auth/logout">Log out</a>
@@ -36,8 +38,7 @@
       <a href="docs/TITLE.pdf" target="_blank">Title</a>
       <a href="docs/CONTENT.pdf" target="_blank">Contents</a>
     </div>
-    <div class="credits" id="credits"></div>
-    <p class="note" id="rights-note">If you hold rights to a map and object to its use here, contact us and we will remove it.</p>
+    <p class="panel-src"><a href="/sources" id="panel-sources">Sources and credits</a></p>
   </aside>
   <div class="right-stack" id="right-stack">
     <aside class="legend" id="legend" hidden>
@@ -75,6 +76,88 @@
   </div>
   <div class="loading" id="loading" hidden>Loading map…</div>
 </main>
+
+<article id="site-pages" class="site-pages" hidden>
+  <div class="about-nav" id="about-nav">
+    <button type="button" class="about-back" id="about-back">Back to map</button>
+    <nav aria-label="About">
+      <a href="/about" data-about="about">About</a>
+      <a href="/about/made" data-about="made">How it's made</a>
+      <a href="/sources" data-about="sources">Sources</a>
+      <a href="/contribute" data-about="contribute">Contribute</a>
+      <a href="/open-source" data-about="code">Open source</a>
+    </nav>
+  </div>
+  <div class="about-wrap">
+    <section class="about-block" id="about" data-path="/about">
+      <p class="about-kicker">About</p>
+      <h1>The geology, on one map.</h1>
+      <p>Kazakhstan's geology is scattered across Soviet-era sheets, scanned PDFs, and paywalled papers. This site puts it on one free, fast map.</p>
+      <p>It is built for students, geologists, and explorers who want the layers in one place.</p>
+      <p>The public map now carries 487 geological sheets at 1:200,000, a 1:1,500,000 national geological map, structural and mineral layers, and official subsoil data. Those counts come from the catalog we serve. We do not invent figures.</p>
+    </section>
+
+    <section class="about-block" id="about-made" data-path="/about/made">
+      <p class="about-kicker">How it's made</p>
+      <h2>Scans, vectors, then a fast map.</h2>
+      <p>Old sheets are scanned, georeferenced, and cut into tiles that load as you move. Vector layers are digitized from those sources and from published figures, then drawn on top.</p>
+      <p>The site runs on Cloudflare, close to the people who use it. The interface is a small static shell. The maps are hosted separately, so the code and the data can move at different speeds.</p>
+    </section>
+
+    <section class="about-block" id="about-sources" data-path="/sources">
+      <p class="about-kicker">Sources</p>
+      <h2>Where the maps come from.</h2>
+      <p>Credits used to sit at the bottom of the Layers panel. They live here now.</p>
+
+      <h3>Geological sheets</h3>
+      <p>Gosgeolkarta 1:200,000 geological sheets. Scans from <a href="https://cloud.mail.ru/public/LrNy/Ki1QkR1tA" target="_blank" rel="noopener">Mail.ru</a> and <a href="https://www.geokniga.org/maps" target="_blank" rel="noopener">Geokniga</a>. 487 sheets are on the map.</p>
+
+      <h3>National geology and structures</h3>
+      <p>Geological map 1:1,500,000, detailed faults, and mineral deposits: Prof. Bespalov.</p>
+      <p>Main tectonic structures, sedimentary cover structure, historic-geological sections, and the geoenvironmental maps: Atlas of the Lithology-Paleogeographical, Structural, Palinspastic and Geoenvironmental Maps of Central Eurasia (Daukeev, Uzhkenov et al., eds.; ISBN 9965-13-566-5).</p>
+      <p>Regional faults and ore occurrences: industry compilation.</p>
+
+      <h3>Papers</h3>
+      <ul class="about-cites">
+        <li><a href="https://doi.org/10.1144/0016-76492006-022" target="_blank" rel="noopener">Windley et al. 2007</a>. Palaeozoic geotectonic map.</li>
+        <li><a href="https://doi.org/10.1016/j.jseaes.2017.07.029" target="_blank" rel="noopener">Li et al. 2018</a>. Kazakhstan orocline.</li>
+        <li><a href="https://doi.org/10.1093/nsr/nwac215" target="_blank" rel="noopener">Safonova et al. 2023</a>. Central and East Kazakhstan.</li>
+        <li><a href="https://doi.org/10.1016/j.gsf.2024.101814" target="_blank" rel="noopener">Safonova et al. 2024</a>. Itmurundy zone.</li>
+      </ul>
+
+      <h3>Government data</h3>
+      <p>Subsoil use and licenses: Unified Subsoil Use Platform, <a href="https://minerals.e-qazyna.kz/" target="_blank" rel="noopener">e-qazyna</a>.</p>
+      <p>PUGFN (oil, gas, uranium): official data from the same platform, <a href="https://minerals.e-qazyna.kz/ru/contracts-map" target="_blank" rel="noopener">contracts map</a>.</p>
+      <p>Geological maps also appear on <a href="https://nedra.kz/map/" target="_blank" rel="noopener">Nedra.kz</a>. We link to that site. We do not republish its images.</p>
+
+      <h3>Terrain</h3>
+      <p>Mapzen/Tilezen terrain tiles via AWS Open Data. Elevation data courtesy of the U.S. Geological Survey (SRTM, GMTED2010) and NOAA (ETOPO1).</p>
+    </section>
+
+    <section class="about-block" id="about-contribute" data-path="/contribute">
+      <p class="about-kicker">Contribute</p>
+      <h2>Add a map. Or ask us to take one down.</h2>
+
+      <h3>Individuals</h3>
+      <p>Have a map you have the right to share? Use Donate maps. We review every submission before anything is published.</p>
+      <p><button type="button" class="about-cta" id="about-donate">Donate maps</button></p>
+
+      <h3>Industry</h3>
+      <p>Mining companies, survey institutes, and other institutions can share maps or datasets with us. We will credit you. Use the same form, and say who you represent in the note.</p>
+
+      <h3>Copyright</h3>
+      <p>If you hold rights to a map or dataset here and believe it is copyrighted, tell us through the form. We will remove it on request.</p>
+    </section>
+
+    <section class="about-block" id="about-code" data-path="/open-source">
+      <p class="about-kicker">Open source</p>
+      <h2>The code is open. The data stays hosted.</h2>
+      <p>You can read how the site is built, open issues, and follow the work. Map files are not in the repository.</p>
+      <p><a class="about-cta" href="https://github.com/yerkebulat/geologykz" target="_blank" rel="noopener">GitHub</a></p>
+    </section>
+  </div>
+</article>
+
 <script src="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js"></script>
 <script src="eqazyna-config.js"></script>
 <script src="eqazyna.js?v=cf2"></script>
@@ -83,7 +166,8 @@
 <script src="geo200-pilot.js?v=cf2"></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script src="config.js"></script>
-<script src="donate.js?v=cf8"></script>
-<script src="app.js?v=cf8"></script>
+<script src="donate.js?v=cf9"></script>
+<script src="about.js?v=cf9"></script>
+<script src="app.js?v=cf9"></script>
 </body>
 </html>

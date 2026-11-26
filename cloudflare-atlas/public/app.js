@@ -52,7 +52,7 @@
     DEFAULT_OVERLAYS.forEach(id => { if (ovs[id]) ovOn.add(id); });
   }
 
-  const map = new maplibregl.Map({
+  const map = window.atlasMap = new maplibregl.Map({
     container: 'mapview',
     style: 'https://tiles.openfreemap.org/styles/positron',
     center: [66, 45], zoom: phone ? 2.6 : 3.6, attributionControl: false, maxZoom: 19, maxPitch: 0
@@ -1354,28 +1354,6 @@
     const ov = overlay ? ' data-ov="1"' : '';
     return `<button type="button" class="map-btn ov-btn"${ov} data-id="${m.id}" aria-pressed="false"><span class="ov-box"></span>${esc(m.title)}</button>`;
   }
-  function renderCredits() {
-    const box = $('credits');
-    if (!box) return;
-    const seen = new Set();
-    const lines = [];
-    function add(s) {
-      const text = String(s || '').trim();
-      if (!text || seen.has(text)) return;
-      seen.add(text);
-      lines.push(text);
-    }
-    cfg.groups.forEach(g => {
-      if (SITE.mode === 'public' && isPaleoGroup(g)) return;
-      (g.maps || []).forEach(m => add(m.cite));
-    });
-    add('Gosgeolkarta 1:200,000 geological sheets. Scans from Mail.ru and geokniga.org.');
-    add(FIG1B.cite);
-    add(ITM.cite);
-    add('Subsoil use: Unified Subsoil Use Platform, minerals.e-qazyna.kz');
-    add('Terrain: Mapzen/Tilezen terrain tiles via AWS Open Data. Elevation data courtesy of the U.S. Geological Survey (SRTM, GMTED2010) and NOAA (ETOPO1).');
-    box.innerHTML = '<strong>Credits</strong>' + lines.map(s => '<p>' + esc(s) + '</p>').join('');
-  }
   // panel
   let h = '';
   cfg.groups.forEach(g => {
@@ -1428,7 +1406,6 @@
     other.appendChild(ibWrap.children[0]);
     other.appendChild(ibWrap.children[0]);
   }
-  renderCredits();
   $('groups').addEventListener('click', e => {
     const b = e.target.closest('.map-btn'); if (!b) return;
     if (b.id === 'eqazyna-toggle' || b.id === 'geo200-toggle' || b.id === 'fig1b-toggle' || b.id === 'itm-toggle' || (b.id && b.id.startsWith('process-'))) return;

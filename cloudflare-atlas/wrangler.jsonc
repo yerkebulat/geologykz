@@ -34,7 +34,12 @@
       "/config.js",
       "/__donate",
       "/inbox",
-      "/inbox/*"
+      "/inbox/*",
+      "/about",
+      "/about/*",
+      "/sources",
+      "/contribute",
+      "/open-source"
     ]
   },
   "r2_buckets": [
@@ -76,7 +81,12 @@
           "/config.js",
           "/__donate",
           "/inbox",
-          "/inbox/*"
+          "/inbox/*",
+          "/about",
+          "/about/*",
+          "/sources",
+          "/contribute",
+          "/open-source"
         ]
       },
       "r2_buckets": [

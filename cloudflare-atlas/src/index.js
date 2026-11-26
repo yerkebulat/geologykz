@@ -17,6 +17,16 @@ const NOINDEX = {
   "X-Robots-Tag": "noindex, nofollow, noarchive",
 };
 
+function isSitePage(path) {
+  return (
+    path === "/about" ||
+    path.startsWith("/about/") ||
+    path === "/sources" ||
+    path === "/contribute" ||
+    path === "/open-source"
+  );
+}
+
 function isIndexable(request, isAtlas) {
   if (isAtlas) return false;
   const host = new URL(request.url).hostname.toLowerCase();
@@ -638,14 +648,17 @@ export default {
     }
 
     if (request.method !== "GET" && request.method !== "HEAD") return deny(405, "Method not allowed");
-    const asset = await env.ASSETS.fetch(request);
+    const assetReq = isSitePage(path)
+      ? new Request(new URL("/index.html", request.url), request)
+      : request;
+    const asset = await env.ASSETS.fetch(assetReq);
     const headers = new Headers(asset.headers);
     for (const [k, v] of Object.entries(headersOut)) headers.set(k, v);
     if (indexable) headers.delete("X-Robots-Tag");
-    const typeKey = path === "/" ? "index.html" : path;
+    const typeKey = path === "/" || isSitePage(path) ? "index.html" : path;
     const mapped = contentType(typeKey);
     if (mapped) headers.set("Content-Type", mapped);
-    if (path === "/" || path.endsWith(".html") || path === "/driller" || path === "/game" || path === "/strata") {
+    if (path === "/" || path.endsWith(".html") || path === "/driller" || path === "/game" || path === "/strata" || isSitePage(path)) {
       headers.set("Cache-Control", "private, max-age=0, must-revalidate");
     }
     return new Response(asset.body, { status: asset.status, headers });
