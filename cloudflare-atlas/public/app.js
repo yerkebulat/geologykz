@@ -55,7 +55,7 @@
   const map = new maplibregl.Map({
     container: 'mapview',
     style: 'https://tiles.openfreemap.org/styles/positron',
-    center: [66, 45], zoom: phone ? 2.6 : 3.6, attributionControl: false, maxZoom: 19, maxPitch: 0
+    center: [66, 45], zoom: phone ? 2.6 : 3.6, attributionControl: false, maxZoom: 19
   });
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
   map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: true }, trackUserLocation: true, showAccuracyCircle: true, showUserLocation: true }), 'bottom-right');
@@ -1405,7 +1405,6 @@
     add(FIG1B.cite);
     add(ITM.cite);
     add('Subsoil use: Unified Subsoil Use Platform, minerals.e-qazyna.kz');
-    add('Terrain: Mapzen/Tilezen terrain tiles via AWS Open Data. Elevation data courtesy of the U.S. Geological Survey (SRTM, GMTED2010) and NOAA (ETOPO1).');
     box.innerHTML = '<strong>Credits</strong>' + lines.map(s => '<p>' + esc(s) + '</p>').join('');
   }
   // panel
@@ -2136,137 +2135,10 @@
   function setLegend(open) { $('legend').classList.toggle('min', !open); $('legend-toggle').textContent = open ? 'Hide' : 'Legend'; $('legend-toggle').setAttribute('aria-expanded', open); }
   $('legend-toggle').addEventListener('click', () => setLegend($('legend').classList.contains('min')));
   setLegend(!phone);
-
-  function initGlobeMode() {
-    const STORE = 'atlas-globe-v1';
-    const DEM_SRC = 'atlas-dem';
-    const HS_SRC = 'atlas-dem-hs';
-    const HS_ID = 'atlas-hillshade';
-    const EXAG = 1.3;
-    const TERRAIN_MIN_ZOOM = 3;
-    const DEM = {
-      type: 'raster-dem',
-      tiles: ['https://s3.amazonaws.com/elevation-tiles-prod/terrarium/{z}/{x}/{y}.png'],
-      tileSize: 256,
-      maxzoom: 15,
-      encoding: 'terrarium',
-      attribution: 'Terrain: Mapzen/Tilezen via AWS Open Data; USGS (SRTM, GMTED2010), NOAA (ETOPO1)'
-    };
-    let on = false;
-    try { if (localStorage.getItem(STORE) === '1') on = true; } catch (e) {}
-
-    const box = $('measure-box');
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.id = 'globe-toggle';
-    btn.className = 'measure-btn globe-btn';
-    btn.setAttribute('aria-pressed', 'false');
-    btn.setAttribute('aria-label', '3D');
-    btn.textContent = '3D';
-    if (box) box.insertBefore(btn, box.firstChild);
-
-    function persist(v) {
-      try { localStorage.setItem(STORE, v ? '1' : '0'); } catch (e) {}
-    }
-    function ensureDem() {
-      if (!map.getStyle()) return;
-      if (!map.getSource(DEM_SRC)) map.addSource(DEM_SRC, DEM);
-      if (!map.getSource(HS_SRC)) map.addSource(HS_SRC, DEM);
-    }
-    function placeHillshade() {
-      if (map.getLayer(HS_ID)) return;
-      const layers = (map.getStyle() && map.getStyle().layers) || [];
-      const firstOurs = layers.find(l => /^(atlas-|eqazyna-|process-|geo200-)/.test(l.id) && l.id !== HS_ID);
-      map.addLayer({
-        id: HS_ID,
-        type: 'hillshade',
-        source: HS_SRC,
-        layout: { visibility: 'visible' },
-        paint: {
-          'hillshade-exaggeration': 0.35,
-          'hillshade-shadow-color': '#473B24',
-          'hillshade-highlight-color': '#fafaf9',
-          'hillshade-illumination-direction': 315
-        }
-      }, firstOurs && firstOurs.id);
-    }
-    function wantTerrain() {
-      return on && map.getZoom() >= TERRAIN_MIN_ZOOM;
-    }
-    function syncTerrain() {
-      if (!map.getStyle()) return;
-      if (wantTerrain()) {
-        ensureDem();
-        try {
-          const cur = typeof map.getTerrain === 'function' ? map.getTerrain() : null;
-          if (!cur || cur.source !== DEM_SRC) map.setTerrain({ source: DEM_SRC, exaggeration: EXAG });
-        } catch (e) {}
-        if (!map.getLayer(HS_ID)) placeHillshade();
-        else {
-          try { map.setLayoutProperty(HS_ID, 'visibility', 'visible'); } catch (e) {}
-        }
-      } else {
-        try { if (typeof map.getTerrain === 'function' && map.getTerrain()) map.setTerrain(null); } catch (e) {}
-        if (map.getLayer(HS_ID)) {
-          try { map.setLayoutProperty(HS_ID, 'visibility', 'none'); } catch (e) {}
-        }
-      }
-    }
-    function apply(v, save, animate) {
-      on = !!v;
-      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      if (save) persist(on);
-      if (!map.getStyle()) return;
-      if (on) {
-        try { map.setProjection({ type: 'globe' }); } catch (e) {}
-        try { map.setMaxPitch(85); } catch (e) {}
-        try {
-          if (map.dragRotate) map.dragRotate.enable();
-          if (map.touchPitch) map.touchPitch.enable();
-        } catch (e) {}
-        try {
-          if (typeof map.setSky === 'function') {
-            map.setSky({
-              'atmosphere-blend': ['interpolate', ['linear'], ['zoom'], 0, 0.8, 5, 0]
-            });
-          }
-        } catch (e) {}
-        syncTerrain();
-        if (animate !== false && (map.getPitch() || 0) < 20) {
-          try { map.easeTo({ pitch: 45, duration: 600 }); } catch (e) {}
-        }
-      } else {
-        syncTerrain();
-        try { if (typeof map.setSky === 'function') map.setSky({ 'atmosphere-blend': 0 }); } catch (e) {}
-        try { map.setProjection({ type: 'mercator' }); } catch (e) {}
-        const finish = () => {
-          if (on) return;
-          try { map.setMaxPitch(0); } catch (e) {}
-        };
-        if (animate !== false && (map.getPitch() || 0) > 0) {
-          try {
-            map.easeTo({ pitch: 0, duration: 400 });
-            map.once('moveend', finish);
-          } catch (e) { finish(); }
-        } else {
-          try { map.jumpTo({ pitch: 0, center: map.getCenter(), zoom: map.getZoom(), bearing: map.getBearing() }); } catch (e) {}
-          finish();
-        }
-      }
-    }
-
-    btn.addEventListener('click', () => apply(!on, true, true));
-    map.on('zoom', syncTerrain);
-    map.on('style.load', () => { apply(on, false, false); });
-    if (map.loaded()) apply(on, false, !on ? false : true);
-    else map.once('load', () => apply(on, false, !on ? false : true));
-  }
-
   initActiveUi();
   initScaleChrome();
   initMeasure();
   initSketch();
-  initGlobeMode();
 
   // Clicked point coordinates with a Copy button, in the feature popup or a small one of its own.
   function copyText(text) {
