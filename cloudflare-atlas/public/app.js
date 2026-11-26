@@ -22,12 +22,12 @@
     if (SITE.mode === 'public') {
       document.title = 'kzgeology';
       if (brand) brand.textContent = 'kzgeology';
-      if (sub) sub.textContent = 'Geological, tectonic and geoenvironmental maps of Kazakhstan';
+      if (sub) sub.textContent = 'Geological maps of Kazakhstan';
       if (logout) logout.remove();
     } else {
       document.title = 'Atlas';
       if (brand) brand.textContent = 'Atlas';
-      if (sub) sub.textContent = 'Lithology-paleogeographical, structural and geoenvironmental maps of Central Eurasia';
+      if (sub) sub.textContent = 'Geological maps of Kazakhstan';
     }
   })();
   const ovs = {};

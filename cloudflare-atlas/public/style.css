@@ -48,7 +48,10 @@ body.panel-closed .layers-btn{left:12px}
 .pp-note{margin-top:6px;color:var(--muted);font-size:12px}
 .pp+.pp{margin-top:6px;padding-top:6px;border-top:1px solid var(--line)}
 @media (max-width:700px){
- .sub{display:none}
+ .topbar{gap:8px;padding:8px 10px;flex-wrap:nowrap;align-items:center;min-width:0}
+ .brand{flex:none}
+ .sub{display:block;font-size:12px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
+ .topbar nav{gap:10px;flex:none}
  .panel{top:auto;bottom:0;left:0;right:0;width:auto;max-height:46%;border-radius:var(--r) var(--r) 0 0}
  .layers-btn{top:10px;left:10px}
  .legend{top:10px;right:10px;left:auto;width:min(240px, calc(100% - 132px));max-height:38%}
