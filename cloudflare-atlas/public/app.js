@@ -26,7 +26,8 @@
     ruler: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="8.8" width="17.6" height="6.4" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7.4 8.8v2.5M11.6 8.8v2.5M15.8 8.8v2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
     distance: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16.5 18 7.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="6" cy="16.5" r="2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="7.5" r="2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
     area: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7.5 14 5l4.5 5.5-3 7L7 18z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="6" cy="7.5" r="1.3" fill="currentColor"/><circle cx="18.5" cy="10.5" r="1.3" fill="currentColor"/><circle cx="7" cy="18" r="1.3" fill="currentColor"/></svg>',
-    chart: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 16.8 9 10.2l4 3.6 7.5-7.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 20.5h17" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>'
+    chart: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 16.8 9 10.2l4 3.6 7.5-7.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 20.5h17" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>',
+    swipe: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 4.5v15" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8.4 9.5 6.4 12l2 2.5M15.6 9.5 17.6 12l-2 2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
   };
   const SITE = window.ATLAS_SITE || { mode: 'atlas' };
   const I18N = window.atlasI18n || {};
@@ -201,6 +202,7 @@
     orderLayers();
     if (window.atlasEqazyna) window.atlasEqazyna.syncOrder();
     if (window.atlasGeo200 && window.atlasGeo200.refresh) window.atlasGeo200.refresh();
+    if (window.atlasCompare && window.atlasCompare.refresh) window.atlasCompare.refresh();
     if (window.atlasMeasure && window.atlasMeasure.redraw) window.atlasMeasure.redraw();
     if (window.atlasSketch && window.atlasSketch.redraw) window.atlasSketch.redraw();
   }
@@ -299,7 +301,7 @@
     mainsOn.clear();
     HASH.mains.forEach(id => { if (all[id]) mainsOn.add(id); });
   }
-  function saveLayers() { try { localStorage.setItem(LAYER_STORE, JSON.stringify({ order, op: layerOp, hid: [...layerHid], mains: [...mainsOn], fig1b: fig1bOn, itm: itmOn, box: actOpen })); } catch (e) {} queueHash(); }
+  function saveLayers() { try { localStorage.setItem(LAYER_STORE, JSON.stringify({ order, op: layerOp, hid: [...layerHid], mains: [...mainsOn], fig1b: fig1bOn, itm: itmOn, box: actOpen })); } catch (e) {} queueHash(); if (window.atlasCompare && window.atlasCompare.refresh) window.atlasCompare.refresh(); }
   function opOf(k) { const v = Number(layerOp[k]); return isFinite(v) && v >= 0 && v <= 1 ? v : 0.85; }
   window.atlasLayerOpacity = opOf;
   const layerLoad = new Set();
@@ -2771,6 +2773,216 @@
     };
   }
 
+  function initCompare() {
+    const box = $('measure-box');
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.id = 'compare-btn';
+    btn.className = 'measure-btn';
+    btn.title = t('tool.compare');
+    btn.setAttribute('aria-label', t('tool.compare'));
+    btn.setAttribute('aria-pressed', 'false');
+    btn.innerHTML = ICON.swipe;
+    if (box) {
+      let row = document.getElementById('profile-row');
+      if (!row) {
+        row = document.createElement('div');
+        row.id = 'profile-row';
+        row.className = 'profile-row';
+        const toolsRow = box.querySelector('.tools-row');
+        if (toolsRow) box.insertBefore(row, toolsRow); else box.appendChild(row);
+      }
+      row.appendChild(btn);
+    }
+    let on = false, map2 = null, layerEl = null, bar = null, handle = null;
+    let leftKey = 'bm', rightKey = 'bm';
+    let copiedLayers = [], copiedSources = [];
+    let dragX = 50;
+
+    function allActiveKeys() {
+      return [...new Set(activeKeys().concat(pinnedKeys()))].filter(k => keyOn(k));
+    }
+    function sync2() {
+      if (!map2) return;
+      const c = map.getCenter();
+      try { map2.jumpTo({ center: [c.lng, c.lat], zoom: map.getZoom(), bearing: map.getBearing(), pitch: map.getPitch() }); } catch (e) {}
+    }
+    function applySides() {
+      if (!on) return;
+      allActiveKeys().forEach(k => {
+        keyLayers(k).forEach(lid => {
+          if (!map.getLayer(lid)) return;
+          try { map.setLayoutProperty(lid, 'visibility', k === leftKey ? 'visible' : 'none'); } catch (e) {}
+        });
+      });
+      applyRight();
+    }
+    function clearRight() {
+      if (!map2) return;
+      copiedLayers.forEach(id => { try { if (map2.getLayer(id)) map2.removeLayer(id); } catch (e) {} });
+      copiedSources.forEach(sid => { try { if (map2.getSource(sid)) map2.removeSource(sid); } catch (e) {} });
+      copiedLayers = []; copiedSources = [];
+    }
+    function applyRight() {
+      if (!map2 || !map2.isStyleLoaded()) return;
+      clearRight();
+      const st = map.getStyle();
+      if (basemap === 'sat') {
+        const src = st.sources.sat;
+        if (src) {
+          if (!map2.getSource('sat')) { try { map2.addSource('sat', JSON.parse(JSON.stringify(src))); copiedSources.push('sat'); } catch (e) {} }
+          const satLayer = (st.layers || []).find(l => l.id === 'sat');
+          if (satLayer && !map2.getLayer('sat')) { try { map2.addLayer(JSON.parse(JSON.stringify(satLayer))); copiedLayers.push('sat'); } catch (e) {} }
+        }
+      }
+      if (rightKey === 'bm') return;
+      const ids = keyLayers(rightKey);
+      const layers = (st.layers || []).filter(l => ids.includes(l.id));
+      const srcIds = [...new Set(layers.map(l => l.source).filter(Boolean))];
+      const before = (map2.getStyle().layers || []).find(l => l.type === 'symbol' && !/^(atlas-|eqazyna-|process-|geo200-)/.test(l.id));
+      srcIds.forEach(sid => {
+        const def = st.sources[sid];
+        if (def && !map2.getSource(sid)) {
+          try { map2.addSource(sid, JSON.parse(JSON.stringify(def))); copiedSources.push(sid); } catch (e) {}
+        }
+      });
+      layers.forEach(l => {
+        if (!map2.getLayer(l.id)) {
+          try { map2.addLayer(JSON.parse(JSON.stringify(l)), before && before.id); copiedLayers.push(l.id); } catch (e) {}
+        }
+      });
+    }
+    function keyOptions() {
+      const keys = allActiveKeys();
+      const opts = [{ v: 'bm', label: t('compare.basemap') }];
+      keys.forEach(k => opts.push({ v: k, label: keyTitle(k) }));
+      return opts;
+    }
+    function fillSelects() {
+      if (!bar) return;
+      const opts = keyOptions();
+      const has = v => opts.some(o => o.v === v);
+      if (!has(leftKey)) leftKey = 'bm';
+      if (!has(rightKey)) rightKey = 'bm';
+      [['#compare-left', leftKey], ['#compare-right', rightKey]].forEach(pair => {
+        const sel = bar.querySelector(pair[0]);
+        if (!sel) return;
+        sel.innerHTML = opts.map(o => '<option value="' + esc(o.v) + '">' + esc(o.label) + '</option>').join('');
+        sel.value = pair[1];
+      });
+    }
+    function buildUi() {
+      const wrapEl = document.querySelector('.wrap') || document.body;
+      layerEl = document.createElement('div');
+      layerEl.id = 'compare-map';
+      layerEl.className = 'compare-map';
+      wrapEl.appendChild(layerEl);
+      map2 = new maplibregl.Map({
+        container: layerEl,
+        style: 'https://tiles.openfreemap.org/styles/positron',
+        center: map.getCenter(), zoom: map.getZoom(), bearing: map.getBearing(), pitch: map.getPitch(),
+        interactive: false, attributionControl: false, maxZoom: 19, maxPitch: 0
+      });
+      map2.on('load', () => { applyRight(); sync2(); });
+      map2.on('style.load', () => { applyRight(); });
+
+      bar = document.createElement('div');
+      bar.id = 'compare-bar';
+      bar.className = 'compare-bar';
+      bar.innerHTML = '<label>' + esc(t('compare.left')) + '<select id="compare-left" aria-label="' + t('compare.left') + '"></select></label>' +
+        '<label>' + esc(t('compare.right')) + '<select id="compare-right" aria-label="' + t('compare.right') + '"></select></label>';
+      wrapEl.appendChild(bar);
+      fillSelects();
+      bar.querySelector('#compare-left').addEventListener('change', ev => { leftKey = ev.target.value; applySides(); });
+      bar.querySelector('#compare-right').addEventListener('change', ev => { rightKey = ev.target.value; applyRight(); });
+
+      handle = document.createElement('div');
+      handle.id = 'compare-handle';
+      handle.className = 'compare-handle';
+      handle.setAttribute('role', 'slider');
+      handle.setAttribute('aria-label', t('compare.slider'));
+      handle.setAttribute('aria-valuemin', '2');
+      handle.setAttribute('aria-valuemax', '98');
+      handle.tabIndex = 0;
+      handle.innerHTML = '<span class="compare-grip"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 8 5 12l4 4M15 8l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+      wrapEl.appendChild(handle);
+      function setX(v) {
+        dragX = Math.min(98, Math.max(2, v));
+        handle.style.left = dragX + '%';
+        if (layerEl) layerEl.style.clipPath = 'inset(0 0 0 ' + dragX + '%)';
+        handle.setAttribute('aria-valuenow', String(Math.round(dragX)));
+      }
+      setX(50);
+      let dragging = false;
+      handle.addEventListener('pointerdown', ev => {
+        dragging = true;
+        try { handle.setPointerCapture(ev.pointerId); } catch (e) {}
+        ev.preventDefault(); ev.stopPropagation();
+      });
+      window.addEventListener('pointermove', ev => {
+        if (!dragging) return;
+        const wr = (document.querySelector('.wrap') || document.body).getBoundingClientRect();
+        setX(((ev.clientX - wr.left) / wr.width) * 100);
+      });
+      window.addEventListener('pointerup', () => { dragging = false; });
+      window.addEventListener('pointercancel', () => { dragging = false; });
+      handle.addEventListener('keydown', ev => {
+        if (ev.key === 'ArrowLeft') { setX(dragX - 2); ev.preventDefault(); }
+        else if (ev.key === 'ArrowRight') { setX(dragX + 2); ev.preventDefault(); }
+      });
+    }
+    function destroy() {
+      allActiveKeys().forEach(k => applyKeyVis(k));
+      map.off('move', sync2);
+      if (map2) { try { map2.remove(); } catch (e) {} map2 = null; }
+      if (layerEl) { layerEl.remove(); layerEl = null; }
+      if (bar) { bar.remove(); bar = null; }
+      if (handle) { handle.remove(); handle = null; }
+      copiedLayers = []; copiedSources = [];
+    }
+    function setOn(v) {
+      on = !!v;
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      document.body.classList.toggle('compare-on', on);
+      if (on) {
+        closeFeaturePopup(); clearSel();
+        if (window.atlasSketch && window.atlasSketch.active && window.atlasSketch.active()) window.atlasSketch.setOn(false);
+        if (window.atlasMeasure && window.atlasMeasure.active && window.atlasMeasure.active()) window.atlasMeasure.setOn(false);
+        if (window.atlasProfile && window.atlasProfile.active && window.atlasProfile.active()) window.atlasProfile.setOn(false);
+        const keys = allActiveKeys();
+        leftKey = 'bm';
+        rightKey = keys.length ? keys[0] : 'bm';
+        buildUi();
+        applySides();
+        map.on('move', sync2);
+      } else {
+        destroy();
+      }
+    }
+    function refresh() {
+      if (!on) return;
+      const keys = allActiveKeys();
+      if (leftKey !== 'bm' && !keys.includes(leftKey)) leftKey = 'bm';
+      if (rightKey !== 'bm' && !keys.includes(rightKey)) rightKey = 'bm';
+      fillSelects();
+      applySides();
+    }
+    (function bindTap(el, fn) {
+      let last = 0;
+      const run = ev => {
+        ev.preventDefault(); ev.stopPropagation();
+        const now = Date.now();
+        if (now - last < 400) return;
+        last = now; fn();
+      };
+      el.addEventListener('pointerdown', ev => ev.stopPropagation());
+      el.addEventListener('touchstart', ev => ev.stopPropagation(), { passive: true });
+      el.addEventListener('click', run);
+    })(btn, () => setOn(!on));
+    map.on('resize', () => { if (map2) { try { map2.resize(); } catch (e) {} sync2(); } });
+    window.atlasCompare = { active: () => on, setOn, refresh, map2: () => map2 };
+  }
+
   function initGoTo() {
     const input = $('goto-input');
     const btn = $('goto-btn');
@@ -2965,6 +3177,7 @@
   initGlobeMode();
   initGrid();
   initProfile();
+  initCompare();
   initGoTo();
 
   // Clicked point coordinates with a Copy button, in the feature popup or a small one of its own.
@@ -3120,6 +3333,8 @@
     const skb = $('sketch-btn');
     if (skb) { skb.title = t('tool.sketch'); skb.setAttribute('aria-label', t('tool.sketch')); }
     if (window.atlasProfile && window.atlasProfile.relabel) window.atlasProfile.relabel();
+    const cbn = $('compare-btn');
+    if (cbn) { cbn.title = t('tool.compare'); cbn.setAttribute('aria-label', t('tool.compare')); }
     const bar = $('sketch-bar');
     if (bar) {
       const keys = { pencil: 'tool.pencil', erase: 'tool.eraser', thin: 'tool.thin', thick: 'tool.thick', undo: 'tool.undo', clear: 'tool.clear' };
