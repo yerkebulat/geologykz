@@ -81,6 +81,8 @@
     "profile.ascent": { en: "Ascent", kk: "Көтерілу", ru: "Подъём" },
     "profile.close": { en: "Close profile", kk: "Бейінді жабу", ru: "Закрыть профиль" },
     "profile.fail": { en: "No elevation data", kk: "Биіктік деректері жоқ", ru: "Нет данных о высоте" },
+    "profile.hint": { en: "Click two or more points on the map. The profile updates as you add them.", kk: "Картада екі немесе одан көп нүктені басыңыз. Биіктік профилі нүктелер қосылған сайын жаңартылады.", ru: "Нажмите на карте две или более точек. Профиль обновляется по мере их добавления." },
+    "profile.loading": { en: "Loading elevation...", kk: "Биіктік жүктелуде...", ru: "Загрузка высот..." },
     "tool.grid": { en: "Grid", kk: "Тор", ru: "Сетка" },
     "tool.print": { en: "Print", kk: "Басып шығару", ru: "Печать" },
     "tool.sketch": { en: "Sketch", kk: "Сызу", ru: "Рисование" },

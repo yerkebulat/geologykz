@@ -2611,19 +2611,23 @@
     }
     function setOn(v) {
       on = !!v;
+      done = false;
       btn.setAttribute('aria-pressed', on ? 'true' : 'false');
       document.body.classList.toggle('profile-on', on);
       if (on) {
         clearLine();
         closePanel();
         lastData = null;
+        demCache.clear();
         try { map.doubleClickZoom.disable(); } catch (e) {}
         closeFeaturePopup(); clearSel();
         if (window.atlasSketch && window.atlasSketch.active && window.atlasSketch.active()) window.atlasSketch.setOn(false);
         if (window.atlasMeasure && window.atlasMeasure.active && window.atlasMeasure.active()) window.atlasMeasure.setOn(false);
         if (window.atlasCompare && window.atlasCompare.active && window.atlasCompare.active()) window.atlasCompare.setOn(false);
         paint();
+        showHint();
       } else {
+        computeGen++;
         try { map.doubleClickZoom.enable(); } catch (e) {}
         clearLine();
         closePanel();
@@ -2644,20 +2648,42 @@
       const fy = ((1 - Math.log(Math.tan(toRad(la)) + 1 / Math.cos(toRad(la))) / Math.PI) / 2 * t.n - t.y) * 256;
       return { x: Math.max(0, Math.min(255, Math.floor(fx))), y: Math.max(0, Math.min(255, Math.floor(fy))) };
     }
+    function pixelsFromImage(img) {
+      if (!img) return null;
+      const cv = document.createElement('canvas');
+      cv.width = 256; cv.height = 256;
+      const cx = cv.getContext('2d');
+      try {
+        cx.drawImage(img, 0, 0);
+        return cx.getImageData(0, 0, 256, 256);
+      } catch (e) { return null; }
+    }
+    function abortAfter(ms) {
+      if (typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function') return AbortSignal.timeout(ms);
+      const c = new AbortController();
+      setTimeout(() => c.abort(), ms);
+      return c.signal;
+    }
+    function imageFromUrl(url) {
+      return new Promise(resolve => {
+        const img = new Image();
+        const done = v => { clearTimeout(tm); img.onload = img.onerror = null; resolve(v); };
+        const tm = setTimeout(() => done(null), 4000);
+        img.crossOrigin = 'anonymous';
+        img.onload = () => done(img);
+        img.onerror = () => done(null);
+        img.src = url;
+      });
+    }
     function loadTile(x, y) {
       const key = Z + '/' + x + '/' + y;
       if (demCache.has(key)) return demCache.get(key);
-      const p = fetch('https://s3.amazonaws.com/elevation-tiles-prod/terrarium/' + Z + '/' + x + '/' + y + '.png')
-        .then(r => (r.ok ? r.blob() : null))
-        .then(b => (b ? createImageBitmap(b) : null))
-        .then(bmp => {
-          if (!bmp) return null;
-          const cv = document.createElement('canvas');
-          cv.width = 256; cv.height = 256;
-          const cx = cv.getContext('2d');
-          cx.drawImage(bmp, 0, 0);
-          return cx.getImageData(0, 0, 256, 256);
-        })
+      const url = 'https://s3.amazonaws.com/elevation-tiles-prod/terrarium/' + Z + '/' + x + '/' + y + '.png';
+      const p = fetch(url, { signal: abortAfter(5000) })
+        .then(r => { if (!r.ok) throw new Error('tile ' + r.status); return r.blob(); })
+        .then(b => (typeof createImageBitmap === 'function' ? createImageBitmap(b) : Promise.reject(new Error('no bitmap'))))
+        .then(pixelsFromImage)
+        .catch(() => imageFromUrl(url).then(pixelsFromImage))
         .catch(() => null);
       demCache.set(key, p);
       return p;
@@ -2691,6 +2717,16 @@
           acc += g.d;
         }
       }
+      const pending = [];
+      const seen = new Set();
+      for (const s of out) {
+        const tile = tileOf(s.lng, s.lat);
+        const k = tile.x + '/' + tile.y;
+        if (seen.has(k)) continue;
+        seen.add(k);
+        pending.push(loadTile(tile.x, tile.y));
+      }
+      await Promise.all(pending);
       for (const s of out) s.e = await elevationAt(s.lng, s.lat);
       return { samples: out, total };
     }
@@ -2742,9 +2778,9 @@
       panel.innerHTML = '<div class="profile-head"><strong>' + esc(t('tool.profile')) + '</strong>' +
         '<button type="button" class="profile-close" aria-label="' + t('profile.close') + '" title="' + t('profile.close') + '">\u00D7</button></div>' +
         '<div class="profile-stats">' +
-        '<span>' + esc(t('profile.min')) + ' <b>' + (st.min == null ? '\u2014' : fmtM(st.min)) + '</b></span>' +
-        '<span>' + esc(t('profile.max')) + ' <b>' + (st.max == null ? '\u2014' : fmtM(st.max)) + '</b></span>' +
-        '<span>' + esc(t('profile.ascent')) + ' <b>' + (st.min == null ? '\u2014' : fmtM(st.ascent)) + '</b></span>' +
+        '<span>' + esc(t('profile.min')) + ' <b>' + (st.min == null ? '-' : fmtM(st.min)) + '</b></span>' +
+        '<span>' + esc(t('profile.max')) + ' <b>' + (st.max == null ? '-' : fmtM(st.max)) + '</b></span>' +
+        '<span>' + esc(t('profile.ascent')) + ' <b>' + (st.min == null ? '-' : fmtM(st.ascent)) + '</b></span>' +
         '</div>' + chart +
         '<div class="profile-axis"><span>0 ' + esc(t('unit.km')) + '</span><span>' + (data.total / 1000).toFixed(1) + ' ' + esc(t('unit.km')) + '</span></div>';
       (document.querySelector('.wrap') || document.body).appendChild(panel);
@@ -2775,31 +2811,57 @@
         svg.addEventListener('mouseleave', () => { tip.hidden = true; if (dotMk) dotMk.remove(); });
       }
     }
-    async function finish() {
-      if (!on || done) return;
-      if (verts.length < 2) { setOn(false); return; }
-      done = true; on = false;
-      try { map.doubleClickZoom.enable(); } catch (e) {}
-      map.getCanvas().style.cursor = '';
-      btn.setAttribute('aria-pressed', 'false');
-      document.body.classList.remove('profile-on');
-      paint();
-      const data = await sampleAll();
-      if (!done) return;
-      lastData = data;
-      showPanel(data);
+    function bindClose() {
+      const c = panel && panel.querySelector('.profile-close');
+      if (c) c.addEventListener('click', () => setOn(false));
+    }
+    function showHint(msg) {
+      closePanel();
+      panel = document.createElement('div');
+      panel.id = 'profile-panel';
+      panel.className = 'profile-panel';
+      panel.innerHTML = '<div class="profile-head"><strong>' + esc(t('tool.profile')) + '</strong>' +
+        '<button type="button" class="profile-close" aria-label="' + t('profile.close') + '" title="' + t('profile.close') + '">\u00D7</button></div>' +
+        '<div class="profile-hint">' + esc(msg || t('profile.hint')) + '</div>';
+      (document.querySelector('.wrap') || document.body).appendChild(panel);
+      bindClose();
+    }
+    let computeTimer = 0, computeGen = 0;
+    function queueCompute() {
+      if (verts.length < 2) {
+        lastData = null;
+        showHint();
+        return;
+      }
+      showHint(t('profile.loading'));
+      const gen = ++computeGen;
+      clearTimeout(computeTimer);
+      computeTimer = setTimeout(() => { runCompute(gen); }, 180);
+    }
+    async function runCompute(gen) {
+      try {
+        const data = await sampleAll();
+        if (gen !== computeGen || !on) return;
+        lastData = data;
+        showPanel(data);
+      } catch (err) {
+        if (gen !== computeGen || !on) return;
+        lastData = { samples: [], total: 0 };
+        showPanel(lastData);
+      }
     }
     function handleClick(e) {
       if (!on || done) return false;
       const now = Date.now(), pt = e.point;
       if (lastPt && now - lastTap < 350 && Math.hypot(pt.x - lastPt.x, pt.y - lastPt.y) < 18) {
-        finish();
         lastTap = 0; lastPt = null;
+        if (verts.length >= 2) queueCompute();
         return true;
       }
       lastTap = now; lastPt = { x: pt.x, y: pt.y };
       verts.push([e.lngLat.lng, e.lngLat.lat]);
       paint();
+      queueCompute();
       return true;
     }
     (function bindTap(el, fn) {
@@ -2814,7 +2876,7 @@
       el.addEventListener('touchstart', ev => ev.stopPropagation(), { passive: true });
       el.addEventListener('click', run);
     })(btn, () => setOn(!on));
-    map.on('dblclick', e => { if (on && !done) { e.preventDefault(); finish(); } });
+    map.on('dblclick', e => { if (on) e.preventDefault(); });
     window.atlasProfile = {
       click: handleClick,
       active: () => on,
@@ -2823,6 +2885,7 @@
         btn.title = t('tool.profile');
         btn.setAttribute('aria-label', t('tool.profile'));
         if (lastData && panel) showPanel(lastData);
+        else if (on && panel) showHint(verts.length >= 2 ? t('profile.loading') : undefined);
       }
     };
   }
