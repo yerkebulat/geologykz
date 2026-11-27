@@ -197,10 +197,6 @@ body.panel-closed .layers-btn{left:12px}
 body.panel-closed .map-scale{left:max(12px, calc(env(safe-area-inset-left, 0px) + 12px))}
 .north-tools{display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
 .north-tools > *{pointer-events:auto}
-.measure-box .north-tools{align-items:flex-end;margin-bottom:4px}
-.plan-btn{flex:none;width:32px;height:32px;padding:0;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);cursor:pointer;box-shadow:var(--shadow);line-height:0;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-.plan-btn:focus-visible{outline:2px solid var(--text);outline-offset:2px}
-.plan-btn svg{width:18px;height:18px;display:block}
 .north{pointer-events:auto;flex:none;width:56px;height:56px;padding:0;border:0;background:none;cursor:pointer;line-height:0;overflow:visible;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
 .north-wrap{display:block;width:56px;height:56px;overflow:visible}
 .north:focus-visible{outline:2px solid var(--text);outline-offset:2px;border-radius:8px}
@@ -216,18 +212,17 @@ body.panel-closed .map-scale{left:max(12px, calc(env(safe-area-inset-left, 0px) 
   .map-scale{left:max(10px, calc(env(safe-area-inset-left, 0px) + 10px));bottom:max(12px, calc(env(safe-area-inset-bottom, 0px) + 12px))}
   body:not(.panel-closed) .map-scale{bottom:calc(46% + 8px + env(safe-area-inset-bottom, 0px))}
   .north,.north-wrap,.north-svg{width:52px;height:52px}
-  .plan-btn{width:36px;height:36px}
   .scalebar{margin-bottom:6px}
   .scalebar-labels{font-size:9px}
   .scalebar-track{height:5px}
 }
 
 /* Measure control, above zoom/geolocate, clear of scale and legend */
-.measure-box{position:absolute;right:52px;bottom:max(12px, calc(env(safe-area-inset-bottom, 0px) + 12px));z-index:3;display:flex;flex-direction:column;align-items:flex-end;gap:6px;pointer-events:none}
+.measure-box{position:absolute;right:52px;bottom:max(12px, calc(env(safe-area-inset-bottom, 0px) + 12px));z-index:3;display:flex;flex-direction:column;align-items:stretch;gap:6px;pointer-events:none}
 .measure-box button{pointer-events:auto;padding:6px 11px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);font:inherit;font-size:13px;line-height:1.5;cursor:pointer;box-shadow:var(--shadow);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .measure-box button:focus-visible{outline:2px solid var(--text);outline-offset:2px}
 .measure-btn[aria-pressed="true"],.globe-btn[aria-pressed="true"]{background:var(--text);color:#fff;border-color:var(--text)}
-.measure-actions{display:flex;gap:6px;pointer-events:auto}
+.measure-actions{display:flex;flex-direction:column;gap:6px;pointer-events:auto}
 .measure-actions button{pointer-events:auto}
 .measure-actions[hidden]{display:none}
 #measure-done[hidden]{display:none}
@@ -240,11 +235,7 @@ body.measure-on #mapview .maplibregl-canvas{touch-action:manipulation}
   .measure-box{right:50px}
   body:not(.panel-closed) .measure-box{display:none}
 }
-.map-tools-row{display:flex;align-items:center;gap:6px;pointer-events:none}
-.map-tools-row button{pointer-events:auto}
-.sketch-btn{width:34px;padding:6px;display:inline-flex;align-items:center;justify-content:center}
-.sketch-btn svg{width:18px;height:18px;display:block}
-.sketch-bar{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:4px;max-width:min(340px, calc(100vw - 72px));pointer-events:none}
+.sketch-bar{position:absolute;right:0;bottom:calc(100% + 6px);display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:4px;width:max-content;max-width:min(340px, calc(100vw - 72px));pointer-events:none}
 .sketch-bar[hidden]{display:none}
 .sketch-bar button{pointer-events:auto;width:32px;height:32px;padding:0;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);font:inherit;cursor:pointer;box-shadow:var(--shadow);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .sketch-bar button:focus-visible{outline:2px solid var(--text);outline-offset:2px}
@@ -255,7 +246,6 @@ body.measure-on #mapview .maplibregl-canvas{touch-action:manipulation}
 body.sketch-on #mapview,body.sketch-on #mapview *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 body.sketch-on #mapview .maplibregl-canvas{touch-action:manipulation}
 @media (max-width:700px){
-  .sketch-btn{width:36px;height:36px}
   .sketch-bar button{width:36px;height:36px}
 }
 

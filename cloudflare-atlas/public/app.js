@@ -1483,8 +1483,6 @@
       return !!(el.closest && el.closest('input, textarea, select, [contenteditable="true"], [contenteditable=""]'));
     }
     $('map-north').addEventListener('click', () => { resetPlanView(300); });
-    const planBtn = $('plan-btn');
-    if (planBtn) planBtn.addEventListener('click', ev => { ev.preventDefault(); resetPlanView(300); });
     document.addEventListener('keydown', ev => {
       if (ev.key !== 'd' && ev.key !== 'D') return;
       if (ev.ctrlKey || ev.metaKey || ev.altKey) return;
@@ -1810,24 +1808,16 @@
     } catch (e) {}
 
     const measureBtn = $('measure-btn');
-    const row = document.createElement('div');
-    row.className = 'map-tools-row';
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.id = 'sketch-btn';
-    btn.className = 'measure-btn sketch-btn';
+    btn.className = 'measure-btn';
     btn.setAttribute('aria-pressed', 'false');
     btn.setAttribute('aria-label', 'Sketch');
     btn.title = 'Sketch';
-    btn.innerHTML = ico.pencil;
-    if (measureBtn && measureBtn.parentNode === box) {
-      box.insertBefore(row, measureBtn);
-      row.appendChild(btn);
-      row.appendChild(measureBtn);
-    } else {
-      box.appendChild(row);
-      row.appendChild(btn);
-    }
+    btn.textContent = 'Sketch';
+    if (measureBtn && measureBtn.parentNode === box) box.insertBefore(btn, measureBtn);
+    else box.appendChild(btn);
     const bar = document.createElement('div');
     bar.id = 'sketch-bar';
     bar.className = 'sketch-bar';
@@ -1840,7 +1830,7 @@
       '<button type="button" data-width="thick" aria-label="Thick" title="Thick">' + ico.thick + '</button>' +
       '<button type="button" data-act="undo" aria-label="Undo" title="Undo">' + ico.undo + '</button>' +
       '<button type="button" data-act="clear" aria-label="Clear" title="Clear">' + ico.clear + '</button>';
-    box.insertBefore(bar, row);
+    box.insertBefore(bar, btn);
 
     function save() {
       try {
@@ -2212,12 +2202,6 @@
   initMeasure();
   initSketch();
   initGlobeMode();
-  // The plan view button and compass lead the bottom-right tool stack.
-  (function () {
-    const box = $('measure-box');
-    const nt = document.querySelector('.north-tools');
-    if (box && nt) box.insertBefore(nt, box.firstChild);
-  })();
 
   // Clicked point coordinates with a Copy button, in the feature popup or a small one of its own.
   function copyText(text) {
