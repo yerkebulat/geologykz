@@ -526,10 +526,13 @@
     btn.type = 'button';
     btn.id = 'print-btn';
     btn.className = 'measure-btn';
-    btn.textContent = 'Print';
+    btn.title = 'Print';
+    btn.setAttribute('aria-label', 'Print');
     btn.setAttribute('aria-haspopup', 'dialog');
+    btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 8.4V4.4h9.6v4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><rect x="4" y="8.4" width="16" height="7.4" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7.6 13.2h8.8v6.4H7.6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>';
     btn.addEventListener('click', openModal);
-    box.appendChild(btn);
+    var row = box.querySelector('.tools-row');
+    (row || box).appendChild(btn);
   }
   mountButton();
 })();

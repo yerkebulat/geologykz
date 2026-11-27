@@ -1,6 +1,10 @@
 (async function () {
   const $ = (id) => document.getElementById(id);
   const phone = matchMedia('(max-width:700px)').matches;
+  const ICON = {
+    globe: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.7"/><ellipse cx="12" cy="12" rx="3.7" ry="8.4" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3.6 12h16.8" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>',
+    ruler: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="8.8" width="17.6" height="6.4" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7.4 8.8v2.5M11.6 8.8v2.5M15.8 8.8v2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>'
+  };
   const cfg = await (await fetch('maps.json?v=md5', { credentials: 'same-origin' })).json();
   const all = {};
   const SITE = window.ATLAS_SITE || { mode: 'atlas' };
@@ -1509,11 +1513,12 @@
     const box = document.createElement('div');
     box.id = 'measure-box';
     box.className = 'measure-box';
-    box.innerHTML = '<button type="button" class="measure-btn" id="measure-btn" aria-pressed="false">Measure</button>' +
+    box.innerHTML = '<button type="button" class="measure-btn" id="measure-btn" aria-pressed="false" aria-label="Measure" title="Measure">' + ICON.ruler + '</button>' +
       '<div class="measure-actions" id="measure-actions" hidden>' +
       '<button type="button" id="measure-done">Done</button>' +
       '<button type="button" id="measure-clear">Clear</button>' +
       '</div>';
+    box.hidden = true;
     (document.querySelector('.wrap') || document.getElementById('mapview') || document.body).appendChild(box);
     const btn = box.querySelector('#measure-btn');
     const actions = box.querySelector('#measure-actions');
@@ -1815,7 +1820,7 @@
     btn.setAttribute('aria-pressed', 'false');
     btn.setAttribute('aria-label', 'Sketch');
     btn.title = 'Sketch';
-    btn.textContent = 'Sketch';
+    btn.innerHTML = ico.pencil;
     if (measureBtn && measureBtn.parentNode === box) box.insertBefore(btn, measureBtn);
     else box.appendChild(btn);
     const bar = document.createElement('div');
@@ -2097,8 +2102,14 @@
     btn.className = 'measure-btn globe-btn';
     btn.setAttribute('aria-pressed', 'false');
     btn.setAttribute('aria-label', '3D');
-    btn.textContent = '3D';
-    if (box) box.insertBefore(btn, box.firstChild);
+    btn.title = '3D';
+    btn.innerHTML = ICON.globe;
+    if (box) {
+      const row = document.createElement('div');
+      row.className = 'tools-row';
+      row.appendChild(btn);
+      box.appendChild(row);
+    }
 
     function persist(v) {
       try { localStorage.setItem(STORE, v ? '1' : '0'); } catch (e) {}
@@ -2276,6 +2287,8 @@
     if (fig1bOn) setFig1b(true);
     if (itmOn) setItm(true);
     syncButtons(); syncList(); renderLegend();
+    const toolsBox = $('measure-box');
+    if (toolsBox) toolsBox.hidden = false;
     setTimeout(() => { const a = document.querySelector('.maplibregl-ctrl-attrib'); if (a) a.classList.remove('maplibregl-compact-show'); if (window.atlasMeasure && window.atlasMeasure.place) window.atlasMeasure.place(); }, 300);
   });
 })();

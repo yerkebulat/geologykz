@@ -217,13 +217,24 @@ body.panel-closed .map-scale{left:max(12px, calc(env(safe-area-inset-left, 0px) 
   .scalebar-track{height:5px}
 }
 
-/* Measure control, above zoom/geolocate, clear of scale and legend */
-.measure-box{position:absolute;right:52px;bottom:max(12px, calc(env(safe-area-inset-bottom, 0px) + 12px));z-index:3;display:flex;flex-direction:column;align-items:stretch;gap:6px;pointer-events:none}
-.measure-box button{pointer-events:auto;padding:6px 11px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);font:inherit;font-size:13px;line-height:1.5;cursor:pointer;box-shadow:var(--shadow);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+/* Map tools as separate floating buttons: 3D, Sketch, Measure, Print. Hidden until the map loads. */
+.measure-box{position:absolute;right:52px;bottom:max(12px, calc(env(safe-area-inset-bottom, 0px) + 12px));z-index:3;display:flex;flex-direction:column;align-items:flex-end;gap:6px;pointer-events:none}
+.measure-box[hidden]{display:none}
+.measure-box button{pointer-events:auto;width:40px;height:40px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--text);font:inherit;font-size:13px;cursor:pointer;box-shadow:var(--shadow);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;animation:tool-btn-in .45s cubic-bezier(.22,1,.36,1) both;transition:background-color .18s ease,color .18s ease,transform .16s ease,box-shadow .18s ease}
+.measure-box > button:nth-of-type(2){animation-delay:50ms}
+.tools-row{display:flex;gap:6px;pointer-events:none}
+.tools-row button{pointer-events:auto}
+.tools-row > button:nth-of-type(1){animation-delay:100ms}
+.tools-row > button:nth-of-type(2){animation-delay:150ms}
+.measure-box button svg{width:19px;height:19px;display:block}
+.measure-box button:hover{background:var(--soft);transform:translateY(-1px);box-shadow:0 2px 4px rgba(0,0,0,.05),0 6px 20px rgba(0,0,0,.09)}
+.measure-box button:active{transform:translateY(0) scale(.93)}
 .measure-box button:focus-visible{outline:2px solid var(--text);outline-offset:2px}
-.measure-btn[aria-pressed="true"],.globe-btn[aria-pressed="true"]{background:var(--text);color:#fff;border-color:var(--text)}
+.measure-box button[aria-pressed="true"]{background:var(--text);color:#fff;border-color:var(--text)}
+@keyframes tool-btn-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .measure-actions{display:flex;flex-direction:column;gap:6px;pointer-events:auto}
-.measure-actions button{pointer-events:auto}
+.measure-actions button{height:30px;font-size:12.5px}
+.measure-actions button:hover{transform:none}
 .measure-actions[hidden]{display:none}
 #measure-done[hidden]{display:none}
 .measure-label{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;box-shadow:var(--shadow);color:var(--text);font:13px/1.4 var(--sans);white-space:nowrap;pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:manipulation}
@@ -235,13 +246,14 @@ body.measure-on #mapview .maplibregl-canvas{touch-action:manipulation}
   .measure-box{right:50px}
   body:not(.panel-closed) .measure-box{display:none}
 }
-.sketch-bar{position:absolute;right:0;bottom:calc(100% + 6px);display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:4px;width:max-content;max-width:min(340px, calc(100vw - 72px));pointer-events:none}
+.sketch-bar{position:absolute;right:0;bottom:calc(100% + 8px);display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:2px;width:max-content;max-width:min(320px, calc(100vw - 72px));pointer-events:none;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:4px}
 .sketch-bar[hidden]{display:none}
-.sketch-bar button{pointer-events:auto;width:32px;height:32px;padding:0;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--text);font:inherit;cursor:pointer;box-shadow:var(--shadow);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
-.sketch-bar button:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+.sketch-bar button{pointer-events:auto;width:32px;height:32px;padding:0;display:flex;align-items:center;justify-content:center;border:0;border-radius:8px;background:none;color:var(--text);font:inherit;cursor:pointer;transition:background-color .18s ease,color .18s ease}
+.sketch-bar button:hover{background:var(--soft)}
+.sketch-bar button:focus-visible{outline:2px solid var(--text);outline-offset:-2px}
 .sketch-bar button svg{width:16px;height:16px;display:block}
-.sketch-bar button[aria-pressed="true"]{background:var(--text);color:#fff;border-color:var(--text)}
-.sketch-bar .sketch-color[aria-pressed="true"]{background:var(--card);color:var(--text);box-shadow:inset 0 0 0 2px var(--text)}
+.sketch-bar button[aria-pressed="true"]{background:var(--text);color:#fff}
+.sketch-bar .sketch-color[aria-pressed="true"]{background:none;box-shadow:inset 0 0 0 2px var(--text)}
 .sketch-sw{width:14px;height:14px;border-radius:50%;border:1px solid rgba(0,0,0,.28);display:block}
 body.sketch-on #mapview,body.sketch-on #mapview *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 body.sketch-on #mapview .maplibregl-canvas{touch-action:manipulation}
@@ -388,4 +400,6 @@ a.about-cta-primary{color:var(--paper)}
 @media (prefers-reduced-motion:reduce){
   .about-block,.about-plate img{opacity:1;transform:none;transition:none}
   html{scroll-behavior:auto}
+  .measure-box button{animation:none}
+  .measure-box button,.sketch-bar button{transition:none}
 }
