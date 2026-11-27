@@ -700,6 +700,18 @@
       if (p.mt) h += kv(t('kv.tonnage'), String(p.mt) + ' Mt');
       return h + '</div>';
     }
+    if (ov && Array.isArray(ov.popup)) {
+      h += `<div class="pp-theme">${esc(pickName(ov, 'title'))}</div>`;
+      if (p.n) h += `<div class="pp-l">${esc(p.n)}</div>`;
+      ov.popup.forEach(item => {
+        const label = item.k ? t(item.k) : (item.l || '');
+        let val = p[item.p];
+        if (val == null || val === '') return;
+        if (item.u) val = String(val) + ' ' + t(item.u);
+        h += kv(label, val);
+      });
+      return h + '</div>';
+    }
     if (ov && ov.kind === 'point') {
       const d = depositFields(p);
       h += `<div class="pp-theme">${esc(pickName(ov, 'title'))}</div>`;
@@ -1567,8 +1579,8 @@
     if (note) h += `<div class="lg-note">${esc(note)}</div>`;
     if (m.legendRamp) {
       const ramp = Object.assign({}, m.legendRamp);
-      if (m.id === 'seismic-hazard-pga475') ramp.title = t('ramp.pga');
-      if (m.id === 'emag2-anomaly') ramp.title = t('ramp.emag');
+      ramp.title = pickName(ramp, 'title') || (m.id === 'seismic-hazard-pga475' ? t('ramp.pga') : m.id === 'emag2-anomaly' ? t('ramp.emag') : ramp.title);
+      if (ramp.unit) ramp.unit = pickName(ramp, 'unit') || ramp.unit;
       h += legendRampHtml(ramp);
     }
     const byT = {};
