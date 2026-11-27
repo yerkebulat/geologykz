@@ -2212,6 +2212,12 @@
   initMeasure();
   initSketch();
   initGlobeMode();
+  // The plan view button and compass lead the bottom-right tool stack.
+  (function () {
+    const box = $('measure-box');
+    const nt = document.querySelector('.north-tools');
+    if (box && nt) box.insertBefore(nt, box.firstChild);
+  })();
 
   // Clicked point coordinates with a Copy button, in the feature popup or a small one of its own.
   function copyText(text) {
