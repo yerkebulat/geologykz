@@ -329,6 +329,26 @@ body.panel-closed .map-scale{left:max(12px, calc(env(safe-area-inset-left, 0px) 
 .bm-save{display:flex;gap:4px;margin-top:6px;padding-top:6px;border-top:1px solid var(--line)}
 .bm-name{flex:1;min-width:0;font:inherit;font-size:12px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text)}
 .bm-add{flex:none;font:inherit;font-size:12px;padding:5px 10px;border:1px solid var(--text);border-radius:8px;background:var(--text);color:#fff;cursor:pointer}
+.gps-bar{position:absolute;right:0;bottom:calc(100% + 8px);z-index:4;width:min(260px, calc(100vw - 72px));max-height:min(50vh, 380px);overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:8px;pointer-events:auto}
+.gps-bar[hidden]{display:none}
+.gps-status{font-size:11px;color:var(--muted);font-family:var(--mono);margin:0 0 6px;min-height:14px}
+.gps-log{display:flex;gap:4px}
+.gps-note{flex:1;min-width:0;font:inherit;font-size:12px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text)}
+.gps-log-btn{flex:none;font:inherit;font-size:12px;padding:5px 9px;border:1px solid var(--text);border-radius:8px;background:var(--text);color:#fff;cursor:pointer}
+.gps-log-btn:disabled{opacity:.5;cursor:default}
+.gps-list{margin-top:6px;display:flex;flex-direction:column}
+.gps-row{display:flex;align-items:center;gap:6px;font-size:11.5px;padding:4px 2px;border-top:1px solid var(--line)}
+.gps-row-t{flex:none;color:var(--muted);font-family:var(--mono);font-size:10.5px}
+.gps-row-n{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gps-del{flex:none;width:20px;height:20px;border:0;border-radius:6px;background:none;color:var(--muted);font:inherit;font-size:14px;line-height:1;cursor:pointer}
+.gps-del:hover{background:var(--soft);color:var(--text)}
+.gps-actions{display:flex;gap:4px;margin-top:6px}
+.gps-actions button{flex:1;font:inherit;font-size:11.5px;padding:4px 6px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--text);cursor:pointer}
+.gps-actions button:hover{background:var(--soft)}
+.gps-mk{position:relative;width:14px;height:14px}
+.gps-mk-dot{position:absolute;inset:0;border-radius:50%;background:#1c1917;border:2.5px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4)}
+.gps-arrow{position:absolute;left:50%;top:-13px;width:0;height:0;margin-left:-6px;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:11px solid #1c1917;transform-origin:50% 100%;filter:drop-shadow(0 1px 1px rgba(0,0,0,.3));display:none}
+.gps-mk.has-head .gps-arrow{display:block}
 @media (max-width:700px){
   .compare-bar{gap:6px;padding:5px 8px;top:10px;width:calc(100vw - 24px)}
   .compare-bar label{flex:1 1 calc(50% - 6px)}

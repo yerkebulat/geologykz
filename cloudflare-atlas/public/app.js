@@ -29,6 +29,7 @@
     chart: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 16.8 9 10.2l4 3.6 7.5-7.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 20.5h17" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>',
     swipe: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 4.5v15" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8.4 9.5 6.4 12l2 2.5M15.6 9.5 17.6 12l-2 2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     bookmark: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5h10A1.5 1.5 0 0 1 18.5 6v14L12 15.8 5.5 20V6A1.5 1.5 0 0 1 7 4.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>',
+    gps: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="7.6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2.2 3.4"/><path d="M12 2.4v2.4M12 19.2v2.4M2.4 12h2.4M19.2 12h2.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
     download: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M8 11.5 12 15.5l4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 19.2h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>'
   };
   const SITE = window.ATLAS_SITE || { mode: 'atlas' };
@@ -121,7 +122,6 @@
     attributionControl: false, maxZoom: 19, maxPitch: 0
   });
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
-  map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: true }, trackUserLocation: true, showAccuracyCircle: true, showUserLocation: true }), 'bottom-right');
   map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
 
   // Basemap: OpenFreeMap light (default) or a chosen satellite source, with the light style's labels on top (except Google Hybrid, which has its own).
@@ -3790,6 +3790,282 @@
     window.atlasBookmarks = { relabel: () => { btn.title = t('tool.bookmarks'); btn.setAttribute('aria-label', t('tool.bookmarks')); if (bar && !bar.hidden) renderBar(); } };
   }
 
+  // ---- field GPS ---------------------------------------------------------
+  const GPS_STORE = 'atlas-gps-points-v1';
+
+  function initGps() {
+    const box = $('measure-box');
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.id = 'gps-btn';
+    btn.className = 'measure-btn';
+    btn.title = t('tool.gps');
+    btn.setAttribute('aria-label', t('tool.gps'));
+    btn.setAttribute('aria-pressed', 'false');
+    btn.innerHTML = ICON.gps;
+    if (box) {
+      let row = document.getElementById('profile-row');
+      if (!row) {
+        row = document.createElement('div');
+        row.id = 'profile-row';
+        row.className = 'profile-row';
+        const toolsRow = box.querySelector('.tools-row');
+        if (toolsRow) box.insertBefore(row, toolsRow); else box.appendChild(row);
+      }
+      row.appendChild(btn);
+    }
+    let gpsOn = false, watchId = null, lastFix = null, follow = true;
+    let panel = null, listEl = null, statusEl = null, noteInp = null, logBtn = null;
+    let dotMarker = null;
+    let points = [];
+    try {
+      const raw = JSON.parse(localStorage.getItem(GPS_STORE) || '[]');
+      if (Array.isArray(raw)) points = raw.filter(p => p && isFinite(p.lat) && isFinite(p.lng));
+    } catch (e) { points = []; }
+    function savePoints() { try { localStorage.setItem(GPS_STORE, JSON.stringify(points)); } catch (e) {} }
+    function ensurePts() {
+      if (!map.getStyle()) return;
+      if (!map.getSource('atlas-gps-pts')) map.addSource('atlas-gps-pts', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+      if (!map.getLayer('atlas-gps-dots')) {
+        const before = firstSymbolLayer();
+        map.addLayer({ id: 'atlas-gps-dots', type: 'circle', source: 'atlas-gps-pts',
+          paint: { 'circle-radius': 4.5, 'circle-color': '#1c1917', 'circle-stroke-color': '#fafaf9', 'circle-stroke-width': 1.6 } }, before);
+      }
+    }
+    function drawPoints() {
+      ensurePts();
+      const src = map.getSource('atlas-gps-pts');
+      if (src) src.setData({ type: 'FeatureCollection', features: points.map(p => ({ type: 'Feature', properties: { id: p.id }, geometry: { type: 'Point', coordinates: [p.lng, p.lat] } })) });
+    }
+    function ensureAcc() {
+      if (!map.getStyle()) return;
+      if (!map.getSource('atlas-gps')) map.addSource('atlas-gps', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+      if (!map.getLayer('atlas-gps-acc')) {
+        const before = firstSymbolLayer();
+        map.addLayer({ id: 'atlas-gps-acc', type: 'circle', source: 'atlas-gps',
+          paint: { 'circle-radius': 20, 'circle-color': 'rgba(28,25,23,.08)', 'circle-stroke-color': 'rgba(28,25,23,.28)', 'circle-stroke-width': 1 } }, before);
+      }
+    }
+    function drawAccuracy() {
+      if (!lastFix || !gpsOn) return;
+      ensureAcc();
+      const src = map.getSource('atlas-gps');
+      if (src) src.setData({ type: 'FeatureCollection', features: [{ type: 'Feature', properties: {}, geometry: { type: 'Point', coordinates: [lastFix.lng, lastFix.lat] } }] });
+      const mpp = 156543.03392 * Math.cos(lastFix.lat * Math.PI / 180) / Math.pow(2, map.getZoom());
+      const r = Math.max(4, (lastFix.acc || 0) / Math.max(0.01, mpp));
+      if (map.getLayer('atlas-gps-acc')) map.setPaintProperty('atlas-gps-acc', 'circle-radius', r);
+    }
+    function placeMarker() {
+      if (!lastFix) return;
+      if (!dotMarker) {
+        const el = document.createElement('div');
+        el.className = 'gps-mk';
+        el.innerHTML = '<span class="gps-arrow"></span><span class="gps-mk-dot"></span>';
+        dotMarker = new maplibregl.Marker({ element: el, anchor: 'center' });
+      }
+      dotMarker.setLngLat([lastFix.lng, lastFix.lat]).addTo(map);
+      const el = dotMarker.getElement();
+      const arrow = el.querySelector('.gps-arrow');
+      const hasHead = lastFix.heading != null;
+      el.classList.toggle('has-head', hasHead);
+      if (arrow && hasHead) arrow.style.transform = 'rotate(' + lastFix.heading + 'deg)';
+    }
+    function status(text) { if (statusEl) statusEl.textContent = text; }
+    function fmtTime(t) { try { return new Date(t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); } catch (e) { return ''; } }
+    function renderList() {
+      if (!listEl) return;
+      listEl.innerHTML = points.slice().reverse().map(p =>
+        '<div class="gps-row"><span class="gps-row-t">' + esc(fmtTime(p.t)) + '</span>' +
+        '<span class="gps-row-n">' + esc(p.note || p.unit || '') + '</span>' +
+        '<button type="button" class="gps-del" data-del="' + esc(p.id) + '" aria-label="' + esc(t('gps.delete')) + '">\u00D7</button></div>').join('');
+    }
+    function unitAt(lng, lat) {
+      try {
+        const keys = [...new Set(activeKeys().concat(pinnedKeys()))].filter(keyOn);
+        const lids = [];
+        keys.forEach(k => keyLayers(k).forEach(id => {
+          const l = map.getLayer(id);
+          if (l && (l.type === 'fill' || l.type === 'line')) lids.push(id);
+        }));
+        if (!lids.length) return '';
+        const feats = map.queryRenderedFeatures(map.project([lng, lat]), { layers: lids }) || [];
+        for (const f of feats) {
+          const lid = f.layer && f.layer.id;
+          const k = keys.find(key => keyLayers(key).includes(lid));
+          if (!k) continue;
+          const p = f.properties || {};
+          if (k.startsWith('ov:')) {
+            const m = ovs[k.slice(3)];
+            if (!m) continue;
+            return (pickName(m, 'title') + (p.l ? ' \u00B7 ' + p.l : '')).slice(0, 120);
+          }
+          if (k.startsWith('m:')) {
+            const m = all[k.slice(2)];
+            if (!m) continue;
+            const theme = (m.themes && m.themes[p.t]) || pickName(m, 'title');
+            return (theme + (p.l ? ' \u00B7 ' + p.l : '')).slice(0, 120);
+          }
+        }
+      } catch (e) {}
+      return '';
+    }
+    function logPoint() {
+      if (!lastFix) return;
+      const note = String((noteInp && noteInp.value) || '').trim().slice(0, 120);
+      points.push({
+        id: 'p' + Date.now().toString(36),
+        lat: +lastFix.lat.toFixed(6),
+        lng: +lastFix.lng.toFixed(6),
+        acc: Math.round(lastFix.acc || 0),
+        t: Date.now(),
+        note: note,
+        unit: unitAt(lastFix.lng, lastFix.lat)
+      });
+      savePoints();
+      drawPoints();
+      renderList();
+      if (noteInp) noteInp.value = '';
+    }
+    function csvCell(v) {
+      const s = String(v == null ? '' : v);
+      return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    }
+    function download(blob, name) {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => { try { URL.revokeObjectURL(a.href); } catch (e) {} }, 4000);
+    }
+    function exportGps(kind) {
+      const base = 'kzgeology-gps-' + new Date().toISOString().slice(0, 10);
+      if (!points.length) return;
+      if (kind === 'geojson') {
+        const fc = {
+          type: 'FeatureCollection',
+          features: points.map(p => ({
+            type: 'Feature',
+            properties: { time: new Date(p.t).toISOString(), accuracy: p.acc, note: p.note || '', unit: p.unit || '' },
+            geometry: { type: 'Point', coordinates: [p.lng, p.lat] }
+          }))
+        };
+        download(new Blob([JSON.stringify(fc, null, 2)], { type: 'application/geo+json' }), base + '.geojson');
+      } else {
+        const rows = [['lat', 'lon', 'accuracy_m', 'time', 'note', 'unit']].concat(points.map(p => [
+          p.lat, p.lng, p.acc, new Date(p.t).toISOString(), p.note || '', p.unit || ''
+        ]));
+        const csv = rows.map(r => r.map(csvCell).join(',')).join('\r\n');
+        download(new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8' }), base + '.csv');
+      }
+    }
+    function buildPanel() {
+      if (panel) return;
+      panel = document.createElement('div');
+      panel.id = 'gps-bar';
+      panel.className = 'gps-bar';
+      panel.hidden = true;
+      panel.innerHTML = '<div class="gps-status"></div>' +
+        '<div class="gps-log"><input type="text" class="gps-note" maxlength="120" placeholder="' + esc(t('gps.note')) + '" aria-label="' + esc(t('gps.note')) + '">' +
+        '<button type="button" class="gps-log-btn" disabled>' + esc(t('gps.log')) + '</button></div>' +
+        '<div class="gps-list"></div>' +
+        '<div class="gps-actions"><button type="button" data-exp="csv">' + esc(t('gps.csv')) + '</button><button type="button" data-exp="geojson">' + esc(t('gps.geojson')) + '</button></div>';
+      if (box) box.appendChild(panel); else (document.querySelector('.wrap') || document.body).appendChild(panel);
+      statusEl = panel.querySelector('.gps-status');
+      listEl = panel.querySelector('.gps-list');
+      noteInp = panel.querySelector('.gps-note');
+      logBtn = panel.querySelector('.gps-log-btn');
+      logBtn.addEventListener('click', logPoint);
+      panel.addEventListener('click', ev => {
+        const del = ev.target.closest('.gps-del');
+        if (del) {
+          points = points.filter(p => p.id !== del.getAttribute('data-del'));
+          savePoints();
+          drawPoints();
+          renderList();
+          return;
+        }
+        const ex = ev.target.closest('[data-exp]');
+        if (ex) exportGps(ex.getAttribute('data-exp'));
+      });
+    }
+    function startWatch() {
+      if (!navigator.geolocation) { status(t('gps.denied')); return; }
+      gpsOn = true;
+      follow = true;
+      btn.setAttribute('aria-pressed', 'true');
+      buildPanel();
+      panel.hidden = false;
+      status(t('gps.waiting'));
+      renderList();
+      drawPoints();
+      if (logBtn) logBtn.disabled = true;
+      watchId = navigator.geolocation.watchPosition(onFix, onErr, { enableHighAccuracy: true, maximumAge: 5000, timeout: 20000 });
+    }
+    function stopWatch() {
+      gpsOn = false;
+      btn.setAttribute('aria-pressed', 'false');
+      if (watchId != null && navigator.geolocation) { try { navigator.geolocation.clearWatch(watchId); } catch (e) {} }
+      watchId = null;
+      lastFix = null;
+      if (dotMarker) { dotMarker.remove(); dotMarker = null; }
+      if (map.getLayer('atlas-gps-acc')) map.removeLayer('atlas-gps-acc');
+      if (map.getSource('atlas-gps')) map.removeSource('atlas-gps');
+      if (panel) panel.hidden = true;
+    }
+    function onFix(pos) {
+      if (!pos || !pos.coords) return;
+      const c = pos.coords;
+      lastFix = {
+        lat: c.latitude,
+        lng: c.longitude,
+        acc: c.accuracy || 0,
+        heading: (c.heading != null && isFinite(c.heading)) ? c.heading : null
+      };
+      placeMarker();
+      drawAccuracy();
+      status(Math.round(lastFix.acc) + ' ' + t('unit.m'));
+      if (logBtn) logBtn.disabled = false;
+      if (follow) map.easeTo({ center: [lastFix.lng, lastFix.lat], duration: 600 });
+    }
+    function onErr(err) {
+      status(t('gps.denied'));
+      if (logBtn) logBtn.disabled = true;
+    }
+    (function bindTap(el, fn) {
+      let last = 0;
+      const run = ev => {
+        ev.preventDefault(); ev.stopPropagation();
+        const now = Date.now();
+        if (now - last < 400) return;
+        last = now; fn();
+      };
+      el.addEventListener('pointerdown', ev => ev.stopPropagation());
+      el.addEventListener('touchstart', ev => ev.stopPropagation(), { passive: true });
+      el.addEventListener('click', run);
+    })(btn, () => { if (gpsOn) stopWatch(); else startWatch(); });
+    map.on('zoom', drawAccuracy);
+    map.on('dragstart', () => { if (gpsOn) follow = false; });
+    map.on('zoomstart', () => { if (gpsOn) follow = false; });
+    map.on('style.load', () => { ensurePts(); drawPoints(); });
+    ensurePts();
+    drawPoints();
+    window.atlasGps = {
+      relabel: () => {
+        btn.title = t('tool.gps');
+        btn.setAttribute('aria-label', t('tool.gps'));
+        if (panel) {
+          const note = panel.querySelector('.gps-note');
+          if (note) { note.placeholder = t('gps.note'); note.setAttribute('aria-label', t('gps.note')); }
+          const lg = panel.querySelector('.gps-log-btn');
+          if (lg) lg.textContent = t('gps.log');
+          renderList();
+        }
+      }
+    };
+  }
+
   function initGoTo() {
     const input = $('goto-input');
     const btn = $('goto-btn');
@@ -3986,6 +4262,7 @@
   initProfile();
   initCompare();
   initBookmarks();
+  initGps();
   initGoTo();
 
   // Clicked point coordinates with a Copy button, in the feature popup or a small one of its own.
@@ -4143,6 +4420,7 @@
     if (skb) { skb.title = t('tool.sketch'); skb.setAttribute('aria-label', t('tool.sketch')); }
     if (window.atlasProfile && window.atlasProfile.relabel) window.atlasProfile.relabel();
     if (window.atlasBookmarks && window.atlasBookmarks.relabel) window.atlasBookmarks.relabel();
+    if (window.atlasGps && window.atlasGps.relabel) window.atlasGps.relabel();
     const cbn = $('compare-btn');
     if (cbn) { cbn.title = t('tool.compare'); cbn.setAttribute('aria-label', t('tool.compare')); }
     const bar = $('sketch-bar');
