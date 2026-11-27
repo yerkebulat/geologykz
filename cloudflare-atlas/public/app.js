@@ -1,6 +1,26 @@
 (async function () {
   const $ = (id) => document.getElementById(id);
   const phone = matchMedia('(max-width:700px)').matches;
+  // Shared view state, read once from the URL hash: #map=z/lat/lng/bearing&ov=..&m=..&l=..&bm=sat&sat=esri&g=1
+  const HASH = (function () {
+    const raw = (location.hash || '').replace(/^#/, '');
+    if (!raw) return null;
+    const s = new URLSearchParams(raw);
+    const out = { view: null, ov: null, mains: null, special: null, bm: null, sat: null, grid: s.get('g') === '1' };
+    const mv = s.get('map');
+    if (mv) {
+      const p = mv.split('/').map(Number);
+      if (p.length >= 3 && isFinite(p[0]) && isFinite(p[1]) && isFinite(p[2])) {
+        out.view = { zoom: p[0], lat: p[1], lng: p[2], bearing: isFinite(p[3]) ? p[3] : 0 };
+      }
+    }
+    if (s.has('ov')) out.ov = (s.get('ov') || '').split(',').filter(Boolean);
+    if (s.has('m')) out.mains = (s.get('m') || '').split(',').filter(Boolean);
+    if (s.has('l')) out.special = (s.get('l') || '').split(',').filter(Boolean);
+    if (s.get('bm') === 'sat' || s.get('bm') === 'map') out.bm = s.get('bm');
+    if (s.get('sat')) out.sat = s.get('sat');
+    return out;
+  })();
   const ICON = {
     globe: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.7"/><ellipse cx="12" cy="12" rx="3.7" ry="8.4" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3.6 12h16.8" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>',
     ruler: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="8.8" width="17.6" height="6.4" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7.4 8.8v2.5M11.6 8.8v2.5M15.8 8.8v2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>'
@@ -55,11 +75,18 @@
   } catch (e) {
     DEFAULT_OVERLAYS.forEach(id => { if (ovs[id]) ovOn.add(id); });
   }
+  if (HASH && HASH.ov) {
+    ovOn.clear();
+    HASH.ov.forEach(id => { if (ovs[id]) ovOn.add(id); });
+  }
 
   const map = window.atlasMap = new maplibregl.Map({
     container: 'mapview',
     style: 'https://tiles.openfreemap.org/styles/positron',
-    center: [66, 45], zoom: phone ? 2.6 : 3.6, attributionControl: false, maxZoom: 19, maxPitch: 0
+    center: HASH && HASH.view ? [HASH.view.lng, HASH.view.lat] : [66, 45],
+    zoom: HASH && HASH.view ? HASH.view.zoom : (phone ? 2.6 : 3.6),
+    bearing: HASH && HASH.view ? HASH.view.bearing : 0,
+    attributionControl: false, maxZoom: 19, maxPitch: 0
   });
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
   map.addControl(new maplibregl.GeolocateControl({ positionOptions: { enableHighAccuracy: true }, trackUserLocation: true, showAccuracyCircle: true, showUserLocation: true }), 'bottom-right');
@@ -103,6 +130,8 @@
     const v = localStorage.getItem(SAT_STORE);
     if (v && SAT[v]) satKind = v;
   } catch (e) {}
+  if (HASH && HASH.bm) basemap = HASH.bm;
+  if (HASH && HASH.sat && SAT[HASH.sat]) satKind = HASH.sat;
   function isBasemapLayer(id) {
     return id && id !== 'sat' && !/^(atlas-|eqazyna-|process-|geo200-)/.test(id);
   }
@@ -258,7 +287,11 @@
   const mainsOn = new Set();
   (Array.isArray(LS.mains) ? LS.mains : (() => { try { const v = localStorage.getItem(MAP_STORE); return v ? [v] : []; } catch (e) { return []; } })())
     .forEach(id => { if (all[id]) mainsOn.add(id); });
-  function saveLayers() { try { localStorage.setItem(LAYER_STORE, JSON.stringify({ order, op: layerOp, hid: [...layerHid], mains: [...mainsOn], fig1b: fig1bOn, itm: itmOn, box: actOpen })); } catch (e) {} }
+  if (HASH && HASH.mains) {
+    mainsOn.clear();
+    HASH.mains.forEach(id => { if (all[id]) mainsOn.add(id); });
+  }
+  function saveLayers() { try { localStorage.setItem(LAYER_STORE, JSON.stringify({ order, op: layerOp, hid: [...layerHid], mains: [...mainsOn], fig1b: fig1bOn, itm: itmOn, box: actOpen })); } catch (e) {} queueHash(); }
   function opOf(k) { const v = Number(layerOp[k]); return isFinite(v) && v >= 0 && v <= 1 ? v : 0.85; }
   window.atlasLayerOpacity = opOf;
   const layerLoad = new Set();
@@ -1295,7 +1328,7 @@
       ['#1f8a3c', 'Trace of suture zones', 'line'], ['#b0177f', 'Strike-slip faults or shear zones', 'line']
     ]
   };
-  let fig1bOn = !!LS.fig1b;
+  let fig1bOn = HASH && HASH.special ? HASH.special.includes('fig1b') : !!LS.fig1b;
   function fig1bLegendHtml(solo) {
     let h = solo ? '' : `<div class="lg-map">${esc(FIG1B.title)}</div>`;
     FIG1B.legend.forEach(e => { h += `<div class="lg-row"><span class="sw ${e[2] || ''}" style="background:${esc(e[0])}"></span><span>${esc(e[1])}</span></div>`; });
@@ -1325,7 +1358,7 @@
     title: 'Itmurundy zone', cite: 'Safonova et al. 2024',
     coords: [[76.007306, 46.985058], [76.869677, 46.985058], [76.869677, 46.665591], [76.007306, 46.665591]]
   };
-  let itmOn = !!LS.itm;
+  let itmOn = HASH && HASH.special ? HASH.special.includes('itm') : !!LS.itm;
   function itmLegendHtml(solo) {
     let h = solo ? '' : `<div class="lg-map">${esc(ITM.title)}</div>`;
     [['#e11d2a', 'U-Pb dated granitoids'], ['#facc15', 'U-Pb dated sandstones'], ['#111111', 'Microfossil sites']]
@@ -2066,6 +2099,183 @@
     window.atlasSketch = { setOn, active: () => on, redraw: paint, tool: () => tool };
   }
 
+  // ---- shared links, coordinate go-to, and grid --------------------------
+  let gridOn = !!(HASH && HASH.grid);
+  if (!(HASH && HASH.grid)) {
+    try { gridOn = localStorage.getItem('atlas-grid-v1') === '1'; } catch (e) {}
+  }
+  const GRID_STEPS = [1 / 60, 2 / 60, 5 / 60, 0.1, 0.2, 0.25, 0.5, 1, 2, 5, 10, 15, 30];
+  const GRID_SRC = 'atlas-grid';
+  function gridFmt(v, isLat, step) {
+    const a = Math.abs(v);
+    let d = Math.floor(a + 1e-9);
+    let m = Math.round((a - d) * 60);
+    if (m >= 60) { d += 1; m = 0; }
+    let s = d + '\u00B0';
+    if (step < 1) s += (m < 10 ? '0' : '') + m + '\u2032';
+    return s + (isLat ? (v >= 0 ? 'N' : 'S') : (v >= 0 ? 'E' : 'W'));
+  }
+  function gridFeatures() {
+    const b = map.getBounds();
+    const west = b.getWest(), east = b.getEast(), south = b.getSouth(), north = b.getNorth();
+    const spanX = east - west;
+    const feats = [];
+    if (!(spanX > 0) || !isFinite(spanX)) return { type: 'FeatureCollection', features: feats };
+    const degPerPx = spanX / Math.max(1, map.getContainer().clientWidth);
+    let step = GRID_STEPS[GRID_STEPS.length - 1];
+    for (let i = 0; i < GRID_STEPS.length; i++) {
+      if (GRID_STEPS[i] / degPerPx >= 90) { step = GRID_STEPS[i]; break; }
+    }
+    const N = 24;
+    for (let lon = Math.ceil((west - 1e-9) / step) * step; lon <= east + 1e-9; lon += step) {
+      const cs = [];
+      for (let j = 0; j <= N; j++) cs.push([lon, south + (north - south) * j / N]);
+      feats.push({ type: 'Feature', properties: { t: gridFmt(lon, false, step) }, geometry: { type: 'LineString', coordinates: cs } });
+    }
+    for (let lat = Math.ceil((south - 1e-9) / step) * step; lat <= north + 1e-9; lat += step) {
+      const cs = [];
+      for (let j = 0; j <= N; j++) cs.push([west + (east - west) * j / N, lat]);
+      feats.push({ type: 'Feature', properties: { t: gridFmt(lat, true, step) }, geometry: { type: 'LineString', coordinates: cs } });
+    }
+    return { type: 'FeatureCollection', features: feats };
+  }
+  function gridEnsure() {
+    if (!map.getStyle()) return;
+    if (!map.getSource(GRID_SRC)) map.addSource(GRID_SRC, { type: 'geojson', data: gridFeatures() });
+    const before = firstSymbolLayer();
+    if (!map.getLayer('atlas-grid-line')) map.addLayer({
+      id: 'atlas-grid-line', type: 'line', source: GRID_SRC,
+      paint: { 'line-color': 'rgba(28,25,23,.4)', 'line-width': 1 }
+    }, before);
+    if (!map.getLayer('atlas-grid-label')) map.addLayer({
+      id: 'atlas-grid-label', type: 'symbol', source: GRID_SRC,
+      layout: {
+        'symbol-placement': 'line', 'text-field': ['get', 't'], 'text-font': ['Noto Sans Regular'],
+        'text-size': 11, 'symbol-spacing': 260, 'text-padding': 2, 'text-keep-upright': true
+      },
+      paint: { 'text-color': '#1c1917', 'text-halo-color': '#fafaf9', 'text-halo-width': 1.2 }
+    }, before);
+  }
+  function gridUpdate() {
+    if (!gridOn || !map.isStyleLoaded()) return;
+    gridEnsure();
+    const src = map.getSource(GRID_SRC);
+    if (src) src.setData(gridFeatures());
+  }
+  function setGrid(on) {
+    gridOn = !!on;
+    try { localStorage.setItem('atlas-grid-v1', gridOn ? '1' : '0'); } catch (e) {}
+    const btn = $('grid-toggle');
+    if (btn) { btn.setAttribute('aria-pressed', String(gridOn)); btn.classList.toggle('on', gridOn); }
+    if (gridOn) gridUpdate();
+    else {
+      ['atlas-grid-label', 'atlas-grid-line'].forEach(id => { if (map.getLayer(id)) map.removeLayer(id); });
+      if (map.getSource(GRID_SRC)) map.removeSource(GRID_SRC);
+    }
+    queueHash();
+  }
+  function initGrid() {
+    const box = $('measure-box');
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.id = 'grid-toggle';
+    btn.className = 'measure-btn';
+    btn.title = 'Grid';
+    btn.setAttribute('aria-label', 'Grid');
+    btn.setAttribute('aria-pressed', String(gridOn));
+    btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 4.5h15v15h-15z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 4.5v15M14.5 4.5v15M4.5 9.5h15M4.5 14.5h15" fill="none" stroke="currentColor" stroke-width="1.2" stroke-opacity=".55"/></svg>';
+    btn.addEventListener('click', () => setGrid(!gridOn));
+    if (box) {
+      const row = box.querySelector('.tools-row');
+      const drawRow = document.createElement('div');
+      drawRow.className = 'draw-row';
+      const measureBtn = $('measure-btn');
+      if (measureBtn && measureBtn.parentNode === box) drawRow.appendChild(measureBtn);
+      drawRow.appendChild(btn);
+      if (row) box.insertBefore(drawRow, row); else box.appendChild(drawRow);
+      const actions = $('measure-actions');
+      if (actions && actions.parentNode === box && row) box.insertBefore(actions, row);
+      const sk = $('sketch-btn');
+      if (sk && sk.parentNode === box) box.insertBefore(sk, drawRow);
+    }
+    map.on('moveend', gridUpdate);
+    map.on('style.load', () => { if (gridOn) { gridEnsure(); gridUpdate(); } });
+    if (gridOn) gridUpdate();
+  }
+
+  function hashParams() {
+    const c = map.getCenter();
+    const p = new URLSearchParams();
+    p.set('map', [map.getZoom().toFixed(2), c.lat.toFixed(4), c.lng.toFixed(4), map.getBearing().toFixed(1)].join('/'));
+    const ov = [...ovOn].filter(id => ovs[id]);
+    const mn = [...mainsOn].filter(id => all[id]);
+    const sp = [];
+    if (fig1bOn) sp.push('fig1b');
+    if (itmOn) sp.push('itm');
+    if (window.atlasEqazyna && window.atlasEqazyna.isOn && window.atlasEqazyna.isOn()) sp.push('eq');
+    const pr = window.atlasProcess;
+    if (pr && pr.isOn) ['open', 'auction', 'pugfn'].forEach(id => { if (pr.isOn(id)) sp.push('pr:' + id); });
+    if (window.atlasGeo200 && window.atlasGeo200.isOn && window.atlasGeo200.isOn()) sp.push('geo200');
+    if (!ov.length) p.delete('ov'); else p.set('ov', ov.join(','));
+    if (!mn.length) p.delete('m'); else p.set('m', mn.join(','));
+    if (!sp.length) p.delete('l'); else p.set('l', sp.join(','));
+    if (gridOn) p.set('g', '1');
+    if (basemap === 'sat') { p.set('bm', 'sat'); p.set('sat', satKind); }
+    return p;
+  }
+  function writeHash() {
+    if (!map.getStyle()) return;
+    try { history.replaceState(null, '', location.pathname + location.search + '#' + hashParams().toString()); } catch (e) {}
+  }
+  let hashTimer = null;
+  function queueHash() { clearTimeout(hashTimer); hashTimer = setTimeout(writeHash, 300); }
+  // A share link pasted while the app is already open changes only the hash;
+  // reload once so the view state is rebuilt from it.
+  window.addEventListener('hashchange', () => { try { location.reload(); } catch (e) {} });
+
+  function initGoTo() {
+    const input = $('goto-input');
+    const btn = $('goto-btn');
+    if (!input || !btn) return;
+    function dmsVal(d, m, s, dir) {
+      let v = (d || 0) + (m || 0) / 60 + (s || 0) / 3600;
+      if (/[SW]/i.test(dir || '')) v = -v;
+      return v;
+    }
+    function coordFromText(text) {
+      const s = String(text || '').trim();
+      if (!s) return null;
+      const dec = s.match(/^(-?\d{1,2}(?:[.,]\d+)?)\s*[,;\s]\s*(-?\d{1,3}(?:[.,]\d+)?)$/);
+      if (dec) {
+        const lat = parseFloat(dec[1].replace(',', '.'));
+        const lng = parseFloat(dec[2].replace(',', '.'));
+        if (lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180) return [lng, lat];
+      }
+      const re = /(\d+(?:\.\d+)?)\s*[°d]?\s*(?:(\d+(?:\.\d+)?)\s*['′m])?\s*(?:(\d+(?:\.\d+)?)\s*["″s])?\s*([NSEWnsew])?/g;
+      const found = [];
+      let m;
+      while (found.length < 2 && (m = re.exec(s))) {
+        if (!m[4]) continue;
+        found.push({ v: dmsVal(+m[1], +m[2] || 0, +m[3] || 0, m[4]), dir: m[4].toUpperCase() });
+      }
+      if (found.length === 2) {
+        const latP = (found[0].dir === 'N' || found[0].dir === 'S') ? found[0] : found[1];
+        const lngP = latP === found[0] ? found[1] : found[0];
+        if (Math.abs(latP.v) <= 90 && Math.abs(lngP.v) <= 180) return [lngP.v, latP.v];
+      }
+      return null;
+    }
+    function go() {
+      const v = coordFromText(input.value);
+      input.classList.remove('bad');
+      if (!v) { input.classList.add('bad'); input.focus(); return; }
+      map.flyTo({ center: v, zoom: Math.max(map.getZoom(), 9), duration: 1200 });
+      if (phone) setPanel(false);
+    }
+    btn.addEventListener('click', go);
+    input.addEventListener('keydown', ev => { if (ev.key === 'Enter') { ev.preventDefault(); go(); } });
+  }
+
   function setPanel(open) {
     $('panel').classList.toggle('closed', !open);
     document.body.classList.toggle('panel-closed', !open);
@@ -2215,6 +2425,8 @@
   initMeasure();
   initSketch();
   initGlobeMode();
+  initGrid();
+  initGoTo();
 
   // Clicked point coordinates with a Copy button, in the feature popup or a small one of its own.
   function copyText(text) {
@@ -2226,6 +2438,22 @@
       try { document.execCommand('copy') ? resolve() : reject(); } catch (e) { reject(e); } finally { t.remove(); }
     });
   }
+  (function initCopyLink() {
+    const btn = $('copy-link');
+    if (!btn) return;
+    let timer;
+    btn.addEventListener('click', () => {
+      writeHash();
+      const url = location.href;
+      const done = ok => {
+        btn.textContent = ok ? 'Copied' : 'Copy link';
+        clearTimeout(timer);
+        timer = setTimeout(() => { btn.textContent = 'Copy link'; }, 1500);
+        if (!ok) { try { window.prompt('Copy this link', url); } catch (e) {} }
+      };
+      copyText(url).then(() => done(true), () => done(false));
+    });
+  })();
   function coordLine(text) {
     const row = document.createElement('div');
     row.className = 'coord-line';
@@ -2282,6 +2510,14 @@
     if (typeof initAtlasEqazyna === 'function') initAtlasEqazyna(map, { onUpdate: () => { syncList(); renderLegend(); }, coordLine });
     if (typeof initAtlasProcess === 'function') initAtlasProcess(map, { onUpdate: () => { syncList(); renderLegend(); } });
     if (typeof initAtlasGeo200 === 'function') initAtlasGeo200(map, { onUpdate: () => { syncList(); renderLegend(); } });
+    if (HASH && HASH.special) {
+      const has = k => HASH.special.includes(k);
+      if (has('eq') && window.atlasEqazyna && window.atlasEqazyna.setOn) window.atlasEqazyna.setOn(true);
+      ['open', 'auction', 'pugfn'].forEach(id => {
+        if (has('pr:' + id) && window.atlasProcess && window.atlasProcess.setOn) window.atlasProcess.setOn(id, true);
+      });
+      if (has('geo200') && window.atlasGeo200 && window.atlasGeo200.setOn) window.atlasGeo200.setOn(true);
+    }
     ensureSelLayers();
     try { if (localStorage.getItem(OV_STORE) === null) localStorage.setItem(OV_STORE, JSON.stringify([...ovOn])); } catch (e) {}
     mainsOn.forEach(id => addMain(id));
@@ -2291,6 +2527,8 @@
     syncButtons(); syncList(); renderLegend();
     const toolsBox = $('measure-box');
     if (toolsBox) toolsBox.hidden = false;
+    map.on('moveend', queueHash);
+    queueHash();
     setTimeout(() => { const a = document.querySelector('.maplibregl-ctrl-attrib'); if (a) a.classList.remove('maplibregl-compact-show'); if (window.atlasMeasure && window.atlasMeasure.place) window.atlasMeasure.place(); }, 300);
   });
 })();

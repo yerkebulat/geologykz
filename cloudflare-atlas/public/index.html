@@ -12,7 +12,7 @@
 <link rel="preload" href="fonts/source-serif-pro-semibold.woff2" as="font" type="font/woff2" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css" rel="stylesheet">
-<link href="style.css?v=cf18" rel="stylesheet">
+<link href="style.css?v=cf19" rel="stylesheet">
 </head>
 <body>
 <header class="topbar">
@@ -35,6 +35,10 @@
     </div>
     <div class="act" id="active-layers" hidden></div>
     <div class="bm" role="group" aria-label="Basemap"><button type="button" class="bm-btn" data-bm="map">Map</button><div class="bm-sat" id="bm-sat"><button type="button" class="bm-btn" data-bm="sat">Satellite</button><button type="button" class="bm-chev" id="sat-picker-btn" aria-label="Satellite source" aria-haspopup="listbox" aria-expanded="false" title="Satellite source"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.7 9.2 12 14.5l5.3-5.3 1.4 1.4L12 17.3 5.3 10.6z"/></svg></button></div></div>
+    <div class="goto" role="group" aria-label="Go to coordinates">
+      <input type="text" id="goto-input" placeholder="48.5, 66.2" aria-label="Coordinates" autocomplete="off" spellcheck="false">
+      <button type="button" id="goto-btn">Go</button>
+    </div>
     <div id="groups"></div>
     <div class="docs">
       <strong>Explanatory notes</strong>
@@ -43,7 +47,7 @@
       <a href="docs/TITLE.pdf" target="_blank">Title</a>
       <a href="docs/CONTENT.pdf" target="_blank">Contents</a>
     </div>
-    <p class="panel-src"><a href="/sources" id="panel-sources">Sources and credits</a></p>
+    <p class="panel-src"><a href="/sources" id="panel-sources">Sources and credits</a><button type="button" id="copy-link">Copy link</button></p>
   </aside>
   <div class="right-stack" id="right-stack">
     <aside class="legend" id="legend" hidden>
@@ -248,7 +252,7 @@
 <script src="config.js"></script>
 <script src="donate.js?v=cf10"></script>
 <script src="about.js?v=cf13"></script>
-<script src="app.js?v=cf14"></script>
+<script src="app.js?v=cf15"></script>
 <script src="print.js?v=cf3"></script>
 </body>
 </html>
