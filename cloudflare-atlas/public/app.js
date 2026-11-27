@@ -311,6 +311,7 @@
   function mainOfLid(lid) { return lid && lid.startsWith('atlas-m-') ? lid.slice(8).replace(/-(fl|ln|pt)$/, '') : null; }
   function mainsActive() { return [...mainsOn].filter(id => map.getLayer(mainLid(id, 'fl'))); }
   async function loadData(m) {
+    if (m.kind === 'raster' || m.kind === 'image') return null;
     if (cache[m.id]) return cache[m.id];
     const res = await fetch(m.file, { credentials: 'same-origin' });
     if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -632,6 +633,8 @@
       if (p.n) h += `<div class="pp-l">${esc(p.n)}</div>`;
       const num = v => (v === 0 || v) ? (typeof v === 'number' ? v.toLocaleString('en-US', { maximumFractionDigits: 1 }) : String(v)) : '';
       h += kv('Type', p.typ) + kv('Status', p.st) + kv('Commodities', p.comm);
+      h += kv('Location', p.loc) + kv('Operator', p.op) + kv('Capacity', p.cap);
+      h += kv('Year', p.year);
       h += kv('Age', p.age) + kv('Tract', p.tract) + kv('Basin', p.basin);
       h += kv('Province', p.prov) + kv('Petroleum system', p.tps);
       h += kv('Mean oil (MMBO)', num(p.oil)) + kv('Mean gas (BCFG)', num(p.gas));
@@ -724,11 +727,45 @@
   }
   window.atlasRaiseSel = raiseSel;
   function setOvOpacity(m) { applyKeyOpacity('ov:' + m.id); }
+  function ensurePmtiles() {
+    if (window.__pmtilesReg || !window.pmtiles || !maplibregl.addProtocol) return;
+    try {
+      const proto = new pmtiles.Protocol();
+      maplibregl.addProtocol('pmtiles', proto.tile.bind(proto));
+      window.__pmtilesReg = true;
+    } catch (e) { window.__pmtilesReg = true; }
+  }
+  function finishOverlay(m, k) {
+    setOvOpacity(m);
+    syncList();
+    renderLegend();
+    const done = () => setLoading(k, false);
+    if (map.isStyleLoaded && map.loaded && map.loaded()) map.once('idle', done);
+    else done();
+  }
+  async function addRasterOverlay(m, k) {
+    ensurePmtiles();
+    const lid = ovLayerId(m);
+    if (map.getLayer(lid)) { setLoading(k, false); return; }
+    if (!map.getSource(lid)) {
+      const path = m.file.charAt(0) === '/' ? m.file : '/' + m.file;
+      map.addSource(lid, { type: 'raster', url: 'pmtiles://' + location.origin + path, tileSize: 256 });
+    }
+    const before = firstSymbolLayer();
+    map.addLayer({ id: lid, type: 'raster', source: lid, paint: { 'raster-opacity': 0.9, 'raster-fade-duration': 0 } }, before);
+    finishOverlay(m, k);
+  }
   async function addOverlay(id) {
     const m = ovs[id]; if (!m) return;
     const k = 'ov:' + id;
     setLoading(k, true);
     $('loading').hidden = false; $('loading').textContent = 'Loading map…';
+    if (m.kind === 'raster' || m.kind === 'image') {
+      if (!ovOn.has(id)) { setLoading(k, false); return; }
+      $('loading').hidden = true;
+      try { await addRasterOverlay(m, k); } catch (e) { $('loading').textContent = 'Could not load map'; setLoading(k, false); }
+      return;
+    }
     let data;
     try { data = await loadData(m); } catch (e) { $('loading').textContent = 'Could not load map'; setLoading(k, false); return; }
     $('loading').hidden = true;
@@ -746,7 +783,14 @@
       map.addSource(lid, src);
     }
     const before = firstSymbolLayer();
-    if (m.kind === 'fill') map.addLayer({ id: lid, type: 'fill', source: lid, paint: { 'fill-color': ['get', 'c'], 'fill-opacity': 0.85, 'fill-outline-color': 'rgba(60,50,40,0.35)' } }, before);
+    if (m.kind === 'fill') {
+      const fo = m.fillOpacity != null ? m.fillOpacity : 0.85;
+      map.addLayer({ id: lid, type: 'fill', source: lid, paint: { 'fill-color': ['get', 'c'], 'fill-opacity': fo } }, before);
+      map.addLayer({ id: lid + '-ol', type: 'line', source: lid,
+        paint: { 'line-color': m.outlineColor || 'rgba(45,40,36,0.85)',
+          'line-width': ['interpolate', ['linear'], ['zoom'], 3, 0.55, 8, 1.15],
+          'line-opacity': 0.9 } }, before);
+    }
     if (m.kind === 'line') {
       const width = ['interpolate', ['linear'], ['zoom'], 3, ['*', 0.45, ['coalesce', ['get', 'w'], 1]], 8, ['*', 1.4, ['coalesce', ['get', 'w'], 1]]];
       if (m.dash) {
@@ -773,17 +817,12 @@
       if (m.cluster) pt.filter = ['!', ['has', 'point_count']];
       map.addLayer(pt, before);
     }
-    setOvOpacity(m);
-    syncList();
-    renderLegend();
-    const done = () => setLoading(k, false);
-    if (map.isStyleLoaded && map.loaded && map.loaded()) map.once('idle', done);
-    else done();
+    finishOverlay(m, k);
   }
   function removeOverlay(id) {
     const m = ovs[id]; if (!m) return;
     const lid = ovLayerId(m);
-    [lid + '-cn', lid + '-cl', lid + '-dash', lid].forEach(x => { if (map.getLayer(x)) map.removeLayer(x); });
+    [lid + '-cn', lid + '-cl', lid + '-dash', lid + '-ol', lid].forEach(x => { if (map.getLayer(x)) map.removeLayer(x); });
     if (map.getSource(lid)) map.removeSource(lid);
     renderLegend();
   }
@@ -987,7 +1026,14 @@
       }
       if (id === 'geo200-fill') { setPaint(id, 'fill-opacity', 0.18 * v); return; }
       if (id === 'geo200-outline') { setPaint(id, 'line-opacity', v); return; }
-      if (typ === 'fill') setPaint(id, 'fill-opacity', main ? ['case', ['has', 'h'], v * 0.6, v] : v);
+      if (typ === 'fill') {
+        if (main) setPaint(id, 'fill-opacity', ['case', ['has', 'h'], v * 0.6, v]);
+        else {
+          const ov = ovs[k.slice(3)];
+          const fo = ov && ov.fillOpacity != null ? ov.fillOpacity : 0.85;
+          setPaint(id, 'fill-opacity', fo * v);
+        }
+      }
       else if (typ === 'line') setPaint(id, 'line-opacity', bumpOp(v));
       else if (typ === 'circle') {
         setPaint(id, 'circle-opacity', bumpOp(v));

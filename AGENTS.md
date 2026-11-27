@@ -73,6 +73,7 @@ Private R2 bucket: `kzgeology-atlas-tiles`.
 | `atlas/maps.json` | Full atlas catalog (includes paleo groups) |
 | `paleo/` | Atlas-only paleo layers (`paleo/data/paleo-maps-...`) |
 | `200k/` | 1:200,000 PMTiles (not uploaded by `upload-data.mjs`) |
+| `usgs/` | USGS report-map PMTiles (not uploaded by `upload-data.mjs`) |
 | `inbox/` | Donate uploads (private) |
 
 ## How to add a layer

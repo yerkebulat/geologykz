@@ -38,7 +38,7 @@ function baseHeaders(indexable) {
   return indexable ? { ...SECURITY } : { ...SECURITY, ...NOINDEX };
 }
 
-const TILE_RE = /^200k\/[A-Za-z0-9][A-Za-z0-9._-]*\.(pmtiles|json)$/;
+const TILE_RE = /^(200k|usgs)\/[A-Za-z0-9][A-Za-z0-9._-]*\.(pmtiles|json)$/;
 const DATA_RE = /^data\/[A-Za-z0-9._/-]+$/;
 const RAW_RE = /\.(tiff?|kmz|kml|pdf)$/i;
 const PALEO_RE = /^data\/paleo-maps-/i;
