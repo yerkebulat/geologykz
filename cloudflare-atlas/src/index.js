@@ -146,6 +146,9 @@ async function validSession(req, secret) {
 
 function loginPage(msg, status = 401) {
   const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Atlas</title>
+<link rel="icon" href="/favicon.ico?v=bm1" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=bm1">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=bm1">
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#fafaf9;color:#1c1917;font:15px/1.5 Inter,system-ui,sans-serif;padding:24px;box-sizing:border-box}
 .c{width:min(380px,100%);background:#fff;border:1px solid #e7e5e4;border-radius:14px;padding:32px 28px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.04);text-align:center}
 h1{margin:0 0 6px;font-size:26px;letter-spacing:-.02em;text-transform:uppercase}p{margin:0 0 18px;color:#78716c;font-size:14px}
@@ -209,6 +212,7 @@ function contentType(key) {
   if (name.endsWith(".json")) return "application/json; charset=utf-8";
   if (name.endsWith(".pmtiles")) return "application/vnd.pmtiles";
   if (name.endsWith(".webp")) return "image/webp";
+  if (name.endsWith(".ico")) return "image/x-icon";
   if (name.endsWith(".png")) return "image/png";
   if (name.endsWith(".jpg") || name.endsWith(".jpeg")) return "image/jpeg";
   if (name.endsWith(".svg")) return "image/svg+xml";
@@ -639,7 +643,13 @@ export default {
       }
     }
 
-    if (isAtlas && !session) {
+    const isPublicIcon =
+      path === "/favicon.ico" ||
+      path === "/favicon-32.png" ||
+      path === "/apple-touch-icon.png" ||
+      path === "/icon-512.png";
+
+    if (isAtlas && !session && !isPublicIcon) {
       const accept = request.headers.get("accept") || "";
       if (request.method === "GET" && (accept.includes("text/html") || path === "/" || path.endsWith(".html"))) {
         if (!secret) return deny(503, "Atlas is not configured.");
