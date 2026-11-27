@@ -1,4 +1,4 @@
-:root{--bg:#fafaf9;--card:#fff;--line:#e7e5e4;--text:#1c1917;--muted:#78716c;--soft:#f5f5f4;--r:14px;--shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.06);--sans:Inter,system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;--serif:"Source Serif Pro","Iowan Old Style","Palatino Linotype",Palatino,"Times New Roman",serif;--paper:#efe8dc;--rule:rgba(28,25,23,.14);--map-tools-reserve:200px}
+:root{--bg:#fafaf9;--card:#fff;--line:#e7e5e4;--text:#1c1917;--muted:#78716c;--soft:#f5f5f4;--r:14px;--shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.06);--sans:Inter,system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace;--serif:"Source Serif Pro","Iowan Old Style","Palatino Linotype",Palatino,"Times New Roman",serif;--paper:#efe8dc;--rule:rgba(28,25,23,.14);--map-tools-reserve:calc(20px + env(safe-area-inset-bottom, 0px) + 4 * 40px + 3 * 6px)}
 @font-face{font-family:"Source Serif Pro";src:url("fonts/source-serif-pro-regular.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Source Serif Pro";src:url("fonts/source-serif-pro-semibold.woff2") format("woff2");font-weight:600;font-style:normal;font-display:swap}
 @font-face{font-family:"Source Serif Pro";src:url("fonts/source-serif-pro-italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
@@ -222,7 +222,7 @@ body.panel-closed .layers-btn{left:12px}
 .right-stack .legend:not(.min):not([hidden]){max-height:100%;overflow:auto;min-height:0}
 .map-scale{position:absolute;left:324px;bottom:max(12px, calc(env(safe-area-inset-bottom, 0px) + 12px));z-index:2;display:flex;align-items:flex-end;gap:12px;pointer-events:none}
 body.panel-closed .map-scale{left:max(12px, calc(env(safe-area-inset-left, 0px) + 12px))}
-.north-tools{display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
+.north-tools{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
 .north-tools > *{pointer-events:auto}
 .topview-btn{flex:none;width:40px;height:40px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--text);cursor:pointer;box-shadow:var(--shadow);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;animation:tool-btn-in .45s cubic-bezier(.22,1,.36,1) both;transition:background-color .18s ease,transform .16s ease,box-shadow .18s ease}
 .topview-btn svg{width:19px;height:19px;display:block}
@@ -266,6 +266,19 @@ body.panel-closed .map-scale{left:max(12px, calc(env(safe-area-inset-left, 0px) 
 .profile-row button{pointer-events:auto}
 .profile-row > button:nth-of-type(1){animation-delay:130ms}
 .profile-row > button:nth-of-type(2){animation-delay:170ms}
+.tools-grid{display:grid;grid-template-columns:repeat(2,40px);grid-auto-rows:40px;gap:6px;pointer-events:none}
+.tools-grid > button{pointer-events:auto}
+#sketch-btn{animation-delay:40ms}
+#measure-btn{animation-delay:80ms}
+#grid-toggle{animation-delay:120ms}
+#profile-btn{animation-delay:160ms}
+#compare-btn{animation-delay:200ms}
+#bookmark-btn{animation-delay:240ms}
+#globe-toggle{animation-delay:280ms}
+#print-btn{animation-delay:320ms}
+#gps-btn{animation-delay:40ms}
+.north-tools .measure-btn{flex:none}
+.north-tools .measure-btn[aria-pressed="true"]{background:var(--text);color:#fff;border-color:var(--text)}
 .measure-box button svg{width:19px;height:19px;display:block}
 .measure-box button:hover{background:var(--soft);transform:translateY(-1px);box-shadow:0 2px 4px rgba(0,0,0,.05),0 6px 20px rgba(0,0,0,.09)}
 .measure-box button:active{transform:translateY(0) scale(.93)}
@@ -329,7 +342,7 @@ body.panel-closed .map-scale{left:max(12px, calc(env(safe-area-inset-left, 0px) 
 .bm-save{display:flex;gap:4px;margin-top:6px;padding-top:6px;border-top:1px solid var(--line)}
 .bm-name{flex:1;min-width:0;font:inherit;font-size:12px;padding:5px 8px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--text)}
 .bm-add{flex:none;font:inherit;font-size:12px;padding:5px 10px;border:1px solid var(--text);border-radius:8px;background:var(--text);color:#fff;cursor:pointer}
-.gps-bar{position:absolute;right:0;bottom:calc(100% + 8px);z-index:4;width:min(260px, calc(100vw - 72px));max-height:min(50vh, 380px);overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:8px;pointer-events:auto}
+.gps-bar{position:absolute;left:0;bottom:calc(100% + 8px);z-index:4;width:min(260px, calc(100vw - 24px));max-height:min(50vh, 380px);overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:8px;pointer-events:auto}
 .gps-bar[hidden]{display:none}
 .gps-status{font-size:11px;color:var(--muted);font-family:var(--mono);margin:0 0 6px;min-height:14px}
 .gps-log{display:flex;gap:4px}

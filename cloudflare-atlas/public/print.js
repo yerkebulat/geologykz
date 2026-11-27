@@ -539,8 +539,12 @@
       if (b) { b.title = t('tool.print'); b.setAttribute('aria-label', t('tool.print')); }
       if (modal && !modal.hidden && cap) recompose();
     });
-    var row = box.querySelector('.tools-row');
-    (row || box).appendChild(btn);
+    if (window.atlasPlaceTool) window.atlasPlaceTool(btn);
+    else {
+      var grid = $('tools-grid');
+      var row = box.querySelector('.tools-row');
+      (grid || row || box).appendChild(btn);
+    }
   }
   mountButton();
 })();

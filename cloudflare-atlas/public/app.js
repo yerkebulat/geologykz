@@ -747,20 +747,42 @@
     });
   }
   // Every visible vector layer at the point, grouped by display name.
+  function keyActive(k) {
+    if (k === 'ov:' + DEP) return ovOn.has(DEP) && !!ovs[DEP];
+    return keyOn(k);
+  }
   function infoHits(point) {
     const layerKey = new Map();
-    const keys = [...new Set(activeKeys().concat(pinnedKeys()))].filter(keyOn);
+    const keys = [...new Set(activeKeys().concat(pinnedKeys()))].filter(keyActive);
+    const queryable = { fill: 1, line: 1, circle: 1, symbol: 1 };
     keys.forEach(k => {
       keyLayers(k).forEach(lid => {
         const lyr = map.getLayer(lid);
-        if (!lyr || (lyr.type !== 'fill' && lyr.type !== 'line' && lyr.type !== 'circle')) return;
+        if (!lyr || !queryable[lyr.type]) return;
         layerKey.set(lid, k);
       });
     });
     const ids = [...layerKey.keys()];
     if (!ids.length) return [];
-    let feats = [];
-    try { feats = map.queryRenderedFeatures(queryBox(point, depositPad()), { layers: ids }) || []; } catch (e) { feats = []; }
+    const box = queryBox(point, depositPad());
+    const query = layers => {
+      try { return map.queryRenderedFeatures(box, { layers }) || []; } catch (e) { return null; }
+    };
+    let feats = query(ids);
+    if (!feats) {
+      feats = [];
+      ids.forEach(id => { const part = query([id]); if (part) feats.push(...part); });
+    }
+    pointLayerIds().forEach(lid => {
+      if (layerKey.has(lid)) return;
+      const part = query([lid]);
+      if (!part || !part.length) return;
+      const ovId = lid.startsWith('atlas-ov-') ? lid.slice(9).replace(/-(cl|cn)$/, '') : null;
+      const k = ovId && ovs[ovId] ? 'ov:' + ovId : (lid === 'atlas-itm-pt' ? 'itm' : null);
+      if (!k) return;
+      layerKey.set(lid, k);
+      feats.push(...part);
+    });
     const seen = new Set();
     const out = [];
     feats.forEach(f => {
@@ -1247,7 +1269,7 @@
   let actSeen = new Set();
   // Deposit search: only point overlays of deposits, occurrences, and similar layers.
   const SEARCH_IDS = ['mineral-kz-deposits', 'kz-mineral-deposits'];
-  const SEARCH_TITLE = /deposit|occurrence|prospect|facility|potash|coal|copper/i;
+  const SEARCH_TITLE = /deposit|occurrence|prospect|facilit|potash|coal|copper/i;
   const searchOpen = new Set();
   const searchQuery = new Map();
   const searchResults = new Map();
@@ -1852,6 +1874,37 @@
   }
 
 
+  const TOOL_ORDER = {
+    'sketch-btn': 1,
+    'measure-btn': 2,
+    'grid-toggle': 3,
+    'profile-btn': 4,
+    'compare-btn': 5,
+    'bookmark-btn': 6,
+    'globe-toggle': 7,
+    'print-btn': 8
+  };
+  function ensureToolsGrid() {
+    const box = $('measure-box');
+    if (!box) return null;
+    let grid = $('tools-grid');
+    if (!grid) {
+      grid = document.createElement('div');
+      grid.id = 'tools-grid';
+      grid.className = 'tools-grid';
+      box.appendChild(grid);
+    }
+    return grid;
+  }
+  function placeToolBtn(btn) {
+    const grid = ensureToolsGrid();
+    if (!grid || !btn) return;
+    const order = TOOL_ORDER[btn.id];
+    if (order) btn.style.order = String(order);
+    grid.appendChild(btn);
+  }
+  window.atlasPlaceTool = placeToolBtn;
+
   function initMeasure() {
     const R = 6371000;
     const toRad = d => d * Math.PI / 180;
@@ -1863,8 +1916,7 @@
     const box = document.createElement('div');
     box.id = 'measure-box';
     box.className = 'measure-box';
-    box.innerHTML = '<button type="button" class="measure-btn" id="measure-btn" aria-pressed="false" aria-label="' + t('tool.measure') + '" title="' + t('tool.measure') + '">' + ICON.ruler + '</button>' +
-      '<div class="measure-actions" id="measure-actions" hidden>' +
+    box.innerHTML = '<div class="measure-actions" id="measure-actions" hidden>' +
       '<div class="measure-mode" role="group" aria-label="' + t('tool.measure') + '">' +
       '<button type="button" id="measure-dist" aria-pressed="true" aria-label="' + t('tool.distance') + '" title="' + t('tool.distance') + '">' + ICON.distance + '</button>' +
       '<button type="button" id="measure-area" aria-pressed="false" aria-label="' + t('tool.area') + '" title="' + t('tool.area') + '">' + ICON.area + '</button>' +
@@ -1874,7 +1926,15 @@
       '</div>';
     box.hidden = true;
     (document.querySelector('.wrap') || document.getElementById('mapview') || document.body).appendChild(box);
-    const btn = box.querySelector('#measure-btn');
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'measure-btn';
+    btn.id = 'measure-btn';
+    btn.setAttribute('aria-pressed', 'false');
+    btn.setAttribute('aria-label', t('tool.measure'));
+    btn.title = t('tool.measure');
+    btn.innerHTML = ICON.ruler;
+    placeToolBtn(btn);
     const actions = box.querySelector('#measure-actions');
     function haversine(a, b) {
       const dLat = toRad(b[1] - a[1]), dLon = toRad(b[0] - a[0]);
@@ -2239,8 +2299,7 @@
     btn.setAttribute('aria-label', t('tool.sketch'));
     btn.title = t('tool.sketch');
     btn.innerHTML = ico.pencil;
-    if (measureBtn && measureBtn.parentNode === box) box.insertBefore(btn, measureBtn);
-    else box.appendChild(btn);
+    placeToolBtn(btn);
     const bar = document.createElement('div');
     bar.id = 'sketch-bar';
     bar.className = 'sketch-bar';
@@ -2253,7 +2312,7 @@
       '<button type="button" data-width="thick" aria-label="' + t('tool.thick') + '" title="' + t('tool.thick') + '">' + ico.thick + '</button>' +
       '<button type="button" data-act="undo" aria-label="' + t('tool.undo') + '" title="' + t('tool.undo') + '">' + ico.undo + '</button>' +
       '<button type="button" data-act="clear" aria-label="' + t('tool.clear') + '" title="' + t('tool.clear') + '">' + ico.clear + '</button>';
-    box.insertBefore(bar, btn);
+    box.insertBefore(bar, box.firstChild);
 
     function save() {
       try {
@@ -2570,19 +2629,7 @@
     btn.setAttribute('aria-pressed', String(gridOn));
     btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 4.5h15v15h-15z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 4.5v15M14.5 4.5v15M4.5 9.5h15M4.5 14.5h15" fill="none" stroke="currentColor" stroke-width="1.2" stroke-opacity=".55"/></svg>';
     btn.addEventListener('click', () => setGrid(!gridOn));
-    if (box) {
-      const row = box.querySelector('.tools-row');
-      const drawRow = document.createElement('div');
-      drawRow.className = 'draw-row';
-      const measureBtn = $('measure-btn');
-      if (measureBtn && measureBtn.parentNode === box) drawRow.appendChild(measureBtn);
-      drawRow.appendChild(btn);
-      if (row) box.insertBefore(drawRow, row); else box.appendChild(drawRow);
-      const actions = $('measure-actions');
-      if (actions && actions.parentNode === box && row) box.insertBefore(actions, row);
-      const sk = $('sketch-btn');
-      if (sk && sk.parentNode === box) box.insertBefore(sk, drawRow);
-    }
+    placeToolBtn(btn);
     map.on('moveend', gridUpdate);
     map.on('style.load', () => { if (gridOn) { gridEnsure(); gridUpdate(); } });
     if (gridOn) gridUpdate();
@@ -2655,17 +2702,8 @@
     btn.setAttribute('aria-label', t('tool.profile'));
     btn.setAttribute('aria-pressed', 'false');
     btn.innerHTML = ICON.chart;
-    if (box) {
-      let row = document.getElementById('profile-row');
-      if (!row) {
-        row = document.createElement('div');
-        row.id = 'profile-row';
-        row.className = 'profile-row';
-        const toolsRow = box.querySelector('.tools-row');
-        if (toolsRow) box.insertBefore(row, toolsRow); else box.appendChild(row);
-      }
-      row.appendChild(btn);
-    }
+    placeToolBtn(btn);
+
     function toRad(d) { return d * Math.PI / 180; }
     function haversine(a, b) {
       const R = 6371000;
@@ -3375,17 +3413,8 @@
     btn.setAttribute('aria-label', t('tool.compare'));
     btn.setAttribute('aria-pressed', 'false');
     btn.innerHTML = ICON.swipe;
-    if (box) {
-      let row = document.getElementById('profile-row');
-      if (!row) {
-        row = document.createElement('div');
-        row.id = 'profile-row';
-        row.className = 'profile-row';
-        const toolsRow = box.querySelector('.tools-row');
-        if (toolsRow) box.insertBefore(row, toolsRow); else box.appendChild(row);
-      }
-      row.appendChild(btn);
-    }
+    placeToolBtn(btn);
+
     let on = false, map2 = null, layerEl = null, bar = null, handle = null;
     let leftKey = 'bm', rightKey = 'bm';
     let copiedLayers = [], copiedSources = [];
@@ -3666,17 +3695,8 @@
     btn.setAttribute('aria-haspopup', 'dialog');
     btn.setAttribute('aria-expanded', 'false');
     btn.innerHTML = ICON.bookmark;
-    if (box) {
-      let row = document.getElementById('profile-row');
-      if (!row) {
-        row = document.createElement('div');
-        row.id = 'profile-row';
-        row.className = 'profile-row';
-        const toolsRow = box.querySelector('.tools-row');
-        if (toolsRow) box.insertBefore(row, toolsRow); else box.appendChild(row);
-      }
-      row.appendChild(btn);
-    }
+    placeToolBtn(btn);
+
     let bar = null;
     function readSaved() {
       try { const a = JSON.parse(localStorage.getItem(BM_STORE) || '[]'); return Array.isArray(a) ? a : []; } catch (e) { return []; }
@@ -3815,17 +3835,13 @@
     btn.setAttribute('aria-label', t('tool.gps'));
     btn.setAttribute('aria-pressed', 'false');
     btn.innerHTML = ICON.gps;
-    if (box) {
-      let row = document.getElementById('profile-row');
-      if (!row) {
-        row = document.createElement('div');
-        row.id = 'profile-row';
-        row.className = 'profile-row';
-        const toolsRow = box.querySelector('.tools-row');
-        if (toolsRow) box.insertBefore(row, toolsRow); else box.appendChild(row);
-      }
-      row.appendChild(btn);
-    }
+    const left = document.querySelector('.north-tools');
+    const topBtn = $('topview-btn');
+    btn.classList.add('topview-btn');
+    if (left && topBtn) left.insertBefore(btn, topBtn);
+    else if (left) left.insertBefore(btn, left.firstChild);
+    else if (box) box.appendChild(btn);
+
     let gpsOn = false, watchId = null, lastFix = null, follow = true;
     let panel = null, listEl = null, statusEl = null, noteInp = null, logBtn = null;
     let dotMarker = null;
@@ -3880,7 +3896,7 @@
       const arrow = el.querySelector('.gps-arrow');
       const hasHead = lastFix.heading != null;
       el.classList.toggle('has-head', hasHead);
-      if (arrow && hasHead) arrow.style.transform = 'rotate(' + lastFix.heading + 'deg)';
+      if (arrow && hasHead) arrow.style.transform = 'rotate(' + (lastFix.heading - (map.getBearing() || 0)) + 'deg)';
     }
     function status(text) { if (statusEl) statusEl.textContent = text; }
     function fmtTime(t) { try { return new Date(t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); } catch (e) { return ''; } }
@@ -3983,7 +3999,10 @@
         '<button type="button" class="gps-log-btn" disabled>' + esc(t('gps.log')) + '</button></div>' +
         '<div class="gps-list"></div>' +
         '<div class="gps-actions"><button type="button" data-exp="csv">' + esc(t('gps.csv')) + '</button><button type="button" data-exp="geojson">' + esc(t('gps.geojson')) + '</button></div>';
-      if (box) box.appendChild(panel); else (document.querySelector('.wrap') || document.body).appendChild(panel);
+      const left = document.querySelector('.north-tools');
+      if (left) left.appendChild(panel);
+      else if (box) box.appendChild(panel);
+      else (document.querySelector('.wrap') || document.body).appendChild(panel);
       statusEl = panel.querySelector('.gps-status');
       listEl = panel.querySelector('.gps-list');
       noteInp = panel.querySelector('.gps-note');
@@ -4058,6 +4077,7 @@
       el.addEventListener('click', run);
     })(btn, () => { if (gpsOn) stopWatch(); else startWatch(); });
     map.on('zoom', drawAccuracy);
+    map.on('rotate', () => { if (gpsOn) placeMarker(); });
     map.on('dragstart', () => { if (gpsOn) follow = false; });
     map.on('zoomstart', () => { if (gpsOn) follow = false; });
     map.on('style.load', () => { ensurePts(); drawPoints(); });
@@ -4161,12 +4181,7 @@
     btn.setAttribute('aria-label', t('tool.3d'));
     btn.title = '3D';
     btn.innerHTML = ICON.globe;
-    if (box) {
-      const row = document.createElement('div');
-      row.className = 'tools-row';
-      row.appendChild(btn);
-      box.appendChild(row);
-    }
+    placeToolBtn(btn);
 
     function persist(v) {
       try { localStorage.setItem(STORE, v ? '1' : '0'); } catch (e) {}
