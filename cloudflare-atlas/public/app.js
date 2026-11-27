@@ -28,6 +28,7 @@
     area: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7.5 14 5l4.5 5.5-3 7L7 18z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="6" cy="7.5" r="1.3" fill="currentColor"/><circle cx="18.5" cy="10.5" r="1.3" fill="currentColor"/><circle cx="7" cy="18" r="1.3" fill="currentColor"/></svg>',
     chart: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 16.8 9 10.2l4 3.6 7.5-7.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 20.5h17" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>',
     swipe: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 4.5v15" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8.4 9.5 6.4 12l2 2.5M15.6 9.5 17.6 12l-2 2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    bookmark: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5h10A1.5 1.5 0 0 1 18.5 6v14L12 15.8 5.5 20V6A1.5 1.5 0 0 1 7 4.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>',
     download: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M8 11.5 12 15.5l4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 19.2h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>'
   };
   const SITE = window.ATLAS_SITE || { mode: 'atlas' };
@@ -3541,6 +3542,164 @@
     window.atlasCompare = { active: () => on, setOn, refresh, map2: () => map2 };
   }
 
+  // ---- bookmarks ---------------------------------------------------------
+  const BOOKMARKS = [
+    { id: 'jezkazgan', name: { en: 'Jezkazgan copper', kk: 'Жезқазған мысы', ru: 'Медь Жезказгана' }, center: [67.71, 47.78], zoom: 8, layers: ['mineral-kz-deposits', 'kz-mineral-deposits'] },
+    { id: 'tien-shan', name: { en: 'Tien Shan active faults', kk: 'Тянь-Шань белсенді жарылымдары', ru: 'Активные разломы Тянь-Шаня' }, center: [78.4, 42.6], zoom: 6, layers: ['active-faults', 'earthquakes-comcat'] },
+    { id: 'caspian', name: { en: 'Caspian and Teniz basins', kk: 'Каспий және Теңіз алаптары', ru: 'Каспийский и Тенизский бассейны' }, center: [55.5, 46.5], zoom: 5, layers: ['mineral-kz-lithology'] },
+    { id: 'altai', name: { en: 'Altai', kk: 'Алтай', ru: 'Алтай' }, center: [85.6, 49.4], zoom: 6, layers: ['mineral-kz-lithology', 'mineral-kz-faults'] },
+    { id: 'karatau', name: { en: 'Karatau', kk: 'Қаратау', ru: 'Каратау' }, center: [69.6, 43.3], zoom: 7, layers: ['mineral-kz-lithology'] },
+    { id: 'balkhash', name: { en: 'Balkhash', kk: 'Балқаш', ru: 'Балхаш' }, center: [74.9, 46.8], zoom: 6, layers: ['kz-mineral-deposits'] }
+  ];
+  const BM_STORE = 'atlas-bookmarks-v1';
+
+  function initBookmarks() {
+    const box = $('measure-box');
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.id = 'bookmark-btn';
+    btn.className = 'measure-btn';
+    btn.title = t('tool.bookmarks');
+    btn.setAttribute('aria-label', t('tool.bookmarks'));
+    btn.setAttribute('aria-haspopup', 'dialog');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.innerHTML = ICON.bookmark;
+    if (box) {
+      let row = document.getElementById('profile-row');
+      if (!row) {
+        row = document.createElement('div');
+        row.id = 'profile-row';
+        row.className = 'profile-row';
+        const toolsRow = box.querySelector('.tools-row');
+        if (toolsRow) box.insertBefore(row, toolsRow); else box.appendChild(row);
+      }
+      row.appendChild(btn);
+    }
+    let bar = null;
+    function readSaved() {
+      try { const a = JSON.parse(localStorage.getItem(BM_STORE) || '[]'); return Array.isArray(a) ? a : []; } catch (e) { return []; }
+    }
+    function writeSaved(list) { try { localStorage.setItem(BM_STORE, JSON.stringify(list)); } catch (e) {} }
+    function bmName(b) {
+      const lang = I18N.lang ? I18N.lang() : 'en';
+      return (b.name && (b.name[lang] || b.name.en)) || b.id;
+    }
+    function fly(center, zoom) {
+      if (!center || center.length !== 2) return;
+      map.flyTo({ center: center, zoom: zoom || map.getZoom(), duration: 1200 });
+    }
+    function navigateCurated(b) {
+      (b.layers || []).forEach(id => {
+        if (ovs[id] && !ovOn.has(id)) toggleOverlay(id);
+        else if (all[id] && !mainsOn.has(id)) toggleMain(id);
+      });
+      fly(b.center, b.zoom);
+    }
+    function currentSpecial() {
+      const sp = [];
+      if (window.atlasEqazyna && window.atlasEqazyna.isOn && window.atlasEqazyna.isOn()) sp.push('eq');
+      const pr = window.atlasProcess;
+      if (pr && pr.isOn) ['open', 'auction', 'pugfn'].forEach(id => { if (pr.isOn(id)) sp.push('pr:' + id); });
+      if (window.atlasGeo200 && window.atlasGeo200.isOn && window.atlasGeo200.isOn()) sp.push('geo200');
+      return sp;
+    }
+    function applySaved(s) {
+      const ov = new Set((s.ov || []).filter(id => ovs[id]));
+      const mn = new Set((s.mains || []).filter(id => all[id]));
+      [...ovOn].forEach(id => { if (!ov.has(id)) toggleOverlay(id); });
+      ov.forEach(id => { if (!ovOn.has(id)) toggleOverlay(id); });
+      [...mainsOn].forEach(id => { if (!mn.has(id)) toggleMain(id); });
+      mn.forEach(id => { if (!mainsOn.has(id)) toggleMain(id); });
+      const sp = Array.isArray(s.special) ? s.special : [];
+      if (window.atlasEqazyna && window.atlasEqazyna.setOn) window.atlasEqazyna.setOn(sp.includes('eq'));
+      if (window.atlasProcess && window.atlasProcess.setOn) ['open', 'auction', 'pugfn'].forEach(id => window.atlasProcess.setOn(id, sp.includes('pr:' + id)));
+      if (window.atlasGeo200 && window.atlasGeo200.setOn) window.atlasGeo200.setOn(sp.includes('geo200'));
+      fly(s.center, s.zoom);
+    }
+    function saveCurrent() {
+      const inp = bar.querySelector('.bm-name');
+      const name = String(inp.value || '').trim();
+      if (!name) { inp.focus(); return; }
+      const c = map.getCenter();
+      const list = readSaved();
+      list.push({
+        id: 'u' + Date.now().toString(36),
+        name: name.slice(0, 60),
+        center: [c.lng, c.lat],
+        zoom: map.getZoom(),
+        ov: [...ovOn].filter(id => ovs[id]),
+        mains: [...mainsOn].filter(id => all[id]),
+        special: currentSpecial()
+      });
+      writeSaved(list);
+      inp.value = '';
+      renderBar();
+    }
+    function renderBar() {
+      if (!bar) return;
+      const saved = readSaved();
+      bar.innerHTML = '<div class="bm-list">' +
+        BOOKMARKS.map((b, i) => '<button type="button" class="bm-item" data-bm="' + i + '">' + esc(bmName(b)) + '</button>').join('') +
+        '</div>' +
+        (saved.length ? '<div class="bm-list bm-saved">' + saved.map(s =>
+          '<div class="bm-row"><button type="button" class="bm-item" data-saved="' + esc(s.id) + '">' + esc(s.name) + '</button>' +
+          '<button type="button" class="bm-del" data-del="' + esc(s.id) + '" aria-label="' + esc(t('bm.delete')) + '">\u00D7</button></div>'
+        ).join('') + '</div>' : '') +
+        '<div class="bm-save"><input type="text" class="bm-name" maxlength="60" placeholder="' + esc(t('bm.name')) + '" aria-label="' + esc(t('bm.name')) + '">' +
+        '<button type="button" class="bm-add">' + esc(t('bm.save')) + '</button></div>';
+    }
+    function openBar() {
+      if (!bar) {
+        bar = document.createElement('div');
+        bar.id = 'bookmark-bar';
+        bar.className = 'bookmark-bar';
+        bar.hidden = true;
+        if (box) box.appendChild(bar); else (document.querySelector('.wrap') || document.body).appendChild(bar);
+        bar.addEventListener('click', ev => {
+          const b = ev.target.closest('[data-bm],[data-saved],[data-del],.bm-add');
+          if (!b) return;
+          if (b.hasAttribute('data-bm')) {
+            const bm = BOOKMARKS[Number(b.getAttribute('data-bm'))];
+            if (bm) { navigateCurated(bm); closeBar(); }
+            return;
+          }
+          if (b.hasAttribute('data-saved')) {
+            const s = readSaved().find(x => x.id === b.getAttribute('data-saved'));
+            if (s) { applySaved(s); closeBar(); }
+            return;
+          }
+          if (b.hasAttribute('data-del')) {
+            writeSaved(readSaved().filter(x => x.id !== b.getAttribute('data-del')));
+            renderBar();
+            return;
+          }
+          if (b.classList.contains('bm-add')) saveCurrent();
+        });
+        bar.addEventListener('keydown', ev => {
+          if (ev.key === 'Enter' && ev.target.classList.contains('bm-name')) { ev.preventDefault(); saveCurrent(); }
+        });
+      }
+      renderBar();
+      bar.hidden = false;
+      btn.setAttribute('aria-expanded', 'true');
+    }
+    function closeBar() {
+      if (bar) bar.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    btn.addEventListener('click', ev => {
+      ev.stopPropagation();
+      if (bar && !bar.hidden) closeBar(); else openBar();
+    });
+    document.addEventListener('click', ev => {
+      if (!bar || bar.hidden) return;
+      if (bar.contains(ev.target) || btn.contains(ev.target)) return;
+      closeBar();
+    });
+    document.addEventListener('keydown', ev => { if (ev.key === 'Escape') closeBar(); });
+    window.atlasBookmarks = { relabel: () => { btn.title = t('tool.bookmarks'); btn.setAttribute('aria-label', t('tool.bookmarks')); if (bar && !bar.hidden) renderBar(); } };
+  }
+
   function initGoTo() {
     const input = $('goto-input');
     const btn = $('goto-btn');
@@ -3736,6 +3895,7 @@
   initGrid();
   initProfile();
   initCompare();
+  initBookmarks();
   initGoTo();
 
   // Clicked point coordinates with a Copy button, in the feature popup or a small one of its own.
@@ -3892,6 +4052,7 @@
     const skb = $('sketch-btn');
     if (skb) { skb.title = t('tool.sketch'); skb.setAttribute('aria-label', t('tool.sketch')); }
     if (window.atlasProfile && window.atlasProfile.relabel) window.atlasProfile.relabel();
+    if (window.atlasBookmarks && window.atlasBookmarks.relabel) window.atlasBookmarks.relabel();
     const cbn = $('compare-btn');
     if (cbn) { cbn.title = t('tool.compare'); cbn.setAttribute('aria-label', t('tool.compare')); }
     const bar = $('sketch-bar');
