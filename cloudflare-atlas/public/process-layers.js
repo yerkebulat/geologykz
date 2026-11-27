@@ -2,35 +2,40 @@
 (function () {
   const OPEN_COLOR = "#22c55e";
   const AUCTION_COLOR = "#ea580c";
-  const CREDIT = 'Source: <a href="https://minerals.e-qazyna.kz/ru/contracts-map" target="_blank" rel="noopener">e-qazyna</a>';
+  function creditHtml() {
+    return t('kv.source') + ': <a href="https://minerals.e-qazyna.kz/ru/contracts-map" target="_blank" rel="noopener">e-qazyna</a>';
+  }
   const ANNOUNCE = "https://minerals.e-qazyna.kz/ru/u/reestr/announcements/view/342675818925000000";
   const APPLY = "https://minerals.e-qazyna.kz/ru/u/reestr/announcements/view/342675818925000000";
   const CODE = "https://adilet.zan.kz/rus/docs/K1700000125";
   const TAX = "https://adilet.zan.kz/rus/docs/K2500000214";
   const AUCTION_LIST = "https://minerals-u.e-qazyna.kz/ru/u/reestr/auction/tpi/objects/list";
-  const STATUS_EN = {
-    "Протокол подписан": "Protocol signed",
-    "Произведена оплата": "Payment made",
-    "Конкурс состоялся": "Auction held",
-    "Объявлен": "Announced",
-    "Идут торги": "Auction in progress",
-    "Торги объявлены": "Auction announced"
+  const STATUS_KEY = {
+    "Протокол подписан": "process.protocolSigned",
+    "Произведена оплата": "process.paymentMade",
+    "Конкурс состоялся": "process.auctionHeld",
+    "Объявлен": "process.announced",
+    "Идут торги": "process.auctionLive",
+    "Торги объявлены": "process.auctionAnnounced"
   };
-  const PUGFN_LABEL = {
-    "hc-auction": "Oil and gas auction",
-    "hc-national": "Oil and gas, national companies",
-    "uranium": "Uranium"
+  const PUGFN_KEY = {
+    "hc-auction": "process.hcAuction",
+    "hc-national": "process.hcNational",
+    "uranium": "process.uranium"
   };
+  function statusLabel(s) { return STATUS_KEY[s] ? t(STATUS_KEY[s]) : (s || t("process.auctionObject")); }
+  function pugfnLabel(kind, fallback) { return PUGFN_KEY[kind] ? t(PUGFN_KEY[kind]) : (fallback || ""); }
+  function t(key, vars) { return (window.atlasI18n && window.atlasI18n.t) ? window.atlasI18n.t(key, vars) : key; }
   const esc = (s) => String(s == null || s === "" ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
-  const HOW = (
-    '<details class="how-apply"><summary>How to apply</summary>' +
-    "<p>Apply on e-qazyna (EPN) with an EDS. First come, unless two or more applications arrive within 15 working days of publication, then auction by subscription bonus. Max 200 blocks. Subscription bonus 100 MRP = 432,500 KZT in 2026. Term 6 years + one extension up to 5. Minimum annual spend applies.</p>" +
-    '<p class="how-apply-links"><a href="' + CODE + '" target="_blank" rel="noopener">Subsoil Code</a> · <a href="' + TAX + '" target="_blank" rel="noopener">Tax Code</a></p>' +
-    "</details>"
-  );
-
-  function howForOpen() { return HOW; }
+  function howForOpen() {
+    return (
+      '<details class="how-apply"><summary>' + t('process.how') + '</summary>' +
+      '<p>' + t('process.howBody') + '</p>' +
+      '<p class="how-apply-links"><a href="' + CODE + '" target="_blank" rel="noopener">' + t('process.subsoilCode') + '</a> · <a href="' + TAX + '" target="_blank" rel="noopener">' + t('process.taxCode') + '</a></p>' +
+      '</details>'
+    );
+  }
 
   const SPECS = [
     {
@@ -58,6 +63,12 @@
     store: "atlas-process-pugfn-v1",
     label: "PUGFN: oil, gas, uranium"
   };
+  function specLabel(s) {
+    if (!s) return "";
+    if (s.id === "open") return t("layer.openApply");
+    if (s.id === "auction") return t("layer.atAuction");
+    return t("layer.pugfn");
+  }
 
   function fillPaint(color, opacity) {
     return {
@@ -267,12 +278,12 @@
 
     function legendRowsFor(id) {
       const rows = [];
-      if (id === "open" && state.open) rows.push([OPEN_COLOR, "Open to apply · from 6 Nov 2026"]);
-      if (id === "auction" && state.auction) rows.push([AUCTION_COLOR, "At auction"]);
+      if (id === "open" && state.open) rows.push([OPEN_COLOR, t("process.openFrom")]);
+      if (id === "auction" && state.auction) rows.push([AUCTION_COLOR, t("layer.atAuction")]);
       if (id === "pugfn" && state.pugfn) {
-        rows.push(["#d97706", "Oil and gas auction"]);
-        rows.push(["#b45309", "Oil and gas, national companies"]);
-        rows.push(["#7c3aed", "Uranium"]);
+        rows.push(["#d97706", t("process.hcAuction")]);
+        rows.push(["#b45309", t("process.hcNational")]);
+        rows.push(["#7c3aed", t("process.uranium")]);
       }
       return rows.map((r) =>
         '<div class="lg-row"><span class="sw" style="background:' + r[0] + '"></span><span>' + esc(r[1]) + "</span></div>"
@@ -291,7 +302,7 @@
 
     function loadSpec(s) {
       if (loaded[s.id]) return loaded[s.id];
-      setStatus("Loading " + s.label.toLowerCase() + "…");
+      setStatus(t("loading.process", { label: specLabel(s) }));
       loading[s.id] = true;
       if (hooksSafe.onUpdate) hooksSafe.onUpdate();
       loaded[s.id] = fetchJson(s.clusterUrl).then((fc) => {
@@ -307,7 +318,7 @@
         loaded[s.id] = null;
         loading[s.id] = false;
         console.error(s.id + " layer failed", err);
-        setStatus("Could not load " + s.label.toLowerCase() + ".");
+        setStatus(t("loading.processFail", { label: specLabel(s) }));
         if (hooksSafe.onUpdate) hooksSafe.onUpdate();
         throw err;
       });
@@ -349,7 +360,7 @@
 
     function loadPugfn() {
       if (loaded.pugfn) return loaded.pugfn;
-      setStatus("Loading PUGFN…");
+      setStatus(t("loading.pugfn"));
       loading.pugfn = true;
       if (hooksSafe.onUpdate) hooksSafe.onUpdate();
       loaded.pugfn = fetchJson("data/process/pugfn.json").then((fc) => {
@@ -370,7 +381,7 @@
         loaded.pugfn = null;
         loading.pugfn = false;
         console.error("PUGFN layer failed", err);
-        setStatus("Could not load PUGFN.");
+        setStatus(t("loading.pugfnFail"));
         if (hooksSafe.onUpdate) hooksSafe.onUpdate();
         throw err;
       });
@@ -493,31 +504,31 @@
       const code = p.code || p.id || "";
       let title, next, links = [];
       if (stage === "open") {
-        title = "Open to apply";
+        title = t("layer.openApply");
         if (p.kind === "cluster" && count > 1) {
-          next = count + " neighboring blocks. Zoom in to see each code. If two or more applications arrive within 15 working days of publication, the block goes to auction by subscription bonus.";
+          next = t("process.clusterNote", { n: count });
         } else {
-          next = "Apply via e-qazyna with an EDS. If two or more applications arrive within 15 working days of publication, the block goes to auction by subscription bonus.";
+          next = t("process.applyVia");
         }
-        links.push('<a href="' + ANNOUNCE + '" target="_blank" rel="noopener">Announcement</a>');
+        links.push('<a href="' + ANNOUNCE + '" target="_blank" rel="noopener">' + t("process.announcement") + '</a>');
         links.push('<a href="https://minerals.e-qazyna.kz/" target="_blank" rel="noopener">e-qazyna</a>');
       } else if (stage === "auction") {
-        title = "At auction";
-        const st = STATUS_EN[p.status] || p.status || "Auction object";
-        next = "Official status: " + st + ". See the auction object for the current stage. This is not an open first-come block.";
-        if (p.objectUrl) links.push('<a href="' + esc(p.objectUrl) + '" target="_blank" rel="noopener">Auction object</a>');
-        links.push('<a href="' + AUCTION_LIST + '" target="_blank" rel="noopener">Auction list</a>');
+        title = t("layer.atAuction");
+        const st = statusLabel(p.status);
+        next = t("process.officialStatus", { st: st });
+        if (p.objectUrl) links.push('<a href="' + esc(p.objectUrl) + '" target="_blank" rel="noopener">' + t("process.auctionObject") + '</a>');
+        links.push('<a href="' + AUCTION_LIST + '" target="_blank" rel="noopener">' + t("process.auctionList") + '</a>');
       } else {
-        title = "PUGFN: oil, gas, uranium";
-        next = "These areas are not open for solid-mineral (TPI) exploration licenses.";
-        if (p.label || PUGFN_LABEL[p.kind]) {
+        title = t("layer.pugfn");
+        next = t("process.notOpenTpi");
+        if (p.label || PUGFN_KEY[p.kind]) {
           /* shown as the line under the title */
         }
-        links.push('<a href="https://minerals.e-qazyna.kz/ru/contracts-map" target="_blank" rel="noopener">Official map</a>');
+        links.push('<a href="https://minerals.e-qazyna.kz/ru/contracts-map" target="_blank" rel="noopener">' + t("process.officialMap") + '</a>');
       }
       const color = stage === "open" ? OPEN_COLOR : stage === "auction" ? AUCTION_COLOR : (p.color || "#d97706");
       let sub = "";
-      if (stage === "pugfn") sub = esc(p.label || PUGFN_LABEL[p.kind] || "");
+      if (stage === "pugfn") sub = esc(p.label || pugfnLabel(p.kind) || "");
       else if (p.kind === "cluster" && count > 1) sub = esc(code);
       else if (code) sub = esc(String(code).split(" and ")[0]);
       return (
@@ -537,13 +548,13 @@
       const order = { open: 0, auction: 1, pugfn: 2 };
       const items = fs.slice().sort((a, b) => (order[(a.properties || {}).stage] || 9) - (order[(b.properties || {}).stage] || 9));
       return '<div class="eqazyna-pop"><div class="process-body">' + items.map(popupItem).join("") +
-        '<p class="eqazyna-credit">' + CREDIT + "</p></div></div>";
+        '<p class="eqazyna-credit">' + creditHtml() + "</p></div></div>";
     }
 
     function legendHtml() {
       const parts = ["open", "auction", "pugfn"].map(legendRowsFor).filter(Boolean);
       if (!parts.length) return "";
-      return '<div class="lg-map">Subsoil use</div>' + parts.join("");
+      return '<div class="lg-map">' + t('layer.subsoil') + '</div>' + parts.join("");
     }
     function legendHtmlFor(id) { return legendRowsFor(id); }
 

@@ -1,38 +1,44 @@
 /* Solid-mineral licenses and contracts via the kzgeology-eqazyna relay. On by default. */
 (function () {
-  const CREDIT = 'Source: <a href="https://minerals.e-qazyna.kz/ru/contracts-map" target="_blank" rel="noopener">Unified Subsoil Use Platform, minerals.e-qazyna.kz</a>';
+  function creditHtml() {
+    return t('kv.source') + ': <a href="https://minerals.e-qazyna.kz/ru/contracts-map" target="_blank" rel="noopener">Unified Subsoil Use Platform, minerals.e-qazyna.kz</a>';
+  }
+  function t(key, vars) { return (window.atlasI18n && window.atlasI18n.t) ? window.atlasI18n.t(key, vars) : key; }
   const esc = (s) => String(s == null || s === "" ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const cfg = () => window.EQAZYNA_CONFIG || {};
   const worker = () => String(cfg().workerUrl || "").replace(/\/+$/, "");
 
-  const SHORT_LABEL = {
-    "Exploration license": "Exploration",
-    "Extraction license": "Extraction",
-    "Exploration and extraction license": "Exploration and extraction",
-    "Exploration contract": "Exploration contract",
-    "Extraction contract": "Extraction contract",
-    "Exploration and extraction contract": "Exploration and extraction contract",
-    "Revoked exploration license": "Revoked"
+  const SHORT_KEY = {
+    "Exploration license": "lic.exploration",
+    "Extraction license": "lic.extraction",
+    "Exploration and extraction license": "lic.explExtract",
+    "Exploration contract": "lic.explContract",
+    "Extraction contract": "lic.extContract",
+    "Exploration and extraction contract": "lic.bothContract",
+    "Revoked exploration license": "lic.revoked"
   };
+  function shortLabel(label) {
+    return SHORT_KEY[label] ? t(SHORT_KEY[label]) : (label || "");
+  }
   function licenseNext(it) {
-    if (it.group === "revoked") return "This license was revoked, so it is not an active right.";
-    return "This land already has a license or contract, so it is not open to apply.";
+    if (it.group === "revoked") return t("lic.revokedNote");
+    return t("lic.notOpen");
   }
   function popupHtml(items, loading, err) {
     const rows = (items || []).map((it) => {
       const links = [];
-      if (it.locUrl) links.push('<a href="' + esc(it.locUrl) + '" target="_blank" rel="noopener">Official registry</a>');
-      if (it.applicantUrl) links.push('<a href="' + esc(it.applicantUrl) + '" target="_blank" rel="noopener">Holder record</a>');
-      const label = SHORT_LABEL[it.label] || it.label;
+      if (it.locUrl) links.push('<a href="' + esc(it.locUrl) + '" target="_blank" rel="noopener">' + t('lic.official') + '</a>');
+      if (it.applicantUrl) links.push('<a href="' + esc(it.applicantUrl) + '" target="_blank" rel="noopener">' + t('lic.holder') + '</a>');
+      const label = shortLabel(it.label);
       return (
         '<div class="eqazyna-item">' +
         '<div class="eqazyna-head"><span class="popup-swatch" style="background:' + esc(it.color || "#888") + '"></span><strong>' +
-        esc(it.title || it.company || "Unknown holder") + "</strong></div>" +
+        esc(it.title || it.company || t("lic.unknown")) + "</strong></div>" +
         (label ? "<div>" + esc(label) + "</div>" : "") +
         '<p class="process-next">' + esc(licenseNext(it)) + "</p>" +
-        (it.number ? "<div>Number: " + esc(it.number) + "</div>" : "") +
-        (it.status ? "<div>Status: " + esc(it.status) + "</div>" : "") +
-        (it.issued ? "<div>Issued: " + esc(it.issued) + "</div>" : "") +
+        (it.number ? "<div>" + t("kv.number") + ": " + esc(it.number) + "</div>" : "") +
+        (it.status ? "<div>" + t("kv.status") + ": " + esc(it.status) + "</div>" : "") +
+        (it.issued ? "<div>" + t("kv.issued") + ": " + esc(it.issued) + "</div>" : "") +
         (links.length ? '<div class="eqazyna-links">' + links.join(" · ") + "</div>" : "") +
         "</div>"
       );
@@ -40,17 +46,17 @@
     return (
       '<div class="eqazyna-pop"><div class="eqazyna-body">' +
       (err ? '<p class="eqazyna-err">' + esc(err) + "</p>" : "") +
-      (loading && !rows ? "<p>Loading details…</p>" : "") +
-      (loading && rows ? '<p class="eqazyna-loading">Loading details…</p>' : "") +
-      (rows || (!loading && !err ? "<p>No attributes for this block.</p>" : "")) +
-      '<p class="eqazyna-credit">' + CREDIT + "</p></div></div>"
+      (loading && !rows ? "<p>" + t("loading.details") + "</p>" : "") +
+      (loading && rows ? '<p class="eqazyna-loading">' + t('loading.details') + '</p>' : "") +
+      (rows || (!loading && !err ? "<p>" + t("loading.noAttrs") + "</p>" : "")) +
+      '<p class="eqazyna-credit">' + creditHtml() + "</p></div></div>"
     );
   }
 
   function legendRows(meta) {
     if (!meta || !meta.layers) return "";
     return meta.layers.map((l) =>
-      '<div class="lg-row"><span class="sw" style="background:' + esc(l.color) + '"></span><span>' + esc(SHORT_LABEL[l.label] || l.label) + "</span></div>"
+      '<div class="lg-row"><span class="sw" style="background:' + esc(l.color) + '"></span><span>' + esc(shortLabel(l.label)) + "</span></div>"
     ).join("");
   }
 
@@ -203,10 +209,10 @@
       if (loaded) { if (doneText) setStatus(doneText, true); return loaded; }
       const base = worker();
       if (!base) {
-        setStatus("Relay URL is missing.", true);
+        setStatus(t("loading.relayMissing"), true);
         return Promise.reject(new Error("missing worker url"));
       }
-      setStatus("Loading licenses…", true);
+      setStatus(t("loading.licenses"), true);
       loading = true;
       if (hooksSafe.onUpdate) hooksSafe.onUpdate();
       loaded = Promise.all([
@@ -228,7 +234,7 @@
         loaded = null;
         loading = false;
         console.error("e-qazyna layer failed", err);
-        setStatus("Could not load licenses. Try again, or open the official map.", true);
+        setStatus(t("loading.licensesFail"), true);
         if (hooksSafe.onUpdate) hooksSafe.onUpdate();
         throw err;
       });
@@ -307,7 +313,7 @@
       syncOrder,
       legendHtml: () => {
         if (!on || !meta) return "";
-        return '<div class="lg-map">Active licenses</div>' + legendRows(meta);
+        return '<div class="lg-map">' + t('layer.licenses') + '</div>' + legendRows(meta);
       },
       layers: () => (on ? LIC_IDS.filter((id) => map.getLayer(id)) : []),
       setOn: set,

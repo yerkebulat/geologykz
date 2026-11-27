@@ -25,9 +25,13 @@
     globe: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.7"/><ellipse cx="12" cy="12" rx="3.7" ry="8.4" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3.6 12h16.8" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>',
     ruler: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="8.8" width="17.6" height="6.4" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7.4 8.8v2.5M11.6 8.8v2.5M15.8 8.8v2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>'
   };
-  const cfg = await (await fetch('maps.json?v=md5', { credentials: 'same-origin' })).json();
+  const cfg = await (await fetch('maps.json?v=md6', { credentials: 'same-origin' })).json();
   const all = {};
   const SITE = window.ATLAS_SITE || { mode: 'atlas' };
+  const I18N = window.atlasI18n || {};
+  function t(key, vars) { return I18N.t ? I18N.t(key, vars) : key; }
+  function pickName(obj, field) { return I18N.pick ? I18N.pick(obj, field) : (obj && (obj[field] || obj.name)) || ''; }
+  function pickLeg(e) { return I18N.pickLegend ? I18N.pickLegend(e) : (e && (e.l || e.label)) || ''; }
   function isPaleoGroup(g) {
     const n = String((g && g.name) || '');
     return /^paleo\s*:/i.test(n) || /palinspastic|paleogeograph/i.test(n);
@@ -35,25 +39,26 @@
   function isPaleoFile(file) {
     return /^data\/paleo-maps-/i.test(String(file || ''));
   }
-  (function applySiteChrome() {
+  function applySiteChrome() {
     const brand = document.querySelector('.brand');
     const sub = document.querySelector('.sub');
     const logout = document.querySelector('a[href="/__auth/logout"]');
     const docs = document.querySelector('.docs');
     const note = document.getElementById('rights-note') || document.querySelector('.note');
     if (docs) docs.remove();
-    if (note) note.textContent = 'If you hold rights to a map and object to its use here, contact us and we will remove it.';
+    if (note) note.textContent = t('rights.note');
     if (SITE.mode === 'public') {
       document.title = 'kzgeology';
       if (brand) brand.textContent = 'kzgeology';
-      if (sub) sub.textContent = 'Geological maps of Kazakhstan';
+      if (sub) sub.textContent = t('sub.maps');
       if (logout) logout.remove();
     } else {
       document.title = 'Atlas';
       if (brand) brand.textContent = 'Atlas';
-      if (sub) sub.textContent = 'Geological maps of Kazakhstan';
+      if (sub) sub.textContent = t('sub.maps');
     }
-  })();
+  }
+  applySiteChrome();
   const ovs = {};
   cfg.groups.forEach(g => {
     if (SITE.mode === 'public' && isPaleoGroup(g)) return;
@@ -209,7 +214,7 @@
     menu.className = 'sat-menu';
     menu.hidden = true;
     menu.setAttribute('role', 'listbox');
-    menu.setAttribute('aria-label', 'Satellite source');
+    menu.setAttribute('aria-label', t('panel.satSource'));
     SAT_IDS.forEach(id => {
       const b = document.createElement('button');
       b.type = 'button';
@@ -610,77 +615,77 @@
     const p = f.properties || {};
     let h = '<div class="pp">';
     if (ov && ov.id === 'kz-mineral-deposits') {
-      h += `<div class="pp-theme">${esc(ov.title)}</div>`;
+      h += `<div class="pp-theme">${esc(pickName(ov, 'title'))}</div>`;
       if (p.n) h += `<div class="pp-l">${esc(p.n)}</div>`;
       if (p.ru && p.ru !== p.n) h += `<div class="pp-l">${esc(p.ru)}</div>`;
-      h += kv('Commodities', p.maj) + kv('Minor', p.minc) + kv('Type', p.typ) + kv('Size', p.sz) + kv('Age', p.age) + kv('Grade', p.gr);
+      h += kv(t('kv.commodities'), p.maj) + kv(t('kv.minor'), p.minc) + kv(t('kv.type'), p.typ) + kv(t('kv.size'), p.sz) + kv(t('kv.age'), p.age) + kv(t('kv.grade'), p.gr);
       return h + '</div>';
     }
     if (ov && ov.id === 'kz-regional-faults') {
-      h += `<div class="pp-theme">${esc(ov.title)}</div>`;
+      h += `<div class="pp-theme">${esc(pickName(ov, 'title'))}</div>`;
       if (p.l) h += `<div class="pp-l">${esc(p.l)}</div>`;
       return h + '</div>';
     }
     if (ov && ov.id === 'active-faults') {
-      h += `<div class="pp-theme">${esc(ov.title)}</div>`;
+      h += `<div class="pp-theme">${esc(pickName(ov, 'title'))}</div>`;
       if (p.n) h += `<div class="pp-l">${esc(p.n)}</div>`;
-      h += kv('Slip type', p.slip) + kv('Source', p.src);
+      h += kv(t('kv.slip'), p.slip) + kv(t('kv.source'), p.src);
       return h + '</div>';
     }
     if (ov && ov.id === 'earthquakes-comcat') {
-      h += `<div class="pp-theme">${esc(ov.title)}</div>`;
-      h += `<div class="pp-l">${p.mag != null && p.mag !== '' ? ('M ' + p.mag) : 'Earthquake'}</div>`;
-      h += kv('Depth', (p.dep != null && p.dep !== '') ? (String(p.dep) + ' km') : '');
-      h += kv('Date', p.t) + kv('Location', p.pl);
+      h += `<div class="pp-theme">${esc(pickName(ov, 'title'))}</div>`;
+      h += `<div class="pp-l">${p.mag != null && p.mag !== '' ? ('M ' + p.mag) : t('popup.earthquake')}</div>`;
+      h += kv(t('kv.depth'), (p.dep != null && p.dep !== '') ? (String(p.dep) + ' ' + t('unit.km')) : '');
+      h += kv(t('kv.date'), p.t) + kv(t('kv.location'), p.pl);
       return h + '</div>';
     }
     if (lid === 'atlas-itm-pt') {
       h += `<div class="pp-theme">${esc(p.type || '')}</div>`;
       if (p.sample) h += `<div class="pp-l">${esc(p.sample)}</div>`;
-      h += kv('Rock', p.rock) + kv('Age', p.age);
+      h += kv(t('kv.rock'), p.rock) + kv(t('kv.age'), p.age);
       h += `<div class="pp-k">Safonova et al. 2024</div>`;
       return h + '</div>';
     }
     if (ov && ov.id && ov.id.indexOf('usgs-') === 0) {
-      h += `<div class="pp-theme">${esc(ov.title)}</div>`;
+      h += `<div class="pp-theme">${esc(pickName(ov, 'title'))}</div>`;
       if (p.n) h += `<div class="pp-l">${esc(p.n)}</div>`;
       const num = v => (v === 0 || v) ? (typeof v === 'number' ? v.toLocaleString('en-US', { maximumFractionDigits: 1 }) : String(v)) : '';
-      h += kv('Type', p.typ) + kv('Status', p.st) + kv('Commodities', p.comm);
-      h += kv('Location', p.loc) + kv('Operator', p.op) + kv('Capacity', p.cap);
-      h += kv('Year', p.year);
-      h += kv('Age', p.age) + kv('Tract', p.tract) + kv('Basin', p.basin);
-      h += kv('Province', p.prov) + kv('Petroleum system', p.tps);
-      h += kv('Mean oil (MMBO)', num(p.oil)) + kv('Mean gas (BCFG)', num(p.gas));
-      h += kv('Depth', (p.val || p.val === 0) ? `${p.val} m` : '');
-      if (p.cu) h += kv('Cu grade', String(p.cu) + ' %');
-      if (p.mt) h += kv('Tonnage', String(p.mt) + ' Mt');
+      h += kv(t('kv.type'), p.typ) + kv(t('kv.status'), p.st) + kv(t('kv.commodities'), p.comm);
+      h += kv(t('kv.location'), p.loc) + kv(t('kv.operator'), p.op) + kv(t('kv.capacity'), p.cap);
+      h += kv(t('kv.year'), p.year);
+      h += kv(t('kv.age'), p.age) + kv(t('kv.tract'), p.tract) + kv(t('kv.basin'), p.basin);
+      h += kv(t('kv.province'), p.prov) + kv(t('kv.tps'), p.tps);
+      h += kv(t('kv.oil'), num(p.oil)) + kv(t('kv.gas'), num(p.gas));
+      h += kv(t('kv.depth'), (p.val || p.val === 0) ? `${p.val} ${t('unit.m')}` : '');
+      if (p.cu) h += kv(t('kv.cu'), String(p.cu) + ' %');
+      if (p.mt) h += kv(t('kv.tonnage'), String(p.mt) + ' Mt');
       return h + '</div>';
     }
     if (ov && ov.kind === 'point') {
       const d = depositFields(p);
-      h += `<div class="pp-theme">${esc(ov.title)}</div>`;
-      h += `<div class="pp-l">${esc(p.n || 'Unnamed deposit')}</div>`;
-      h += kv('Commodity', d.commodity) + kv('Type', d.type) + kv('Size', d.size);
+      h += `<div class="pp-theme">${esc(pickName(ov, 'title'))}</div>`;
+      h += `<div class="pp-l">${esc(p.n || t('popup.unnamedDeposit'))}</div>`;
+      h += kv(t('kv.commodity'), d.commodity) + kv(t('kv.type'), d.type) + kv(t('kv.size'), d.size);
     } else if (ov) {
-      h += `<div class="pp-theme">${esc(ov.title)}</div>`;
+      h += `<div class="pp-theme">${esc(pickName(ov, 'title'))}</div>`;
       if (p.l) h += `<div class="pp-l">${esc(p.l)}</div>`;
       if (p.n) h += `<div class="pp-l">${esc(p.n)}</div>`;
     } else if (m && p.s23) {
       h += `<div class="pp-theme">Safonova et al. 2023</div>`;
       if (p.l) h += `<div class="pp-l">${esc(p.l)}</div>`;
-      if (p.u) h += kv('Group', p.u);
-      if (p.z) h += kv('Zone', p.z);
+      if (p.u) h += kv(t('kv.group'), p.u);
+      if (p.z) h += kv(t('kv.zone'), p.z);
     } else if (m && p.w07) {
       h += `<div class="pp-theme">Windley et al. 2007</div>`;
       if (p.l) h += `<div class="pp-l">${esc(p.l)}</div>`;
-      if (p.u) h += kv('Group', p.u);
-      if (p.a) h += kv('Age', p.a);
-      if (p.k) h += kv('Code', p.k);
+      if (p.u) h += kv(t('kv.group'), p.u);
+      if (p.a) h += kv(t('kv.age'), p.a);
+      if (p.k) h += kv(t('kv.code'), p.k);
     } else if (m) {
-      h += `<div class="pp-theme">${esc(m.themes[p.t] || m.title || '')}</div>`;
+      h += `<div class="pp-theme">${esc(m.themes[p.t] || pickName(m, 'title') || '')}</div>`;
       if (p.n) h += `<div class="pp-l">${esc(p.n)}</div>`;
       if (p.l) h += `<div class="pp-l">${esc(p.l)}</div>`;
-      if (p.k) h += `<div class="pp-k">Code: ${esc(p.k)}</div>`;
+      if (p.k) h += `<div class="pp-k">${esc(t('kv.code'))}: ${esc(p.k)}</div>`;
     }
     return h + '</div>';
   }
@@ -701,7 +706,7 @@
       const html = (window.atlasEqazyna && window.atlasEqazyna.popupHtml)
         ? window.atlasEqazyna.popupHtml(items, licenseLoading, licenseErr)
         : '';
-      h += '<div class="pp"><div class="pp-theme">Active licenses</div>' + html + '</div>';
+      h += '<div class="pp"><div class="pp-theme">' + esc(t('layer.licenses')) + '</div>' + html + '</div>';
     }
     hits.faults.forEach(f => { h += featureHtml(f); });
     hits.fills.forEach(f => { h += featureHtml(f); });
@@ -732,7 +737,7 @@
         const body = pop.getElement() && pop.getElement().querySelector('.eqazyna-body');
         if (!body) return;
         const tmp = document.createElement('div');
-        tmp.innerHTML = window.atlasEqazyna.popupHtml(seed, false, 'Details could not be loaded.');
+        tmp.innerHTML = window.atlasEqazyna.popupHtml(seed, false, t('loading.detailsFail'));
         const next = tmp.querySelector('.eqazyna-body');
         if (next) body.replaceWith(next);
       });
@@ -772,15 +777,15 @@
     const m = ovs[id]; if (!m) return;
     const k = 'ov:' + id;
     setLoading(k, true);
-    $('loading').hidden = false; $('loading').textContent = 'Loading map…';
+    $('loading').hidden = false; $('loading').textContent = t('loading.map');
     if (m.kind === 'raster' || m.kind === 'image') {
       if (!ovOn.has(id)) { setLoading(k, false); return; }
       $('loading').hidden = true;
-      try { await addRasterOverlay(m, k); } catch (e) { $('loading').textContent = 'Could not load map'; setLoading(k, false); }
+      try { await addRasterOverlay(m, k); } catch (e) { $('loading').textContent = t('loading.fail'); setLoading(k, false); }
       return;
     }
     let data;
-    try { data = await loadData(m); } catch (e) { $('loading').textContent = 'Could not load map'; setLoading(k, false); return; }
+    try { data = await loadData(m); } catch (e) { $('loading').textContent = t('loading.fail'); setLoading(k, false); return; }
     $('loading').hidden = true;
     if (!ovOn.has(id)) { setLoading(k, false); return; }
     const lid = ovLayerId(m);
@@ -856,9 +861,9 @@
     const m = all[id]; if (!m) return;
     const k = 'm:' + id;
     setLoading(k, true);
-    $('loading').hidden = false; $('loading').textContent = 'Loading map…';
+    $('loading').hidden = false; $('loading').textContent = t('loading.map');
     let data;
-    try { data = await loadData(m); } catch (e) { $('loading').textContent = 'Could not load map'; setLoading(k, false); return; }
+    try { data = await loadData(m); } catch (e) { $('loading').textContent = t('loading.fail'); setLoading(k, false); return; }
     $('loading').hidden = true;
     if (!mainsOn.has(id) || map.getLayer(mainLid(id, 'fl'))) { setLoading(k, false); return; }
     const src = 'atlas-m-' + id, before = firstSymbolLayer();
@@ -928,15 +933,15 @@
     return false;
   }
   function keyTitle(k) {
-    if (k === 'eq') return 'Active licenses';
-    if (k === 'pr:open') return 'Open to apply';
-    if (k === 'pr:auction') return 'At auction';
-    if (k === 'pr:pugfn') return 'PUGFN: oil, gas, uranium';
-    if (k.startsWith('m:')) return (all[k.slice(2)] || {}).title || k;
-    if (k.startsWith('ov:')) return (ovs[k.slice(3)] || {}).title || k;
-    if (k === 'fig1b') return FIG1B.title;
-    if (k === 'itm') return ITM.title;
-    if (k === 'geo200') return 'Geological maps 1:200k';
+    if (k === 'eq') return t('layer.licenses');
+    if (k === 'pr:open') return t('layer.openApply');
+    if (k === 'pr:auction') return t('layer.atAuction');
+    if (k === 'pr:pugfn') return t('layer.pugfn');
+    if (k.startsWith('m:')) return pickName(all[k.slice(2)] || {}, 'title') || k;
+    if (k.startsWith('ov:')) return pickName(ovs[k.slice(3)] || {}, 'title') || k;
+    if (k === 'fig1b') return t('layer.orocline');
+    if (k === 'itm') return t('layer.itm');
+    if (k === 'geo200') return t('layer.geo200');
     return k;
   }
   function keyLayers(k) {
@@ -1174,20 +1179,20 @@
       const hid = layerHid.has(k), sw = swatchOf(k), pct = Math.round(opOf(k) * 100);
       const upDis = i === 0 ? ' disabled' : '', downDis = i === keys.length - 1 ? ' disabled' : '';
       const zoomDis = keyBbox(k) ? '' : ' disabled';
-      const menu = `<div class="act-more"><button type="button" class="act-b" data-a="menu" aria-label="Layer actions" aria-haspopup="menu" aria-expanded="false">${ICO.more}</button>` +
+      const menu = `<div class="act-more"><button type="button" class="act-b" data-a="menu" aria-label="${esc(t('act.actions'))}" aria-haspopup="menu" aria-expanded="false">${ICO.more}</button>` +
         `<div class="act-menu" role="menu"><div class="act-menu-in">` +
-        (pin ? '' : `<button type="button" role="menuitem" data-a="up"${upDis}>Move up</button><button type="button" role="menuitem" data-a="down"${downDis}>Move down</button>`) +
-        `<button type="button" role="menuitem" data-a="zoom"${zoomDis}>Zoom to</button>` +
-        `<button type="button" role="menuitem" data-a="off">Remove</button></div></div></div>`;
+        (pin ? '' : `<button type="button" role="menuitem" data-a="up"${upDis}>${esc(t('act.up'))}</button><button type="button" role="menuitem" data-a="down"${downDis}>${esc(t('act.down'))}</button>`) +
+        `<button type="button" role="menuitem" data-a="zoom"${zoomDis}>${esc(t('act.zoom'))}</button>` +
+        `<button type="button" role="menuitem" data-a="off">${esc(t('act.remove'))}</button></div></div></div>`;
       return `<div class="act-row${pin ? ' pinned' : ''}${hid ? ' off' : ''}" data-k="${esc(k)}"><div class="act-top">` +
         (pin ? '<span class="act-grip act-pin" title="Always on top" aria-hidden="true">&#9650;</span>' : '<span class="act-grip" title="Drag to reorder" aria-hidden="true">&#8942;&#8942;</span>') +
         `<span class="act-sw ${sw.g}" style="background:${esc(sw.c)}" aria-hidden="true"></span>` +
         `<span class="act-t${keyLoading(k) ? ' load' : ''}">${esc(keyTitle(k))}</span>` +
-        `<button type="button" class="act-b" data-a="hid" aria-pressed="${hid}" aria-label="${hid ? 'Show layer' : 'Hide layer'}">${hid ? ICO.eyeOff : ICO.eye}</button>` +
+        `<button type="button" class="act-b" data-a="hid" aria-pressed="${hid}" aria-label="${hid ? t('act.show') : t('act.hide')}">${hid ? ICO.eyeOff : ICO.eye}</button>` +
         menu + '</div>' +
-        `<div class="act-op-row"><input type="range" class="act-op" min="0" max="1" step="0.05" value="${opOf(k)}" aria-label="Opacity ${pct}%"><span class="act-op-val" title="Type a value" tabindex="0">${pct}%</span></div></div>`;
+        `<div class="act-op-row"><input type="range" class="act-op" min="0" max="1" step="0.05" value="${opOf(k)}" aria-label="${esc(t('act.opacity', { pct }))}"><span class="act-op-val" title="${esc(t('act.typeValue'))}" tabindex="0">${pct}%</span></div></div>`;
     };
-    box.innerHTML = `<button type="button" class="act-h" aria-expanded="${actOpen}" aria-controls="act-body"><span>Active layers (${n})</span>${ICO.chev}</button>` +
+    box.innerHTML = `<button type="button" class="act-h" aria-expanded="${actOpen}" aria-controls="act-body"><span>${esc(t('act.title', { n }))}</span>${ICO.chev}</button>` +
       '<div class="act-body" id="act-body"><div class="act-body-in">' +
       pinned.map(k => row(k, 0, true)).join('') + keys.map((k, i) => row(k, i, false)).join('') +
       '</div></div>';
@@ -1221,7 +1226,7 @@
       inp.inputMode = 'numeric';
       inp.className = 'act-op-edit';
       inp.value = String(cur);
-      inp.setAttribute('aria-label', 'Opacity percent');
+      inp.setAttribute('aria-label', t('act.opacityPct'));
       lab.replaceWith(inp);
       inp.focus(); inp.select();
       let done = false;
@@ -1304,7 +1309,7 @@
       const lab = row.querySelector('.act-op-val');
       const pct = Math.round(Number(e.target.value) * 100);
       if (lab) lab.textContent = pct + '%';
-      e.target.setAttribute('aria-label', 'Opacity ' + pct + '%');
+      e.target.setAttribute('aria-label', t('act.opacity', { pct }));
       if (!e.target._pulsed) { e.target._pulsed = true; pulseSwatch(row); setTimeout(() => { e.target._pulsed = false; }, 200); }
       clearTimeout(saveT); saveT = setTimeout(saveLayers, 300);
     });
@@ -1355,8 +1360,15 @@
   }
   function legendRows(m, rows) {
     let h = '';
-    if (m.legendNote) h += `<div class="lg-note">${esc(m.legendNote)}</div>`;
-    if (m.legendRamp) h += legendRampHtml(m.legendRamp);
+    const lang = I18N.lang ? I18N.lang() : 'en';
+    const note = (lang !== 'en' && m['legendNote_' + lang]) ? m['legendNote_' + lang] : (m.id === 'active-faults' ? t('note.activeFaults') : m.id === 'earthquakes-comcat' ? t('note.quakes') : m.legendNote);
+    if (note) h += `<div class="lg-note">${esc(note)}</div>`;
+    if (m.legendRamp) {
+      const ramp = Object.assign({}, m.legendRamp);
+      if (m.id === 'seismic-hazard-pga475') ramp.title = t('ramp.pga');
+      if (m.id === 'emag2-anomaly') ramp.title = t('ramp.emag');
+      h += legendRampHtml(ramp);
+    }
     const byT = {};
     rows.forEach(e => { (byT[e.t] = byT[e.t] || []).push(e); });
     const ts = Object.keys(byT).map(Number).sort((a, b) => b - a);
@@ -1367,7 +1379,7 @@
       const seen = new Set();
       items.forEach(e => {
         const key = e.c + '|' + e.l; if (seen.has(key)) return; seen.add(key);
-        h += `<div class="lg-row"><span class="sw ${e.g === 'fill' ? '' : e.g}" style="background:${esc(e.c)}"></span><span>${esc(e.l || (m.themes && m.themes[t]) || '')}</span></div>`;
+        h += `<div class="lg-row"><span class="sw ${e.g === 'fill' ? '' : e.g}" style="background:${esc(e.c)}"></span><span>${esc(pickLeg(e) || (m.themes && m.themes[t]) || '')}</span></div>`;
       });
     });
     return h;
@@ -1385,7 +1397,7 @@
     if (!shown.length && !eqOn && !prOn && !geoOn && !fig1bOn && !itmOn) { $('legend').hidden = true; return; }
     $('legend').hidden = false;
     const extra = (eqOn ? 1 : 0) + (prOn ? 1 : 0) + (geoOn ? 1 : 0) + (fig1bOn ? 1 : 0) + (itmOn ? 1 : 0);
-    $('legend-title').textContent = (shown.length + extra) === 1 ? (shown[0] ? shown[0].title : (geoOn ? 'Geological maps 1:200k' : (fig1bOn ? FIG1B.title : itmOn ? ITM.title : 'Subsoil use'))) : 'Legend';
+    $('legend-title').textContent = (shown.length + extra) === 1 ? (shown[0] ? pickName(shown[0], 'title') : (geoOn ? t('layer.geo200') : (fig1bOn ? t('layer.orocline') : itmOn ? t('layer.itm') : t('layer.subsoil')))) : t('legend.title');
     let h = '';
     if (geoOn && window.atlasGeo200.legendHtml) h += window.atlasGeo200.legendHtml() || '';
     if (prOn && window.atlasProcess.legendHtml) h += window.atlasProcess.legendHtml() || '';
@@ -1393,7 +1405,7 @@
     if (fig1bOn) h += fig1bLegendHtml(!h && !shown.length);
     if (itmOn) h += itmLegendHtml(!h && !shown.length);
     shown.forEach(m => {
-      if (shown.length > 1 || h) h += `<div class="lg-map">${esc(m.title)}</div>`;
+      if (shown.length > 1 || h) h += `<div class="lg-map">${esc(pickName(m, 'title'))}</div>`;
       h += legendRows(m, m.legend);
     });
     if (!h) { $('legend').hidden = true; return; }
@@ -1402,7 +1414,7 @@
   // Li et al. 2018: georeferenced raster (Web Mercator image), off by default, below vector maps and licenses.
   const FIG1B = {
     id: 'atlas-fig1b', url: 'data/li2018-fig1b.webp?v=1',
-    title: 'Kazakhstan orocline',
+    title: 'Kazakhstan orocline', /* display via t('layer.orocline') */
     coords: [[59.459664, 54.730814], [93.065433, 54.730814], [93.065433, 38.774749], [59.459664, 38.774749]],
     cite: 'Li et al. 2018',
     legend: [
@@ -1418,7 +1430,7 @@
   };
   let fig1bOn = HASH && HASH.special ? HASH.special.includes('fig1b') : !!LS.fig1b;
   function fig1bLegendHtml(solo) {
-    let h = solo ? '' : `<div class="lg-map">${esc(FIG1B.title)}</div>`;
+    let h = solo ? '' : `<div class="lg-map">${esc(t('layer.orocline'))}</div>`;
     FIG1B.legend.forEach(e => { h += `<div class="lg-row"><span class="sw ${e[2] || ''}" style="background:${esc(e[0])}"></span><span>${esc(e[1])}</span></div>`; });
     return h;
   }
@@ -1448,8 +1460,8 @@
   };
   let itmOn = HASH && HASH.special ? HASH.special.includes('itm') : !!LS.itm;
   function itmLegendHtml(solo) {
-    let h = solo ? '' : `<div class="lg-map">${esc(ITM.title)}</div>`;
-    [['#e11d2a', 'U-Pb dated granitoids'], ['#facc15', 'U-Pb dated sandstones'], ['#111111', 'Microfossil sites']]
+    let h = solo ? '' : `<div class="lg-map">${esc(t('layer.itm'))}</div>`;
+    [['#e11d2a', t('leg.granitoids')], ['#facc15', t('leg.sandstones')], ['#111111', t('leg.microfossils')]]
       .forEach(e => { h += `<div class="lg-row"><span class="sw point" style="background:${e[0]}"></span><span>${e[1]}</span></div>`; });
     return h;
   }
@@ -1477,14 +1489,14 @@
   }
   function mapBtn(m, overlay) {
     const ov = overlay ? ' data-ov="1"' : '';
-    return `<button type="button" class="map-btn ov-btn"${ov} data-id="${m.id}" aria-pressed="false"><span class="ov-box"></span>${esc(m.title)}</button>`;
+    return `<button type="button" class="map-btn ov-btn"${ov} data-id="${m.id}" aria-pressed="false"><span class="ov-box"></span>${esc(pickName(m, 'title'))}</button>`;
   }
   // panel
   let h = '';
   cfg.groups.forEach(g => {
     if (SITE.mode === 'public' && isPaleoGroup(g)) return;
     if (!g.maps.length) return;
-    h += `<section class="group"${g.id ? ` data-gid="${esc(g.id)}"` : ''}><h3>${esc(g.name)}</h3>`;
+    h += `<section class="group"${g.id ? ` data-gid="${esc(g.id)}"` : ` data-gname="${esc(g.name)}"`}><h3>${esc(pickName(g, 'name'))}</h3>`;
     g.maps.forEach(m => {
       h += layerBlock(mapBtn(m, !!m.overlay));
     });
@@ -1503,7 +1515,7 @@
   }
   const geology = $('groups').querySelector('[data-gid="geology"]');
   const geo200Wrap = document.createElement('div');
-  geo200Wrap.innerHTML = layerBlock('<button type="button" class="map-btn ov-btn" id="geo200-toggle" aria-pressed="false"><span class="ov-box"></span>Geological maps 1:200k</button>');
+  geo200Wrap.innerHTML = layerBlock('<button type="button" class="map-btn ov-btn" id="geo200-toggle" aria-pressed="false"><span class="ov-box"></span>' + esc(t('layer.geo200')) + '</button>');
   if (geology) {
     const firstBlock = geology.querySelector('.layer-block');
     if (firstBlock) firstBlock.after(geo200Wrap.firstElementChild);
@@ -1512,17 +1524,17 @@
   const mining = $('groups').querySelector('[data-gid="mining"]');
   const subWrap = document.createElement('div');
   subWrap.innerHTML =
-    layerBlock('<button type="button" class="map-btn ov-btn" id="process-open-toggle" aria-pressed="false"><span class="ov-box"></span>Open to apply</button>') +
-    layerBlock('<button type="button" class="map-btn ov-btn" id="process-auction-toggle" aria-pressed="false"><span class="ov-box"></span>At auction</button>') +
-    layerBlock('<button type="button" class="map-btn ov-btn" id="eqazyna-toggle" aria-pressed="false"><span class="ov-box"></span>Active licenses</button>') +
+    layerBlock('<button type="button" class="map-btn ov-btn" id="process-open-toggle" aria-pressed="false"><span class="ov-box"></span>' + esc(t('layer.openApply')) + '</button>') +
+    layerBlock('<button type="button" class="map-btn ov-btn" id="process-auction-toggle" aria-pressed="false"><span class="ov-box"></span>' + esc(t('layer.atAuction')) + '</button>') +
+    layerBlock('<button type="button" class="map-btn ov-btn" id="eqazyna-toggle" aria-pressed="false"><span class="ov-box"></span>' + esc(t('layer.licenses')) + '</button>') +
     '<div id="eqazyna-status" class="eqazyna-status" hidden></div>' +
-    layerBlock('<button type="button" class="map-btn ov-btn" id="process-pugfn-toggle" aria-pressed="false"><span class="ov-box"></span>PUGFN: oil, gas, uranium</button>') +
+    layerBlock('<button type="button" class="map-btn ov-btn" id="process-pugfn-toggle" aria-pressed="false"><span class="ov-box"></span>' + esc(t('layer.pugfn')) + '</button>') +
     '<div id="process-status" class="eqazyna-status" hidden></div>';
   insertAfterHead(mining, Array.from(subWrap.childNodes).filter(n => n.nodeType === 1));
   const other = $('groups').querySelector('[data-gid="other"]');
   const ibWrap = document.createElement('div');
-  ibWrap.innerHTML = layerBlock('<button type="button" class="map-btn ov-btn" id="itm-toggle" aria-pressed="false"><span class="ov-box"></span>' + esc(ITM.title) + '</button>') +
-    layerBlock('<button type="button" class="map-btn ov-btn" id="fig1b-toggle" aria-pressed="false"><span class="ov-box"></span>' + esc(FIG1B.title) + '</button>');
+  ibWrap.innerHTML = layerBlock('<button type="button" class="map-btn ov-btn" id="itm-toggle" aria-pressed="false"><span class="ov-box"></span>' + esc(t('layer.itm')) + '</button>') +
+    layerBlock('<button type="button" class="map-btn ov-btn" id="fig1b-toggle" aria-pressed="false"><span class="ov-box"></span>' + esc(t('layer.orocline')) + '</button>');
   const ib = ibWrap.querySelector('#itm-toggle');
   const fb = ibWrap.querySelector('#fig1b-toggle');
   ib.addEventListener('click', () => setItm(!itmOn));
@@ -1555,9 +1567,9 @@
     const track = bar.querySelector('.scalebar-track');
     const labelEl = bar.querySelector('.scalebar-n');
     function formatMetres(m) {
-      if (m >= 1000) return (m / 1000) + ' km';
-      if (m >= 1) return Math.round(m) + ' m';
-      return String(m) + ' m';
+      if (m >= 1000) return (m / 1000) + ' ' + t('unit.km');
+      if (m >= 1) return Math.round(m) + ' ' + t('unit.m');
+      return String(m) + ' ' + t('unit.m');
     }
     function updateNorth() {
       const g = document.querySelector('#map-north .north-rot');
@@ -1636,10 +1648,10 @@
     const box = document.createElement('div');
     box.id = 'measure-box';
     box.className = 'measure-box';
-    box.innerHTML = '<button type="button" class="measure-btn" id="measure-btn" aria-pressed="false" aria-label="Measure" title="Measure">' + ICON.ruler + '</button>' +
+    box.innerHTML = '<button type="button" class="measure-btn" id="measure-btn" aria-pressed="false" aria-label="' + t('tool.measure') + '" title="' + t('tool.measure') + '">' + ICON.ruler + '</button>' +
       '<div class="measure-actions" id="measure-actions" hidden>' +
-      '<button type="button" id="measure-done">Done</button>' +
-      '<button type="button" id="measure-clear">Clear</button>' +
+      '<button type="button" id="measure-done">' + t('tool.done') + '</button>' +
+      '<button type="button" id="measure-clear">' + t('tool.clear') + '</button>' +
       '</div>';
     box.hidden = true;
     (document.querySelector('.wrap') || document.getElementById('mapview') || document.body).appendChild(box);
@@ -1672,10 +1684,10 @@
       return pts;
     }
     function fmt(m) {
-      if (m < 1000) return Math.round(m) + ' m';
+      if (m < 1000) return Math.round(m) + ' ' + t('unit.m');
       const km = m / 1000;
-      const t = km < 10 ? km.toFixed(2) : km < 100 ? km.toFixed(1) : String(Math.round(km));
-      return t.replace(/\.0+$/, '').replace(/(\.\d)0$/, '$1') + ' km';
+      const s = km < 10 ? km.toFixed(2) : km < 100 ? km.toFixed(1) : String(Math.round(km));
+      return s.replace(/\.0+$/, '').replace(/(\.\d)0$/, '$1') + ' ' + t('unit.km');
     }
     function segments() {
       const out = [];
@@ -1908,10 +1920,10 @@
     const SRC = 'atlas-sketch';
     const LIDS = ['atlas-sketch-halo', 'atlas-sketch-line'];
     const COLOURS = [
-      { id: 'red', hex: '#dc2626', label: 'Red' },
-      { id: 'black', hex: '#1c1917', label: 'Black' },
-      { id: 'blue', hex: '#1d4ed8', label: 'Blue' },
-      { id: 'yellow', hex: '#eab308', label: 'Yellow' }
+      { id: 'red', hex: '#dc2626', labelKey: 'color.red' },
+      { id: 'black', hex: '#1c1917', labelKey: 'color.black' },
+      { id: 'blue', hex: '#1d4ed8', labelKey: 'color.blue' },
+      { id: 'yellow', hex: '#eab308', labelKey: 'color.yellow' }
     ];
     const WIDTHS = { thin: 2.5, thick: 6 };
     const ico = {
@@ -1941,8 +1953,8 @@
     btn.id = 'sketch-btn';
     btn.className = 'measure-btn';
     btn.setAttribute('aria-pressed', 'false');
-    btn.setAttribute('aria-label', 'Sketch');
-    btn.title = 'Sketch';
+    btn.setAttribute('aria-label', t('tool.sketch'));
+    btn.title = t('tool.sketch');
     btn.innerHTML = ico.pencil;
     if (measureBtn && measureBtn.parentNode === box) box.insertBefore(btn, measureBtn);
     else box.appendChild(btn);
@@ -1951,13 +1963,13 @@
     bar.className = 'sketch-bar';
     bar.hidden = true;
     bar.innerHTML =
-      '<button type="button" data-tool="pencil" aria-label="Pencil" title="Pencil">' + ico.pencil + '</button>' +
-      '<button type="button" data-tool="erase" aria-label="Eraser" title="Eraser">' + ico.eraser + '</button>' +
-      COLOURS.map(c => '<button type="button" class="sketch-color" data-colour="' + c.hex + '" aria-label="' + c.label + '" title="' + c.label + '"><span class="sketch-sw" style="background:' + c.hex + '"></span></button>').join('') +
-      '<button type="button" data-width="thin" aria-label="Thin" title="Thin">' + ico.thin + '</button>' +
-      '<button type="button" data-width="thick" aria-label="Thick" title="Thick">' + ico.thick + '</button>' +
-      '<button type="button" data-act="undo" aria-label="Undo" title="Undo">' + ico.undo + '</button>' +
-      '<button type="button" data-act="clear" aria-label="Clear" title="Clear">' + ico.clear + '</button>';
+      '<button type="button" data-tool="pencil" aria-label="' + t('tool.pencil') + '" title="' + t('tool.pencil') + '">' + ico.pencil + '</button>' +
+      '<button type="button" data-tool="erase" aria-label="' + t('tool.eraser') + '" title="' + t('tool.eraser') + '">' + ico.eraser + '</button>' +
+      COLOURS.map(c => '<button type="button" class="sketch-color" data-colour="' + c.hex + '" aria-label="' + t(c.labelKey) + '" title="' + t(c.labelKey) + '"><span class="sketch-sw" style="background:' + c.hex + '"></span></button>').join('') +
+      '<button type="button" data-width="thin" aria-label="' + t('tool.thin') + '" title="' + t('tool.thin') + '">' + ico.thin + '</button>' +
+      '<button type="button" data-width="thick" aria-label="' + t('tool.thick') + '" title="' + t('tool.thick') + '">' + ico.thick + '</button>' +
+      '<button type="button" data-act="undo" aria-label="' + t('tool.undo') + '" title="' + t('tool.undo') + '">' + ico.undo + '</button>' +
+      '<button type="button" data-act="clear" aria-label="' + t('tool.clear') + '" title="' + t('tool.clear') + '">' + ico.clear + '</button>';
     box.insertBefore(bar, btn);
 
     function save() {
@@ -2201,7 +2213,7 @@
     if (m >= 60) { d += 1; m = 0; }
     let s = d + '\u00B0';
     if (step < 1) s += (m < 10 ? '0' : '') + m + '\u2032';
-    return s + (isLat ? (v >= 0 ? 'N' : 'S') : (v >= 0 ? 'E' : 'W'));
+    return s + (isLat ? (v >= 0 ? t('dir.N') : t('dir.S')) : (v >= 0 ? t('dir.E') : t('dir.W')));
   }
   function gridFeatures() {
     const b = map.getBounds();
@@ -2268,8 +2280,8 @@
     btn.type = 'button';
     btn.id = 'grid-toggle';
     btn.className = 'measure-btn';
-    btn.title = 'Grid';
-    btn.setAttribute('aria-label', 'Grid');
+    btn.title = t('tool.grid');
+    btn.setAttribute('aria-label', t('tool.grid'));
     btn.setAttribute('aria-pressed', String(gridOn));
     btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 4.5h15v15h-15z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 4.5v15M14.5 4.5v15M4.5 9.5h15M4.5 14.5h15" fill="none" stroke="currentColor" stroke-width="1.2" stroke-opacity=".55"/></svg>';
     btn.addEventListener('click', () => setGrid(!gridOn));
@@ -2367,13 +2379,13 @@
   function setPanel(open) {
     $('panel').classList.toggle('closed', !open);
     document.body.classList.toggle('panel-closed', !open);
-    $('layers-btn').textContent = open ? 'Hide maps' : 'Maps';
+    $('layers-btn').textContent = open ? t('panel.hideMaps') : t('panel.maps');
     $('layers-btn').setAttribute('aria-expanded', open);
     placeScale();
   }
   $('layers-btn').addEventListener('click', () => setPanel($('panel').classList.contains('closed')));
   setPanel(!phone);
-  function setLegend(open) { $('legend').classList.toggle('min', !open); $('legend-toggle').textContent = open ? 'Hide' : 'Legend'; $('legend-toggle').setAttribute('aria-expanded', open); }
+  function setLegend(open) { $('legend').classList.toggle('min', !open); $('legend-toggle').textContent = open ? t('legend.hide') : t('legend.title'); $('legend-toggle').setAttribute('aria-expanded', open); }
   $('legend-toggle').addEventListener('click', () => setLegend($('legend').classList.contains('min')));
   setLegend(!phone);
 
@@ -2401,7 +2413,7 @@
     btn.id = 'globe-toggle';
     btn.className = 'measure-btn globe-btn';
     btn.setAttribute('aria-pressed', 'false');
-    btn.setAttribute('aria-label', '3D');
+    btn.setAttribute('aria-label', t('tool.3d'));
     btn.title = '3D';
     btn.innerHTML = ICON.globe;
     if (box) {
@@ -2534,10 +2546,10 @@
       writeHash();
       const url = location.href;
       const done = ok => {
-        btn.textContent = ok ? 'Copied' : 'Copy link';
+        btn.textContent = ok ? t('panel.copied') : t('panel.copyLink');
         clearTimeout(timer);
-        timer = setTimeout(() => { btn.textContent = 'Copy link'; }, 1500);
-        if (!ok) { try { window.prompt('Copy this link', url); } catch (e) {} }
+        timer = setTimeout(() => { btn.textContent = t('panel.copyLink'); }, 1500);
+        if (!ok) { try { window.prompt(t('panel.copyThisLink'), url); } catch (e) {} }
       };
       copyText(url).then(() => done(true), () => done(false));
     });
@@ -2545,15 +2557,15 @@
   function coordLine(text) {
     const row = document.createElement('div');
     row.className = 'coord-line';
-    row.innerHTML = '<span class="coord-text"></span><button type="button" class="coord-copy">Copy</button>';
+    row.innerHTML = '<span class="coord-text"></span><button type="button" class="coord-copy">' + t('panel.copy') + '</button>';
     row.querySelector('.coord-text').textContent = text;
     const btn = row.querySelector('.coord-copy');
     let timer;
     btn.addEventListener('click', ev => {
       ev.stopPropagation();
-      copyText(text).then(() => { btn.textContent = 'Copied'; }, () => { btn.textContent = 'Copy failed'; });
+      copyText(text).then(() => { btn.textContent = t('panel.copied'); }, () => { btn.textContent = t('panel.copyFailed'); });
       clearTimeout(timer);
-      timer = setTimeout(() => { btn.textContent = 'Copy'; }, 1500);
+      timer = setTimeout(() => { btn.textContent = t('panel.copy'); }, 1500);
     });
     return row;
   }
@@ -2619,4 +2631,73 @@
     queueHash();
     setTimeout(() => { const a = document.querySelector('.maplibregl-ctrl-attrib'); if (a) a.classList.remove('maplibregl-compact-show'); if (window.atlasMeasure && window.atlasMeasure.place) window.atlasMeasure.place(); }, 300);
   });
+
+  function setMapBtnLabel(el, label) {
+    if (!el) return;
+    const keep = Array.from(el.querySelectorAll('.ov-box, .ov-load'));
+    el.textContent = '';
+    keep.forEach(n => el.appendChild(n));
+    el.appendChild(document.createTextNode(label));
+  }
+  function relabelAtlas() {
+    applySiteChrome();
+    document.querySelectorAll('#panel section.group').forEach(sec => {
+      const gid = sec.getAttribute('data-gid');
+      const gname = sec.getAttribute('data-gname');
+      const h3 = sec.querySelector('h3');
+      if (!h3) return;
+      const g = (cfg.groups || []).find(x => (gid && x.id === gid) || (!gid && x.name === gname));
+      if (g) h3.textContent = pickName(g, 'name');
+    });
+    document.querySelectorAll('#panel .map-btn[data-id]').forEach(btn => {
+      const id = btn.getAttribute('data-id');
+      const m = all[id] || ovs[id];
+      if (m) setMapBtnLabel(btn, pickName(m, 'title'));
+    });
+    setMapBtnLabel($('geo200-toggle'), t('layer.geo200'));
+    setMapBtnLabel($('process-open-toggle'), t('layer.openApply'));
+    setMapBtnLabel($('process-auction-toggle'), t('layer.atAuction'));
+    setMapBtnLabel($('eqazyna-toggle'), t('layer.licenses'));
+    setMapBtnLabel($('process-pugfn-toggle'), t('layer.pugfn'));
+    setMapBtnLabel($('itm-toggle'), t('layer.itm'));
+    setMapBtnLabel($('fig1b-toggle'), t('layer.orocline'));
+    const panel = $('panel');
+    const open = panel && !panel.classList.contains('closed');
+    const lb = $('layers-btn');
+    if (lb) lb.textContent = open ? t('panel.hideMaps') : t('panel.maps');
+    const lg = $('legend');
+    const lt = $('legend-toggle');
+    if (lt && lg) lt.textContent = lg.classList.contains('min') ? t('legend.title') : t('legend.hide');
+    const mb = $('measure-btn');
+    if (mb) { mb.title = t('tool.measure'); mb.setAttribute('aria-label', t('tool.measure')); }
+    const db = $('measure-done'); if (db) db.textContent = t('tool.done');
+    const cb = $('measure-clear'); if (cb) cb.textContent = t('tool.clear');
+    const gb = $('grid-toggle');
+    if (gb) { gb.title = t('tool.grid'); gb.setAttribute('aria-label', t('tool.grid')); }
+    const skb = $('sketch-btn');
+    if (skb) { skb.title = t('tool.sketch'); skb.setAttribute('aria-label', t('tool.sketch')); }
+    const bar = $('sketch-bar');
+    if (bar) {
+      const keys = { pencil: 'tool.pencil', erase: 'tool.eraser', thin: 'tool.thin', thick: 'tool.thick', undo: 'tool.undo', clear: 'tool.clear' };
+      bar.querySelectorAll('[data-tool], [data-width], [data-act]').forEach(b => {
+        const k = keys[b.getAttribute('data-tool') || b.getAttribute('data-width') || b.getAttribute('data-act')];
+        if (k) { b.title = t(k); b.setAttribute('aria-label', t(k)); }
+      });
+      [['#dc2626', 'color.red'], ['#1c1917', 'color.black'], ['#1d4ed8', 'color.blue'], ['#eab308', 'color.yellow']].forEach(pair => {
+        bar.querySelectorAll('[data-colour="' + pair[0] + '"]').forEach(b => {
+          b.title = t(pair[1]); b.setAttribute('aria-label', t(pair[1]));
+        });
+      });
+    }
+    const copy = document.querySelector('#copy-link, .copy-link, button.share-copy');
+    if (copy && copy.textContent !== t('panel.copied')) copy.textContent = t('panel.copyLink');
+    const ccopy = document.querySelector('.coord-copy');
+    if (ccopy && ccopy.textContent !== t('panel.copied') && ccopy.textContent !== t('panel.copyFailed')) ccopy.textContent = t('panel.copy');
+    syncList();
+    renderLegend();
+    if (typeof gridOn !== 'undefined' && gridOn) gridUpdate();
+    if (window.atlasMeasure && window.atlasMeasure.redraw) window.atlasMeasure.redraw();
+  }
+  if (I18N.onChange) I18N.onChange(relabelAtlas);
+
 })();

@@ -150,11 +150,55 @@ function loginPage(msg, status = 401) {
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=bm1">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=bm1">
 <style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#fafaf9;color:#1c1917;font:15px/1.5 Inter,system-ui,sans-serif;padding:24px;box-sizing:border-box}
-.c{width:min(380px,100%);background:#fff;border:1px solid #e7e5e4;border-radius:14px;padding:32px 28px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.04);text-align:center}
+.c{position:relative;width:min(380px,100%);background:#fff;border:1px solid #e7e5e4;border-radius:14px;padding:40px 28px 32px;box-shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.04);text-align:center}
 h1{margin:0 0 6px;font-size:26px;letter-spacing:-.02em;text-transform:uppercase}p{margin:0 0 18px;color:#78716c;font-size:14px}
 form{display:flex;gap:8px}input{flex:1;min-width:0;padding:11px 14px;border:1px solid #e7e5e4;border-radius:10px;font:inherit}button{padding:11px 16px;border:0;border-radius:10px;background:#1c1917;color:#fff;font:inherit;font-weight:600;cursor:pointer}
-.e{color:#b91c1c;margin:12px 0 0;font-size:13px}</style></head><body><div class="c"><h1>Atlas</h1><p>Private. Enter the password to continue.</p>
-<form method="post" action="/__auth/login"><input type="password" name="password" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Password" required autofocus><button type="submit">Enter</button></form>${msg ? `<p class="e">${msg}</p>` : ""}</div></body></html>`;
+.e{color:#b91c1c;margin:12px 0 0;font-size:13px}
+.lang{position:absolute;top:12px;right:14px;display:flex;align-items:baseline;gap:5px}
+.lang button{margin:0;padding:0;border:0;background:none;color:#a8a29e;font:inherit;font-size:12px;letter-spacing:.04em;cursor:pointer;font-weight:400}
+.lang button:hover{color:#1c1917}
+.lang button[aria-pressed="true"]{color:#1c1917;font-weight:600;cursor:default}
+.lang span{color:#a8a29e;font-size:12px;user-select:none}</style></head><body><div class="c">
+<div class="lang" role="group" aria-label="Language">
+<button type="button" data-lang="en" aria-pressed="true">EN</button><span>·</span>
+<button type="button" data-lang="kk" aria-pressed="false">ҚАЗ</button><span>·</span>
+<button type="button" data-lang="ru" aria-pressed="false">РУ</button>
+</div>
+<h1>Atlas</h1><p id="lead">Private. Enter the password to continue.</p>
+<form method="post" action="/__auth/login"><input type="password" name="password" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Password" required autofocus><button type="submit">Enter</button></form>${msg ? `<p class="e" id="err">Wrong password.</p>` : ""}</div>
+<script>(function(){
+var STR={en:{lead:"Private. Enter the password to continue.",password:"Password",enter:"Enter",wrong:"Wrong password.",lang:"Language"},kk:{lead:"Жабық бөлім. Жалғастыру үшін құпиясөзді енгізіңіз.",password:"Құпиясөз",enter:"Кіру",wrong:"Құпиясөз қате.",lang:"Тіл"},ru:{lead:"Закрытый раздел. Введите пароль, чтобы продолжить.",password:"Пароль",enter:"Войти",wrong:"Неверный пароль.",lang:"Язык"}};
+var KEY="kzgeology-lang";
+function norm(s){s=String(s||"").toLowerCase();if(s==="kz")return"kk";if(s.indexOf("kk")===0)return"kk";if(s.indexOf("ru")===0)return"ru";if(s==="en"||s.indexOf("en")===0)return"en";return""}
+function detect(){
+  try{var q=new URLSearchParams(location.search).get("lang");var n=norm(q);if(n)return{lang:n,persist:true,url:true}}catch(e){}
+  try{var s=localStorage.getItem(KEY);var n=norm(s);if(n)return{lang:n,persist:false,url:false}}catch(e){}
+  var nav=(navigator.language||"").toLowerCase();
+  if(nav.indexOf("ru")===0)return{lang:"ru",persist:true,url:true};
+  if(nav.indexOf("kk")===0)return{lang:"kk",persist:true,url:true};
+  return{lang:"en",persist:false,url:false};
+}
+function apply(lang){
+  var d=STR[lang]||STR.en;
+  document.documentElement.lang=lang;
+  var lead=document.getElementById("lead"); if(lead) lead.textContent=d.lead;
+  var inp=document.querySelector('input[name="password"]'); if(inp) inp.placeholder=d.password;
+  var btn=document.querySelector('button[type="submit"]'); if(btn) btn.textContent=d.enter;
+  var err=document.getElementById("err"); if(err) err.textContent=d.wrong;
+  var g=document.querySelector(".lang"); if(g) g.setAttribute("aria-label", d.lang);
+  document.querySelectorAll(".lang button").forEach(function(b){b.setAttribute("aria-pressed", String(b.getAttribute("data-lang")===lang));});
+}
+function setLang(lang){
+  try{localStorage.setItem(KEY,lang)}catch(e){}
+  try{var u=new URL(location.href);u.searchParams.set("lang",lang);history.replaceState(null,"",u.pathname+u.search+u.hash)}catch(e){}
+  apply(lang);
+}
+var det=detect();
+if(det.persist){try{localStorage.setItem(KEY,det.lang)}catch(e){}}
+if(det.url){try{var u=new URL(location.href);u.searchParams.set("lang",det.lang);history.replaceState(null,"",u.pathname+u.search+u.hash)}catch(e){}}
+apply(det.lang);
+document.querySelectorAll(".lang button").forEach(function(b){b.addEventListener("click",function(){setLang(b.getAttribute("data-lang"));});});
+})();</script></body></html>`;
   return new Response(html, {
     status,
     headers: { ...SECURITY, ...NOINDEX, "Cache-Control": "private, no-store", "Content-Type": "text/html; charset=utf-8" },

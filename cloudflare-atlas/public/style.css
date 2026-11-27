@@ -8,6 +8,18 @@ body{background:var(--bg);color:var(--text);font:14px/1.5 var(--sans);-webkit-fo
 .brand{font-weight:700;text-transform:uppercase;letter-spacing:-.01em;font-size:16px}
 .sub{color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
 .topbar nav{display:flex;align-items:baseline;gap:16px;flex:none}.topbar nav a{color:var(--muted);text-decoration:none;font-size:13px}.topbar nav a:hover{color:var(--text)}
+.topbar{position:relative}
+.lang-switch{display:flex;align-items:baseline;gap:5px;margin-left:2px}
+.lang-switch button{margin:0;padding:0;border:0;background:none;color:var(--muted);font:inherit;font-size:12px;letter-spacing:.04em;cursor:pointer;line-height:inherit}
+.lang-switch button:hover{color:var(--text)}
+.lang-switch button[aria-pressed="true"]{color:var(--text);font-weight:600;cursor:default}
+.lang-switch .lang-dot{color:var(--muted);font-size:12px;user-select:none}
+.nav-toggle{display:none;margin:0 0 0 auto;padding:0;border:0;background:none;color:var(--muted);cursor:pointer;width:32px;height:32px;align-items:center;justify-content:center;border-radius:8px;flex:none}
+.nav-toggle:hover{color:var(--text)}
+.nav-toggle-bars,.nav-toggle-bars:before,.nav-toggle-bars:after{display:block;width:16px;height:1.5px;background:currentColor;border-radius:1px;position:relative}
+.nav-toggle-bars:before,.nav-toggle-bars:after{content:"";position:absolute;left:0}
+.nav-toggle-bars:before{top:-5px}
+.nav-toggle-bars:after{top:5px}
 .wrap{position:relative;flex:1;min-height:0}
 #mapview{position:absolute;inset:0}
 .panel{position:absolute;top:12px;left:12px;bottom:12px;width:300px;overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:12px 14px;z-index:2}
@@ -421,4 +433,15 @@ a.about-cta-primary{color:var(--paper)}
   .measure-box button{animation:none}
   .measure-box button,.sketch-bar button,.topview-btn{transition:none}
   .topview-btn{animation:none}
+}
+
+@media (max-width:700px){
+  .nav-toggle{display:inline-flex}
+  .topbar nav{display:none;position:absolute;z-index:20;top:calc(100% - 2px);right:8px;left:auto;margin:0;padding:6px;min-width:196px;flex-direction:column;align-items:stretch;gap:0;background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow)}
+  .topbar nav.open{display:flex}
+  .topbar nav a,.topbar nav .donate-btn,.topbar nav .map-return{padding:9px 12px;min-height:36px;font-size:13px;border-radius:7px}
+  .topbar nav a:hover,.topbar nav .donate-btn:hover{background:var(--soft)}
+  .topbar nav .map-return{margin:0 0 4px;text-align:left}
+  .lang-switch{margin:4px 8px 6px;padding-top:8px;border-top:1px solid var(--line);gap:8px}
+  .lang-switch button{font-size:13px;min-height:32px;padding:0 2px}
 }

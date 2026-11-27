@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>(function(){try{var q=new URLSearchParams(location.search).get('lang');var s=localStorage.getItem('kzgeology-lang');var l=(q||s||'').toLowerCase().slice(0,2);if(l==='kz')l='kk';if(l==='kk'||l==='ru'||l==='en')document.documentElement.lang=l;}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <base href="/">
 <title>kzgeology</title>
@@ -12,42 +13,52 @@
 <link rel="preload" href="fonts/source-serif-pro-semibold.woff2" as="font" type="font/woff2" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css" rel="stylesheet">
-<link href="style.css?v=cf20" rel="stylesheet">
+<link href="style.css?v=cf21" rel="stylesheet">
 </head>
 <body>
 <header class="topbar">
   <span class="brand">Atlas</span>
-  <span class="sub">Geological maps of Kazakhstan</span>
-  <nav>
-    <button type="button" class="map-return" id="map-return" hidden>Map</button>
-    <a href="/about" id="about-btn">About</a>
-    <button type="button" class="donate-btn" id="donate-btn" aria-haspopup="dialog" aria-controls="donate-modal"><span class="donate-full">Donate maps</span><span class="donate-short">Donate</span></button>
-    <a href="/game.html">Play</a>
-    <a href="/__auth/logout">Log out</a>
+  <span class="sub" data-i18n="sub.maps">Geological maps of Kazakhstan</span>
+  <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" data-i18n-aria="nav.menu" aria-label="Menu">
+    <span class="nav-toggle-bars" aria-hidden="true"></span>
+  </button>
+  <nav id="site-nav">
+    <button type="button" class="map-return" id="map-return" hidden data-i18n="nav.map">Map</button>
+    <a href="/about" id="about-btn" data-i18n="nav.about">About</a>
+    <button type="button" class="donate-btn" id="donate-btn" aria-haspopup="dialog" aria-controls="donate-modal"><span class="donate-full" data-i18n="nav.donate">Donate maps</span><span class="donate-short" data-i18n="nav.donateShort">Donate</span></button>
+    <a href="/game.html" data-i18n="nav.play">Play</a>
+    <a href="/__auth/logout" data-i18n="nav.logout">Log out</a>
+    <div class="lang-switch" role="group" data-i18n-aria="nav.lang" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <span class="lang-dot" aria-hidden="true">·</span>
+      <button type="button" data-lang="kk" aria-pressed="false">ҚАЗ</button>
+      <span class="lang-dot" aria-hidden="true">·</span>
+      <button type="button" data-lang="ru" aria-pressed="false">РУ</button>
+    </div>
   </nav>
 </header>
 <main class="wrap">
   <div id="mapview"></div>
   <button type="button" class="layers-btn" id="layers-btn" aria-expanded="true" aria-controls="panel">Hide maps</button>
-  <aside class="panel" id="panel" aria-label="Maps">
+  <aside class="panel" id="panel" aria-label="Maps" data-i18n-aria="panel.maps">
     <div class="panel-head">
-      <strong>Maps</strong>
+      <strong data-i18n="panel.maps">Maps</strong>
     </div>
     <div class="act" id="active-layers" hidden></div>
-    <div class="bm" role="group" aria-label="Basemap"><button type="button" class="bm-btn" data-bm="map">Map</button><div class="bm-sat" id="bm-sat"><button type="button" class="bm-btn" data-bm="sat">Satellite</button><button type="button" class="bm-chev" id="sat-picker-btn" aria-label="Satellite source" aria-haspopup="listbox" aria-expanded="false" title="Satellite source"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.7 9.2 12 14.5l5.3-5.3 1.4 1.4L12 17.3 5.3 10.6z"/></svg></button></div></div>
-    <div class="goto" role="group" aria-label="Go to coordinates">
-      <input type="text" id="goto-input" placeholder="48.5, 66.2" aria-label="Coordinates" autocomplete="off" spellcheck="false">
-      <button type="button" id="goto-btn">Go</button>
+    <div class="bm" role="group" aria-label="Basemap" data-i18n-aria="panel.basemap"><button type="button" class="bm-btn" data-bm="map" data-i18n="panel.map">Map</button><div class="bm-sat" id="bm-sat"><button type="button" class="bm-btn" data-bm="sat" data-i18n="panel.sat">Satellite</button><button type="button" class="bm-chev" id="sat-picker-btn" aria-label="Satellite source" aria-haspopup="listbox" aria-expanded="false" title="Satellite source" data-i18n-aria="panel.satSource" data-i18n-title="panel.satSource"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.7 9.2 12 14.5l5.3-5.3 1.4 1.4L12 17.3 5.3 10.6z"/></svg></button></div></div>
+    <div class="goto" role="group" aria-label="Go to coordinates" data-i18n-aria="panel.goto">
+      <input type="text" id="goto-input" placeholder="48.5, 66.2" aria-label="Coordinates" data-i18n-aria="panel.coords" autocomplete="off" spellcheck="false">
+      <button type="button" id="goto-btn" data-i18n="panel.go">Go</button>
     </div>
     <div id="groups"></div>
     <div class="docs">
-      <strong>Explanatory notes</strong>
-      <a href="docs/Notes_engl.pdf" target="_blank">English</a>
-      <a href="docs/Notes_rus.pdf" target="_blank">Russian</a>
-      <a href="docs/TITLE.pdf" target="_blank">Title</a>
-      <a href="docs/CONTENT.pdf" target="_blank">Contents</a>
+      <strong data-i18n="panel.notes">Explanatory notes</strong>
+      <a href="docs/Notes_engl.pdf" target="_blank" data-i18n="panel.notesEn">English</a>
+      <a href="docs/Notes_rus.pdf" target="_blank" data-i18n="panel.notesRu">Russian</a>
+      <a href="docs/TITLE.pdf" target="_blank" data-i18n="panel.notesTitle">Title</a>
+      <a href="docs/CONTENT.pdf" target="_blank" data-i18n="panel.notesContents">Contents</a>
     </div>
-    <p class="panel-src"><a href="/sources" id="panel-sources">Sources and credits</a><button type="button" id="copy-link">Copy link</button></p>
+    <p class="panel-src"><a href="/sources" id="panel-sources" data-i18n="panel.sources">Sources and credits</a><button type="button" id="copy-link" data-i18n="panel.copyLink">Copy link</button></p>
   </aside>
   <div class="right-stack" id="right-stack">
     <aside class="legend" id="legend" hidden>
@@ -57,7 +68,7 @@
   </div>
   <div class="map-scale" id="map-scale">
     <div class="north-tools">
-    <button type="button" class="topview-btn" id="topview-btn" title="Top view (D)" aria-label="Top view">
+    <button type="button" class="topview-btn" id="topview-btn" title="Top view (D)" aria-label="Top view" data-i18n-title="tool.topview" data-i18n-aria="tool.topview">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 3.2 18.4 7 12 10.8 5.6 7Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
         <path d="M12 12.6v3.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
@@ -65,7 +76,7 @@
         <rect x="6" y="17.6" width="12" height="3.2" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/>
       </svg>
     </button>
-    <button type="button" class="north" id="map-north" aria-label="Reset north">
+    <button type="button" class="north" id="map-north" aria-label="Reset north" data-i18n-aria="tool.north">
       <span class="north-wrap">
         <svg class="north-svg" viewBox="0 0 56 56" aria-hidden="true">
           <g class="north-rot">
@@ -89,36 +100,36 @@
 
 <article id="site-pages" class="site-pages" hidden>
   <div class="about-nav" id="about-nav">
-    <nav aria-label="About">
-      <a href="/about" data-about="about">About</a>
-      <a href="/about/made" data-about="made">How it's made</a>
-      <a href="/sources" data-about="sources">Sources</a>
-      <a href="/contribute" data-about="contribute">Contribute</a>
-      <a href="/open-source" data-about="code">Open source</a>
-      <a href="/authors" data-about="authors">Authors</a>
+    <nav aria-label="About" data-i18n-aria="nav.about">
+      <a href="/about" data-about="about" data-i18n="nav.about">About</a>
+      <a href="/about/made" data-about="made" data-i18n="nav.made">How it's made</a>
+      <a href="/sources" data-about="sources" data-i18n="nav.sources">Sources</a>
+      <a href="/contribute" data-about="contribute" data-i18n="nav.contribute">Contribute</a>
+      <a href="/open-source" data-about="code" data-i18n="nav.code">Open source</a>
+      <a href="/authors" data-about="authors" data-i18n="nav.authors">Authors</a>
     </nav>
-    <a href="/about#support" class="about-nav-sponsor" data-support>Sponsor</a>
+    <a href="/about#support" class="about-nav-sponsor" data-support data-i18n="nav.sponsor">Sponsor</a>
   </div>
   <div class="about-wrap">
     <section class="about-block" id="about" data-path="/about">
       <figure class="about-plate">
-        <img src="about-geo.webp" alt="Geological map of Kazakhstan, compiled in 1967 at a scale of 1:1,500,000." width="2560" height="1056" decoding="async">
-        <figcaption>Geological map of the Kazakh SSR and adjacent territories, 1:1,500,000. All-Union Aerogeological Trust, 1967.</figcaption>
+        <img src="about-geo.webp" alt="Geological map of Kazakhstan, compiled in 1967 at a scale of 1:1,500,000." data-i18n="about.imgAlt1967" data-i18n-attr="alt" width="2560" height="1056" decoding="async">
+        <figcaption data-i18n="about.cap1967">Geological map of the Kazakh SSR and adjacent territories, 1:1,500,000. All-Union Aerogeological Trust, 1967.</figcaption>
       </figure>
       <div class="about-mast">
-        <h1>About</h1>
+        <h1 data-i18n="about.h1">About</h1>
         <div class="about-col">
-          <p class="about-lead">kzgeology is a public geological map of Kazakhstan. It brings together published maps and official subsoil data so they can be read in one place, without a login.</p>
+          <p class="about-lead" data-i18n="about.lead">kzgeology is a public geological map of Kazakhstan. It brings together published maps and official subsoil data so they can be read in one place, without a login.</p>
           <ol class="about-inventory">
-            <li><span class="n" data-count="487">487</span><span class="t">Gosgeolkarta geological sheets at 1:200,000</span></li>
-            <li><span class="n">1967</span><span class="t">Geological map of the Kazakh SSR at 1:1,500,000, with its fault and mineral-deposit layers</span></li>
-            <li><span class="n"></span><span class="t">Structural, mineral, and geoenvironmental layers</span></li>
-            <li><span class="n"></span><span class="t">Official subsoil-use and licence data</span></li>
+            <li><span class="n" data-count="487">487</span><span class="t" data-i18n="about.item487">Gosgeolkarta geological sheets at 1:200,000</span></li>
+            <li><span class="n">1967</span><span class="t" data-i18n="about.item1967">Geological map of the Kazakh SSR at 1:1,500,000, with its fault and mineral-deposit layers</span></li>
+            <li><span class="n"></span><span class="t" data-i18n="about.itemStruct">Structural, mineral, and geoenvironmental layers</span></li>
+            <li><span class="n"></span><span class="t" data-i18n="about.itemSubsoil">Official subsoil-use and licence data</span></li>
           </ol>
           <aside class="about-support">
-            <h2>Support the project</h2>
-            <p>kzgeology is a non-profit project and is free for everyone. Sponsors help keep the maps free and bring new ones online.</p>
-            <p><a class="about-cta about-cta-primary" href="https://yerkebulan.dev" target="_blank" rel="noopener">Become a sponsor</a></p>
+            <h2 data-i18n="about.support">Support the project</h2>
+            <p data-i18n="about.supportBody">kzgeology is a non-profit project and is free for everyone. Sponsors help keep the maps free and bring new ones online.</p>
+            <p><a class="about-cta about-cta-primary" href="https://yerkebulan.dev" target="_blank" rel="noopener" data-i18n="about.sponsorCta">Become a sponsor</a></p>
           </aside>
         </div>
       </div>
@@ -126,41 +137,41 @@
 
     <section class="about-block" id="about-made" data-path="/about/made">
       <div class="about-mast">
-        <h1>How it's made</h1>
+        <h1 data-i18n="made.h1">How it's made</h1>
         <div class="about-col">
-          <p>The maps begin as printed sheets and published figures. Each sheet is georeferenced, then cut into tiles so that only the area in view is loaded. Vector layers are traced from those sources and drawn over the map.</p>
+          <p data-i18n="made.body">The maps begin as printed sheets and published figures. Each sheet is georeferenced, then cut into tiles so that only the area in view is loaded. Vector layers are traced from those sources and drawn over the map.</p>
         </div>
       </div>
       <figure class="about-plate">
-        <img src="about-sheets.webp" alt="Index of the 1:200,000 geological map sheets covering Kazakhstan." width="2560" height="1056" loading="lazy" decoding="async">
-        <figcaption>Index of the 487 geological sheets at 1:200,000 on this map.</figcaption>
+        <img src="about-sheets.webp" alt="Index of the 1:200,000 geological map sheets covering Kazakhstan." data-i18n="made.imgAlt" data-i18n-attr="alt" width="2560" height="1056" loading="lazy" decoding="async">
+        <figcaption data-i18n="made.cap">Index of the 487 geological sheets at 1:200,000 on this map.</figcaption>
       </figure>
     </section>
 
     <section class="about-block" id="about-sources" data-path="/sources">
       <div class="about-mast">
-        <h1>Sources</h1>
+        <h1 data-i18n="src.h1">Sources</h1>
         <div class="about-col">
-          <p class="about-lead">The layers on this map are drawn from the following published sources.</p>
+          <p class="about-lead" data-i18n="src.lead">The layers on this map are drawn from the following published sources.</p>
 
-          <h2>Regional geological maps</h2>
+          <h2 data-i18n="src.hRegional">Regional geological maps</h2>
           <ul class="about-refs">
             <li>All-Union Aerogeological Trust, 1967. <em>Geological map of the Kazakh Soviet Socialist Republic and adjacent territories of the union republics</em>. Scale 1:1,500,000. Editor: V. F. Bespalov. <a href="https://www.geokniga.org/maps/45151" target="_blank" rel="noopener">geokniga.org/maps/45151</a></li>
-            <li>Daukeev, S. Zh., Uzhkenov, B. S., et al. (eds.). <em>Atlas of the Lithology-Paleogeographical, Structural, Palinspastic and Geoenvironmental Maps of Central Eurasia</em>. ISBN 9965-13-566-5. Used here for main tectonic structures, sedimentary cover structure, historic-geological sections, and the geoenvironmental maps.</li>
+            <li>Daukeev, S. Zh., Uzhkenov, B. S., et al. (eds.). <em>Atlas of the Lithology-Paleogeographical, Structural, Palinspastic and Geoenvironmental Maps of Central Eurasia</em>. ISBN 9965-13-566-5. <span data-i18n="src.usedHere">Used here for main tectonic structures, sedimentary cover structure, historic-geological sections, and the geoenvironmental maps.</span></li>
           </ul>
 
-          <h2>1:200,000 sheets</h2>
+          <h2 data-i18n="src.h200k">1:200,000 sheets</h2>
           <ul class="about-refs">
-            <li>Gosgeolkarta. Geological map of the USSR, scale 1:200,000. 487 sheets covering Kazakhstan. Scans from <a href="https://cloud.mail.ru/public/LrNy/Ki1QkR1tA" target="_blank" rel="noopener">Mail.ru</a> and <a href="https://www.geokniga.org/maps" target="_blank" rel="noopener">Geokniga</a>.</li>
+            <li>Gosgeolkarta. Geological map of the USSR, scale 1:200,000. <span data-i18n="src.sheetsCover">487 sheets covering Kazakhstan. Scans from</span> <a href="https://cloud.mail.ru/public/LrNy/Ki1QkR1tA" target="_blank" rel="noopener">Mail.ru</a> <span data-i18n="src.and">and</span> <a href="https://www.geokniga.org/maps" target="_blank" rel="noopener">Geokniga</a>.</li>
           </ul>
 
-          <h2>Mineral deposits and faults</h2>
+          <h2 data-i18n="src.hDeposits">Mineral deposits and faults</h2>
           <ul class="about-refs">
-            <li>Detailed faults and mineral deposits, digitized from All-Union Aerogeological Trust, 1967 (cited above).</li>
-            <li>Regional faults and ore occurrences: industry compilation.</li>
+            <li data-i18n="src.detailedFaults">Detailed faults and mineral deposits, digitized from All-Union Aerogeological Trust, 1967 (cited above).</li>
+            <li data-i18n="src.regionalFaults">Regional faults and ore occurrences: industry compilation.</li>
           </ul>
 
-          <h2>USGS assessments</h2>
+          <h2 data-i18n="src.hUsgs">USGS assessments</h2>
           <ul class="about-refs">
             <li>Berger, B. R., Mars, J. L., Denning, P., Phillips, J. D., Hammarstrom, J. M., Zientek, M. L., Dicken, C. L. and Drew, L. J., with contributions from Alexeiev, D., Seltmann, R. and Herrington, R. J., 2014. <em>Porphyry copper assessment of western Central Asia</em>. U.S. Geological Survey Scientific Investigations Report 2010-5090-N. <a href="https://doi.org/10.3133/sir20105090N" target="_blank" rel="noopener">doi:10.3133/sir20105090N</a></li>
             <li>Box, S. E., Syusyura, B., Hayes, T. S., Taylor, C. D., Zientek, M. L., Hitzman, M., Seltmann, R., Chechetkin, V., Dolgopolova, A., Cossette, P. M. and Wallis, J., 2012. <em>Sandstone copper assessment of the Chu-Sarysu Basin, Central Kazakhstan</em>. U.S. Geological Survey Scientific Investigations Report 2010-5090-E. <a href="https://doi.org/10.3133/sir20105090E" target="_blank" rel="noopener">doi:10.3133/sir20105090E</a></li>
@@ -175,17 +186,17 @@
           </ul>
 
 
-          <h2>Active faults, seismicity and geophysics</h2>
+          <h2 data-i18n="src.hGeophys">Active faults, seismicity and geophysics</h2>
           <ul class="about-refs">
             <li>King, T., Elliott, A., Grützner, C., Styron, R. and Walker, R., 2024. The Tien Shan Active Fault Database (Version 1.0) [dataset]. Zenodo. <a href="https://doi.org/10.5281/zenodo.10659677" target="_blank" rel="noopener">doi:10.5281/zenodo.10659677</a>. CC BY 4.0.</li>
             <li>Mohadjer, S., Ehlers, T. A., Bendick, R., Stübner, K. and Strube, T., 2016. A Quaternary fault database for central Asia. <em>Natural Hazards and Earth System Sciences</em>, 16, 529-542. <a href="https://doi.org/10.5194/nhess-16-529-2016" target="_blank" rel="noopener">doi:10.5194/nhess-16-529-2016</a>. CC BY 3.0. Fault traces from the paper supplement.</li>
-            <li>Styron, R. and Pagani, M., 2020. The GEM Global Active Faults Database (GAF-DB). <em>Earthquake Spectra</em>, 36(S1), 160-177. <a href="https://doi.org/10.1177/8755293019878195" target="_blank" rel="noopener">doi:10.1177/8755293019878195</a>. Data: <a href="https://github.com/GEMScienceTools/gem-global-active-faults" target="_blank" rel="noopener">GEM Global Active Faults</a>. CC BY-SA 4.0. The Active faults layer includes GEM traces and is therefore also offered under CC BY-SA 4.0.</li>
-            <li>U.S. Geological Survey, Earthquake Hazards Program. ANSS Comprehensive Earthquake Catalog (ComCat). Events of magnitude 3.0 and greater in the Kazakhstan region, 1 January 1900 to 26 November 2026. Snapshot downloaded 27 November 2026. <a href="https://earthquake.usgs.gov/" target="_blank" rel="noopener">earthquake.usgs.gov</a>.</li>
-            <li>World Bank, 2023. Central Asia seismic return period hazard maps, peak ground acceleration [dataset]. Dataset 0064172. <a href="https://datacatalog.worldbank.org/search/dataset/0064172/central-asia-seismic-return-period-hazard-maps-pga" target="_blank" rel="noopener">World Bank Data Catalog</a>. CC BY 4.0. The map shows the 475-year return period (10% probability of exceedance in 50 years) from the open catalog files, not the later restricted GEM 2025 model.</li>
-            <li>Meyer, B., Chulliat, A. and Saltus, R., 2017. Derivation and error analysis of the Earth Magnetic Anomaly Grid at 2 arc-minute resolution version 3 (EMAG2v3). <em>Geochemistry, Geophysics, Geosystems</em>, 18, 4522-4537. <a href="https://doi.org/10.1002/2017GC007280" target="_blank" rel="noopener">doi:10.1002/2017GC007280</a>. Data: NOAA National Centers for Environmental Information, public domain. Not for navigation.</li>
+            <li>Styron, R. and Pagani, M., 2020. The GEM Global Active Faults Database (GAF-DB). <em>Earthquake Spectra</em>, 36(S1), 160-177. <a href="https://doi.org/10.1177/8755293019878195" target="_blank" rel="noopener">doi:10.1177/8755293019878195</a>. Data: <a href="https://github.com/GEMScienceTools/gem-global-active-faults" target="_blank" rel="noopener">GEM Global Active Faults</a>. CC BY-SA 4.0. <span data-i18n="src.gemSa">The Active faults layer includes GEM traces and is therefore also offered under CC BY-SA 4.0.</span></li>
+            <li>U.S. Geological Survey, Earthquake Hazards Program. ANSS Comprehensive Earthquake Catalog (ComCat). <span data-i18n="src.comcatSnap">Events of magnitude 3.0 and greater in the Kazakhstan region, 1 January 1900 to 26 November 2026. Snapshot downloaded 27 November 2026.</span> <a href="https://earthquake.usgs.gov/" target="_blank" rel="noopener">earthquake.usgs.gov</a>.</li>
+            <li>World Bank, 2023. Central Asia seismic return period hazard maps, peak ground acceleration [dataset]. Dataset 0064172. <a href="https://datacatalog.worldbank.org/search/dataset/0064172/central-asia-seismic-return-period-hazard-maps-pga" target="_blank" rel="noopener">World Bank Data Catalog</a>. CC BY 4.0. <span data-i18n="src.wbNote">The map shows the 475-year return period (10% probability of exceedance in 50 years) from the open catalog files, not the later restricted GEM 2025 model.</span></li>
+            <li>Meyer, B., Chulliat, A. and Saltus, R., 2017. Derivation and error analysis of the Earth Magnetic Anomaly Grid at 2 arc-minute resolution version 3 (EMAG2v3). <em>Geochemistry, Geophysics, Geosystems</em>, 18, 4522-4537. <a href="https://doi.org/10.1002/2017GC007280" target="_blank" rel="noopener">doi:10.1002/2017GC007280</a>. Data: NOAA National Centers for Environmental Information, public domain. <span data-i18n="src.notNav">Not for navigation.</span></li>
           </ul>
 
-          <h2>Research papers</h2>
+          <h2 data-i18n="src.hPapers">Research papers</h2>
           <ul class="about-refs">
             <li>Windley, B. F., Alexeiev, D., Xiao, W., Kröner, A. and Badarch, G., 2007. Tectonic models for accretion of the Central Asian Orogenic Belt. <em>Journal of the Geological Society</em>, 164, 31-47. <a href="https://doi.org/10.1144/0016-76492006-022" target="_blank" rel="noopener">doi:10.1144/0016-76492006-022</a></li>
             <li>Li, P., Sun, M., Rosenbaum, G., Yuan, C., Safonova, I., Cai, K., Jiang, Y. and Zhang, Y., 2018. Geometry, kinematics and tectonic models of the Kazakhstan Orocline, Central Asian Orogenic Belt. <em>Journal of Asian Earth Sciences</em>, 153, 42-56. <a href="https://doi.org/10.1016/j.jseaes.2017.07.029" target="_blank" rel="noopener">doi:10.1016/j.jseaes.2017.07.029</a></li>
@@ -193,16 +204,16 @@
             <li>Safonova, I., Savinskiy, I., Perfilova, A., Obut, O., Gurova, A. and Krivonogov, S., 2024. A new tectonic model for the Itmurundy Zone, central Kazakhstan: linking ocean plate stratigraphy, timing of accretion and subduction polarity. <em>Geoscience Frontiers</em>, 15(4), 101814. <a href="https://doi.org/10.1016/j.gsf.2024.101814" target="_blank" rel="noopener">doi:10.1016/j.gsf.2024.101814</a></li>
           </ul>
 
-          <h2>Subsoil use data</h2>
+          <h2 data-i18n="src.hSubsoil">Subsoil use data</h2>
           <ul class="about-refs">
-            <li>Unified Subsoil Use Platform (licences and subsoil use): <a href="https://minerals.e-qazyna.kz/" target="_blank" rel="noopener">minerals.e-qazyna.kz</a></li>
-            <li>PUGFN (oil, gas, uranium), from the same platform: <a href="https://minerals.e-qazyna.kz/ru/contracts-map" target="_blank" rel="noopener">contracts map</a></li>
-            <li>Geological maps listed on <a href="https://nedra.kz/map/" target="_blank" rel="noopener">nedra.kz/map</a></li>
+            <li><span data-i18n="src.subsoilPlatform">Unified Subsoil Use Platform (licences and subsoil use):</span> <a href="https://minerals.e-qazyna.kz/" target="_blank" rel="noopener">minerals.e-qazyna.kz</a></li>
+            <li><span data-i18n="src.pugfnFrom">PUGFN (oil, gas, uranium), from the same platform:</span> <a href="https://minerals.e-qazyna.kz/ru/contracts-map" target="_blank" rel="noopener" data-i18n="src.contractsMap">contracts map</a></li>
+            <li><span data-i18n="src.nedra">Geological maps listed on</span> <a href="https://nedra.kz/map/" target="_blank" rel="noopener">nedra.kz/map</a></li>
           </ul>
 
-          <h2>Terrain</h2>
+          <h2 data-i18n="src.hTerrain">Terrain</h2>
           <ul class="about-refs">
-            <li>Mapzen/Tilezen terrain tiles via AWS Open Data. Elevation data courtesy of the U.S. Geological Survey (SRTM, GMTED2010) and NOAA (ETOPO1).</li>
+            <li data-i18n="src.terrain">Mapzen/Tilezen terrain tiles via AWS Open Data. Elevation data courtesy of the U.S. Geological Survey (SRTM, GMTED2010) and NOAA (ETOPO1).</li>
           </ul>
         </div>
       </div>
@@ -210,44 +221,44 @@
 
     <section class="about-block" id="about-contribute" data-path="/contribute">
       <div class="about-mast">
-        <h1>Contribute</h1>
+        <h1 data-i18n="contrib.h1">Contribute</h1>
         <div class="about-col">
-          <p class="about-lead">You can add a map to this project, or ask for one to be taken down.</p>
-          <h2>Individuals</h2>
-          <p>If you have the right to share a map, submit it with the Donate maps form. Each submission is reviewed before it is added.</p>
-          <p><button type="button" class="about-cta" id="about-donate">Donate maps</button></p>
-          <h2>Institutions</h2>
-          <p>Mining companies, geological surveys, and other institutions may contribute maps or datasets. Work that is included will be credited. Use the same form and name the institution in the note.</p>
+          <p class="about-lead" data-i18n="contrib.lead">You can add a map to this project, or ask for one to be taken down.</p>
+          <h2 data-i18n="contrib.hIndiv">Individuals</h2>
+          <p data-i18n="contrib.indiv">If you have the right to share a map, submit it with the Donate maps form. Each submission is reviewed before it is added.</p>
+          <p><button type="button" class="about-cta" id="about-donate" data-i18n="nav.donate">Donate maps</button></p>
+          <h2 data-i18n="contrib.hInst">Institutions</h2>
+          <p data-i18n="contrib.inst">Mining companies, geological surveys, and other institutions may contribute maps or datasets. Work that is included will be credited. Use the same form and name the institution in the note.</p>
           <aside class="about-support">
-            <h2>Support the project</h2>
-            <p>kzgeology is a non-profit project and is free for everyone. Sponsors help keep the maps free and bring new ones online.</p>
-            <p><a class="about-cta about-cta-primary" href="https://yerkebulan.dev" target="_blank" rel="noopener">Become a sponsor</a></p>
+            <h2 data-i18n="about.support">Support the project</h2>
+            <p data-i18n="about.supportBody">kzgeology is a non-profit project and is free for everyone. Sponsors help keep the maps free and bring new ones online.</p>
+            <p><a class="about-cta about-cta-primary" href="https://yerkebulan.dev" target="_blank" rel="noopener" data-i18n="about.sponsorCta">Become a sponsor</a></p>
           </aside>
-          <h2>Copyright</h2>
-          <p>If you hold rights in a map or dataset on this site and believe it should not be shown, please write through the form. It will be removed on request.</p>
+          <h2 data-i18n="contrib.hCopy">Copyright</h2>
+          <p data-i18n="contrib.copy">If you hold rights in a map or dataset on this site and believe it should not be shown, please write through the form. It will be removed on request.</p>
         </div>
       </div>
     </section>
 
     <section class="about-block" id="about-code" data-path="/open-source">
       <div class="about-mast">
-        <h1>Open source</h1>
+        <h1 data-i18n="code.h1">Open source</h1>
         <div class="about-col">
-          <p class="about-lead">The code that runs this site is public. The map data are hosted separately.</p>
-          <p><a class="about-cta" href="https://github.com/yerkebulat/geologykz" target="_blank" rel="noopener">View the code on GitHub</a></p>
+          <p class="about-lead" data-i18n="code.lead">The code that runs this site is public. The map data are hosted separately.</p>
+          <p><a class="about-cta" href="https://github.com/yerkebulat/geologykz" target="_blank" rel="noopener" data-i18n="code.cta">View the code on GitHub</a></p>
         </div>
       </div>
     </section>
 
     <section class="about-block" id="about-authors" data-path="/authors">
       <div class="about-mast">
-        <h1>Authors</h1>
+        <h1 data-i18n="authors.h1">Authors</h1>
         <div class="about-col">
           <ul class="about-people about-people-authors">
             <li>Aknur Zhakanova</li>
             <li>Yerkebulan Tazabek</li>
           </ul>
-          <h2 class="about-thanks">Many thanks to contributors:</h2>
+          <h2 class="about-thanks" data-i18n="authors.thanks">Many thanks to contributors:</h2>
           <ul class="about-people">
             <li>Dr. Milovan Fustic</li>
             <li>Almaz Nyshanbay</li>
@@ -259,7 +270,7 @@
             <li>Dr. Mahmoud Leila</li>
             <li>Bekzhan Smagambetov</li>
             <li>Gulsayanurailym Khabiyeva</li>
-            <li>and others.</li>
+            <li data-i18n="authors.others">and others.</li>
           </ul>
         </div>
       </div>
@@ -269,15 +280,16 @@
 
 <script src="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js"></script>
 <script src="eqazyna-config.js"></script>
-<script src="eqazyna.js?v=cf3"></script>
+<script src="eqazyna.js?v=cf4"></script>
 <script src="https://unpkg.com/pmtiles@3.2.1/dist/pmtiles.js"></script>
-<script src="process-layers.js?v=cf3"></script>
-<script src="geo200-pilot.js?v=cf2"></script>
+<script src="process-layers.js?v=cf4"></script>
+<script src="geo200-pilot.js?v=cf3"></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script src="config.js"></script>
-<script src="donate.js?v=cf10"></script>
-<script src="about.js?v=cf13"></script>
-<script src="app.js?v=cf18"></script>
-<script src="print.js?v=cf3"></script>
+<script src="i18n.js?v=cf1"></script>
+<script src="donate.js?v=cf11"></script>
+<script src="about.js?v=cf14"></script>
+<script src="app.js?v=cf19"></script>
+<script src="print.js?v=cf4"></script>
 </body>
 </html>

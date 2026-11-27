@@ -13,6 +13,8 @@
   var INK = '#1c1917', MUTED = '#78716c';
 
   var $ = function (id) { return document.getElementById(id); };
+  function t(key, vars) { return (window.atlasI18n && window.atlasI18n.t) ? window.atlasI18n.t(key, vars) : key; }
+  function loc() { var l = (window.atlasI18n && window.atlasI18n.lang) ? window.atlasI18n.lang() : 'en'; return l === 'kk' ? 'kk-KZ' : l === 'ru' ? 'ru-RU' : 'en-GB'; }
   var state = { page: 'a4', orient: 'landscape', title: '', north: true, grid: true, scale: true, date: true, attr: true };
   var modal = null;
   var busy = false;
@@ -71,10 +73,10 @@
     try {
       if (m.getLayer('sat') && m.getLayoutProperty('sat', 'visibility') === 'visible') {
         var s = ((m.getStyle() || {}).sources || {}).sat;
-        return (s && s.attribution) || 'Satellite imagery';
+        return (s && s.attribution) || t('print.satAttr');
       }
     } catch (e) {}
-    return 'Basemap \u00A9 OpenStreetMap contributors, OpenFreeMap';
+    return t('print.osmAttr');
   }
 
   // ---- sheet layout and drawing ------------------------------------------
@@ -123,11 +125,11 @@
     if (min >= 60) { d += 1; min = 0; }
     var s = d + '\u00B0';
     if (step < 1) s += (min < 10 ? '0' : '') + min + '\u2032';
-    return s + (isLat ? (v >= 0 ? 'N' : 'S') : (v >= 0 ? 'E' : 'W'));
+    return s + (isLat ? (v >= 0 ? t('dir.N') : t('dir.S')) : (v >= 0 ? t('dir.E') : t('dir.W')));
   }
 
   function fmtMetres(v) {
-    return v >= 1000 ? +(v / 1000).toFixed(2) + ' km' : Math.round(v) + ' m';
+    return v >= 1000 ? +(v / 1000).toFixed(2) + ' ' + t('unit.km') : Math.round(v) + ' ' + t('unit.m');
   }
 
   function grouped(n) {
@@ -219,7 +221,7 @@
     ctx.fill();
     ctx.font = '700 ' + Math.round(MM(4)) + 'px Inter, system-ui, sans-serif';
     ctx.textBaseline = 'middle';
-    halo(ctx, 'N', 0, -MM(9), 'center', INK, L.pxPerMm);
+    halo(ctx, t('dir.N'), 0, -MM(9), 'center', INK, L.pxPerMm);
     ctx.restore();
   }
 
@@ -261,7 +263,7 @@
       ctx.fillStyle = MUTED;
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
-      ctx.fillText(new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }), W / 2, yMid);
+      ctx.fillText(new Date().toLocaleDateString(loc(), { day: 'numeric', month: 'short', year: 'numeric' }), W / 2, yMid);
     }
     if (opts.attr) {
       ctx.font = '400 ' + Math.round(2.9 * L.pxPerMm) + 'px Inter, system-ui, sans-serif';
@@ -390,7 +392,7 @@
       try { m.jumpTo(saved); } catch (e) {}
     }
 
-    setStatus('Rendering map\u2026');
+    setStatus(t('print.rendering'));
     (async function () {
       try {
         // Grow the live map to the sheet, then zoom so the current view covers
@@ -407,7 +409,7 @@
         m.jumpTo({ center: saved.center, zoom: m.getZoom() + Math.max(dzW, dzH) });
         await waitIdle(m, 15000);
         var shot = await snapshot();
-        setStatus('Building PDF\u2026');
+        setStatus(t('print.building'));
 
         var sheet = document.createElement('canvas');
         sheet.width = W;
@@ -429,7 +431,7 @@
         doc.save(filename());
         setStatus('');
       } catch (e) {
-        setStatus('Could not create the PDF. Try again.', true);
+        setStatus(t('print.fail'), true);
       } finally {
         restore();
         busy = false;
@@ -452,28 +454,29 @@
     wrap.setAttribute('aria-labelledby', 'print-title');
     wrap.innerHTML =
       '<div class="print-card">' +
-        '<h2 id="print-title">Print map</h2>' +
+        '<h2 id="print-title" data-i18n="print.title">Print map</h2>' +
         '<div class="print-preview"><canvas id="print-preview"></canvas><div class="print-status" id="print-status" hidden></div></div>' +
         '<div class="print-controls">' +
-          '<label>Title <input type="text" id="print-name" maxlength="80" autocomplete="off"></label>' +
+          '<label><span data-i18n="print.fieldTitle">Title</span> <input type="text" id="print-name" maxlength="80" autocomplete="off"></label>' +
           '<div class="print-row2">' +
-            '<label>Paper <select id="print-page"><option value="a4">A4</option><option value="a3">A3</option><option value="letter">Letter</option></select></label>' +
-            '<label>Orientation <select id="print-orient"><option value="landscape">Landscape</option><option value="portrait">Portrait</option></select></label>' +
+            '<label><span data-i18n="print.paper">Paper</span> <select id="print-page"><option value="a4">A4</option><option value="a3">A3</option><option value="letter">Letter</option></select></label>' +
+            '<label><span data-i18n="print.orient">Orientation</span> <select id="print-orient"><option value="landscape" data-i18n="print.landscape">Landscape</option><option value="portrait" data-i18n="print.portrait">Portrait</option></select></label>' +
           '</div>' +
           '<div class="print-checks">' +
-            '<label class="pc"><input type="checkbox" id="print-north" checked> North arrow</label>' +
-            '<label class="pc"><input type="checkbox" id="print-grid" checked> Grid</label>' +
-            '<label class="pc"><input type="checkbox" id="print-scale" checked> Scale bar</label>' +
-            '<label class="pc"><input type="checkbox" id="print-date" checked> Date</label>' +
-            '<label class="pc"><input type="checkbox" id="print-attr" checked> Attribution</label>' +
+            '<label class="pc"><input type="checkbox" id="print-north" checked> <span data-i18n="print.north">North arrow</span></label>' +
+            '<label class="pc"><input type="checkbox" id="print-grid" checked> <span data-i18n="print.grid">Grid</span></label>' +
+            '<label class="pc"><input type="checkbox" id="print-scale" checked> <span data-i18n="print.scale">Scale bar</span></label>' +
+            '<label class="pc"><input type="checkbox" id="print-date" checked> <span data-i18n="print.date">Date</span></label>' +
+            '<label class="pc"><input type="checkbox" id="print-attr" checked> <span data-i18n="print.attr">Attribution</span></label>' +
           '</div>' +
         '</div>' +
         '<div class="donate-actions print-actions">' +
-          '<button type="button" class="donate-cancel" id="print-cancel">Cancel</button>' +
-          '<button type="button" class="donate-send" id="print-send">Download PDF</button>' +
+          '<button type="button" class="donate-cancel" id="print-cancel" data-i18n="print.cancel">Cancel</button>' +
+          '<button type="button" class="donate-send" id="print-send" data-i18n="print.download">Download PDF</button>' +
         '</div>' +
       '</div>';
     document.body.appendChild(wrap);
+    if (window.atlasI18n && window.atlasI18n.apply) window.atlasI18n.apply(wrap);
     modal = wrap;
 
     wrap.addEventListener('click', function (e) { if (e.target === wrap && !busy) closeModal(); });
@@ -496,13 +499,13 @@
     if (!window.atlasMap) return;
     build();
     modal.hidden = false;
-    setStatus('Loading view\u2026');
+    setStatus(t('print.loadingView'));
     snapshot().then(function (shot) {
       cap = shot;
       setStatus('');
       recompose();
     }, function () {
-      setStatus('The map is not ready yet. Try again.', true);
+      setStatus(t('print.notReady'), true);
     });
   }
 
@@ -526,11 +529,16 @@
     btn.type = 'button';
     btn.id = 'print-btn';
     btn.className = 'measure-btn';
-    btn.title = 'Print';
-    btn.setAttribute('aria-label', 'Print');
+    btn.title = t('tool.print');
+    btn.setAttribute('aria-label', t('tool.print'));
     btn.setAttribute('aria-haspopup', 'dialog');
     btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 8.4V4.4h9.6v4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><rect x="4" y="8.4" width="16" height="7.4" rx="1.8" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7.6 13.2h8.8v6.4H7.6z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>';
     btn.addEventListener('click', openModal);
+    if (window.atlasI18n && window.atlasI18n.onChange) window.atlasI18n.onChange(function () {
+      var b = $('print-btn');
+      if (b) { b.title = t('tool.print'); b.setAttribute('aria-label', t('tool.print')); }
+      if (modal && !modal.hidden && cap) recompose();
+    });
     var row = box.querySelector('.tools-row');
     (row || box).appendChild(btn);
   }

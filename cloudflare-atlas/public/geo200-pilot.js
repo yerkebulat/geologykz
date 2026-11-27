@@ -1,6 +1,7 @@
 /* Off-by-default 1:200k geological scans. Licenses stay on top. Click model unchanged.
    Scan sources are added only for sheets intersecting the viewport at zoom >= 5. */
 (function () {
+  function t(key, vars) { return (window.atlasI18n && window.atlasI18n.t) ? window.atlasI18n.t(key, vars) : key; }
   const STORE = "atlas-geo200-pilot-v1";
   const DATA = "data/geo200-pilot/sheets.json?v=gk6";
   const CREDIT = "Gosgeolkarta 1:200,000 geological sheets. Scans from Mail.ru and geokniga.org.";
@@ -253,9 +254,9 @@
         if (!on) return "";
         const n = meta && meta.sheets ? meta.sheets.length : 0;
         return (
-          '<div class="lg-map">Geological maps 1:200k</div>' +
+          '<div class="lg-map">' + t('layer.geo200') + '</div>' +
           '<div class="lg-row"><span class="sw" style="background:#1e3a5f"></span><span>' +
-          n + " sheets</span></div>"
+          t('geo200.sheets', { n: n }) + "</span></div>"
         );
       }
     };
