@@ -13,7 +13,7 @@ body{background:var(--bg);color:var(--text);font:14px/1.5 var(--sans);-webkit-fo
 .panel{position:absolute;top:12px;left:12px;bottom:12px;width:300px;overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:12px 14px;z-index:2}
 .panel-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px}
 .op{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}.op input{width:90px}
-.group h3{margin:12px 0 4px;font-size:11px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.group h3{margin:12px 0 4px;font-size:11px;line-height:1.35;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;text-wrap:balance}
 .map-btn{display:block;width:100%;text-align:left;padding:6px 9px;margin:2px 0;border:1px solid transparent;border-radius:9px;background:none;font:inherit;color:inherit;cursor:pointer}
 .map-btn:hover{background:var(--soft)}.map-btn.on{background:var(--text);color:#fff}
 .docs{margin-top:14px;padding-top:10px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline}
