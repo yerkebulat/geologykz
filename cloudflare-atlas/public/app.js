@@ -370,6 +370,12 @@
   }
   function ovLayerIds() { return (map.getStyle().layers || []).map(l => l.id).filter(id => id.startsWith('atlas-ov-')); }
   function ovLayerId(m) { return 'atlas-ov-' + m.id; }
+  function overlayFromLayerId(lid) {
+    if (!lid || lid.indexOf('atlas-ov-') !== 0) return null;
+    const rest = lid.slice(9);
+    if (ovs[rest]) return ovs[rest];
+    return ovs[rest.replace(/-(ol|halo|dash|dot|cl|cn)$/, '')] || null;
+  }
   function ovLayers() { return Object.values(ovs).filter(m => ovOn.has(m.id) && map.getLayer(ovLayerId(m))).map(ovLayerId); }
   // Click selection highlight, drawn above licenses so the chosen feature stays obvious.
   const SEL_SRC = 'atlas-sel';
@@ -649,7 +655,7 @@
   }
   function featureHtml(f) {
     const lid = f.layer && f.layer.id;
-    const ov = lid && lid.startsWith('atlas-ov-') ? ovs[lid.slice(9)] : null;
+    const ov = overlayFromLayerId(lid);
     const m = ov || all[mainOfLid(lid)] || null;
     const p = f.properties || {};
     let h = '<div class="pp">';
@@ -700,14 +706,27 @@
       if (p.mt) h += kv(t('kv.tonnage'), String(p.mt) + ' Mt');
       return h + '</div>';
     }
+    if (ov && ov.id === 'glim-lithology') {
+      h += `<div class="pp-theme">${esc(pickName(ov, 'title'))}</div>`;
+      const code = p.code;
+      const key = code ? ('glim.' + code) : '';
+      const named = key ? t(key) : '';
+      const label = (named && named !== key) ? named : (p.n || p.l || '');
+      if (label && String(label) !== '0') h += `<div class="pp-l">${esc(label)}</div>`;
+      if (code) h += kv(t('kv.code'), code);
+      return h + '</div>';
+    }
     if (ov && Array.isArray(ov.popup)) {
       h += `<div class="pp-theme">${esc(pickName(ov, 'title'))}</div>`;
-      if (p.n) h += `<div class="pp-l">${esc(p.n)}</div>`;
+      const head = pickName({ title: p.n, title_kk: p.n_kk, title_ru: p.n_ru }, 'title') || p.n;
+      if (head) h += `<div class="pp-l">${esc(head)}</div>`;
       ov.popup.forEach(item => {
         const label = item.k ? t(item.k) : (item.l || '');
         let val = p[item.p];
         if (val == null || val === '') return;
         if (item.u) val = String(val) + ' ' + t(item.u);
+        if (typeof val === 'string' && val.charAt(0) === '[' && val.slice(-1) === ']') val = val.slice(1, -1);
+        if (head && String(val) === String(head)) return;
         h += kv(label, val);
       });
       return h + '</div>';
@@ -919,6 +938,51 @@
     map.addLayer({ id: lid, type: 'raster', source: lid, paint: { 'raster-opacity': 0.9, 'raster-fade-duration': 0 } }, before);
     finishOverlay(m, k);
   }
+  const barSyncs = new Map();
+  let barZoomOn = false;
+  function barLengthPx(z) {
+    if (z <= 4) return 14;
+    if (z >= 8) return 30;
+    return 14 + (z - 4) * 4;
+  }
+  function featureCentre(f) {
+    const g = f.geometry || {};
+    const c = g.coordinates;
+    if (!c) return null;
+    if (g.type === 'Point') return c;
+    if (g.type === 'LineString' && c.length) {
+      const a = c[0], b = c[c.length - 1];
+      return [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+    }
+    return null;
+  }
+  function stressBarsData(points) {
+    const half = barLengthPx(map.getZoom()) / 2;
+    const lines = [];
+    const dots = [];
+    (points || []).forEach(f => {
+      const ctr = featureCentre(f);
+      if (!ctr) return;
+      const p = map.project(ctr);
+      const azi = Number(f.properties && f.properties.azi) || 0;
+      const rad = azi * Math.PI / 180;
+      const dx = Math.sin(rad) * half;
+      const dy = -Math.cos(rad) * half;
+      const a = map.unproject([p.x - dx, p.y - dy]);
+      const b = map.unproject([p.x + dx, p.y + dy]);
+      const props = f.properties || {};
+      lines.push({ type: 'Feature', properties: props, geometry: { type: 'LineString', coordinates: [[a.lng, a.lat], [b.lng, b.lat]] } });
+      dots.push({ type: 'Feature', properties: props, geometry: { type: 'Point', coordinates: ctr } });
+    });
+    return { lines: { type: 'FeatureCollection', features: lines }, dots: { type: 'FeatureCollection', features: dots } };
+  }
+  function ensureBarZoom() {
+    if (barZoomOn) return;
+    barZoomOn = true;
+    let tick = false;
+    const run = () => { tick = false; barSyncs.forEach(fn => fn()); };
+    map.on('zoom', () => { if (!tick) { tick = true; requestAnimationFrame(run); } });
+  }
   async function addOverlay(id) {
     const m = ovs[id]; if (!m) return;
     const k = 'ov:' + id;
@@ -936,7 +1000,20 @@
     if (!ovOn.has(id)) { setLoading(k, false); return; }
     const lid = ovLayerId(m);
     if (map.getLayer(lid)) { setLoading(k, false); return; }
-    if (!map.getSource(lid)) {
+    const isBar = !!(m.bar || m.id === 'wsm-2016');
+    if (isBar) {
+      const pts = (data.features || []).slice();
+      const built = stressBarsData(pts);
+      if (!map.getSource(lid)) map.addSource(lid, { type: 'geojson', data: built.lines, tolerance: 0 });
+      if (!map.getSource(lid + '-dot')) map.addSource(lid + '-dot', { type: 'geojson', data: built.dots, tolerance: 0 });
+      barSyncs.set(m.id, () => {
+        if (!map.getSource(lid)) return;
+        const next = stressBarsData(pts);
+        map.getSource(lid).setData(next.lines);
+        if (map.getSource(lid + '-dot')) map.getSource(lid + '-dot').setData(next.dots);
+      });
+      ensureBarZoom();
+    } else if (!map.getSource(lid)) {
       const src = { type: 'geojson', data, tolerance: 0.3 };
       if (m.cluster) {
         src.cluster = true;
@@ -955,7 +1032,16 @@
           'line-width': ['interpolate', ['linear'], ['zoom'], 3, 0.55, 8, 1.15],
           'line-opacity': 0.9 } }, before);
     }
-    if (m.kind === 'line') {
+    if (isBar) {
+      const cap = { 'line-cap': 'round', 'line-join': 'round' };
+      map.addLayer({ id: lid + '-halo', type: 'line', source: lid, layout: cap,
+        paint: { 'line-color': '#ffffff', 'line-width': 4.6, 'line-opacity': 0.95 } }, before);
+      map.addLayer({ id: lid, type: 'line', source: lid, layout: cap,
+        paint: { 'line-color': ['get', 'c'], 'line-width': 2.6 } }, before);
+      map.addLayer({ id: lid + '-dot', type: 'circle', source: lid + '-dot',
+        paint: { 'circle-radius': 2.3, 'circle-color': ['get', 'c'],
+          'circle-stroke-color': '#ffffff', 'circle-stroke-width': 1.1 } }, before);
+    } else if (m.kind === 'line') {
       const width = ['interpolate', ['linear'], ['zoom'], 3, ['*', 0.45, ['coalesce', ['get', 'w'], 1]], 8, ['*', 1.4, ['coalesce', ['get', 'w'], 1]]];
       if (m.dash) {
         map.addLayer({ id: lid, type: 'line', source: lid, filter: ['!=', ['get', 'd'], 1],
@@ -986,7 +1072,9 @@
   function removeOverlay(id) {
     const m = ovs[id]; if (!m) return;
     const lid = ovLayerId(m);
-    [lid + '-cn', lid + '-cl', lid + '-dash', lid + '-ol', lid].forEach(x => { if (map.getLayer(x)) map.removeLayer(x); });
+    barSyncs.delete(id);
+    [lid + '-cn', lid + '-cl', lid + '-dash', lid + '-ol', lid + '-halo', lid + '-dot', lid].forEach(x => { if (map.getLayer(x)) map.removeLayer(x); });
+    if (map.getSource(lid + '-dot')) map.removeSource(lid + '-dot');
     if (map.getSource(lid)) map.removeSource(lid);
     renderLegend();
   }
