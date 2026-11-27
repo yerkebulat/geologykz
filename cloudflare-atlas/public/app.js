@@ -25,8 +25,6 @@
     globe: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.7"/><ellipse cx="12" cy="12" rx="3.7" ry="8.4" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3.6 12h16.8" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>',
     ruler: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="8.8" width="17.6" height="6.4" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7.4 8.8v2.5M11.6 8.8v2.5M15.8 8.8v2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>'
   };
-  const cfg = await (await fetch('maps.json?v=md6', { credentials: 'same-origin' })).json();
-  const all = {};
   const SITE = window.ATLAS_SITE || { mode: 'atlas' };
   const I18N = window.atlasI18n || {};
   function t(key, vars) { return I18N.t ? I18N.t(key, vars) : key; }
@@ -59,6 +57,8 @@
     }
   }
   applySiteChrome();
+  const cfg = await (await fetch('maps.json?v=md6', { credentials: 'same-origin' })).json();
+  const all = {};
   const ovs = {};
   cfg.groups.forEach(g => {
     if (SITE.mode === 'public' && isPaleoGroup(g)) return;
