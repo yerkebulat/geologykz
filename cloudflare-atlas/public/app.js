@@ -11,7 +11,7 @@
     if (mv) {
       const p = mv.split('/').map(Number);
       if (p.length >= 3 && isFinite(p[0]) && isFinite(p[1]) && isFinite(p[2])) {
-        out.view = { zoom: p[0], lat: p[1], lng: p[2], bearing: isFinite(p[3]) ? p[3] : 0 };
+        out.view = { zoom: p[0], lat: p[1], lng: p[2], bearing: isFinite(p[3]) ? p[3] : 0, pitch: isFinite(p[4]) ? p[4] : 0 };
       }
     }
     if (s.has('ov')) out.ov = (s.get('ov') || '').split(',').filter(Boolean);
@@ -30,6 +30,23 @@
     swipe: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 4.5v15" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8.4 9.5 6.4 12l2 2.5M15.6 9.5 17.6 12l-2 2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
   };
   const SITE = window.ATLAS_SITE || { mode: 'atlas' };
+  // Per-site memory of the last view and open layers. The URL wins over it.
+  const VIEW_STORE = 'atlas-view-v1:' + (SITE.mode === 'public' ? 'public' : 'atlas');
+  let SAVED_VIEW = null;
+  try { SAVED_VIEW = JSON.parse(localStorage.getItem(VIEW_STORE) || 'null'); } catch (e) { SAVED_VIEW = null; }
+  function urlView() {
+    try {
+      const q = new URLSearchParams(location.search);
+      const lat = parseFloat(q.get('lat') || q.get('latitude'));
+      const lng = parseFloat(q.get('lng') || q.get('lon') || q.get('long') || q.get('longitude'));
+      if (!isFinite(lat) || !isFinite(lng)) return null;
+      if (Math.abs(lat) > 90 || Math.abs(lng) > 180) return null;
+      const z = parseFloat(q.get('z') || q.get('zoom'));
+      const b = parseFloat(q.get('b') || q.get('bearing'));
+      return { lat: lat, lng: lng, zoom: isFinite(z) ? z : 12, bearing: isFinite(b) ? b : 0, pitch: 0 };
+    } catch (e) { return null; }
+  }
+  const START = (HASH && HASH.view) || urlView() || (SAVED_VIEW && SAVED_VIEW.view) || null;
   const I18N = window.atlasI18n || {};
   function t(key, vars) { return I18N.t ? I18N.t(key, vars) : key; }
   function pickName(obj, field) { return I18N.pick ? I18N.pick(obj, field) : (obj && (obj[field] || obj.name)) || ''; }
@@ -87,14 +104,18 @@
   if (HASH && HASH.ov) {
     ovOn.clear();
     HASH.ov.forEach(id => { if (ovs[id]) ovOn.add(id); });
+  } else if (SAVED_VIEW && Array.isArray(SAVED_VIEW.ov)) {
+    ovOn.clear();
+    SAVED_VIEW.ov.forEach(id => { if (ovs[id]) ovOn.add(id); });
   }
 
   const map = window.atlasMap = new maplibregl.Map({
     container: 'mapview',
     style: 'https://tiles.openfreemap.org/styles/positron',
-    center: HASH && HASH.view ? [HASH.view.lng, HASH.view.lat] : [66, 45],
-    zoom: HASH && HASH.view ? HASH.view.zoom : (phone ? 2.6 : 3.6),
-    bearing: HASH && HASH.view ? HASH.view.bearing : 0,
+    center: START ? [START.lng, START.lat] : [66, 45],
+    zoom: START ? START.zoom : (phone ? 2.6 : 3.6),
+    bearing: START ? (START.bearing || 0) : 0,
+    pitch: START ? (START.pitch || 0) : 0,
     attributionControl: false, maxZoom: 19, maxPitch: 0
   });
   map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
@@ -140,7 +161,9 @@
     if (v && SAT[v]) satKind = v;
   } catch (e) {}
   if (HASH && HASH.bm) basemap = HASH.bm;
+  else if (SAVED_VIEW && (SAVED_VIEW.bm === 'sat' || SAVED_VIEW.bm === 'map')) basemap = SAVED_VIEW.bm;
   if (HASH && HASH.sat && SAT[HASH.sat]) satKind = HASH.sat;
+  else if (SAVED_VIEW && SAVED_VIEW.sat && SAT[SAVED_VIEW.sat]) satKind = SAVED_VIEW.sat;
   function isBasemapLayer(id) {
     return id && id !== 'sat' && !/^(atlas-|eqazyna-|process-|geo200-)/.test(id);
   }
@@ -203,6 +226,7 @@
     if (window.atlasEqazyna) window.atlasEqazyna.syncOrder();
     if (window.atlasGeo200 && window.atlasGeo200.refresh) window.atlasGeo200.refresh();
     if (window.atlasCompare && window.atlasCompare.refresh) window.atlasCompare.refresh();
+    queueHash();
     if (window.atlasMeasure && window.atlasMeasure.redraw) window.atlasMeasure.redraw();
     if (window.atlasSketch && window.atlasSketch.redraw) window.atlasSketch.redraw();
   }
@@ -297,9 +321,16 @@
   const mainsOn = new Set();
   (Array.isArray(LS.mains) ? LS.mains : (() => { try { const v = localStorage.getItem(MAP_STORE); return v ? [v] : []; } catch (e) { return []; } })())
     .forEach(id => { if (all[id]) mainsOn.add(id); });
+  if (SAVED_VIEW && Array.isArray(SAVED_VIEW.mains)) {
+    mainsOn.clear();
+    SAVED_VIEW.mains.forEach(id => { if (all[id]) mainsOn.add(id); });
+  }
   if (HASH && HASH.mains) {
     mainsOn.clear();
     HASH.mains.forEach(id => { if (all[id]) mainsOn.add(id); });
+  }
+  if (SAVED_VIEW && SAVED_VIEW.op && typeof SAVED_VIEW.op === 'object') {
+    Object.keys(SAVED_VIEW.op).forEach(k => { layerOp[k] = SAVED_VIEW.op[k]; });
   }
   function saveLayers() { try { localStorage.setItem(LAYER_STORE, JSON.stringify({ order, op: layerOp, hid: [...layerHid], mains: [...mainsOn], fig1b: fig1bOn, itm: itmOn, box: actOpen })); } catch (e) {} queueHash(); if (window.atlasCompare && window.atlasCompare.refresh) window.atlasCompare.refresh(); }
   function opOf(k) { const v = Number(layerOp[k]); return isFinite(v) && v >= 0 && v <= 1 ? v : 0.85; }
@@ -1506,7 +1537,7 @@
       ['#1f8a3c', 'Trace of suture zones', 'line'], ['#b0177f', 'Strike-slip faults or shear zones', 'line']
     ]
   };
-  let fig1bOn = HASH && HASH.special ? HASH.special.includes('fig1b') : !!LS.fig1b;
+  let fig1bOn = HASH && HASH.special ? HASH.special.includes('fig1b') : (SAVED_VIEW && Array.isArray(SAVED_VIEW.special) ? SAVED_VIEW.special.includes('fig1b') : !!LS.fig1b);
   function fig1bLegendHtml(solo) {
     let h = solo ? '' : `<div class="lg-map">${esc(t('layer.orocline'))}</div>`;
     FIG1B.legend.forEach(e => { h += `<div class="lg-row"><span class="sw ${e[2] || ''}" style="background:${esc(e[0])}"></span><span>${esc(e[1])}</span></div>`; });
@@ -1536,7 +1567,7 @@
     title: 'Itmurundy zone', cite: 'Safonova et al. 2024',
     coords: [[76.007306, 46.985058], [76.869677, 46.985058], [76.869677, 46.665591], [76.007306, 46.665591]]
   };
-  let itmOn = HASH && HASH.special ? HASH.special.includes('itm') : !!LS.itm;
+  let itmOn = HASH && HASH.special ? HASH.special.includes('itm') : (SAVED_VIEW && Array.isArray(SAVED_VIEW.special) ? SAVED_VIEW.special.includes('itm') : !!LS.itm);
   function itmLegendHtml(solo) {
     let h = solo ? '' : `<div class="lg-map">${esc(t('layer.itm'))}</div>`;
     [['#e11d2a', t('leg.granitoids')], ['#facc15', t('leg.sandstones')], ['#111111', t('leg.microfossils')]]
@@ -2455,7 +2486,7 @@
   function hashParams() {
     const c = map.getCenter();
     const p = new URLSearchParams();
-    p.set('map', [map.getZoom().toFixed(2), c.lat.toFixed(4), c.lng.toFixed(4), map.getBearing().toFixed(1)].join('/'));
+    p.set('map', [map.getZoom().toFixed(2), c.lat.toFixed(4), c.lng.toFixed(4), map.getBearing().toFixed(1), map.getPitch().toFixed(1)].join('/'));
     const ov = [...ovOn].filter(id => ovs[id]);
     const mn = [...mainsOn].filter(id => all[id]);
     const sp = [];
@@ -2477,7 +2508,30 @@
     try { history.replaceState(null, '', location.pathname + location.search + '#' + hashParams().toString()); } catch (e) {}
   }
   let hashTimer = null;
-  function queueHash() { clearTimeout(hashTimer); hashTimer = setTimeout(writeHash, 300); }
+  function saveViewState() {
+    if (!map.getStyle()) return;
+    const c = map.getCenter();
+    const ov = [...ovOn].filter(id => ovs[id]);
+    const mn = [...mainsOn].filter(id => all[id]);
+    const sp = [];
+    if (fig1bOn) sp.push('fig1b');
+    if (itmOn) sp.push('itm');
+    if (window.atlasEqazyna && window.atlasEqazyna.isOn && window.atlasEqazyna.isOn()) sp.push('eq');
+    const pr = window.atlasProcess;
+    if (pr && pr.isOn) ['open', 'auction', 'pugfn'].forEach(id => { if (pr.isOn(id)) sp.push('pr:' + id); });
+    if (window.atlasGeo200 && window.atlasGeo200.isOn && window.atlasGeo200.isOn()) sp.push('geo200');
+    try {
+      localStorage.setItem(VIEW_STORE, JSON.stringify({
+        v: 1,
+        view: {
+          lat: +c.lat.toFixed(5), lng: +c.lng.toFixed(5),
+          zoom: +map.getZoom().toFixed(3), bearing: +map.getBearing().toFixed(1), pitch: +map.getPitch().toFixed(1)
+        },
+        ov, mains: mn, op: layerOp, special: sp, bm: basemap, sat: satKind
+      }));
+    } catch (e) {}
+  }
+  function queueHash() { clearTimeout(hashTimer); hashTimer = setTimeout(() => { writeHash(); saveViewState(); }, 300); }
   // A share link pasted while the app is already open changes only the hash;
   // reload once so the view state is rebuilt from it.
   window.addEventListener('hashchange', () => { try { location.reload(); } catch (e) {} });
@@ -3262,8 +3316,9 @@
     if (typeof initAtlasEqazyna === 'function') initAtlasEqazyna(map, { onUpdate: () => { syncList(); renderLegend(); }, coordLine });
     if (typeof initAtlasProcess === 'function') initAtlasProcess(map, { onUpdate: () => { syncList(); renderLegend(); } });
     if (typeof initAtlasGeo200 === 'function') initAtlasGeo200(map, { onUpdate: () => { syncList(); renderLegend(); } });
-    if (HASH && HASH.special) {
-      const has = k => HASH.special.includes(k);
+    const SPEC = (HASH && HASH.special) ? HASH.special : (SAVED_VIEW && Array.isArray(SAVED_VIEW.special) ? SAVED_VIEW.special : null);
+    if (SPEC) {
+      const has = k => SPEC.includes(k);
       if (has('eq') && window.atlasEqazyna && window.atlasEqazyna.setOn) window.atlasEqazyna.setOn(true);
       ['open', 'auction', 'pugfn'].forEach(id => {
         if (has('pr:' + id) && window.atlasProcess && window.atlasProcess.setOn) window.atlasProcess.setOn(id, true);
