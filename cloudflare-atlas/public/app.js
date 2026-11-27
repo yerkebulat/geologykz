@@ -27,7 +27,8 @@
     distance: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16.5 18 7.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="6" cy="16.5" r="2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="7.5" r="2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
     area: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7.5 14 5l4.5 5.5-3 7L7 18z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="6" cy="7.5" r="1.3" fill="currentColor"/><circle cx="18.5" cy="10.5" r="1.3" fill="currentColor"/><circle cx="7" cy="18" r="1.3" fill="currentColor"/></svg>',
     chart: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 16.8 9 10.2l4 3.6 7.5-7.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 20.5h17" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>',
-    swipe: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 4.5v15" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8.4 9.5 6.4 12l2 2.5M15.6 9.5 17.6 12l-2 2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+    swipe: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 4.5v15" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8.4 9.5 6.4 12l2 2.5M15.6 9.5 17.6 12l-2 2.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    download: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M8 11.5 12 15.5l4-4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 19.2h14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>'
   };
   const SITE = window.ATLAS_SITE || { mode: 'atlas' };
   // Per-site memory of the last view and open layers. The URL wins over it.
@@ -2606,6 +2607,7 @@
       if (map.getSource(SRC + '-pts')) map.getSource(SRC + '-pts').setData({ type: 'FeatureCollection', features: [] });
     }
     function closePanel() {
+      if (headAbort) { try { headAbort.abort(); } catch (e) {} headAbort = null; }
       if (panel) { panel.remove(); panel = null; }
       if (dotMk) { dotMk.remove(); dotMk = null; }
       samples = null;
@@ -2750,6 +2752,377 @@
       return { min: isFinite(min) ? min : null, max: isFinite(max) ? max : null, ascent: ascent };
     }
     function fmtM(v) { return Math.round(v) + ' ' + t('unit.m'); }
+    function fmtCoord(lat, lng) {
+      return (Number(lat)).toFixed(5) + ', ' + (Number(lng)).toFixed(5);
+    }
+    function profileStamp() {
+      const d = new Date();
+      const p = n => String(n).padStart(2, '0');
+      return d.getFullYear() + p(d.getMonth() + 1) + p(d.getDate()) + '-' + p(d.getHours()) + p(d.getMinutes());
+    }
+    function profileCredit() {
+      return 'kzgeology.com \u00B7 elevation: Mapzen / AWS Terrain Tiles';
+    }
+    function profileEnds() {
+      const a = verts && verts.length ? verts[0] : (lastData && lastData.samples && lastData.samples[0]);
+      const b = verts && verts.length ? verts[verts.length - 1] : (lastData && lastData.samples && lastData.samples[lastData.samples.length - 1]);
+      const start = a ? (Array.isArray(a) ? { lng: a[0], lat: a[1] } : { lng: a.lng, lat: a.lat }) : null;
+      const end = b ? (Array.isArray(b) ? { lng: b[0], lat: b[1] } : { lng: b.lng, lat: b.lat }) : null;
+      return { start, end };
+    }
+    function downloadBlob(blob, name) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = name;
+      a.rel = 'noopener';
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => { try { URL.revokeObjectURL(url); } catch (e) {} a.remove(); }, 2500);
+    }
+    const CRC_TABLE = (function () {
+      const t = new Uint32Array(256);
+      for (let n = 0; n < 256; n++) {
+        let c = n;
+        for (let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+        t[n] = c >>> 0;
+      }
+      return t;
+    })();
+    function crc32(u8) {
+      let c = 0xFFFFFFFF;
+      for (let i = 0; i < u8.length; i++) c = CRC_TABLE[(c ^ u8[i]) & 0xFF] ^ (c >>> 8);
+      return (c ^ 0xFFFFFFFF) >>> 0;
+    }
+    function u16(n) { return new Uint8Array([n & 255, (n >>> 8) & 255]); }
+    function u32(n) { return new Uint8Array([n & 255, (n >>> 8) & 255, (n >>> 16) & 255, (n >>> 24) & 255]); }
+    function zipStore(files) {
+      const enc = new TextEncoder();
+      const now = new Date();
+      const dosDate = ((now.getFullYear() - 1980) << 9) | ((now.getMonth() + 1) << 5) | now.getDate();
+      const dosTime = (now.getHours() << 11) | (now.getMinutes() << 5) | (now.getSeconds() >> 1);
+      const locals = [], centrals = [];
+      let offset = 0;
+      files.forEach(f => {
+        const name = enc.encode(f.name);
+        const data = typeof f.data === 'string' ? enc.encode(f.data) : f.data;
+        const crc = crc32(data);
+        const loc = new Uint8Array(30 + name.length + data.length);
+        loc.set([0x50, 0x4b, 0x03, 0x04, 20, 0, 0, 0, 0, 0], 0);
+        loc.set(u16(dosTime), 10); loc.set(u16(dosDate), 12);
+        loc.set(u32(crc), 14); loc.set(u32(data.length), 18); loc.set(u32(data.length), 22);
+        loc.set(u16(name.length), 26); loc.set(u16(0), 28);
+        loc.set(name, 30); loc.set(data, 30 + name.length);
+        locals.push(loc);
+        const cen = new Uint8Array(46 + name.length);
+        cen.set([0x50, 0x4b, 0x01, 0x02, 20, 0, 20, 0, 0, 0, 0, 0], 0);
+        cen.set(u16(dosTime), 12); cen.set(u16(dosDate), 14);
+        cen.set(u32(crc), 16); cen.set(u32(data.length), 20); cen.set(u32(data.length), 24);
+        cen.set(u16(name.length), 28);
+        cen.set(u16(0), 30); cen.set(u16(0), 32); cen.set(u16(0), 34); cen.set(u16(0), 36);
+        cen.set(u32(0), 38); cen.set(u32(offset), 42);
+        cen.set(name, 46);
+        centrals.push(cen);
+        offset += loc.length;
+      });
+      const cdStart = offset;
+      let cdSize = 0;
+      centrals.forEach(c => { cdSize += c.length; });
+      const end = new Uint8Array(22);
+      end.set([0x50, 0x4b, 0x05, 0x06, 0, 0, 0, 0], 0);
+      end.set(u16(files.length), 8); end.set(u16(files.length), 10);
+      end.set(u32(cdSize), 12); end.set(u32(cdStart), 16); end.set(u16(0), 20);
+      const out = new Uint8Array(cdStart + cdSize + 22);
+      let p = 0;
+      locals.forEach(x => { out.set(x, p); p += x.length; });
+      centrals.forEach(x => { out.set(x, p); p += x.length; });
+      out.set(end, p);
+      return out;
+    }
+    function xmlEsc(s) {
+      return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    }
+    function colLetter(n) {
+      let s = '';
+      n += 1;
+      while (n > 0) {
+        const r = (n - 1) % 26;
+        s = String.fromCharCode(65 + r) + s;
+        n = Math.floor((n - 1) / 26);
+      }
+      return s;
+    }
+    function xlsxInline(ref, s) {
+      return '<c r="' + ref + '" t="inlineStr"><is><t>' + xmlEsc(s) + '</t></is></c>';
+    }
+    function xlsxNum(ref, n) {
+      if (n == null || !isFinite(n)) return '<c r="' + ref + '"/>';
+      return '<c r="' + ref + '" t="n"><v>' + n + '</v></c>';
+    }
+    function xlsxSheet(rows) {
+      let out = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+        '<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>';
+      rows.forEach((row, i) => {
+        const r = i + 1;
+        out += '<row r="' + r + '">';
+        (row || []).forEach((cell, c) => {
+          const ref = colLetter(c) + r;
+          if (cell && cell.t === 'n') out += xlsxNum(ref, cell.v);
+          else out += xlsxInline(ref, cell == null ? '' : (cell.v != null ? cell.v : cell));
+        });
+        out += '</row>';
+      });
+      out += '</sheetData></worksheet>';
+      return out;
+    }
+    function buildXlsx(data, st) {
+      const ends = profileEnds();
+      const sampleRows = [['distance_km', 'elevation_m', 'lat', 'lon']];
+      (data.samples || []).forEach(s => {
+        sampleRows.push([
+          { t: 'n', v: +(s.d / 1000).toFixed(6) },
+          s.e == null ? '' : { t: 'n', v: +Number(s.e).toFixed(3) },
+          { t: 'n', v: +Number(s.lat).toFixed(6) },
+          { t: 'n', v: +Number(s.lng).toFixed(6) }
+        ]);
+      });
+      const sum = [];
+      sum.push([t('profile.exportTitle')]);
+      sum.push([t('profile.min'), st.min == null ? '' : { t: 'n', v: +st.min.toFixed(3) }]);
+      sum.push([t('profile.max'), st.max == null ? '' : { t: 'n', v: +st.max.toFixed(3) }]);
+      sum.push([t('profile.ascent'), st.min == null ? '' : { t: 'n', v: +st.ascent.toFixed(3) }]);
+      sum.push([t('profile.totalLength'), { t: 'n', v: +((data.total || 0) / 1000).toFixed(6) }]);
+      if (ends.start) sum.push([t('profile.start'), fmtCoord(ends.start.lat, ends.start.lng)]);
+      if (ends.end) sum.push([t('profile.end'), fmtCoord(ends.end.lat, ends.end.lng)]);
+      sum.push([t('profile.source'), profileCredit()]);
+      sum.push([]);
+      sum.push([t('profile.vertices')]);
+      (verts || []).forEach((v, i) => {
+        sum.push([{ t: 'n', v: i + 1 }, { t: 'n', v: +Number(v[1]).toFixed(6) }, { t: 'n', v: +Number(v[0]).toFixed(6) }]);
+      });
+      const s1 = t('profile.samples').replace(/[:\\/?*\[\]]/g, '').slice(0, 31) || 'Samples';
+      const s2 = t('profile.summary').replace(/[:\\/?*\[\]]/g, '').slice(0, 31) || 'Summary';
+      const types = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+        '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">' +
+        '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>' +
+        '<Default Extension="xml" ContentType="application/xml"/>' +
+        '<Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/>' +
+        '<Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>' +
+        '<Override PartName="/xl/worksheets/sheet2.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>' +
+        '</Types>';
+      const rels = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+        '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
+        '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/>' +
+        '</Relationships>';
+      const wbRels = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+        '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">' +
+        '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/>' +
+        '<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet2.xml"/>' +
+        '</Relationships>';
+      const wb = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>' +
+        '<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">' +
+        '<sheets>' +
+        '<sheet name="' + xmlEsc(s1) + '" sheetId="1" r:id="rId1"/>' +
+        '<sheet name="' + xmlEsc(s2) + '" sheetId="2" r:id="rId2"/>' +
+        '</sheets></workbook>';
+      const bytes = zipStore([
+        { name: '[Content_Types].xml', data: types },
+        { name: '_rels/.rels', data: rels },
+        { name: 'xl/workbook.xml', data: wb },
+        { name: 'xl/_rels/workbook.xml.rels', data: wbRels },
+        { name: 'xl/worksheets/sheet1.xml', data: xlsxSheet(sampleRows) },
+        { name: 'xl/worksheets/sheet2.xml', data: xlsxSheet(sum) }
+      ]);
+      return new Blob([bytes], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    }
+    function csvCell(v) {
+      const s = String(v == null ? '' : v);
+      if (/[",\n\r]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+      return s;
+    }
+    function buildCsv(data, st) {
+      const ends = profileEnds();
+      const lines = [];
+      lines.push(csvCell(t('profile.exportTitle')));
+      lines.push([csvCell(t('profile.min')), st.min == null ? '' : st.min.toFixed(3)].join(','));
+      lines.push([csvCell(t('profile.max')), st.max == null ? '' : st.max.toFixed(3)].join(','));
+      lines.push([csvCell(t('profile.ascent')), st.min == null ? '' : st.ascent.toFixed(3)].join(','));
+      lines.push([csvCell(t('profile.totalLength')), ((data.total || 0) / 1000).toFixed(6)].join(','));
+      if (ends.start) lines.push([csvCell(t('profile.start')), csvCell(fmtCoord(ends.start.lat, ends.start.lng))].join(','));
+      if (ends.end) lines.push([csvCell(t('profile.end')), csvCell(fmtCoord(ends.end.lat, ends.end.lng))].join(','));
+      lines.push([csvCell(t('profile.source')), csvCell(profileCredit())].join(','));
+      lines.push('');
+      lines.push('distance_km,elevation_m,lat,lon');
+      (data.samples || []).forEach(s => {
+        lines.push([
+          (s.d / 1000).toFixed(6),
+          s.e == null ? '' : Number(s.e).toFixed(3),
+          Number(s.lat).toFixed(6),
+          Number(s.lng).toFixed(6)
+        ].join(','));
+      });
+      return new Blob(['\uFEFF' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
+    }
+    function buildPng(data, st) {
+      const cssW = 880, cssH = 460, sc = 2;
+      const cv = document.createElement('canvas');
+      cv.width = cssW * sc; cv.height = cssH * sc;
+      const cx = cv.getContext('2d');
+      cx.scale(sc, sc);
+      cx.fillStyle = '#ffffff';
+      cx.fillRect(0, 0, cssW, cssH);
+      const ink = '#1c1917', mute = '#78716c';
+      const padL = 64, padR = 28, padT = 96, padB = 92;
+      const plotW = cssW - padL - padR, plotH = cssH - padT - padB;
+      cx.fillStyle = ink;
+      cx.font = '600 20px Inter,system-ui,sans-serif';
+      cx.fillText(t('profile.exportTitle'), 28, 36);
+      cx.font = '13px Inter,system-ui,sans-serif';
+      cx.fillStyle = mute;
+      const minL = t('profile.min') + '  ';
+      const maxL = t('profile.max') + '  ';
+      const ascL = t('profile.ascent') + '  ';
+      const minV = st.min == null ? '-' : fmtM(st.min);
+      const maxV = st.max == null ? '-' : fmtM(st.max);
+      const ascV = st.min == null ? '-' : fmtM(st.ascent);
+      let x = 28;
+      function stat(label, val) {
+        cx.fillStyle = mute; cx.font = '13px Inter,system-ui,sans-serif';
+        cx.fillText(label, x, 64);
+        x += cx.measureText(label).width;
+        cx.fillStyle = ink; cx.font = '600 13px "JetBrains Mono",ui-monospace,monospace';
+        cx.fillText(val, x, 64);
+        x += cx.measureText(val).width + 22;
+      }
+      stat(minL, minV); stat(maxL, maxV); stat(ascL, ascV);
+      const lo = (st.min == null ? 0 : st.min) - 5, hi = (st.max == null ? 1 : st.max) + 5;
+      const span = Math.max(1, hi - lo);
+      const es = (data.samples || []).filter(s => s.e != null);
+      cx.strokeStyle = '#e7e5e4';
+      cx.lineWidth = 1;
+      const ticks = 4;
+      cx.font = '11px "JetBrains Mono",ui-monospace,monospace';
+      cx.fillStyle = mute;
+      cx.textAlign = 'right';
+      for (let i = 0; i <= ticks; i++) {
+        const yy = padT + plotH - (i / ticks) * plotH;
+        const ev = lo + (i / ticks) * span;
+        cx.beginPath(); cx.moveTo(padL, yy); cx.lineTo(padL + plotW, yy); cx.stroke();
+        cx.fillText(Math.round(ev) + ' ' + t('unit.m'), padL - 8, yy + 4);
+      }
+      const totalKm = (data.total || 0) / 1000;
+      cx.textAlign = 'center';
+      cx.beginPath(); cx.moveTo(padL, padT + plotH); cx.lineTo(padL + plotW, padT + plotH); cx.stroke();
+      cx.fillText('0 ' + t('unit.km'), padL, padT + plotH + 18);
+      cx.fillText(totalKm.toFixed(1) + ' ' + t('unit.km'), padL + plotW, padT + plotH + 18);
+      cx.textAlign = 'left';
+      if (es.length) {
+        const n = data.samples.length;
+        cx.beginPath();
+        let started = false;
+        data.samples.forEach((s, i) => {
+          if (s.e == null) { started = false; return; }
+          const px = padL + (n < 2 ? 0 : (i / (n - 1)) * plotW);
+          const py = padT + plotH - ((s.e - lo) / span) * plotH;
+          if (started) cx.lineTo(px, py); else { cx.moveTo(px, py); started = true; }
+        });
+        cx.strokeStyle = ink;
+        cx.lineWidth = 1.6;
+        cx.lineJoin = 'round';
+        cx.lineCap = 'round';
+        cx.stroke();
+      }
+      const ends = profileEnds();
+      cx.fillStyle = mute;
+      cx.font = '12px Inter,system-ui,sans-serif';
+      let metaY = padT + plotH + 40;
+      if (ends.start) cx.fillText(t('profile.start') + '  ' + fmtCoord(ends.start.lat, ends.start.lng), 28, metaY);
+      if (ends.end) cx.fillText(t('profile.end') + '  ' + fmtCoord(ends.end.lat, ends.end.lng), 28, metaY + 18);
+      cx.font = '11px Inter,system-ui,sans-serif';
+      cx.fillStyle = mute;
+      cx.fillText(profileCredit(), 28, cssH - 16);
+      const raw = cv.toDataURL('image/png');
+      const bin = atob(raw.split(',')[1]);
+      const arr = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+      return new Blob([arr], { type: 'image/png' });
+    }
+    function exportReady() {
+      return !!(lastData && lastData.samples && lastData.samples.some(s => s.e != null));
+    }
+    function exportProfile(fmt) {
+      if (!exportReady()) return;
+      const data = lastData;
+      const st = stats(smooth(data.samples));
+      const base = 'kzgeology-profile-' + profileStamp();
+      try {
+        if (fmt === 'png') downloadBlob(buildPng(data, st), base + '.png');
+        else if (fmt === 'xlsx') downloadBlob(buildXlsx(data, st), base + '.xlsx');
+        else if (fmt === 'csv') downloadBlob(buildCsv(data, st), base + '.csv');
+      } catch (e) {}
+    }
+    let headAbort = null;
+    function headHtml(canDownload) {
+      return '<div class="profile-head"><strong>' + esc(t('tool.profile')) + '</strong>' +
+        '<div class="profile-head-actions">' +
+        '<button type="button" class="profile-close" aria-label="' + t('profile.close') + '" title="' + t('profile.close') + '">\u00D7</button>' +
+        '<button type="button" class="profile-dl" id="profile-dl"' + (canDownload ? '' : ' disabled') +
+        ' aria-haspopup="menu" aria-expanded="false" aria-label="' + t('profile.download') + '" title="' + t('profile.download') + '">' + ICON.download + '</button>' +
+        '</div></div>';
+    }
+    function bindHead(canDownload) {
+      bindClose();
+      if (headAbort) { try { headAbort.abort(); } catch (e) {} headAbort = null; }
+      const dl = panel && panel.querySelector('#profile-dl');
+      if (!dl || !canDownload) return;
+      const actions = dl.parentNode;
+      const menu = document.createElement('div');
+      menu.id = 'profile-dl-menu';
+      menu.className = 'profile-dl-menu';
+      menu.hidden = true;
+      menu.setAttribute('role', 'menu');
+      [['png', 'profile.png'], ['xlsx', 'profile.excel'], ['csv', 'profile.csv']].forEach(pair => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('role', 'menuitem');
+        b.dataset.fmt = pair[0];
+        b.textContent = t(pair[1]);
+        menu.appendChild(b);
+      });
+      actions.appendChild(menu);
+      function closeMenu() {
+        menu.hidden = true;
+        dl.setAttribute('aria-expanded', 'false');
+      }
+      function openMenu() {
+        menu.hidden = false;
+        dl.setAttribute('aria-expanded', 'true');
+      }
+      dl.addEventListener('click', ev => {
+        ev.preventDefault(); ev.stopPropagation();
+        if (menu.hidden) openMenu(); else closeMenu();
+      });
+      menu.addEventListener('click', ev => {
+        ev.stopPropagation();
+        const b = ev.target.closest('button[data-fmt]');
+        if (!b) return;
+        closeMenu();
+        exportProfile(b.dataset.fmt);
+      });
+      headAbort = typeof AbortController === 'function' ? new AbortController() : null;
+      const sig = headAbort ? { signal: headAbort.signal } : false;
+      const onDoc = ev => { if (!actions.contains(ev.target)) closeMenu(); };
+      const onKey = ev => { if (ev.key === 'Escape') closeMenu(); };
+      if (sig) {
+        document.addEventListener('click', onDoc, sig);
+        document.addEventListener('keydown', onKey, sig);
+      } else {
+        document.addEventListener('click', onDoc);
+        document.addEventListener('keydown', onKey);
+      }
+    }
+
     function showPanel(data) {
       closePanel();
       samples = data.samples;
@@ -2776,8 +3149,7 @@
       panel = document.createElement('div');
       panel.id = 'profile-panel';
       panel.className = 'profile-panel';
-      panel.innerHTML = '<div class="profile-head"><strong>' + esc(t('tool.profile')) + '</strong>' +
-        '<button type="button" class="profile-close" aria-label="' + t('profile.close') + '" title="' + t('profile.close') + '">\u00D7</button></div>' +
+      panel.innerHTML = headHtml(!!es.length) +
         '<div class="profile-stats">' +
         '<span>' + esc(t('profile.min')) + ' <b>' + (st.min == null ? '-' : fmtM(st.min)) + '</b></span>' +
         '<span>' + esc(t('profile.max')) + ' <b>' + (st.max == null ? '-' : fmtM(st.max)) + '</b></span>' +
@@ -2785,7 +3157,7 @@
         '</div>' + chart +
         '<div class="profile-axis"><span>0 ' + esc(t('unit.km')) + '</span><span>' + (data.total / 1000).toFixed(1) + ' ' + esc(t('unit.km')) + '</span></div>';
       (document.querySelector('.wrap') || document.body).appendChild(panel);
-      panel.querySelector('.profile-close').addEventListener('click', () => setOn(false));
+      bindHead(!!es.length);
       const svg = panel.querySelector('.profile-chart');
       if (svg) {
         const tip = document.createElement('div');
@@ -2821,11 +3193,10 @@
       panel = document.createElement('div');
       panel.id = 'profile-panel';
       panel.className = 'profile-panel';
-      panel.innerHTML = '<div class="profile-head"><strong>' + esc(t('tool.profile')) + '</strong>' +
-        '<button type="button" class="profile-close" aria-label="' + t('profile.close') + '" title="' + t('profile.close') + '">\u00D7</button></div>' +
+      panel.innerHTML = headHtml(false) +
         '<div class="profile-hint">' + esc(msg || t('profile.hint')) + '</div>';
       (document.querySelector('.wrap') || document.body).appendChild(panel);
-      bindClose();
+      bindHead(false);
     }
     let computeTimer = 0, computeGen = 0;
     function queueCompute() {
