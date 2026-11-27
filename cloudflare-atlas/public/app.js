@@ -684,7 +684,7 @@
       if (p.a) h += kv(t('kv.age'), p.a);
       if (p.k) h += kv(t('kv.code'), p.k);
     } else if (m) {
-      h += `<div class="pp-theme">${esc(m.themes[p.t] || pickName(m, 'title') || '')}</div>`;
+      h += `<div class="pp-theme">${esc((m.themes && m.themes[p.t]) || pickName(m, 'title') || '')}</div>`;
       if (p.n) h += `<div class="pp-l">${esc(p.n)}</div>`;
       if (p.l) h += `<div class="pp-l">${esc(p.l)}</div>`;
       if (p.k) h += `<div class="pp-k">${esc(t('kv.code'))}: ${esc(p.k)}</div>`;
@@ -697,36 +697,108 @@
       return { id: p.id || f.id, type: p.type, label: p.label, color: p.color, title: p.label, group: p.group };
     });
   }
-  function combinedHtml(hits, licenseItems, licenseLoading, licenseErr) {
-    let h = '<div class="pp-stack">';
-    hits.deposits.forEach(f => { h += featureHtml(f); });
-    if (hits.process && hits.process.length && window.atlasProcess && window.atlasProcess.popupHtml) {
-      h += window.atlasProcess.popupHtml(hits.process);
+  // Every visible vector layer at the point, grouped by display name.
+  function infoHits(point) {
+    const layerKey = new Map();
+    const keys = [...new Set(activeKeys().concat(pinnedKeys()))].filter(keyOn);
+    keys.forEach(k => {
+      keyLayers(k).forEach(lid => {
+        const lyr = map.getLayer(lid);
+        if (!lyr || (lyr.type !== 'fill' && lyr.type !== 'line' && lyr.type !== 'circle')) return;
+        layerKey.set(lid, k);
+      });
+    });
+    const ids = [...layerKey.keys()];
+    if (!ids.length) return [];
+    let feats = [];
+    try { feats = map.queryRenderedFeatures(queryBox(point, depositPad()), { layers: ids }) || []; } catch (e) { feats = []; }
+    const seen = new Set();
+    const out = [];
+    feats.forEach(f => {
+      const k = layerKey.get(f.layer && f.layer.id);
+      if (!k) return;
+      let sig = k;
+      try { sig += '|' + JSON.stringify(f.properties || {}); } catch (e) {}
+      if (seen.has(sig)) return;
+      seen.add(sig);
+      out.push({ key: k, f });
+    });
+    return out;
+  }
+  function infoGroups(point) {
+    const groups = new Map();
+    infoHits(point).forEach(x => {
+      let g = groups.get(x.key);
+      if (!g) { g = { key: x.key, title: keyTitle(x.key), items: [] }; groups.set(x.key, g); }
+      g.items.push(x.f);
+    });
+    return [...groups.values()];
+  }
+  function infoRow(f) {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = featureHtml(f);
+    const theme = tmp.querySelector('.pp-theme');
+    if (theme) theme.remove();
+    return tmp.innerHTML;
+  }
+  function infoGroupHtml(g) {
+    let h = '<div class="pp pp-group"><div class="pp-theme">' + esc(g.title) + '</div>';
+    g.items.slice(0, 3).forEach(f => { h += infoRow(f); });
+    const rest = g.items.slice(3);
+    if (rest.length) {
+      h += '<div class="pp-more-rows" hidden>' + rest.map(infoRow).join('') + '</div>';
+      h += '<button type="button" class="pp-more" data-count="' + rest.length + '">' + esc(t('info.more', { n: rest.length })) + '</button>';
     }
-    if (hits.licenses.length) {
-      const items = licenseItems && licenseItems.length ? licenseItems : licenseSeed(hits.licenses);
-      const html = (window.atlasEqazyna && window.atlasEqazyna.popupHtml)
-        ? window.atlasEqazyna.popupHtml(items, licenseLoading, licenseErr)
-        : '';
-      h += '<div class="pp"><div class="pp-theme">' + esc(t('layer.licenses')) + '</div>' + html + '</div>';
-    }
-    hits.faults.forEach(f => { h += featureHtml(f); });
-    hits.fills.forEach(f => { h += featureHtml(f); });
     return h + '</div>';
   }
+  function isSpecialKey(k) { return k === 'eq' || k.startsWith('pr:'); }
   function closeFeaturePopup() { if (selPopup) { selPopup.remove(); selPopup = null; } }
-  function openCombinedPopup(lngLat, hits, text) {
+  function openInfoPopup(e) {
+    const text = e.lngLat.lat.toFixed(5) + ', ' + e.lngLat.lng.toFixed(5);
+    const groups = infoGroups(e.point);
+    const lhits = licenseHits(e.point);
+    const phits = (window.atlasProcess && window.atlasProcess.hits) ? window.atlasProcess.hits(e.point) : [];
+    if (!groups.length && !lhits.length && !phits.length) return false;
     closeFeaturePopup();
     if (window.atlasEqazyna && window.atlasEqazyna.closePopup) window.atlasEqazyna.closePopup();
+    const hl = [];
+    groups.forEach(g => g.items.forEach(f => {
+      const gt = f.geometry && f.geometry.type;
+      if (gt === 'Point' || gt === 'LineString' || gt === 'MultiLineString') hl.push(f);
+    }));
+    if (hl.length) {
+      ensureSelLayers();
+      map.getSource(SEL_SRC).setData({ type: 'FeatureCollection', features: hl.slice(0, 40).map(f => ({ type: 'Feature', geometry: f.geometry, properties: {} })) });
+      raiseSel();
+    } else clearSel();
+    let h = '<div class="pp-stack">';
+    groups.forEach(g => { if (!isSpecialKey(g.key)) h += infoGroupHtml(g); });
+    if (phits.length && window.atlasProcess && window.atlasProcess.popupHtml) {
+      h += window.atlasProcess.popupHtml(phits);
+    }
+    if (lhits.length) {
+      const seed = licenseSeed(lhits);
+      const html = (window.atlasEqazyna && window.atlasEqazyna.popupHtml) ? window.atlasEqazyna.popupHtml(seed, true, null) : '';
+      h += '<div class="pp"><div class="pp-theme">' + esc(t('layer.licenses')) + '</div>' + html + '</div>';
+    }
+    h += '</div>';
     const box = document.createElement('div');
-    box.innerHTML = combinedHtml(hits, null, !!hits.licenses.length, null);
+    box.innerHTML = h;
     box.appendChild(coordLine(text));
-    selPopup = new maplibregl.Popup({ maxWidth: '320px', className: 'atlas-pop' }).setLngLat(lngLat).setDOMContent(box).addTo(map);
+    selPopup = new maplibregl.Popup({ maxWidth: '320px', className: 'atlas-pop' }).setLngLat(e.lngLat).setDOMContent(box).addTo(map);
     const pop = selPopup;
     selPopup.on('close', () => { if (selPopup === pop) selPopup = null; });
-    if (hits.licenses.length && window.atlasEqazyna && window.atlasEqazyna.clickDetails) {
-      const seed = licenseSeed(hits.licenses);
-      window.atlasEqazyna.clickDetails(lngLat).then(items => {
+    box.addEventListener('click', ev => {
+      const b = ev.target.closest('.pp-more');
+      if (!b) return;
+      const rows = b.previousElementSibling;
+      if (!rows || !rows.classList.contains('pp-more-rows')) return;
+      rows.hidden = !rows.hidden;
+      b.textContent = rows.hidden ? t('info.more', { n: b.dataset.count }) : t('info.less');
+    });
+    if (lhits.length && window.atlasEqazyna && window.atlasEqazyna.clickDetails) {
+      const seed = licenseSeed(lhits);
+      window.atlasEqazyna.clickDetails(e.lngLat).then(items => {
         if (selPopup !== pop) return;
         const body = pop.getElement() && pop.getElement().querySelector('.eqazyna-body');
         if (!body) return;
@@ -744,6 +816,7 @@
         if (next) body.replaceWith(next);
       });
     }
+    return true;
   }
   window.atlasRaiseSel = raiseSel;
   function setOvOpacity(m) { applyKeyOpacity('ov:' + m.id); }
@@ -1377,7 +1450,7 @@
     ts.forEach(t => {
       const items = byT[t].filter(e => e.c !== '#888888');
       if (!items.length) return;
-      if (!m.overlay) h += `<div class="lg-theme">${esc(m.themes[t] || '')}</div>`;
+      if (!m.overlay) h += `<div class="lg-theme">${esc((m.themes && m.themes[t]) || '')}</div>`;
       const seen = new Set();
       items.forEach(e => {
         const key = e.c + '|' + e.l; if (seen.has(key)) return; seen.add(key);
@@ -2640,6 +2713,8 @@
   }
   map.on('click', e => {
     if (window.atlasSketch && window.atlasSketch.active && window.atlasSketch.active()) return;
+    if (window.atlasCompare && window.atlasCompare.active && window.atlasCompare.active()) return;
+    if (window.atlasProfile && window.atlasProfile.click && window.atlasProfile.click(e)) return;
     if (window.atlasMeasure && window.atlasMeasure.click && window.atlasMeasure.click(e)) return;
     const text = e.lngLat.lat.toFixed(5) + ', ' + e.lngLat.lng.toFixed(5);
     const cl = clusterAt(e.point);
@@ -2649,19 +2724,13 @@
       zoomToCluster(cl);
       return;
     }
-    const hits = featuresAt(e.point);
-    const any = hits.deposits.length || hits.faults.length || hits.licenses.length || (hits.process && hits.process.length) || hits.fills.length;
-    if (!any) {
-      clearSel();
-      closeFeaturePopup();
-      const box = document.createElement('div');
-      box.appendChild(coordLine(text));
-      selPopup = new maplibregl.Popup({ maxWidth: '260px', className: 'coord-popup' }).setLngLat(e.lngLat).setDOMContent(box).addTo(map);
-      selPopup.on('close', () => { if (selPopup) selPopup = null; });
-      return;
-    }
-    setHitHighlights(hits, e.lngLat, e.point);
-    openCombinedPopup(e.lngLat, hits, text);
+    if (openInfoPopup(e)) return;
+    clearSel();
+    closeFeaturePopup();
+    const box = document.createElement('div');
+    box.appendChild(coordLine(text));
+    selPopup = new maplibregl.Popup({ maxWidth: '260px', className: 'coord-popup' }).setLngLat(e.lngLat).setDOMContent(box).addTo(map);
+    selPopup.on('close', () => { if (selPopup) selPopup = null; });
   });
   map.on('mousemove', e => {
     if (window.atlasSketch && window.atlasSketch.active && window.atlasSketch.active()) {

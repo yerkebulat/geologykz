@@ -62,6 +62,9 @@ body.panel-closed .layers-btn{left:12px}
 .pp-kv{margin:1px 0}.pp-kv .pp-k{display:inline-block;min-width:7.2em;color:var(--muted);font-size:11px}
 .pp-note{margin-top:6px;color:var(--muted);font-size:12px}
 .pp+.pp{margin-top:6px;padding-top:6px;border-top:1px solid var(--line)}
+.pp-more{display:inline-block;margin:4px 0 0;padding:0;border:0;background:none;color:var(--muted);font:inherit;font-size:12px;cursor:pointer;text-decoration:underline}
+.pp-more:hover{color:var(--text)}
+.pp-more-rows[hidden]{display:none}
 @media (max-width:700px){
  .topbar{gap:5px;padding:8px 6px;flex-wrap:nowrap;align-items:center;min-width:0}
  .brand{flex:none;font-size:14px}

@@ -41,6 +41,8 @@
     "legend.title": { en: "Legend", kk: "Легенда", ru: "Легенда" },
     "legend.hide": { en: "Hide", kk: "Жасыру", ru: "Скрыть" },
     "legend.show": { en: "Legend", kk: "Легенда", ru: "Легенда" },
+    "info.more": { en: "More ({n})", kk: "Тағы ({n})", ru: "Ещё ({n})" },
+    "info.less": { en: "Show less", kk: "Азырақ көрсету", ru: "Свернуть" },
     "loading.map": { en: "Loading map…", kk: "Карта жүктелуде…", ru: "Загрузка карты…" },
     "loading.fail": { en: "Could not load map", kk: "Картаны жүктеу мүмкін болмады", ru: "Не удалось загрузить карту" },
     "loading.licenses": { en: "Loading licenses…", kk: "Лицензиялар жүктелуде…", ru: "Загрузка лицензий…" },
