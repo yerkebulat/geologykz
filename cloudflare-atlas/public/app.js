@@ -1487,6 +1487,8 @@
       return !!(el.closest && el.closest('input, textarea, select, [contenteditable="true"], [contenteditable=""]'));
     }
     $('map-north').addEventListener('click', () => { resetPlanView(300); });
+    const topBtn = $('topview-btn');
+    if (topBtn) topBtn.addEventListener('click', () => { resetPlanView(300); });
     document.addEventListener('keydown', ev => {
       if (ev.key !== 'd' && ev.key !== 'D') return;
       if (ev.ctrlKey || ev.metaKey || ev.altKey) return;

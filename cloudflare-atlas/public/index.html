@@ -12,7 +12,7 @@
 <link rel="preload" href="fonts/source-serif-pro-semibold.woff2" as="font" type="font/woff2" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css" rel="stylesheet">
-<link href="style.css?v=cf17" rel="stylesheet">
+<link href="style.css?v=cf18" rel="stylesheet">
 </head>
 <body>
 <header class="topbar">
@@ -53,6 +53,14 @@
   </div>
   <div class="map-scale" id="map-scale">
     <div class="north-tools">
+    <button type="button" class="topview-btn" id="topview-btn" title="Top view (D)" aria-label="Top view">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3.2 18.4 7 12 10.8 5.6 7Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M12 12.6v3.2" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M9.7 13.9 12 16.3l2.3-2.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="6" y="17.6" width="12" height="3.2" rx="1.2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      </svg>
+    </button>
     <button type="button" class="north" id="map-north" aria-label="Reset north">
       <span class="north-wrap">
         <svg class="north-svg" viewBox="0 0 56 56" aria-hidden="true">
@@ -240,7 +248,7 @@
 <script src="config.js"></script>
 <script src="donate.js?v=cf10"></script>
 <script src="about.js?v=cf13"></script>
-<script src="app.js?v=cf13"></script>
+<script src="app.js?v=cf14"></script>
 <script src="print.js?v=cf3"></script>
 </body>
 </html>

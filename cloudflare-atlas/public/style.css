@@ -197,6 +197,11 @@ body.panel-closed .layers-btn{left:12px}
 body.panel-closed .map-scale{left:max(12px, calc(env(safe-area-inset-left, 0px) + 12px))}
 .north-tools{display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
 .north-tools > *{pointer-events:auto}
+.topview-btn{flex:none;width:40px;height:40px;padding:0;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--text);cursor:pointer;box-shadow:var(--shadow);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;animation:tool-btn-in .45s cubic-bezier(.22,1,.36,1) both;transition:background-color .18s ease,transform .16s ease,box-shadow .18s ease}
+.topview-btn svg{width:19px;height:19px;display:block}
+.topview-btn:hover{background:var(--soft);transform:translateY(-1px);box-shadow:0 2px 4px rgba(0,0,0,.05),0 6px 20px rgba(0,0,0,.09)}
+.topview-btn:active{transform:translateY(0) scale(.97)}
+.topview-btn:focus-visible{outline:2px solid var(--text);outline-offset:2px}
 .north{pointer-events:auto;flex:none;width:56px;height:56px;padding:0;border:0;background:none;cursor:pointer;line-height:0;overflow:visible;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
 .north-wrap{display:block;width:56px;height:56px;overflow:visible}
 .north:focus-visible{outline:2px solid var(--text);outline-offset:2px;border-radius:8px}
@@ -401,5 +406,6 @@ a.about-cta-primary{color:var(--paper)}
   .about-block,.about-plate img{opacity:1;transform:none;transition:none}
   html{scroll-behavior:auto}
   .measure-box button{animation:none}
-  .measure-box button,.sketch-bar button{transition:none}
+  .measure-box button,.sketch-bar button,.topview-btn{transition:none}
+  .topview-btn{animation:none}
 }
