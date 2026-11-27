@@ -717,6 +717,25 @@ export default {
       headers.set("Cache-Control", "private, max-age=0, must-revalidate");
     }
     const status = isSitePage(path) ? 200 : asset.status;
+    const ogPage = !isAtlas && (path === "/" || isSitePage(path));
+    if (ogPage && request.method === "GET") {
+      const html = await asset.text();
+      const origin = "https://kzgeology.com";
+      const pageUrl = origin + (path === "/" ? "/" : path);
+      const tags = '<meta property="og:title" content="kzgeology">' +
+        '<meta property="og:description" content="Geological maps of Kazakhstan">' +
+        '<meta property="og:image" content="' + origin + '/og.png">' +
+        '<meta property="og:image:width" content="1200">' +
+        '<meta property="og:image:height" content="630">' +
+        '<meta property="og:url" content="' + pageUrl + '">' +
+        '<meta property="og:type" content="website">' +
+        '<meta name="twitter:card" content="summary_large_image">' +
+        '<meta name="twitter:title" content="kzgeology">' +
+        '<meta name="twitter:description" content="Geological maps of Kazakhstan">' +
+        '<meta name="twitter:image" content="' + origin + '/og.png">';
+      const injected = html.indexOf("</head>") >= 0 ? html.replace("</head>", tags + "</head>") : html;
+      return new Response(injected, { status, headers });
+    }
     return new Response(asset.body, { status, headers });
   },
 };

@@ -374,7 +374,7 @@
     if (!lid || lid.indexOf('atlas-ov-') !== 0) return null;
     const rest = lid.slice(9);
     if (ovs[rest]) return ovs[rest];
-    return ovs[rest.replace(/-(ol|halo|dash|dot|cl|cn)$/, '')] || null;
+    return ovs[rest.replace(/-(ol|halo|dash|dot|cl|cn|ln)$/, '')] || null;
   }
   function ovLayers() { return Object.values(ovs).filter(m => ovOn.has(m.id) && map.getLayer(ovLayerId(m))).map(ovLayerId); }
   // Click selection highlight, drawn above licenses so the chosen feature stays obvious.
@@ -661,7 +661,7 @@
     let h = '<div class="pp">';
     if (ov && ov.id === 'kz-mineral-deposits') {
       h += `<div class="pp-theme">${esc(pickName(ov, 'title'))}</div>`;
-      if (p.n) h += `<div class="pp-l">${esc(p.n)}</div>`;
+      if (p.n) h += `<div class="pp-l">${esc(pickName(p, 'n') || p.n)}</div>`;
       if (p.ru && p.ru !== p.n) h += `<div class="pp-l">${esc(p.ru)}</div>`;
       h += kv(t('kv.commodities'), p.maj) + kv(t('kv.minor'), p.minc) + kv(t('kv.type'), p.typ) + kv(t('kv.size'), p.sz) + kv(t('kv.age'), p.age) + kv(t('kv.grade'), p.gr);
       return h + '</div>';
@@ -673,7 +673,7 @@
     }
     if (ov && ov.id === 'active-faults') {
       h += `<div class="pp-theme">${esc(pickName(ov, 'title'))}</div>`;
-      if (p.n) h += `<div class="pp-l">${esc(p.n)}</div>`;
+      if (p.n) h += `<div class="pp-l">${esc(pickName(p, 'n') || p.n)}</div>`;
       h += kv(t('kv.slip'), p.slip) + kv(t('kv.source'), p.src);
       return h + '</div>';
     }
@@ -693,7 +693,7 @@
     }
     if (ov && ov.id && ov.id.indexOf('usgs-') === 0) {
       h += `<div class="pp-theme">${esc(pickName(ov, 'title'))}</div>`;
-      if (p.n) h += `<div class="pp-l">${esc(p.n)}</div>`;
+      if (p.n) h += `<div class="pp-l">${esc(pickName(p, 'n') || p.n)}</div>`;
       const num = v => (v === 0 || v) ? (typeof v === 'number' ? v.toLocaleString('en-US', { maximumFractionDigits: 1 }) : String(v)) : '';
       h += kv(t('kv.type'), p.typ) + kv(t('kv.status'), p.st) + kv(t('kv.commodities'), p.comm);
       h += kv(t('kv.location'), p.loc) + kv(t('kv.operator'), p.op) + kv(t('kv.capacity'), p.cap);
@@ -716,13 +716,22 @@
       if (code) h += kv(t('kv.code'), code);
       return h + '</div>';
     }
+    if (ov && ov.id === 'rgi-glaciers') {
+      h += `<div class="pp-theme">${esc(pickName(ov, 'title'))}</div>`;
+      h += `<div class="pp-l">${esc((pickName(p, 'n') || p.n) || t('popup.unnamedGlacier'))}</div>`;
+      h += kv(t('kv.id'), p.rgi) + kv(t('kv.area'), (p.a || p.a === 0) ? (String(p.a) + ' ' + t('unit.km2')) : '');
+      if (p.z0 != null && p.z0 !== '' && p.z1 != null && p.z1 !== '') h += kv(t('kv.elevation'), String(p.z0) + '-' + String(p.z1) + ' ' + t('unit.m'));
+      else if (p.z0 != null && p.z0 !== '') h += kv(t('kv.elevation'), String(p.z0) + ' ' + t('unit.m'));
+      h += kv(t('kv.date'), p.d);
+      return h + '</div>';
+    }
     if (ov && Array.isArray(ov.popup)) {
       h += `<div class="pp-theme">${esc(pickName(ov, 'title'))}</div>`;
       const head = pickName({ title: p.n, title_kk: p.n_kk, title_ru: p.n_ru }, 'title') || p.n;
       if (head) h += `<div class="pp-l">${esc(head)}</div>`;
       ov.popup.forEach(item => {
         const label = item.k ? t(item.k) : (item.l || '');
-        let val = p[item.p];
+        let val = (item.p === 'n') ? (pickName(p, 'n') || p.n) : p[item.p];
         if (val == null || val === '') return;
         if (item.u) val = String(val) + ' ' + t(item.u);
         if (typeof val === 'string' && val.charAt(0) === '[' && val.slice(-1) === ']') val = val.slice(1, -1);
@@ -739,7 +748,7 @@
     } else if (ov) {
       h += `<div class="pp-theme">${esc(pickName(ov, 'title'))}</div>`;
       if (p.l) h += `<div class="pp-l">${esc(p.l)}</div>`;
-      if (p.n) h += `<div class="pp-l">${esc(p.n)}</div>`;
+      if (p.n) h += `<div class="pp-l">${esc(pickName(p, 'n') || p.n)}</div>`;
     } else if (m && p.s23) {
       h += `<div class="pp-theme">Safonova et al. 2023</div>`;
       if (p.l) h += `<div class="pp-l">${esc(p.l)}</div>`;
@@ -753,7 +762,7 @@
       if (p.k) h += kv(t('kv.code'), p.k);
     } else if (m) {
       h += `<div class="pp-theme">${esc((m.themes && m.themes[p.t]) || pickName(m, 'title') || '')}</div>`;
-      if (p.n) h += `<div class="pp-l">${esc(p.n)}</div>`;
+      if (p.n) h += `<div class="pp-l">${esc(pickName(p, 'n') || p.n)}</div>`;
       if (p.l) h += `<div class="pp-l">${esc(p.l)}</div>`;
       if (p.k) h += `<div class="pp-k">${esc(t('kv.code'))}: ${esc(p.k)}</div>`;
     }
@@ -1026,11 +1035,16 @@
     const before = firstSymbolLayer();
     if (m.kind === 'fill') {
       const fo = m.fillOpacity != null ? m.fillOpacity : 0.85;
-      map.addLayer({ id: lid, type: 'fill', source: lid, paint: { 'fill-color': ['get', 'c'], 'fill-opacity': fo } }, before);
-      map.addLayer({ id: lid + '-ol', type: 'line', source: lid,
+      const poly = ['match', ['geometry-type'], ['Polygon', 'MultiPolygon'], true, false];
+      const line = ['match', ['geometry-type'], ['LineString', 'MultiLineString'], true, false];
+      const lw = ['interpolate', ['linear'], ['zoom'], 3, ['*', 0.45, ['coalesce', ['get', 'w'], 1]], 8, ['*', 1.4, ['coalesce', ['get', 'w'], 1]]];
+      map.addLayer({ id: lid, type: 'fill', source: lid, filter: poly, paint: { 'fill-color': ['get', 'c'], 'fill-opacity': fo } }, before);
+      map.addLayer({ id: lid + '-ol', type: 'line', source: lid, filter: poly,
         paint: { 'line-color': m.outlineColor || 'rgba(45,40,36,0.85)',
           'line-width': ['interpolate', ['linear'], ['zoom'], 3, 0.55, 8, 1.15],
           'line-opacity': 0.9 } }, before);
+      map.addLayer({ id: lid + '-ln', type: 'line', source: lid, filter: line,
+        paint: { 'line-color': ['get', 'c'], 'line-width': lw } }, before);
     }
     if (isBar) {
       const cap = { 'line-cap': 'round', 'line-join': 'round' };
@@ -1073,7 +1087,7 @@
     const m = ovs[id]; if (!m) return;
     const lid = ovLayerId(m);
     barSyncs.delete(id);
-    [lid + '-cn', lid + '-cl', lid + '-dash', lid + '-ol', lid + '-halo', lid + '-dot', lid].forEach(x => { if (map.getLayer(x)) map.removeLayer(x); });
+    [lid + '-cn', lid + '-cl', lid + '-dash', lid + '-ol', lid + '-ln', lid + '-halo', lid + '-dot', lid].forEach(x => { if (map.getLayer(x)) map.removeLayer(x); });
     if (map.getSource(lid + '-dot')) map.removeSource(lid + '-dot');
     if (map.getSource(lid)) map.removeSource(lid);
     renderLegend();
@@ -2966,7 +2980,7 @@
       return arr.map((s, i) => {
         if (s.e == null) return s;
         const win = [arr[i - 1], s, arr[i + 1]].filter(x => x && x.e != null).map(x => x.e);
-        return { d: s.d, lng: s.lng, lat: s.lat, e: win.reduce((a, b) => a + b, 0) / win.length };
+        return Object.assign({}, s, { e: win.reduce((a, b) => a + b, 0) / win.length });
       });
     }
     function stats(arr) {
@@ -2998,6 +3012,86 @@
       const start = a ? (Array.isArray(a) ? { lng: a[0], lat: a[1] } : { lng: a.lng, lat: a.lat }) : null;
       const end = b ? (Array.isArray(b) ? { lng: b[0], lat: b[1] } : { lng: b.lng, lat: b.lat }) : null;
       return { start, end };
+    }
+    function geoUnitLabel(s) {
+      return (s && s.unit) ? String(s.unit) : '';
+    }
+    function geoBoxesOf(fc) {
+      const out = [];
+      (fc && fc.features || []).forEach(f => {
+        polysOf(f.geometry).forEach(poly => {
+          const ring = poly && poly[0];
+          if (!ring || !ring.length) return;
+          let minx = Infinity, miny = Infinity, maxx = -Infinity, maxy = -Infinity;
+          for (let i = 0; i < ring.length; i++) {
+            const x = ring[i][0], y = ring[i][1];
+            if (x < minx) minx = x; if (y < miny) miny = y;
+            if (x > maxx) maxx = x; if (y > maxy) maxy = y;
+          }
+          out.push({ minx: minx, miny: miny, maxx: maxx, maxy: maxy, poly: poly, p: f.properties || {} });
+        });
+      });
+      return out;
+    }
+    function hitGeo(boxes, lng, lat) {
+      for (let i = 0; i < boxes.length; i++) {
+        const b = boxes[i];
+        if (lng < b.minx || lng > b.maxx || lat < b.miny || lat > b.maxy) continue;
+        if (inPoly([lng, lat], b.poly)) return b.p;
+      }
+      return null;
+    }
+    let geoBoxCache = null, geoBoxSrc = null;
+    async function attachGeology(arr) {
+      const m = ovs['mineral-kz-lithology'];
+      if (!m) return { ok: false };
+      let fc = cache[m.id];
+      if (!fc) {
+        try { fc = await loadData(m); } catch (e) { return { ok: false }; }
+      }
+      if (!fc) return { ok: false };
+      if (geoBoxSrc !== fc) { geoBoxCache = geoBoxesOf(fc); geoBoxSrc = fc; }
+      const boxes = geoBoxCache || [];
+      for (let i = 0; i < arr.length; i++) {
+        const s = arr[i];
+        const p = hitGeo(boxes, s.lng, s.lat);
+        s.unit = (p && p.l) ? String(p.l) : '';
+        s.gc = (p && p.c) ? String(p.c) : '';
+      }
+      return { ok: true };
+    }
+    function geoFillSvg(samples, W, H, lo, span) {
+      let out = '';
+      const n = samples.length;
+      if (n < 2) return out;
+      let i = 0;
+      while (i < n) {
+        const c = samples[i].gc;
+        if (!c || samples[i].e == null) { i++; continue; }
+        let j = i;
+        while (j + 1 < n && samples[j + 1].gc === c && samples[j + 1].e != null) j++;
+        let d = '';
+        for (let k = i; k <= j; k++) {
+          const x = (k / (n - 1)) * W;
+          const y = H - ((samples[k].e - lo) / span) * H;
+          d += (k === i ? 'M' : 'L') + x.toFixed(1) + ' ' + y.toFixed(1);
+        }
+        const x1 = (j / (n - 1)) * W, x0 = (i / (n - 1)) * W;
+        d += ' L' + x1.toFixed(1) + ' ' + H + ' L' + x0.toFixed(1) + ' ' + H + ' Z';
+        out += '<path d="' + d + '" fill="' + esc(c) + '" fill-opacity="0.45"/>';
+        i = j + 1;
+      }
+      return out;
+    }
+    function geoBandHtml(samples) {
+      const n = samples.length;
+      if (n < 2 || !samples.some(s => s.gc)) return '';
+      let html = '<div class="profile-geo" aria-hidden="true">';
+      for (let i = 0; i < n - 1; i++) {
+        const c = samples[i].gc || samples[i + 1].gc || '';
+        html += '<i style="flex:1;background:' + (c ? esc(c) : 'transparent') + '"></i>';
+      }
+      return html + '</div>';
     }
     function downloadBlob(blob, name) {
       const url = URL.createObjectURL(blob);
@@ -3107,13 +3201,14 @@
     }
     function buildXlsx(data, st) {
       const ends = profileEnds();
-      const sampleRows = [['distance_km', 'elevation_m', 'lat', 'lon']];
+      const sampleRows = [['distance_km', 'elevation_m', 'lat', 'lon', 'geology_unit']];
       (data.samples || []).forEach(s => {
         sampleRows.push([
           { t: 'n', v: +(s.d / 1000).toFixed(6) },
           s.e == null ? '' : { t: 'n', v: +Number(s.e).toFixed(3) },
           { t: 'n', v: +Number(s.lat).toFixed(6) },
-          { t: 'n', v: +Number(s.lng).toFixed(6) }
+          { t: 'n', v: +Number(s.lng).toFixed(6) },
+          geoUnitLabel(s)
         ]);
       });
       const sum = [];
@@ -3182,13 +3277,14 @@
       if (ends.end) lines.push([csvCell(t('profile.end')), csvCell(fmtCoord(ends.end.lat, ends.end.lng))].join(','));
       lines.push([csvCell(t('profile.source')), csvCell(profileCredit())].join(','));
       lines.push('');
-      lines.push('distance_km,elevation_m,lat,lon');
+      lines.push('distance_km,elevation_m,lat,lon,geology_unit');
       (data.samples || []).forEach(s => {
         lines.push([
           (s.d / 1000).toFixed(6),
           s.e == null ? '' : Number(s.e).toFixed(3),
           Number(s.lat).toFixed(6),
-          Number(s.lng).toFixed(6)
+          Number(s.lng).toFixed(6),
+          csvCell(geoUnitLabel(s))
         ].join(','));
       });
       return new Blob(['\uFEFF' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8' });
@@ -3243,11 +3339,42 @@
       const totalKm = (data.total || 0) / 1000;
       cx.textAlign = 'center';
       cx.beginPath(); cx.moveTo(padL, padT + plotH); cx.lineTo(padL + plotW, padT + plotH); cx.stroke();
-      cx.fillText('0 ' + t('unit.km'), padL, padT + plotH + 18);
-      cx.fillText(totalKm.toFixed(1) + ' ' + t('unit.km'), padL + plotW, padT + plotH + 18);
+      cx.fillText('0 ' + t('unit.km'), padL, padT + plotH + 28);
+      cx.fillText(totalKm.toFixed(1) + ' ' + t('unit.km'), padL + plotW, padT + plotH + 28);
       cx.textAlign = 'left';
       if (es.length) {
         const n = data.samples.length;
+        let gi = 0;
+        const samples = data.samples;
+        while (gi < n) {
+          const c = samples[gi].gc;
+          if (!c || samples[gi].e == null) { gi++; continue; }
+          let gj = gi;
+          while (gj + 1 < n && samples[gj + 1].gc === c && samples[gj + 1].e != null) gj++;
+          cx.beginPath();
+          for (let k = gi; k <= gj; k++) {
+            const px = padL + (k / (n - 1)) * plotW;
+            const py = padT + plotH - ((samples[k].e - lo) / span) * plotH;
+            if (k === gi) cx.moveTo(px, py); else cx.lineTo(px, py);
+          }
+          cx.lineTo(padL + (gj / (n - 1)) * plotW, padT + plotH);
+          cx.lineTo(padL + (gi / (n - 1)) * plotW, padT + plotH);
+          cx.closePath();
+          cx.fillStyle = c;
+          cx.globalAlpha = 0.42;
+          cx.fill();
+          cx.globalAlpha = 1;
+          gi = gj + 1;
+        }
+        const bandY = padT + plotH + 6, bandH = 8;
+        if (samples.some(s => s.gc)) {
+          for (let i = 0; i < n - 1; i++) {
+            const c = samples[i].gc || samples[i + 1].gc;
+            if (!c) continue;
+            cx.fillStyle = c;
+            cx.fillRect(padL + (i / (n - 1)) * plotW, bandY, plotW / (n - 1) + 0.5, bandH);
+          }
+        }
         cx.beginPath();
         let started = false;
         data.samples.forEach((s, i) => {
@@ -3265,7 +3392,7 @@
       const ends = profileEnds();
       cx.fillStyle = mute;
       cx.font = '12px Inter,system-ui,sans-serif';
-      let metaY = padT + plotH + 40;
+      let metaY = padT + plotH + 50;
       if (ends.start) cx.fillText(t('profile.start') + '  ' + fmtCoord(ends.start.lat, ends.start.lng), 28, metaY);
       if (ends.end) cx.fillText(t('profile.end') + '  ' + fmtCoord(ends.end.lat, ends.end.lng), 28, metaY + 18);
       cx.font = '11px Inter,system-ui,sans-serif';
@@ -3370,11 +3497,15 @@
           path += (started ? ' L' : ' M') + x.toFixed(1) + ' ' + y.toFixed(1);
           started = true;
         });
-        chart = '<svg class="profile-chart" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" role="img" aria-label="' + esc(t('tool.profile')) + '">' +
-          '<path d="' + path + '" fill="none" stroke="#1c1917" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg>';
+        const fills = geoFillSvg(data.samples, W, H, lo, span);
+        chart = '<div class="profile-plot"><svg class="profile-chart" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" role="img" aria-label="' + esc(t('tool.profile')) + '">' +
+          fills +
+          '<path d="' + path + '" fill="none" stroke="#1c1917" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg>' +
+          geoBandHtml(data.samples) + '</div>';
       } else {
         chart = '<div class="profile-empty">' + esc(t('profile.fail')) + '</div>';
       }
+      const geoNote = (data.geo === false) ? '<div class="profile-geo-note">' + esc(t('profile.needGeology')) + '</div>' : '';
       panel = document.createElement('div');
       panel.id = 'profile-panel';
       panel.className = 'profile-panel';
@@ -3384,11 +3515,13 @@
         '<span>' + esc(t('profile.max')) + ' <b>' + (st.max == null ? '-' : fmtM(st.max)) + '</b></span>' +
         '<span>' + esc(t('profile.ascent')) + ' <b>' + (st.min == null ? '-' : fmtM(st.ascent)) + '</b></span>' +
         '</div>' + chart +
-        '<div class="profile-axis"><span>0 ' + esc(t('unit.km')) + '</span><span>' + (data.total / 1000).toFixed(1) + ' ' + esc(t('unit.km')) + '</span></div>';
+        '<div class="profile-axis"><span>0 ' + esc(t('unit.km')) + '</span><span>' + (data.total / 1000).toFixed(1) + ' ' + esc(t('unit.km')) + '</span></div>' +
+        geoNote;
       (document.querySelector('.wrap') || document.body).appendChild(panel);
       bindHead(!!es.length);
+      const plot = panel.querySelector('.profile-plot') || panel.querySelector('.profile-chart');
       const svg = panel.querySelector('.profile-chart');
-      if (svg) {
+      if (svg && plot) {
         const tip = document.createElement('div');
         tip.className = 'profile-tip';
         tip.hidden = true;
@@ -3403,14 +3536,15 @@
           if (!s) return;
           if (s.e == null) { tip.hidden = true; if (dotMk) dotMk.remove(); return; }
           dotMk.setLngLat([s.lng, s.lat]).addTo(map);
-          tip.textContent = (s.d / 1000).toFixed(2) + ' ' + t('unit.km') + ' \u00B7 ' + fmtM(s.e);
+          const unit = geoUnitLabel(s);
+          tip.textContent = (s.d / 1000).toFixed(2) + ' ' + t('unit.km') + ' \u00B7 ' + fmtM(s.e) + (unit ? ' \u00B7 ' + unit : '');
           tip.hidden = false;
           tip.style.left = Math.round(clientX - pr.left) + 'px';
           tip.style.top = Math.round(r.top - pr.top - 6) + 'px';
         }
-        svg.addEventListener('mousemove', ev => pick(ev.clientX));
-        svg.addEventListener('touchmove', ev => { const tch = ev.touches && ev.touches[0]; if (tch) pick(tch.clientX); }, { passive: true });
-        svg.addEventListener('mouseleave', () => { tip.hidden = true; if (dotMk) dotMk.remove(); });
+        plot.addEventListener('mousemove', ev => pick(ev.clientX));
+        plot.addEventListener('touchmove', ev => { const tch = ev.touches && ev.touches[0]; if (tch) pick(tch.clientX); }, { passive: true });
+        plot.addEventListener('mouseleave', () => { tip.hidden = true; if (dotMk) dotMk.remove(); });
       }
     }
     function bindClose() {
@@ -3443,6 +3577,9 @@
       try {
         const data = await sampleAll();
         if (gen !== computeGen || !on) return;
+        const geo = await attachGeology(data.samples);
+        if (gen !== computeGen || !on) return;
+        data.geo = geo.ok;
         lastData = data;
         showPanel(data);
       } catch (err) {
