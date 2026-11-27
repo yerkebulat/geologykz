@@ -99,8 +99,10 @@
   }
 
   function affFor(L, c) {
-    // Map css px to sheet px. The export capture fits exactly; the preview letterboxes.
-    var k = Math.min(L.map.w / c.cssW, L.map.h / c.cssH);
+    // Map css px to sheet px. Cover, not contain: the capture fills the map rect
+    // and any axis that does not match the page aspect is cropped, so the sheet
+    // shows the central crop of the on-screen view, never extra area.
+    var k = Math.max(L.map.w / c.cssW, L.map.h / c.cssH);
     return { kx: k, ky: k, ox: (L.map.w - c.cssW * k) / 2, oy: (L.map.h - c.cssH * k) / 2 };
   }
 
@@ -286,14 +288,19 @@
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, W, H);
     ctx.imageSmoothingEnabled = true;
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(L.map.x, L.map.y, L.map.w, L.map.h);
+    ctx.clip();
     ctx.drawImage(c.img, L.map.x + aff.ox, L.map.y + aff.oy, c.cssW * aff.kx, c.cssH * aff.ky);
+
+    if (opts.grid) drawGrid(ctx, L, m, c, aff, sheet);
+    if (opts.north) drawNorth(ctx, L, m);
+    ctx.restore();
 
     ctx.lineWidth = Math.max(1, 0.3 * L.pxPerMm);
     ctx.strokeStyle = INK;
     ctx.strokeRect(L.map.x, L.map.y, L.map.w, L.map.h);
-
-    if (opts.grid) drawGrid(ctx, L, m, c, aff, sheet);
-    if (opts.north) drawNorth(ctx, L, m);
     if (opts.title) {
       ctx.font = '600 ' + Math.round(5.4 * L.pxPerMm) + 'px "Source Serif Pro", Georgia, serif';
       ctx.fillStyle = INK;
@@ -386,11 +393,18 @@
     setStatus('Rendering map\u2026');
     (async function () {
       try {
-        // Grow the live map to the sheet and refit the current bounds.
+        // Grow the live map to the sheet, then zoom so the current view covers
+        // it: same center, and any axis that does not match the page aspect is
+        // cropped, never padded with area that was not on screen.
         el.style.width = cssW + 'px';
         el.style.height = cssH + 'px';
         m.resize();
-        m.fitBounds(bounds, { animate: false, padding: 0 });
+        var pSW = m.project(bounds.getSouthWest());
+        var pNE = m.project(bounds.getNorthEast());
+        var bw = Math.abs(pNE.x - pSW.x), bh = Math.abs(pNE.y - pSW.y);
+        var dzW = isFinite(bw) && bw > 0 ? Math.log2(cssW / bw) : 0;
+        var dzH = isFinite(bh) && bh > 0 ? Math.log2(cssH / bh) : 0;
+        m.jumpTo({ center: saved.center, zoom: m.getZoom() + Math.max(dzW, dzH) });
         await waitIdle(m, 15000);
         var shot = await snapshot();
         setStatus('Building PDF\u2026');
