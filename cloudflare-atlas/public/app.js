@@ -233,6 +233,7 @@
   document.querySelectorAll('.bm-btn').forEach(b => b.addEventListener('click', () => {
     basemap = b.dataset.bm; try { localStorage.setItem('atlas-basemap', basemap); } catch (e) {}
     if (map.isStyleLoaded()) applyBasemap();
+    else map.once('idle', () => { if (map.isStyleLoaded()) applyBasemap(); if (window.atlasCompare && window.atlasCompare.refresh) window.atlasCompare.refresh(); });
     afterBasemapChange();
   }));
   (function initSatPicker() {
@@ -2924,10 +2925,15 @@
       const c = map.getCenter();
       try { map2.jumpTo({ center: [c.lng, c.lat], zoom: map.getZoom(), bearing: map.getBearing(), pitch: map.getPitch() }); } catch (e) {}
     }
+    function compareLayerIds(k) {
+      let ids = keyLayers(k);
+      if (k === 'geo200') ids = ids.concat(styleLayers().map(l => l.id).filter(id => id.startsWith('geo200-label')));
+      return ids;
+    }
     function applySides() {
       if (!on) return;
       allActiveKeys().forEach(k => {
-        keyLayers(k).forEach(lid => {
+        compareLayerIds(k).forEach(lid => {
           if (!map.getLayer(lid)) return;
           try { map.setLayoutProperty(lid, 'visibility', k === leftKey ? 'visible' : 'none'); } catch (e) {}
         });
@@ -2940,34 +2946,96 @@
       copiedSources.forEach(sid => { try { if (map2.getSource(sid)) map2.removeSource(sid); } catch (e) {} });
       copiedLayers = []; copiedSources = [];
     }
-    function applyRight() {
+    function sourceDef(sid) {
+      const src = map.getSource(sid);
+      if (!src) return null;
+      let def = null;
+      try { if (typeof src.serialize === 'function') def = src.serialize(); } catch (e) { def = null; }
+      if (!def) {
+        const raw = ((map.getStyle() || {}).sources || {})[sid];
+        if (!raw) return null;
+        def = Object.assign({}, raw);
+      } else {
+        def = Object.assign({}, def);
+      }
+      if (def.type === 'geojson') {
+        let data = sourceData(sid);
+        if (!data) {
+          try { if (typeof src.getData === 'function') data = src.getData(); } catch (e) {}
+        }
+        if (!data) {
+          try { data = (src._options && src._options.data) || (src.options && src.options.data); } catch (e) {}
+        }
+        if (data) def.data = data;
+      }
+      return def;
+    }
+    function cloneLayer(l) {
+      const copy = JSON.parse(JSON.stringify(l));
+      if (!copy.layout) copy.layout = {};
+      copy.layout.visibility = 'visible';
+      return copy;
+    }
+    function syncMap2Basemap() {
       if (!map2 || !map2.isStyleLoaded()) return;
+      const satOn = basemap === 'sat';
+      (map2.getStyle().layers || []).forEach(l => {
+        if (l.id === 'sat' || !isBasemapLayer(l.id)) return;
+        try {
+          if (l.type === 'symbol') map2.setLayoutProperty(l.id, 'visibility', (satOn && satKind === 'hybrid') ? 'none' : 'visible');
+          else if (l.type !== 'background') map2.setLayoutProperty(l.id, 'visibility', satOn ? 'none' : 'visible');
+        } catch (e) {}
+      });
+    }
+    let applyingRight = false, rightAgain = false;
+    function map2Ready() {
+      return !!(map2 && map2.getStyle && map2.getStyle() && (map2.getStyle().layers || []).length);
+    }
+    function applyRight() {
+      if (!map2) return;
+      if (!map2Ready()) {
+        const retry = () => { if (on) applyRight(); };
+        map2.once('load', retry);
+        map2.once('idle', retry);
+        return;
+      }
+      if (applyingRight) { rightAgain = true; return; }
+      applyingRight = true;
+      rightAgain = false;
       clearRight();
       const st = map.getStyle();
+      const before = (map2.getStyle().layers || []).find(l => l.type === 'symbol' && !/^(atlas-|eqazyna-|process-|geo200-)/.test(l.id));
       if (basemap === 'sat') {
-        const src = st.sources.sat;
-        if (src) {
-          if (!map2.getSource('sat')) { try { map2.addSource('sat', JSON.parse(JSON.stringify(src))); copiedSources.push('sat'); } catch (e) {} }
-          const satLayer = (st.layers || []).find(l => l.id === 'sat');
-          if (satLayer && !map2.getLayer('sat')) { try { map2.addLayer(JSON.parse(JSON.stringify(satLayer))); copiedLayers.push('sat'); } catch (e) {} }
+        const def = sourceDef('sat');
+        if (def && !map2.getSource('sat')) {
+          try { map2.addSource('sat', def); copiedSources.push('sat'); } catch (e) {}
         }
+        const satLayer = (st.layers || []).find(l => l.id === 'sat');
+        if (satLayer && map2.getSource('sat') && !map2.getLayer('sat')) {
+          try { map2.addLayer(cloneLayer(satLayer), before && before.id); copiedLayers.push('sat'); } catch (e) {}
+        }
+        try { if (map2.getLayer('sat')) map2.setLayoutProperty('sat', 'visibility', 'visible'); } catch (e) {}
       }
+      syncMap2Basemap();
       if (rightKey === 'bm') return;
-      const ids = keyLayers(rightKey);
+      const ids = compareLayerIds(rightKey);
       const layers = (st.layers || []).filter(l => ids.includes(l.id));
       const srcIds = [...new Set(layers.map(l => l.source).filter(Boolean))];
-      const before = (map2.getStyle().layers || []).find(l => l.type === 'symbol' && !/^(atlas-|eqazyna-|process-|geo200-)/.test(l.id));
       srcIds.forEach(sid => {
-        const def = st.sources[sid];
-        if (def && !map2.getSource(sid)) {
-          try { map2.addSource(sid, JSON.parse(JSON.stringify(def))); copiedSources.push(sid); } catch (e) {}
-        }
+        if (map2.getSource(sid)) return;
+        const def = sourceDef(sid);
+        if (!def) return;
+        try { map2.addSource(sid, def); copiedSources.push(sid); } catch (e) {}
       });
       layers.forEach(l => {
-        if (!map2.getLayer(l.id)) {
-          try { map2.addLayer(JSON.parse(JSON.stringify(l)), before && before.id); copiedLayers.push(l.id); } catch (e) {}
-        }
+        if (map2.getLayer(l.id) || !map2.getSource(l.source)) return;
+        try {
+          map2.addLayer(cloneLayer(l), before && before.id);
+          copiedLayers.push(l.id);
+        } catch (e) {}
       });
+      applyingRight = false;
+      if (rightAgain && on) applyRight();
     }
     function keyOptions() {
       const keys = allActiveKeys();
@@ -2984,8 +3052,10 @@
       [['#compare-left', leftKey], ['#compare-right', rightKey]].forEach(pair => {
         const sel = bar.querySelector(pair[0]);
         if (!sel) return;
-        sel.innerHTML = opts.map(o => '<option value="' + esc(o.v) + '">' + esc(o.label) + '</option>').join('');
+        sel.innerHTML = opts.map(o => '<option value="' + esc(o.v) + '" title="' + esc(o.label) + '">' + esc(o.label) + '</option>').join('');
         sel.value = pair[1];
+        const cur = opts.find(o => o.v === pair[1]);
+        sel.title = cur ? cur.label : '';
       });
     }
     function buildUi() {
@@ -3001,7 +3071,6 @@
         interactive: false, attributionControl: false, maxZoom: 19, maxPitch: 0
       });
       map2.on('load', () => { applyRight(); sync2(); });
-      map2.on('style.load', () => { applyRight(); });
 
       bar = document.createElement('div');
       bar.id = 'compare-bar';
@@ -3049,6 +3118,7 @@
       });
     }
     function destroy() {
+      applyingRight = false; rightAgain = false;
       allActiveKeys().forEach(k => applyKeyVis(k));
       map.off('move', sync2);
       if (map2) { try { map2.remove(); } catch (e) {} map2 = null; }
