@@ -255,8 +255,11 @@ body.panel-closed .map-scale{left:max(12px, calc(env(safe-area-inset-left, 0px) 
 .measure-box button:focus-visible{outline:2px solid var(--text);outline-offset:2px}
 .measure-box button[aria-pressed="true"]{background:var(--text);color:#fff;border-color:var(--text)}
 @keyframes tool-btn-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.measure-actions{display:flex;flex-direction:column;gap:6px;pointer-events:auto}
+.measure-actions{display:flex;flex-direction:column;align-items:flex-end;gap:6px;pointer-events:auto}
 .measure-actions button{height:30px;font-size:12.5px}
+.measure-mode{display:flex;gap:2px;pointer-events:auto}
+.measure-mode button{width:34px;height:30px;border-radius:8px;background:var(--soft)}
+.measure-mode button[aria-pressed="true"]{background:var(--text);color:#fff;border-color:var(--text)}
 .measure-actions button:hover{transform:none}
 .measure-actions[hidden]{display:none}
 #measure-done[hidden]{display:none}

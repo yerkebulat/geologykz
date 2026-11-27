@@ -23,7 +23,9 @@
   })();
   const ICON = {
     globe: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.7"/><ellipse cx="12" cy="12" rx="3.7" ry="8.4" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3.6 12h16.8" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>',
-    ruler: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="8.8" width="17.6" height="6.4" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7.4 8.8v2.5M11.6 8.8v2.5M15.8 8.8v2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>'
+    ruler: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="8.8" width="17.6" height="6.4" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7.4 8.8v2.5M11.6 8.8v2.5M15.8 8.8v2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
+    distance: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16.5 18 7.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="6" cy="16.5" r="2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="7.5" r="2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
+    area: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7.5 14 5l4.5 5.5-3 7L7 18z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="6" cy="7.5" r="1.3" fill="currentColor"/><circle cx="18.5" cy="10.5" r="1.3" fill="currentColor"/><circle cx="7" cy="18" r="1.3" fill="currentColor"/></svg>'
   };
   const SITE = window.ATLAS_SITE || { mode: 'atlas' };
   const I18N = window.atlasI18n || {};
@@ -1642,14 +1644,19 @@
     const R = 6371000;
     const toRad = d => d * Math.PI / 180;
     const SRC = 'atlas-measure';
-    const LIDS = ['atlas-measure-halo', 'atlas-measure-casing', 'atlas-measure-line', 'atlas-measure-pts'];
+    const LIDS = ['atlas-measure-halo', 'atlas-measure-casing', 'atlas-measure-line', 'atlas-measure-pts', 'atlas-measure-fill'];
     let on = false, done = false, verts = [];
+    let mode = 'distance';
     let lastTap = 0, lastPt = null, labelMk = null, hover = null;
     const box = document.createElement('div');
     box.id = 'measure-box';
     box.className = 'measure-box';
     box.innerHTML = '<button type="button" class="measure-btn" id="measure-btn" aria-pressed="false" aria-label="' + t('tool.measure') + '" title="' + t('tool.measure') + '">' + ICON.ruler + '</button>' +
       '<div class="measure-actions" id="measure-actions" hidden>' +
+      '<div class="measure-mode" role="group" aria-label="' + t('tool.measure') + '">' +
+      '<button type="button" id="measure-dist" aria-pressed="true" aria-label="' + t('tool.distance') + '" title="' + t('tool.distance') + '">' + ICON.distance + '</button>' +
+      '<button type="button" id="measure-area" aria-pressed="false" aria-label="' + t('tool.area') + '" title="' + t('tool.area') + '">' + ICON.area + '</button>' +
+      '</div>' +
       '<button type="button" id="measure-done">' + t('tool.done') + '</button>' +
       '<button type="button" id="measure-clear">' + t('tool.clear') + '</button>' +
       '</div>';
@@ -1695,18 +1702,53 @@
       return out;
     }
     function totalM() { return segments().reduce((s, x) => s + x, 0); }
+    function ring() { return verts.length >= 3 ? verts.concat([verts[0]]) : verts; }
+    function perimeterM() {
+      const r = ring();
+      let t = 0;
+      for (let i = 1; i < r.length; i++) t += haversine(r[i - 1], r[i]);
+      return t;
+    }
+    function areaM2() {
+      if (verts.length < 3) return 0;
+      const R = 6378137;
+      const pts = ring();
+      let sum = 0;
+      for (let i = 0; i < pts.length - 1; i++) {
+        const a = pts[i], b = pts[i + 1];
+        sum += (toRad(b[0]) - toRad(a[0])) * (2 + Math.sin(toRad(a[1])) + Math.sin(toRad(b[1])));
+      }
+      return Math.abs(sum * R * R / 2);
+    }
+    function fmtArea(m2) {
+      if (m2 < 1e6) {
+        const ha = m2 / 1e4;
+        return (ha < 10 ? ha.toFixed(2) : ha < 100 ? ha.toFixed(1) : Math.round(ha)) + ' ' + t('unit.ha');
+      }
+      const km2 = m2 / 1e6;
+      return (km2 < 10 ? km2.toFixed(2) : km2 < 100 ? km2.toFixed(1) : Math.round(km2)) + ' ' + t('unit.km2');
+    }
     function lineFeat(a, b, rubber) {
       return { type: 'Feature', properties: { rubber: rubber ? 1 : 0 }, geometry: { type: 'LineString', coordinates: densify(a, b) } };
     }
     function fcLine() {
       const features = [];
       if (verts.length >= 2) {
+        const srcPts = mode === 'area' && verts.length >= 3 ? ring() : verts;
         const coords = [];
-        for (let i = 1; i < verts.length; i++) densify(verts[i - 1], verts[i]).forEach((p, j) => { if (j || !coords.length) coords.push(p); });
+        for (let i = 1; i < srcPts.length; i++) densify(srcPts[i - 1], srcPts[i]).forEach((p, j) => { if (j || !coords.length) coords.push(p); });
         features.push({ type: 'Feature', properties: { rubber: 0 }, geometry: { type: 'LineString', coordinates: coords } });
       }
       if (!done && hover && verts.length >= 1) features.push(lineFeat(verts[verts.length - 1], hover, true));
       return { type: 'FeatureCollection', features };
+    }
+    function fcPoly() {
+      if (mode !== 'area' || verts.length < 3) return { type: 'FeatureCollection', features: [] };
+      const pts = ring();
+      const coords = [];
+      for (let i = 1; i < pts.length; i++) densify(pts[i - 1], pts[i]).forEach((p, j) => { if (j || !coords.length) coords.push(p); });
+      coords.push(coords[0]);
+      return { type: 'FeatureCollection', features: [{ type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [coords] } }] };
     }
     function fcPts() {
       return { type: 'FeatureCollection', features: verts.map((c, i) => ({ type: 'Feature', geometry: { type: 'Point', coordinates: c }, properties: { i } })) };
@@ -1721,10 +1763,13 @@
       if (!map.getStyle() || !map.getStyle().layers) return;
       if (!map.getSource(SRC)) map.addSource(SRC, { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
       if (!map.getSource(SRC + '-pts')) map.addSource(SRC + '-pts', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+      if (!map.getSource(SRC + '-poly')) map.addSource(SRC + '-poly', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
       const layers = (map.getStyle() && map.getStyle().layers) || [];
       const base = layers.find(l => l.type === 'symbol' && !/^(atlas-|eqazyna-|process-|geo200-)/.test(l.id));
       const before = base && base.id;
       const lineLayout = { 'line-join': 'round', 'line-cap': 'round' };
+      if (!map.getLayer('atlas-measure-fill')) map.addLayer({ id: 'atlas-measure-fill', type: 'fill', source: SRC + '-poly',
+        paint: { 'fill-color': '#1c1917', 'fill-opacity': 0.08 } }, before);
       if (!map.getLayer('atlas-measure-halo')) map.addLayer({ id: 'atlas-measure-halo', type: 'line', source: SRC,
         layout: lineLayout, paint: { 'line-color': '#1c1917', 'line-width': 5, 'line-opacity': 0.45 } }, before);
       if (!map.getLayer('atlas-measure-casing')) map.addLayer({ id: 'atlas-measure-casing', type: 'line', source: SRC,
@@ -1737,12 +1782,18 @@
     }
     function setLabel() {
       if (labelMk) { labelMk.remove(); labelMk = null; }
-      if (verts.length < 2) return;
-      const segs = segments();
+      const need = mode === 'area' ? 3 : 2;
+      if (verts.length < need) return;
       const el = document.createElement('div');
       el.className = 'measure-label';
-      el.innerHTML = segs.map(m => '<div class="ms-seg">' + fmt(m) + '</div>').join('') +
-        '<div class="ms-total">' + fmt(totalM()) + '</div>';
+      if (mode === 'area') {
+        el.innerHTML = '<div class="ms-seg">' + fmt(perimeterM()) + '</div>' +
+          '<div class="ms-total">' + fmtArea(areaM2()) + '</div>';
+      } else {
+        const segs = segments();
+        el.innerHTML = segs.map(m => '<div class="ms-seg">' + fmt(m) + '</div>').join('') +
+          '<div class="ms-total">' + fmt(totalM()) + '</div>';
+      }
       const last = verts[verts.length - 1];
       labelMk = new maplibregl.Marker({ element: el, anchor: 'left', offset: [12, 0], pitchAlignment: 'viewport', rotationAlignment: 'viewport' })
         .setLngLat(last).addTo(map);
@@ -1751,6 +1802,7 @@
       ensure();
       if (map.getSource(SRC)) map.getSource(SRC).setData(fcLine());
       if (map.getSource(SRC + '-pts')) map.getSource(SRC + '-pts').setData(fcPts());
+      if (map.getSource(SRC + '-poly')) map.getSource(SRC + '-poly').setData(fcPoly());
     }
     function redraw() {
       paintLine();
@@ -1762,6 +1814,7 @@
       lastTap = 0; lastPt = null; hover = null;
       if (map.getSource(SRC)) map.getSource(SRC).setData({ type: 'FeatureCollection', features: [] });
       if (map.getSource(SRC + '-pts')) map.getSource(SRC + '-pts').setData({ type: 'FeatureCollection', features: [] });
+      if (map.getSource(SRC + '-poly')) map.getSource(SRC + '-poly').setData({ type: 'FeatureCollection', features: [] });
       if (labelMk) { labelMk.remove(); labelMk = null; }
     }
     const doneBtn = box.querySelector('#measure-done');
@@ -1803,7 +1856,8 @@
     }
     function finish() {
       if (!on) return;
-      if (verts.length < 2) { setOn(false); return; }
+      const need = mode === 'area' ? 3 : 2;
+      if (verts.length < need) { setOn(false); return; }
       done = true;
       hover = null;
       on = false;
@@ -1823,6 +1877,10 @@
     function handleClick(e) {
       if (!on || done) return false;
       const now = Date.now(), pt = e.point;
+      if (mode === 'area' && verts.length >= 3) {
+        const p0 = map.project(verts[0]);
+        if (Math.hypot(p0.x - pt.x, p0.y - pt.y) < 14) { finish(); return true; }
+      }
       if (lastPt && now - lastTap < 350 && Math.hypot(pt.x - lastPt.x, pt.y - lastPt.y) < 18) {
         finish();
         lastTap = 0;
@@ -1871,6 +1929,17 @@
     bindMeasureTap(btn, () => setOn(!on));
     bindMeasureTap(doneBtn, finish);
     bindMeasureTap(clearBtn, () => setOn(false));
+    const distBtn = box.querySelector('#measure-dist');
+    const areaBtn = box.querySelector('#measure-area');
+    function setMode(m) {
+      mode = m === 'area' ? 'area' : 'distance';
+      if (distBtn) distBtn.setAttribute('aria-pressed', String(mode === 'distance'));
+      if (areaBtn) areaBtn.setAttribute('aria-pressed', String(mode === 'area'));
+      clearLine();
+      redraw();
+    }
+    bindMeasureTap(distBtn, () => setMode('distance'));
+    bindMeasureTap(areaBtn, () => setMode('area'));
     map.on('dblclick', e => {
       if (!on || done) return;
       e.preventDefault();
@@ -2670,6 +2739,10 @@
     if (lt && lg) lt.textContent = lg.classList.contains('min') ? t('legend.title') : t('legend.hide');
     const mb = $('measure-btn');
     if (mb) { mb.title = t('tool.measure'); mb.setAttribute('aria-label', t('tool.measure')); }
+    const mdist = $('measure-dist');
+    if (mdist) { mdist.title = t('tool.distance'); mdist.setAttribute('aria-label', t('tool.distance')); }
+    const marea = $('measure-area');
+    if (marea) { marea.title = t('tool.area'); marea.setAttribute('aria-label', t('tool.area')); }
     const db = $('measure-done'); if (db) db.textContent = t('tool.done');
     const cb = $('measure-clear'); if (cb) cb.textContent = t('tool.clear');
     const gb = $('grid-toggle');
