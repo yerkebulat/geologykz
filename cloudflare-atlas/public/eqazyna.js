@@ -66,7 +66,6 @@
       map.addSource("eqazyna", {
         type: "geojson",
         data: EMPTY,
-        generateId: true,
         promoteId: "id",
         attribution: "Unified Subsoil Use Platform, minerals.e-qazyna.kz"
       });
