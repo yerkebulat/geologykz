@@ -4,14 +4,16 @@
     "/about/made": "about-made",
     "/sources": "about-sources",
     "/contribute": "about-contribute",
-    "/open-source": "about-code"
+    "/open-source": "about-code",
+    "/authors": "about-authors"
   };
   var TITLES = {
     "/about": "About",
     "/about/made": "How it's made",
     "/sources": "Sources",
     "/contribute": "Contribute",
-    "/open-source": "Open source"
+    "/open-source": "Open source",
+    "/authors": "Authors"
   };
   var HANDLERS = [
     "scrollZoom", "boxZoom", "dragRotate", "dragPan",

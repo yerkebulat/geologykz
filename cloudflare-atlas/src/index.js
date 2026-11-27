@@ -23,7 +23,8 @@ function isSitePage(path) {
     path.startsWith("/about/") ||
     path === "/sources" ||
     path === "/contribute" ||
-    path === "/open-source"
+    path === "/open-source" ||
+    path === "/authors"
   );
 }
 
