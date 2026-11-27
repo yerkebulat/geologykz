@@ -627,6 +627,19 @@
       h += `<div class="pp-k">Safonova et al. 2024</div>`;
       return h + '</div>';
     }
+    if (ov && ov.id && ov.id.indexOf('usgs-') === 0) {
+      h += `<div class="pp-theme">${esc(ov.title)}</div>`;
+      if (p.n) h += `<div class="pp-l">${esc(p.n)}</div>`;
+      const num = v => (v === 0 || v) ? (typeof v === 'number' ? v.toLocaleString('en-US', { maximumFractionDigits: 1 }) : String(v)) : '';
+      h += kv('Type', p.typ) + kv('Status', p.st) + kv('Commodities', p.comm);
+      h += kv('Age', p.age) + kv('Tract', p.tract) + kv('Basin', p.basin);
+      h += kv('Province', p.prov) + kv('Petroleum system', p.tps);
+      h += kv('Mean oil (MMBO)', num(p.oil)) + kv('Mean gas (BCFG)', num(p.gas));
+      h += kv('Depth', (p.val || p.val === 0) ? `${p.val} m` : '');
+      if (p.cu) h += kv('Cu grade', String(p.cu) + ' %');
+      if (p.mt) h += kv('Tonnage', String(p.mt) + ' Mt');
+      return h + '</div>';
+    }
     if (ov && ov.kind === 'point') {
       const d = depositFields(p);
       h += `<div class="pp-theme">${esc(ov.title)}</div>`;
