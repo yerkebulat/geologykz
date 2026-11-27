@@ -1224,7 +1224,8 @@
     chev: '<svg class="act-i act-chev" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.7 9.2 12 14.5l5.3-5.3 1.4 1.4L12 17.3 5.3 10.6z"/></svg>',
     eye: '<svg class="act-i" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 5C7 5 2.8 8.2 1 12c1.8 3.8 6 7 11 7s9.2-3.2 11-7c-1.8-3.8-6-7-11-7zm0 11.2A4.2 4.2 0 1 1 12 7.8a4.2 4.2 0 0 1 0 8.4zm0-2.4a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6z"/></svg>',
     eyeOff: '<svg class="act-i" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 5C7 5 2.8 8.2 1 12c1.8 3.8 6 7 11 7s9.2-3.2 11-7c-1.8-3.8-6-7-11-7zm0 11.2A4.2 4.2 0 1 1 12 7.8a4.2 4.2 0 0 1 0 8.4zm0-2.4a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6z"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M4.2 4.2l15.6 15.6"/></svg>',
-    more: '<svg class="act-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="1.7" fill="currentColor"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/><circle cx="18" cy="12" r="1.7" fill="currentColor"/></svg>'
+    more: '<svg class="act-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="12" r="1.7" fill="currentColor"/><circle cx="12" cy="12" r="1.7" fill="currentColor"/><circle cx="18" cy="12" r="1.7" fill="currentColor"/></svg>',
+    search: '<svg class="act-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M15.2 15.2 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>'
   };
   function closeActMenu(box) {
     if (!box) return;
@@ -1232,6 +1233,62 @@
     box.querySelectorAll('.act-b[data-a="menu"]').forEach(b => b.setAttribute('aria-expanded', 'false'));
   }
   let actSeen = new Set();
+  // Deposit search: only point overlays of deposits, occurrences, and similar layers.
+  const SEARCH_IDS = ['mineral-kz-deposits', 'kz-mineral-deposits'];
+  const SEARCH_TITLE = /deposit|occurrence|prospect|facility|potash|coal|copper/i;
+  const searchOpen = new Set();
+  const searchQuery = new Map();
+  const searchResults = new Map();
+  let searchFocusKey = null;
+  function searchableMap(k) {
+    if (!k || !k.startsWith('ov:')) return null;
+    const m = ovs[k.slice(3)];
+    if (!m || !m.overlay || m.kind !== 'point') return null;
+    if (SEARCH_IDS.includes(m.id) || SEARCH_TITLE.test(String(m.title || ''))) return m;
+    return null;
+  }
+  function searchNameOf(p) {
+    return String(p.n || p.name || p.ru || p.name_ru || p.name_kk || p.l || '');
+  }
+  function fillSearchResults(boxEl) {
+    const k = boxEl.dataset.k;
+    const inp = boxEl.querySelector('.act-search-inp');
+    const res = boxEl.querySelector('.act-search-res');
+    if (!inp || !res) return;
+    const q = String(inp.value || '').trim().toLowerCase();
+    const m = searchableMap(k);
+    const out = [];
+    if (m && q) {
+      const data = sourceData('atlas-ov-' + m.id);
+      const feats = (data && data.features) || [];
+      for (const f of feats) {
+        const p = f.properties || {};
+        const names = [p.n, p.name, p.ru, p.name_ru, p.name_kk, p.l].filter(Boolean).map(String);
+        if (!names.some(n => n.toLowerCase().includes(q))) continue;
+        out.push({ f, name: searchNameOf(p), commodity: String(p.maj || p.comm || depositFields(p).commodity || '') });
+        if (out.length >= 10) break;
+      }
+    }
+    searchResults.set(k, out);
+    res.innerHTML = out.map((r, i) =>
+      '<button type="button" class="act-res" data-i="' + i + '"><span class="act-res-n">' + esc(r.name) + '</span>' +
+      (r.commodity ? '<span class="act-res-c">' + esc(r.commodity) + '</span>' : '') + '</button>').join('');
+  }
+  function pickSearchResult(k, i) {
+    const r = (searchResults.get(k) || [])[i];
+    if (!r) return;
+    const g = r.f.geometry;
+    let coords = null;
+    if (g && g.type === 'Point') coords = g.coordinates;
+    else if (g && g.type === 'MultiPoint' && g.coordinates.length) coords = g.coordinates[0];
+    if (!coords) return;
+    const lng = coords[0], lat = coords[1];
+    map.flyTo({ center: [lng, lat], zoom: Math.max(map.getZoom(), 11), duration: 1200 });
+    setTimeout(() => {
+      const p = map.project([lng, lat]);
+      openInfoPopup({ lngLat: { lng, lat }, point: p });
+    }, 1300);
+  }
   function pulseSwatch(row) {
     if (!row || reduceMotion()) return;
     const sw = row.querySelector('.act-sw');
@@ -1291,6 +1348,10 @@
       const hid = layerHid.has(k), sw = swatchOf(k), pct = Math.round(opOf(k) * 100);
       const upDis = i === 0 ? ' disabled' : '', downDis = i === keys.length - 1 ? ' disabled' : '';
       const zoomDis = keyBbox(k) ? '' : ' disabled';
+      const sm = searchableMap(k);
+      const sOpen = !!(sm && searchOpen.has(k));
+      const searchBtn = sm ? `<button type="button" class="act-b act-search-b" data-a="search" aria-label="${esc(t('act.search'))}" title="${esc(t('act.search'))}" aria-expanded="${sOpen}">${ICO.search}</button>` : '';
+      const searchBox = sOpen ? `<div class="act-search-box" data-k="${esc(k)}"><input type="text" class="act-search-inp" placeholder="${esc(t('act.searchPlaceholder'))}" aria-label="${esc(t('act.searchPlaceholder'))}" value="${esc(searchQuery.get(k) || '')}" autocomplete="off" spellcheck="false"><div class="act-search-res"></div></div>` : '';
       const menu = `<div class="act-more"><button type="button" class="act-b" data-a="menu" aria-label="${esc(t('act.actions'))}" aria-haspopup="menu" aria-expanded="false">${ICO.more}</button>` +
         `<div class="act-menu" role="menu"><div class="act-menu-in">` +
         (pin ? '' : `<button type="button" role="menuitem" data-a="up"${upDis}>${esc(t('act.up'))}</button><button type="button" role="menuitem" data-a="down"${downDis}>${esc(t('act.down'))}</button>`) +
@@ -1300,15 +1361,24 @@
         (pin ? '<span class="act-grip act-pin" title="Always on top" aria-hidden="true">&#9650;</span>' : '<span class="act-grip" title="Drag to reorder" aria-hidden="true">&#8942;&#8942;</span>') +
         `<span class="act-sw ${sw.g}" style="background:${esc(sw.c)}" aria-hidden="true"></span>` +
         `<span class="act-t${keyLoading(k) ? ' load' : ''}">${esc(keyTitle(k))}</span>` +
+        searchBtn +
         `<button type="button" class="act-b" data-a="hid" aria-pressed="${hid}" aria-label="${hid ? t('act.show') : t('act.hide')}">${hid ? ICO.eyeOff : ICO.eye}</button>` +
         menu + '</div>' +
-        `<div class="act-op-row"><input type="range" class="act-op" min="0" max="1" step="0.05" value="${opOf(k)}" aria-label="${esc(t('act.opacity', { pct }))}"><span class="act-op-val" title="${esc(t('act.typeValue'))}" tabindex="0">${pct}%</span></div></div>`;
+        `<div class="act-op-row"><input type="range" class="act-op" min="0" max="1" step="0.05" value="${opOf(k)}" aria-label="${esc(t('act.opacity', { pct }))}"><span class="act-op-val" title="${esc(t('act.typeValue'))}" tabindex="0">${pct}%</span></div>` +
+        searchBox + '</div>';
     };
     box.innerHTML = `<button type="button" class="act-h" aria-expanded="${actOpen}" aria-controls="act-body"><span>${esc(t('act.title', { n }))}</span>${ICO.chev}</button>` +
       '<div class="act-body" id="act-body"><div class="act-body-in">' +
       pinned.map(k => row(k, 0, true)).join('') + keys.map((k, i) => row(k, i, false)).join('') +
       '</div></div>';
     animateActRows(box, prev);
+    box.querySelectorAll('.act-search-box').forEach(fillSearchResults);
+    if (searchFocusKey) {
+      const target = [...box.querySelectorAll('.act-search-box')].find(b => b.dataset.k === searchFocusKey);
+      searchFocusKey = null;
+      const inp = target && target.querySelector('.act-search-inp');
+      if (inp) inp.focus();
+    }
   }
   function moveKey(k, d) {
     const i = order.indexOf(k), j = i + d;
@@ -1361,7 +1431,21 @@
       });
       inp.addEventListener('blur', () => commit(true));
     };
+    box.addEventListener('input', e => {
+      const inp = e.target.closest('.act-search-inp');
+      if (!inp) return;
+      const wrapEl = inp.closest('.act-search-box');
+      if (!wrapEl) return;
+      searchQuery.set(wrapEl.dataset.k, inp.value);
+      fillSearchResults(wrapEl);
+    });
     box.addEventListener('click', e => {
+      const res = e.target.closest('.act-res');
+      if (res) {
+        const wrapEl = res.closest('.act-search-box');
+        if (wrapEl) pickSearchResult(wrapEl.dataset.k, Number(res.dataset.i));
+        return;
+      }
       const lab = e.target.closest('.act-op-val');
       if (lab) { startOpEdit(lab); return; }
       const head = e.target.closest('.act-h');
@@ -1380,6 +1464,12 @@
         if (a === 'menu') { openMenu(b); return; }
         if (!row) return;
         const k = row.dataset.k;
+        if (a === 'search') {
+          if (searchOpen.has(k)) searchOpen.delete(k);
+          else { searchOpen.add(k); searchQuery.set(k, ''); searchFocusKey = k; }
+          renderActive();
+          return;
+        }
         if (a === 'hid') toggleHid(k);
         else if (a === 'up') moveKey(k, -1);
         else if (a === 'down') moveKey(k, 1);
@@ -4073,6 +4163,7 @@
     const ccopy = document.querySelector('.coord-copy');
     if (ccopy && ccopy.textContent !== t('panel.copied') && ccopy.textContent !== t('panel.copyFailed')) ccopy.textContent = t('panel.copy');
     syncList();
+    renderActive();
     renderLegend();
     if (typeof gridOn !== 'undefined' && gridOn) gridUpdate();
     if (window.atlasMeasure && window.atlasMeasure.redraw) window.atlasMeasure.redraw();

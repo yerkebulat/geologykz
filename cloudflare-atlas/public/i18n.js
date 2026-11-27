@@ -67,6 +67,8 @@
     "act.opacity": { en: "Opacity {pct}%", kk: "Мөлдірлік {pct}%", ru: "Прозрачность {pct}%" },
     "act.opacityPct": { en: "Opacity percent", kk: "Мөлдірлік, пайыз", ru: "Прозрачность, процент" },
     "act.typeValue": { en: "Type a value", kk: "Мәнді енгізіңіз", ru: "Введите значение" },
+    "act.search": { en: "Search layer", kk: "Қабаттан іздеу", ru: "Поиск по слою" },
+    "act.searchPlaceholder": { en: "Search by name", kk: "Атауы бойынша іздеу", ru: "Поиск по названию" },
     "tool.measure": { en: "Measure", kk: "Өлшеу", ru: "Измерить" },
     "tool.distance": { en: "Distance", kk: "Қашықтық", ru: "Расстояние" },
     "tool.area": { en: "Area", kk: "Аудан", ru: "Площадь" },
