@@ -13,29 +13,28 @@
 <link rel="preload" href="fonts/source-serif-pro-semibold.woff2" as="font" type="font/woff2" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css" rel="stylesheet">
-<link href="style.css?v=cf21" rel="stylesheet">
+<link href="style.css?v=cf22" rel="stylesheet">
 </head>
 <body>
 <header class="topbar">
   <span class="brand">Atlas</span>
   <span class="sub" data-i18n="sub.maps">Geological maps of Kazakhstan</span>
+  <button type="button" class="map-return" id="map-return" hidden data-i18n="nav.map">Map</button>
+  <a href="/about" id="about-btn" data-i18n="nav.about">About</a>
+  <button type="button" class="donate-btn" id="donate-btn" aria-haspopup="dialog" aria-controls="donate-modal"><span class="donate-full" data-i18n="nav.donate">Donate maps</span><span class="donate-short" data-i18n="nav.donateShort">Donate</span></button>
+  <a href="/game.html" id="play-btn" data-i18n="nav.play">Play</a>
+  <a href="/__auth/logout" id="logout-btn" data-i18n="nav.logout">Log out</a>
   <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" data-i18n-aria="nav.menu" aria-label="Menu">
     <span class="nav-toggle-bars" aria-hidden="true"></span>
   </button>
-  <nav id="site-nav">
-    <button type="button" class="map-return" id="map-return" hidden data-i18n="nav.map">Map</button>
-    <a href="/about" id="about-btn" data-i18n="nav.about">About</a>
-    <button type="button" class="donate-btn" id="donate-btn" aria-haspopup="dialog" aria-controls="donate-modal"><span class="donate-full" data-i18n="nav.donate">Donate maps</span><span class="donate-short" data-i18n="nav.donateShort">Donate</span></button>
-    <a href="/game.html" data-i18n="nav.play">Play</a>
-    <a href="/__auth/logout" data-i18n="nav.logout">Log out</a>
-    <div class="lang-switch" role="group" data-i18n-aria="nav.lang" aria-label="Language">
-      <button type="button" data-lang="en" aria-pressed="true">EN</button>
-      <span class="lang-dot" aria-hidden="true">·</span>
-      <button type="button" data-lang="kk" aria-pressed="false">ҚАЗ</button>
-      <span class="lang-dot" aria-hidden="true">·</span>
-      <button type="button" data-lang="ru" aria-pressed="false">РУ</button>
-    </div>
-  </nav>
+  <nav id="site-nav"></nav>
+  <div class="lang-switch" role="group" data-i18n-aria="nav.lang" aria-label="Language">
+    <button type="button" data-lang="en" aria-pressed="true">EN</button>
+    <span class="lang-dot" aria-hidden="true">·</span>
+    <button type="button" data-lang="kk" aria-pressed="false">ҚАЗ</button>
+    <span class="lang-dot" aria-hidden="true">·</span>
+    <button type="button" data-lang="ru" aria-pressed="false">РУ</button>
+  </div>
 </header>
 <main class="wrap">
   <div id="mapview"></div>
@@ -286,7 +285,7 @@
 <script src="geo200-pilot.js?v=cf3"></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script src="config.js"></script>
-<script src="i18n.js?v=cf1"></script>
+<script src="i18n.js?v=cf2"></script>
 <script src="donate.js?v=cf11"></script>
 <script src="about.js?v=cf14"></script>
 <script src="app.js?v=cf20"></script>

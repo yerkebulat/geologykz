@@ -4,11 +4,11 @@
 @font-face{font-family:"Source Serif Pro";src:url("fonts/source-serif-pro-italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
 *{box-sizing:border-box}html,body{margin:0;height:100%}
 body{background:var(--bg);color:var(--text);font:14px/1.5 var(--sans);-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;height:100dvh}
-.topbar{display:flex;align-items:baseline;gap:14px;padding:10px 18px;border-bottom:1px solid var(--line);background:var(--card);flex:none}
-.brand{font-weight:700;text-transform:uppercase;letter-spacing:-.01em;font-size:16px}
+.topbar{display:flex;align-items:center;gap:14px;padding:10px 18px;border-bottom:1px solid var(--line);background:var(--card);flex:none;position:relative}
+.brand{font-weight:700;text-transform:uppercase;letter-spacing:-.01em;font-size:16px;flex:none;white-space:nowrap}
 .sub{color:var(--muted);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;min-width:0}
-.topbar nav{display:flex;align-items:baseline;gap:16px;flex:none}.topbar nav a{color:var(--muted);text-decoration:none;font-size:13px}.topbar nav a:hover{color:var(--text)}
-.topbar{position:relative}
+.topbar .donate-btn,.topbar a#about-btn,.topbar a#play-btn,.topbar a#logout-btn{color:var(--muted);text-decoration:none;font-size:13px;white-space:nowrap;flex:none}
+.topbar a#about-btn:hover,.topbar a#play-btn:hover,.topbar a#logout-btn:hover,.topbar .donate-btn:hover{color:var(--text)}
 .lang-switch{display:flex;align-items:baseline;gap:5px;margin-left:2px}
 .lang-switch button{margin:0;padding:0;border:0;background:none;color:var(--muted);font:inherit;font-size:12px;letter-spacing:.04em;cursor:pointer;line-height:inherit}
 .lang-switch button:hover{color:var(--text)}
@@ -63,10 +63,10 @@ body.panel-closed .layers-btn{left:12px}
 .pp-note{margin-top:6px;color:var(--muted);font-size:12px}
 .pp+.pp{margin-top:6px;padding-top:6px;border-top:1px solid var(--line)}
 @media (max-width:700px){
- .topbar{gap:8px;padding:8px 10px;flex-wrap:nowrap;align-items:center;min-width:0}
- .brand{flex:none}
+ .topbar{gap:5px;padding:8px 6px;flex-wrap:nowrap;align-items:center;min-width:0}
+ .brand{flex:none;font-size:14px}
  .sub{display:none}
- .topbar nav{gap:10px;flex:none}
+ #about-btn,#play-btn{font-size:12px;margin-left:0}
  .panel{top:auto;bottom:0;left:0;right:0;width:auto;max-height:46%;border-radius:var(--r) var(--r) 0 0}
  .layers-btn{top:10px;left:10px}
  .legend{top:10px;right:10px;left:auto;width:min(240px, calc(100% - 132px));max-height:38%}
@@ -284,13 +284,9 @@ body.sketch-on #mapview .maplibregl-canvas{touch-action:manipulation}
   .sketch-bar button{width:36px;height:36px}
 }
 
-.topbar nav .donate-btn{margin:0;padding:0;border:0;background:none;color:var(--muted);font:inherit;font-size:13px;cursor:pointer;line-height:inherit}
-.topbar nav .donate-btn:hover{color:var(--text)}
+.topbar .donate-btn{margin:0;padding:0;border:0;background:none;color:var(--muted);font:inherit;font-size:13px;cursor:pointer;line-height:inherit;text-align:left}
+.topbar .donate-btn:hover{color:var(--text)}
 .donate-short{display:none}
-@media (max-width:700px){
-  .donate-full{display:none}
-  .donate-short{display:inline}
-}
 body.donate-open{overflow:hidden}
 .donate-modal{position:fixed;inset:0;z-index:20;background:rgba(28,25,23,.45);display:flex;align-items:center;justify-content:center;padding:16px}
 .donate-modal[hidden]{display:none}
@@ -337,9 +333,15 @@ body.donate-open{overflow:hidden}
 }
 .topbar{align-items:center}
 .topbar nav{margin-left:auto;align-items:center}
-.topbar nav a[aria-current="page"]{color:var(--text)}
-.topbar nav .map-return{margin:0;padding:3px 10px;border:1px solid var(--text);border-radius:8px;background:var(--text);color:#fff;font:inherit;font-size:13px;font-weight:500;cursor:pointer;line-height:1.4}
-.topbar nav .map-return[hidden]{display:none}
+.topbar a[aria-current="page"]{color:var(--text)}
+.topbar .map-return{margin:0;padding:3px 10px;border:1px solid var(--text);border-radius:8px;background:var(--text);color:#fff;font:inherit;font-size:13px;font-weight:500;cursor:pointer;line-height:1.4;white-space:nowrap}
+.topbar .map-return[hidden]{display:none}
+@media (min-width:701px){
+  .nav-toggle,#site-nav{display:none !important}
+  #about-btn{margin-left:auto}
+  #map-return:not([hidden]){margin-left:auto}
+  #map-return:not([hidden]) ~ #about-btn{margin-left:0}
+}
 .panel-src{margin:14px 0 0;padding-top:10px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:10px}
 .panel-src a{color:var(--muted);font-size:12px;text-decoration:none}
 .panel-src a:hover{color:var(--text)}
@@ -436,12 +438,13 @@ a.about-cta-primary{color:var(--paper)}
 }
 
 @media (max-width:700px){
-  .nav-toggle{display:inline-flex}
-  .topbar nav{display:none;position:absolute;z-index:20;top:calc(100% - 2px);right:8px;left:auto;margin:0;padding:6px;min-width:196px;flex-direction:column;align-items:stretch;gap:0;background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow)}
-  .topbar nav.open{display:flex}
-  .topbar nav a,.topbar nav .donate-btn,.topbar nav .map-return{padding:9px 12px;min-height:36px;font-size:13px;border-radius:7px}
-  .topbar nav a:hover,.topbar nav .donate-btn:hover{background:var(--soft)}
-  .topbar nav .map-return{margin:0 0 4px;text-align:left}
-  .lang-switch{margin:4px 8px 6px;padding-top:8px;border-top:1px solid var(--line);gap:8px}
-  .lang-switch button{font-size:13px;min-height:32px;padding:0 2px}
+  .nav-toggle{display:inline-flex;margin-left:auto}
+  #about-btn,#play-btn,#map-return{margin-left:0}
+  #site-nav{display:none;position:absolute;z-index:20;top:calc(100% - 2px);right:8px;left:auto;margin:0;padding:6px;min-width:196px;flex-direction:column;align-items:stretch;gap:0;background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow)}
+  #site-nav.open{display:flex}
+  #site-nav a,#site-nav .donate-btn{display:block;width:100%;box-sizing:border-box;padding:9px 12px;min-height:36px;font-size:13px;border-radius:7px;text-align:left}
+  #site-nav a:hover,#site-nav .donate-btn:hover{background:var(--soft)}
+  #site-nav .lang-switch{margin:4px 8px 6px;padding-top:8px;border-top:1px solid var(--line);gap:8px}
+  #site-nav .lang-switch button{font-size:13px;min-height:32px;padding:0 2px}
+  .topbar .map-return{padding:2px 8px;font-size:12px}
 }
