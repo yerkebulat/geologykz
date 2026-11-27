@@ -353,6 +353,11 @@ a.about-cta-primary{color:var(--paper)}
 .about-support h2{margin:0 0 .6rem;padding:0;border:0;font-family:var(--serif);font-size:1.55rem;line-height:1.2;font-weight:600;letter-spacing:-.02em;text-transform:none;color:var(--text);font-synthesis:none}
 .about-support p{margin:0 0 1rem;max-width:32rem}
 .about-support .about-cta{margin-bottom:0}
+.about-people{list-style:none;margin:0;padding:0}
+.about-people li{margin:0;padding:.12rem 0;font-family:var(--serif);font-size:1.2rem;line-height:1.5;font-synthesis:none}
+.about-people-authors{margin:0 0 .25rem}
+.about-people-authors li{font-size:1.35rem;font-weight:600;letter-spacing:-.01em}
+.about-block h2.about-thanks{margin:1.85rem 0 .7rem;padding-top:1rem;border-top:1px solid var(--rule);font-family:var(--serif);font-size:1.05rem;line-height:1.4;font-weight:400;font-style:italic;letter-spacing:0;text-transform:none;color:var(--text);font-synthesis:none}
 @media (min-width:880px){
   .about-mast{display:grid;grid-template-columns:13.5rem minmax(0,42rem);column-gap:2.5rem;align-items:start;padding:2.75rem 1.75rem 0}
   .about-block h1{margin:0;padding-top:.12em;font-size:2.35rem}

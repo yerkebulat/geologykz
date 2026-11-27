@@ -39,7 +39,8 @@
       "/about/*",
       "/sources",
       "/contribute",
-      "/open-source"
+      "/open-source",
+      "/authors"
     ]
   },
   "r2_buckets": [
@@ -86,7 +87,8 @@
           "/about/*",
           "/sources",
           "/contribute",
-          "/open-source"
+          "/open-source",
+          "/authors"
         ]
       },
       "r2_buckets": [
