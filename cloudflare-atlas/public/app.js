@@ -25,7 +25,8 @@
     globe: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.4" fill="none" stroke="currentColor" stroke-width="1.7"/><ellipse cx="12" cy="12" rx="3.7" ry="8.4" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M3.6 12h16.8" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>',
     ruler: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.2" y="8.8" width="17.6" height="6.4" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M7.4 8.8v2.5M11.6 8.8v2.5M15.8 8.8v2.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
     distance: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 16.5 18 7.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="6" cy="16.5" r="2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="18" cy="7.5" r="2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
-    area: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7.5 14 5l4.5 5.5-3 7L7 18z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="6" cy="7.5" r="1.3" fill="currentColor"/><circle cx="18.5" cy="10.5" r="1.3" fill="currentColor"/><circle cx="7" cy="18" r="1.3" fill="currentColor"/></svg>'
+    area: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7.5 14 5l4.5 5.5-3 7L7 18z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="6" cy="7.5" r="1.3" fill="currentColor"/><circle cx="18.5" cy="10.5" r="1.3" fill="currentColor"/><circle cx="7" cy="18" r="1.3" fill="currentColor"/></svg>',
+    chart: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 16.8 9 10.2l4 3.6 7.5-7.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 20.5h17" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>'
   };
   const SITE = window.ATLAS_SITE || { mode: 'atlas' };
   const I18N = window.atlasI18n || {};
@@ -1926,6 +1927,8 @@
       closeFeaturePopup();
       clearSel();
       if (window.atlasSketch && window.atlasSketch.active && window.atlasSketch.active()) window.atlasSketch.setOn(false);
+      if (window.atlasProfile && window.atlasProfile.active && window.atlasProfile.active()) window.atlasProfile.setOn(false);
+      if (window.atlasCompare && window.atlasCompare.active && window.atlasCompare.active()) window.atlasCompare.setOn(false);
     }
     function finish() {
       if (!on) return;
@@ -2171,6 +2174,8 @@
         clearSel();
         try { map.doubleClickZoom.disable(); } catch (e) {}
         if (window.atlasMeasure && window.atlasMeasure.active && window.atlasMeasure.active() && window.atlasMeasure.setOn) window.atlasMeasure.setOn(false);
+        if (window.atlasProfile && window.atlasProfile.active && window.atlasProfile.active()) window.atlasProfile.setOn(false);
+        if (window.atlasCompare && window.atlasCompare.active && window.atlasCompare.active()) window.atlasCompare.setOn(false);
       } else {
         pending = null; live = null; eraseBatch = null;
         pointers.clear();
@@ -2475,6 +2480,297 @@
   // reload once so the view state is rebuilt from it.
   window.addEventListener('hashchange', () => { try { location.reload(); } catch (e) {} });
 
+  function initProfile() {
+    const box = $('measure-box');
+    const SRC = 'atlas-profile';
+    let on = false, done = false, verts = [];
+    let lastTap = 0, lastPt = null;
+    let panel = null, dotMk = null, samples = null, lastData = null;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.id = 'profile-btn';
+    btn.className = 'measure-btn';
+    btn.title = t('tool.profile');
+    btn.setAttribute('aria-label', t('tool.profile'));
+    btn.setAttribute('aria-pressed', 'false');
+    btn.innerHTML = ICON.chart;
+    if (box) {
+      let row = document.getElementById('profile-row');
+      if (!row) {
+        row = document.createElement('div');
+        row.id = 'profile-row';
+        row.className = 'profile-row';
+        const toolsRow = box.querySelector('.tools-row');
+        if (toolsRow) box.insertBefore(row, toolsRow); else box.appendChild(row);
+      }
+      row.appendChild(btn);
+    }
+    function toRad(d) { return d * Math.PI / 180; }
+    function haversine(a, b) {
+      const R = 6371000;
+      const dLat = toRad(b[1] - a[1]), dLon = toRad(b[0] - a[0]);
+      const h = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(a[1])) * Math.cos(toRad(b[1])) * Math.sin(dLon / 2) ** 2;
+      return 2 * R * Math.asin(Math.min(1, Math.sqrt(h)));
+    }
+    function dest(a, b, f) {
+      const R = 6371000;
+      const lat1 = toRad(a[1]), lon1 = toRad(a[0]);
+      const lat2 = toRad(b[1]), lon2 = toRad(b[0]);
+      const d = haversine(a, b) / R;
+      if (d < 1e-12) return [a[0], a[1]];
+      const sinD = Math.sin(d), cosD = Math.cos(d);
+      const A = Math.sin((1 - f) * d) / sinD, B = Math.sin(f * d) / sinD;
+      const x = A * Math.cos(lat1) * Math.cos(lon1) + B * Math.cos(lat2) * Math.cos(lon2);
+      const y = A * Math.cos(lat1) * Math.sin(lon1) + B * Math.cos(lat2) * Math.sin(lon2);
+      const z = A * Math.sin(lat1) + B * Math.sin(lat2);
+      return [Math.atan2(y, x) * 180 / Math.PI, Math.atan2(z, Math.sqrt(x * x + y * y)) * 180 / Math.PI];
+    }
+    function ensure() {
+      if (!map.getStyle()) return;
+      if (!map.getSource(SRC)) map.addSource(SRC, { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+      if (!map.getSource(SRC + '-pts')) map.addSource(SRC + '-pts', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+      const layers = (map.getStyle() && map.getStyle().layers) || [];
+      const base = layers.find(l => l.type === 'symbol' && !/^(atlas-|eqazyna-|process-|geo200-)/.test(l.id));
+      const before = base && base.id;
+      if (!map.getLayer('atlas-profile-line')) map.addLayer({ id: 'atlas-profile-line', type: 'line', source: SRC,
+        layout: { 'line-join': 'round', 'line-cap': 'round' },
+        paint: { 'line-color': '#1c1917', 'line-width': 1.75 } }, before);
+      if (!map.getLayer('atlas-profile-pts')) map.addLayer({ id: 'atlas-profile-pts', type: 'circle', source: SRC + '-pts',
+        paint: { 'circle-color': '#1c1917', 'circle-radius': 3.5, 'circle-stroke-color': '#fafaf9', 'circle-stroke-width': 2 } }, before);
+    }
+    function paint() {
+      ensure();
+      if (map.getSource(SRC)) map.getSource(SRC).setData({ type: 'FeatureCollection', features: verts.length >= 2 ? [{ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: verts } }] : [] });
+      if (map.getSource(SRC + '-pts')) map.getSource(SRC + '-pts').setData({ type: 'FeatureCollection', features: verts.map((c, i) => ({ type: 'Feature', properties: { i }, geometry: { type: 'Point', coordinates: c } })) });
+    }
+    function clearLine() {
+      verts = []; done = false; lastTap = 0; lastPt = null;
+      if (map.getSource(SRC)) map.getSource(SRC).setData({ type: 'FeatureCollection', features: [] });
+      if (map.getSource(SRC + '-pts')) map.getSource(SRC + '-pts').setData({ type: 'FeatureCollection', features: [] });
+    }
+    function closePanel() {
+      if (panel) { panel.remove(); panel = null; }
+      if (dotMk) { dotMk.remove(); dotMk = null; }
+      samples = null;
+    }
+    function setOn(v) {
+      on = !!v;
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      document.body.classList.toggle('profile-on', on);
+      if (on) {
+        clearLine();
+        closePanel();
+        lastData = null;
+        try { map.doubleClickZoom.disable(); } catch (e) {}
+        closeFeaturePopup(); clearSel();
+        if (window.atlasSketch && window.atlasSketch.active && window.atlasSketch.active()) window.atlasSketch.setOn(false);
+        if (window.atlasMeasure && window.atlasMeasure.active && window.atlasMeasure.active()) window.atlasMeasure.setOn(false);
+        if (window.atlasCompare && window.atlasCompare.active && window.atlasCompare.active()) window.atlasCompare.setOn(false);
+        paint();
+      } else {
+        try { map.doubleClickZoom.enable(); } catch (e) {}
+        clearLine();
+        closePanel();
+      }
+    }
+    const Z = 11;
+    const demCache = new Map();
+    function tileOf(lng, lat) {
+      const n = 1 << Z;
+      const la = Math.max(-85.05, Math.min(85.05, lat));
+      const x = Math.floor((lng + 180) / 360 * n);
+      const y = Math.floor((1 - Math.log(Math.tan(toRad(la)) + 1 / Math.cos(toRad(la))) / Math.PI) / 2 * n);
+      return { x: Math.max(0, Math.min(n - 1, x)), y: Math.max(0, Math.min(n - 1, y)), n };
+    }
+    function tilePixel(lng, lat, t) {
+      const la = Math.max(-85.05, Math.min(85.05, lat));
+      const fx = ((lng + 180) / 360 * t.n - t.x) * 256;
+      const fy = ((1 - Math.log(Math.tan(toRad(la)) + 1 / Math.cos(toRad(la))) / Math.PI) / 2 * t.n - t.y) * 256;
+      return { x: Math.max(0, Math.min(255, Math.floor(fx))), y: Math.max(0, Math.min(255, Math.floor(fy))) };
+    }
+    function loadTile(x, y) {
+      const key = Z + '/' + x + '/' + y;
+      if (demCache.has(key)) return demCache.get(key);
+      const p = fetch('https://s3.amazonaws.com/elevation-tiles-prod/terrarium/' + Z + '/' + x + '/' + y + '.png')
+        .then(r => (r.ok ? r.blob() : null))
+        .then(b => (b ? createImageBitmap(b) : null))
+        .then(bmp => {
+          if (!bmp) return null;
+          const cv = document.createElement('canvas');
+          cv.width = 256; cv.height = 256;
+          const cx = cv.getContext('2d');
+          cx.drawImage(bmp, 0, 0);
+          return cx.getImageData(0, 0, 256, 256);
+        })
+        .catch(() => null);
+      demCache.set(key, p);
+      return p;
+    }
+    async function elevationAt(lng, lat) {
+      const t = tileOf(lng, lat);
+      const img = await loadTile(t.x, t.y);
+      if (!img) return null;
+      const p = tilePixel(lng, lat, t);
+      const i = (p.y * 256 + p.x) * 4;
+      const d = img.data;
+      return d[i] * 256 + d[i + 1] + d[i + 2] / 256 - 32768;
+    }
+    async function sampleAll() {
+      const N = 200;
+      const segs = [];
+      let total = 0;
+      for (let i = 1; i < verts.length; i++) { const d = haversine(verts[i - 1], verts[i]); segs.push({ a: verts[i - 1], b: verts[i], d }); total += d; }
+      const out = [];
+      for (let k = 0; k < N; k++) {
+        const target = total * (k / (N - 1));
+        let acc = 0;
+        for (let s = 0; s < segs.length; s++) {
+          const g = segs[s];
+          if (acc + g.d >= target || s === segs.length - 1) {
+            const f = g.d > 0 ? Math.min(1, (target - acc) / g.d) : 0;
+            const p = dest(g.a, g.b, f);
+            out.push({ d: target, lng: p[0], lat: p[1], e: null });
+            break;
+          }
+          acc += g.d;
+        }
+      }
+      for (const s of out) s.e = await elevationAt(s.lng, s.lat);
+      return { samples: out, total };
+    }
+    function smooth(arr) {
+      return arr.map((s, i) => {
+        if (s.e == null) return s;
+        const win = [arr[i - 1], s, arr[i + 1]].filter(x => x && x.e != null).map(x => x.e);
+        return { d: s.d, lng: s.lng, lat: s.lat, e: win.reduce((a, b) => a + b, 0) / win.length };
+      });
+    }
+    function stats(arr) {
+      let min = Infinity, max = -Infinity, ascent = 0, prev = null;
+      arr.forEach(s => {
+        if (s.e == null) { prev = null; return; }
+        if (s.e < min) min = s.e;
+        if (s.e > max) max = s.e;
+        if (prev != null) { const d = s.e - prev; if (d > 0) ascent += d; }
+        prev = s.e;
+      });
+      return { min: isFinite(min) ? min : null, max: isFinite(max) ? max : null, ascent: ascent };
+    }
+    function fmtM(v) { return Math.round(v) + ' ' + t('unit.m'); }
+    function showPanel(data) {
+      closePanel();
+      samples = data.samples;
+      const st = stats(smooth(data.samples));
+      const W = 560, H = 96;
+      let chart;
+      const es = data.samples.filter(s => s.e != null);
+      if (es.length) {
+        const lo = st.min - 5, hi = st.max + 5;
+        const span = Math.max(1, hi - lo);
+        let path = '', started = false;
+        data.samples.forEach((s, i) => {
+          if (s.e == null) { started = false; return; }
+          const x = (i / (data.samples.length - 1)) * W;
+          const y = H - ((s.e - lo) / span) * H;
+          path += (started ? ' L' : ' M') + x.toFixed(1) + ' ' + y.toFixed(1);
+          started = true;
+        });
+        chart = '<svg class="profile-chart" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" role="img" aria-label="' + esc(t('tool.profile')) + '">' +
+          '<path d="' + path + '" fill="none" stroke="#1c1917" stroke-width="1.5" vector-effect="non-scaling-stroke"/></svg>';
+      } else {
+        chart = '<div class="profile-empty">' + esc(t('profile.fail')) + '</div>';
+      }
+      panel = document.createElement('div');
+      panel.id = 'profile-panel';
+      panel.className = 'profile-panel';
+      panel.innerHTML = '<div class="profile-head"><strong>' + esc(t('tool.profile')) + '</strong>' +
+        '<button type="button" class="profile-close" aria-label="' + t('profile.close') + '" title="' + t('profile.close') + '">\u00D7</button></div>' +
+        '<div class="profile-stats">' +
+        '<span>' + esc(t('profile.min')) + ' <b>' + (st.min == null ? '\u2014' : fmtM(st.min)) + '</b></span>' +
+        '<span>' + esc(t('profile.max')) + ' <b>' + (st.max == null ? '\u2014' : fmtM(st.max)) + '</b></span>' +
+        '<span>' + esc(t('profile.ascent')) + ' <b>' + (st.min == null ? '\u2014' : fmtM(st.ascent)) + '</b></span>' +
+        '</div>' + chart +
+        '<div class="profile-axis"><span>0 ' + esc(t('unit.km')) + '</span><span>' + (data.total / 1000).toFixed(1) + ' ' + esc(t('unit.km')) + '</span></div>';
+      (document.querySelector('.wrap') || document.body).appendChild(panel);
+      panel.querySelector('.profile-close').addEventListener('click', () => setOn(false));
+      const svg = panel.querySelector('.profile-chart');
+      if (svg) {
+        const tip = document.createElement('div');
+        tip.className = 'profile-tip';
+        tip.hidden = true;
+        panel.appendChild(tip);
+        dotMk = new maplibregl.Marker({ element: (() => { const d = document.createElement('div'); d.className = 'profile-dot'; return d; })(), anchor: 'center' });
+        function pick(clientX) {
+          const r = svg.getBoundingClientRect();
+          const pr = panel.getBoundingClientRect();
+          const f = Math.min(1, Math.max(0, (clientX - r.left) / r.width));
+          const i = Math.round(f * (data.samples.length - 1));
+          const s = data.samples[i];
+          if (!s) return;
+          if (s.e == null) { tip.hidden = true; if (dotMk) dotMk.remove(); return; }
+          dotMk.setLngLat([s.lng, s.lat]).addTo(map);
+          tip.textContent = (s.d / 1000).toFixed(2) + ' ' + t('unit.km') + ' \u00B7 ' + fmtM(s.e);
+          tip.hidden = false;
+          tip.style.left = Math.round(clientX - pr.left) + 'px';
+          tip.style.top = Math.round(r.top - pr.top - 6) + 'px';
+        }
+        svg.addEventListener('mousemove', ev => pick(ev.clientX));
+        svg.addEventListener('touchmove', ev => { const tch = ev.touches && ev.touches[0]; if (tch) pick(tch.clientX); }, { passive: true });
+        svg.addEventListener('mouseleave', () => { tip.hidden = true; if (dotMk) dotMk.remove(); });
+      }
+    }
+    async function finish() {
+      if (!on || done) return;
+      if (verts.length < 2) { setOn(false); return; }
+      done = true; on = false;
+      try { map.doubleClickZoom.enable(); } catch (e) {}
+      map.getCanvas().style.cursor = '';
+      btn.setAttribute('aria-pressed', 'false');
+      document.body.classList.remove('profile-on');
+      paint();
+      const data = await sampleAll();
+      if (!done) return;
+      lastData = data;
+      showPanel(data);
+    }
+    function handleClick(e) {
+      if (!on || done) return false;
+      const now = Date.now(), pt = e.point;
+      if (lastPt && now - lastTap < 350 && Math.hypot(pt.x - lastPt.x, pt.y - lastPt.y) < 18) {
+        finish();
+        lastTap = 0; lastPt = null;
+        return true;
+      }
+      lastTap = now; lastPt = { x: pt.x, y: pt.y };
+      verts.push([e.lngLat.lng, e.lngLat.lat]);
+      paint();
+      return true;
+    }
+    (function bindTap(el, fn) {
+      let last = 0;
+      const run = ev => {
+        ev.preventDefault(); ev.stopPropagation();
+        const now = Date.now();
+        if (now - last < 400) return;
+        last = now; fn();
+      };
+      el.addEventListener('pointerdown', ev => ev.stopPropagation());
+      el.addEventListener('touchstart', ev => ev.stopPropagation(), { passive: true });
+      el.addEventListener('click', run);
+    })(btn, () => setOn(!on));
+    map.on('dblclick', e => { if (on && !done) { e.preventDefault(); finish(); } });
+    window.atlasProfile = {
+      click: handleClick,
+      active: () => on,
+      setOn,
+      relabel: () => {
+        btn.title = t('tool.profile');
+        btn.setAttribute('aria-label', t('tool.profile'));
+        if (lastData && panel) showPanel(lastData);
+      }
+    };
+  }
+
   function initGoTo() {
     const input = $('goto-input');
     const btn = $('goto-btn');
@@ -2668,6 +2964,7 @@
   initSketch();
   initGlobeMode();
   initGrid();
+  initProfile();
   initGoTo();
 
   // Clicked point coordinates with a Copy button, in the feature popup or a small one of its own.
@@ -2739,6 +3036,10 @@
     }
     if (window.atlasMeasure && window.atlasMeasure.active && window.atlasMeasure.active()) {
       map.getCanvas().style.cursor = window.atlasMeasure.finished() ? '' : 'crosshair';
+      return;
+    }
+    if (window.atlasProfile && window.atlasProfile.active && window.atlasProfile.active()) {
+      map.getCanvas().style.cursor = 'crosshair';
       return;
     }
     map.getCanvas().style.cursor = hasClickTarget(e.point) ? 'pointer' : '';
@@ -2818,6 +3119,7 @@
     if (gb) { gb.title = t('tool.grid'); gb.setAttribute('aria-label', t('tool.grid')); }
     const skb = $('sketch-btn');
     if (skb) { skb.title = t('tool.sketch'); skb.setAttribute('aria-label', t('tool.sketch')); }
+    if (window.atlasProfile && window.atlasProfile.relabel) window.atlasProfile.relabel();
     const bar = $('sketch-bar');
     if (bar) {
       const keys = { pencil: 'tool.pencil', erase: 'tool.eraser', thin: 'tool.thin', thick: 'tool.thick', undo: 'tool.undo', clear: 'tool.clear' };
