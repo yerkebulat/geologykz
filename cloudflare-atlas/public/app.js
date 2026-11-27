@@ -621,6 +621,19 @@
       if (p.l) h += `<div class="pp-l">${esc(p.l)}</div>`;
       return h + '</div>';
     }
+    if (ov && ov.id === 'active-faults') {
+      h += `<div class="pp-theme">${esc(ov.title)}</div>`;
+      if (p.n) h += `<div class="pp-l">${esc(p.n)}</div>`;
+      h += kv('Slip type', p.slip) + kv('Source', p.src);
+      return h + '</div>';
+    }
+    if (ov && ov.id === 'earthquakes-comcat') {
+      h += `<div class="pp-theme">${esc(ov.title)}</div>`;
+      h += `<div class="pp-l">${p.mag != null && p.mag !== '' ? ('M ' + p.mag) : 'Earthquake'}</div>`;
+      h += kv('Depth', (p.dep != null && p.dep !== '') ? (String(p.dep) + ' km') : '');
+      h += kv('Date', p.t) + kv('Location', p.pl);
+      return h + '</div>';
+    }
     if (lid === 'atlas-itm-pt') {
       h += `<div class="pp-theme">${esc(p.type || '')}</div>`;
       if (p.sample) h += `<div class="pp-l">${esc(p.sample)}</div>`;
@@ -1326,8 +1339,24 @@
     box.addEventListener('pointercancel', end);
   }
   function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+  function legendRampHtml(ramp) {
+    if (!ramp || !Array.isArray(ramp.stops) || ramp.stops.length < 2) return '';
+    const stops = ramp.stops;
+    const colors = stops.map((s, i) => {
+      const pct = (i / (stops.length - 1)) * 100;
+      return esc(String(s[1])) + ' ' + pct + '%';
+    }).join(', ');
+    let h = '';
+    if (ramp.title) h += `<div class="lg-note">${esc(ramp.title)}</div>`;
+    h += `<div class="lg-ramp" style="background:linear-gradient(to right, ${colors})"></div>`;
+    h += '<div class="lg-ramp-labels">' + stops.map(s => `<span>${esc(String(s[0]))}</span>`).join('') + '</div>';
+    if (ramp.unit) h += `<div class="lg-note">${esc(ramp.unit)}</div>`;
+    return h;
+  }
   function legendRows(m, rows) {
     let h = '';
+    if (m.legendNote) h += `<div class="lg-note">${esc(m.legendNote)}</div>`;
+    if (m.legendRamp) h += legendRampHtml(m.legendRamp);
     const byT = {};
     rows.forEach(e => { (byT[e.t] = byT[e.t] || []).push(e); });
     const ts = Object.keys(byT).map(Number).sort((a, b) => b - a);

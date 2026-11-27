@@ -117,6 +117,9 @@ body.panel-closed .layers-btn{left:12px}
   .how-apply summary{min-height:28px}
 }
 .lg-cite{margin:6px 0 2px;color:#78716c;font-size:11px;line-height:1.35;font-style:italic}
+.lg-note{margin:2px 0 4px;font-size:11px;color:#78716c;line-height:1.35}
+.lg-ramp{height:10px;border-radius:2px;border:1px solid rgba(0,0,0,.2);margin:4px 0 2px;background:#eee}
+.lg-ramp-labels{display:flex;justify-content:space-between;font-size:10px;color:#78716c;line-height:1.2}
 
 /* Active layers stack */
 .act{margin:2px 0 10px;padding:4px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}
