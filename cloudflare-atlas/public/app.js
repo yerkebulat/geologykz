@@ -1316,13 +1316,16 @@
     applyKeyVis(k);
   }
   function activeKeys() { return order.filter(keyOn); }
-  // Draw order lives in layer-order.js (bands: basemap, hillshade, user rasters/fills, outlines, lines and borders, points, labels, tools).
-  // The Active Layers drag order only ranks layers inside the user band.
+  // Draw order lives in layer-order.js (bands: basemap, hillshade, rasters/fills, outlines, lines and borders, points, labels, tools).
+  // A new layer needs no placement: its band comes from its type, or from an optional "band" in its catalog entry.
+  // The Active Layers drag order only ranks layers inside a band.
   function layerOrderCtx() {
     const rank = new Map();
     activeKeys().reverse().forEach((k, i) => keyLayers(k).forEach(id => rank.set(id, i)));
     return {
       rank: id => (rank.has(id) ? rank.get(id) : -1),
+      // Optional "band" on a catalog entry (maps.json) overrides the type default for all of that map's layers.
+      band: id => { const m = overlayFromLayerId(id) || all[mainOfLid(id)]; return (m && m.band) || null; },
       isBar: id => { const m = overlayFromLayerId(id); return !!(m && (m.bar || m.id === 'wsm-2016')); },
       pinnedPoint: id => id === 'atlas-ov-' + DEP || id.startsWith('atlas-ov-' + DEP + '-')
     };

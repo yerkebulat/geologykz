@@ -42,12 +42,17 @@ cloudflare-atlas/
     app.js                # Map, layer list, legend
     style.css
     eqazyna.js            # Active licenses
+    layer-order.js        # Draw order: one band per layer type; read its header before adding a layer
     process-layers.js     # Open to apply, At auction, PUGFN
     geo200-pilot.js       # 1:200,000 geological sheets
     donate.js
     game.html, strata.html, driller.html
   scripts/upload-data.mjs # Owner-only R2 upload (needs Wrangler / Cloudflare)
 ```
+
+## Layer stacking
+
+`layer-order.js` decides the draw order of every map layer (bands, bottom to top: basemap, hillshade, rasters and fills, polygon outlines, lines and borders, points, labels, tools). Add a layer anywhere with `map.addLayer`, no `beforeId`: its band comes from its type. To choose another band, set `"band": "line"` (or raster, outline, point, label, tool) on its catalog entry, or `metadata: { "atlas:band": "line" }` on the layer, or add a row to `RULES` in `layer-order.js`. `tests/layer-order.cjs` checks it.
 
 ## Worker routes (enough to edit safely)
 

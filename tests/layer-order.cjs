@@ -16,8 +16,9 @@ function fakeMap(initial) {
     }
   };
 }
-const L = (id, type) => ({ id, type });
-const basemap = [L("background", "background"), L("water", "fill"), L("highway_minor", "line"), L("boundary_3", "line"), L("boundary_2", "line"), L("label_city", "symbol"), L("label_country_1", "symbol")];
+const L = (id, type, extra) => ({ id, type, ...(extra || {}) });
+const B = (id, type, sl) => L(id, type, { "source-layer": sl }); // base style layers come with a source-layer
+const basemap = [L("background", "background"), B("water", "fill", "water"), B("highway_minor", "line", "transportation"), B("boundary_3", "line", "boundary"), B("boundary_2", "line", "boundary"), B("label_city", "symbol", "place"), B("label_country_1", "symbol", "place")];
 const stackRank = { "atlas-ov-seismic": 0, "atlas-ov-glim": 1 }; // seismic below glim
 const c = {
   rank: (id) => (id in stackRank ? stackRank[id] : -1),
@@ -83,4 +84,28 @@ LO.apply(m, c);
 above(m, "atlas-ov-newraster", "water2");
 above(m, "atlas-measure-line", "road_label");
 above(m, "road_label", "atlas-ov-quakes");
+
+// Future layers: no placement needed. Band comes from the layer type, a catalog "band", or layer metadata.
+const m2 = fakeMap(basemap.concat([
+  L("atlas-ov-new-points", "circle"), L("atlas-ov-new-heat", "heatmap"), L("atlas-ov-new-lines", "line"), L("atlas-ov-new-fill", "fill"),
+  L("atlas-ov-new-raster", "raster"), L("atlas-ov-new-ol", "line"), L("atlas-ov-new-text", "symbol"),
+  L("donated-xyz-line", "line"), L("donated-xyz-pts", "circle"),
+  L("atlas-ov-forced-line", "fill"), L("atlas-ov-forced-point", "line", { metadata: { "atlas:band": "point" } }), L("atlas-ov-catband", "raster")
+]));
+const c2 = { rank: () => -1, band: (id) => (id === "atlas-ov-forced-line" ? "line" : id === "atlas-ov-catband" ? "point" : null) };
+LO.apply(m2, c2);
+["atlas-ov-new-fill", "atlas-ov-new-raster"].forEach((u) => above(m2, "atlas-ov-new-ol", u));
+["atlas-ov-new-ol"].forEach(() => above(m2, "atlas-ov-new-lines", "atlas-ov-new-ol"));
+above(m2, "boundary_2", "atlas-ov-new-raster");
+above(m2, "atlas-ov-new-lines", "atlas-ov-new-ol");
+above(m2, "donated-xyz-line", "atlas-ov-new-ol");
+["atlas-ov-new-points", "atlas-ov-new-heat", "donated-xyz-pts", "atlas-ov-forced-point", "atlas-ov-catband"].forEach((p) => {
+  ["atlas-ov-new-lines", "atlas-ov-forced-line", "boundary_2", "atlas-ov-new-fill"].forEach((l) => above(m2, p, l));
+  above(m2, "label_city", p);
+});
+above(m2, "atlas-ov-forced-line", "atlas-ov-new-ol"); // catalog override: a fill drawn in the line band
+above(m2, "atlas-ov-new-text", "atlas-ov-new-points"); // our own symbol layers count as labels
+above(m2, "label_city", "atlas-ov-new-text"); // base place labels stay above ours
+assert.strictEqual(LO.apply(m2, c2), 0);
+
 console.log("PASS layer order bands");

@@ -1,37 +1,86 @@
-/* One place that decides the draw order of every map layer.
-   Bands, bottom to top:
-     basemap, hillshade, user-ordered rasters/scans/fills (Active Layers order),
-     polygon outlines (plus licenses and process layers), line layers and borders,
-     point layers and stress bars, place labels, tool drawings.
-   Callers add layers anywhere, then call window.atlasLayerOrder.apply(map, ctx). */
+/* Layer order: the one place that decides how every map layer is stacked.
+
+   Bands, bottom to top (BANDS below):
+     basemap    base style shapes and the satellite layer
+     hillshade  terrain shading
+     raster     user-ordered rasters, scans and fill polygons (Active Layers drag order ranks layers inside this band)
+     outline    polygon outlines, licenses, process layers
+     line       line layers (faults, contacts, sections), country/admin borders
+     point      point layers, deposits, stress bars
+     label      place labels, sheet labels, cluster counts
+     tool       measure, profile, GPS, sketch, click highlight
+
+   How to add a layer: do nothing. Add it anywhere with map.addLayer (no beforeId needed); its band comes from its type:
+     raster, fill, fill-extrusion -> raster     line -> line (id ending in -ol or -outline -> outline)
+     circle, heatmap -> point                   symbol -> label        hillshade -> hillshade
+   To choose another band, either
+     - add "band": "line" to its catalog entry in maps.json (applies to every layer of that map), or
+     - put metadata: { "atlas:band": "line" } on the layer definition, or
+     - add a row to RULES below (an id pattern, an optional type, a band and an optional tier).
+   Layers of one band keep their Active Layers order; tier > 0 pins a group above the rest of its band.
+   After any add, move, toggle, basemap switch or compare-mode copy the order is restored by
+   window.atlasLayerOrder.apply(map, ctx); app.js also runs it on every styledata event. */
 (function () {
   "use strict";
-  var OURS = /^(atlas-|eqazyna-|process-|geo200-)/;
-  var TOOL = /^atlas-(measure|sketch|profile|gps|sel)-/;
-  var BAND = { BASE: 0, HILL: 1, FILL: 2, OUTLINE: 3, LINE: 4, POINT: 5, LABEL: 6, TOOL: 7 };
+  var BANDS = ["basemap", "hillshade", "raster", "outline", "line", "point", "label", "tool"];
+  var ALIAS = { fill: "raster", scan: "raster", border: "line", polygon: "raster", outlines: "outline", points: "point", labels: "label", tools: "tool" };
 
-  // Returns { band, tier } for a style layer. Tier sorts pinned groups inside a band.
+  // Special cases by layer id. First match wins. tier: higher sits above the rest of its band.
+  var RULES = [
+    { re: /^atlas-(measure|sketch|profile|gps|sel)(-|$)/, band: "tool" },
+    { re: /^atlas-hillshade$/, band: "hillshade" },
+    { re: /^sat$/, band: "basemap" },
+    { re: /^eqazyna-/, band: "outline", tier: 4 },                             // licenses
+    { re: /^process-/, type: "circle", band: "point", tier: 0.5 },             // process cluster dots
+    { re: /^process-/, band: "outline", tier: 3 },                             // open to apply, at auction, PUGFN
+    { re: /^geo200-label/, band: "outline", tier: 2 },                         // 1:200k sheet names sit over outlines, under points
+    { re: /^atlas-grid-line$/, band: "outline", tier: 1 },
+    { re: /^atlas-grid-label$/, band: "outline", tier: 2 },
+    { re: /^atlas-ov-mineral-kz-deposits(-|$)/, tier: 1 }                      // deposits stay on top of other points
+  ];
+
+  function bandIndex(name) {
+    if (name == null) return -1;
+    name = String(name).toLowerCase();
+    if (ALIAS[name]) name = ALIAS[name];
+    return BANDS.indexOf(name);
+  }
+  function byType(id, type) {
+    if (type === "raster" || type === "fill" || type === "fill-extrusion") return "raster";
+    if (type === "line") return /(^|-)(ol|outline)$/.test(id) ? "outline" : "line";
+    if (type === "circle" || type === "heatmap") return "point";
+    if (type === "symbol") return "label";
+    if (type === "hillshade") return "hillshade";
+    return "basemap";
+  }
+  // Layers that belong to the base style: they come with a source-layer, or are the background.
+  function isBase(l) { return l.type === "background" || l["source-layer"] != null; }
+
+  // Returns { band, tier } for one style layer. ctx.band(id) may return a catalog band name.
   function classify(l, ctx) {
-    var id = l.id || "", type = l.type;
-    if (TOOL.test(id)) return { band: BAND.TOOL, tier: 0 };
-    if (id === "atlas-hillshade" || type === "hillshade") return { band: BAND.HILL, tier: 0 };
-    if (!OURS.test(id)) {
-      if (id === "sat" || type === "background") return { band: BAND.BASE, tier: 0 };
-      if (/^boundary_/.test(id)) return { band: BAND.LINE, tier: -1 };
-      if (type === "symbol") return { band: BAND.LABEL, tier: 0 };
-      return { band: BAND.BASE, tier: 0 };
+    var id = l.id || "", type = l.type, band = -1, tier = 0, i, r;
+    var meta = l.metadata && l.metadata["atlas:band"];
+    if (meta != null) band = bandIndex(meta);
+    if (band < 0 && ctx && ctx.band) band = bandIndex(ctx.band(id));
+    if (band < 0 && ctx && ctx.isBar && ctx.isBar(id)) band = bandIndex("point");   // stress bars are lines drawn as points
+    if (ctx && ctx.pinnedPoint && ctx.pinnedPoint(id)) tier = 1;
+    for (i = 0; i < RULES.length; i++) {
+      r = RULES[i];
+      if (r.re.test(id) && (!r.type || r.type === type)) {
+        if (band < 0 && r.band) band = bandIndex(r.band);
+        if (r.tier != null && !tier) tier = r.tier;
+        if (band >= 0 || r.tier != null) break;
+      }
     }
-    if (id.indexOf("eqazyna-") === 0) return { band: BAND.OUTLINE, tier: 4 };
-    if (id.indexOf("process-") === 0) return { band: BAND.OUTLINE, tier: 3 };
-    if (id === "geo200-outline") return { band: BAND.OUTLINE, tier: 0 };
-    if (id.indexOf("geo200-label") === 0) return { band: BAND.OUTLINE, tier: 2 };
-    if (id === "atlas-grid-line") return { band: BAND.OUTLINE, tier: 1 };
-    if (id === "atlas-grid-label") return { band: BAND.OUTLINE, tier: 2 };
-    if (ctx && ctx.isBar && ctx.isBar(id)) return { band: BAND.POINT, tier: 0 };
-    var dep = ctx && ctx.pinnedPoint && ctx.pinnedPoint(id) ? 1 : 0;
-    if (type === "circle" || type === "symbol") return { band: BAND.POINT, tier: dep };
-    if (type === "line") return { band: /-ol$/.test(id) ? BAND.OUTLINE : BAND.LINE, tier: 0 };
-    return { band: BAND.FILL, tier: 0 };
+    if (band < 0) {
+      if (isBase(l) || id === "sat") {
+        if (type === "symbol") return { band: bandIndex("label"), tier: 9 };           // place labels above our own labels
+        if (l["source-layer"] === "boundary") return { band: bandIndex("line"), tier: -1 }; // country/admin borders
+        return { band: bandIndex("basemap"), tier: 0 };
+      }
+      band = bandIndex(byType(id, type));
+    }
+    return { band: band, tier: tier };
   }
 
   // Desired bottom-to-top list of layer ids.
@@ -39,28 +88,24 @@
     var rank = ctx && ctx.rank ? ctx.rank : function () { return -1; };
     var rows = layers.map(function (l, i) {
       var c = classify(l, ctx);
-      return { id: l.id, band: c.band, tier: c.tier, rank: c.band >= BAND.FILL && c.tier === 0 ? rank(l.id) : 0, i: i };
+      return { id: l.id, band: c.band, tier: c.tier, rank: c.tier === 0 ? rank(l.id) : 0, i: i };
     });
-    rows.sort(function (a, b) {
-      return a.band - b.band || a.tier - b.tier || a.rank - b.rank || a.i - b.i;
-    });
+    rows.sort(function (a, b) { return a.band - b.band || a.tier - b.tier || a.rank - b.rank || a.i - b.i; });
     return rows.map(function (r) { return r.id; });
   }
 
-  // Moves only what is out of place. Returns the number of moves.
+  // Moves only what is out of place, top down. Returns the number of moves.
   function apply(map, ctx) {
     if (!map || map.__atlasOrdering) return 0;
     var style = map.getStyle && map.getStyle();
     var layers = style && style.layers;
     if (!layers || !layers.length) return 0;
-    var want = plan(layers, ctx), cur = layers.map(function (l) { return l.id; });
-    var moves = 0;
+    var want = plan(layers, ctx), cur = layers.map(function (l) { return l.id; }), moves = 0;
     map.__atlasOrdering = true;
     try {
       for (var i = cur.length - 1; i >= 0; i--) {
         if (cur[i] === want[i]) continue;
-        var from = cur.indexOf(want[i]);
-        cur.splice(from, 1);
+        cur.splice(cur.indexOf(want[i]), 1);
         cur.splice(i, 0, want[i]);
         try { map.moveLayer(want[i], i + 1 < want.length ? want[i + 1] : undefined); moves++; } catch (e) {}
       }
@@ -68,5 +113,7 @@
     return moves;
   }
 
-  window.atlasLayerOrder = { BAND: BAND, classify: classify, plan: plan, apply: apply };
+  var api = { BANDS: BANDS, RULES: RULES, classify: classify, plan: plan, apply: apply };
+  if (typeof window !== "undefined") window.atlasLayerOrder = api;
+  if (typeof module !== "undefined" && module.exports) module.exports = api;
 })();
