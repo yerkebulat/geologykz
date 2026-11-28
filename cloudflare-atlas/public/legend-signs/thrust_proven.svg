@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 56" width="160" height="56">
+  <rect width="160" height="56" fill="#fff"/>
+  <line x1="10" y1="36" x2="150" y2="36" stroke="#c0392b" stroke-width="2.6"/>
+  <!-- teeth pointing to hanging wall (up) -->
+  <polygon points="30,36 38,36 34,22" fill="#c0392b"/>
+  <polygon points="54,36 62,36 58,22" fill="#c0392b"/>
+  <polygon points="78,36 86,36 82,22" fill="#c0392b"/>
+  <polygon points="102,36 110,36 106,22" fill="#c0392b"/>
+  <polygon points="126,36 134,36 130,22" fill="#c0392b"/>
+</svg>

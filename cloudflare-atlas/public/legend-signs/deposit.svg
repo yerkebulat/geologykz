@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 56" width="160" height="56">
+  <rect width="160" height="56" fill="#fff"/>
+  <!-- crossed hammers in a circle: Soviet industrial deposit -->
+  <circle cx="80" cy="28" r="16" fill="none" stroke="#222" stroke-width="1.6"/>
+  <rect x="70" y="16" width="4" height="22" rx="1" transform="rotate(-35 80 28)" fill="#222"/>
+  <rect x="70" y="16" width="4" height="22" rx="1" transform="rotate(35 80 28)" fill="#222"/>
+</svg>

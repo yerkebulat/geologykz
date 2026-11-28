@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 56" width="160" height="56">
+  <rect width="160" height="56" fill="#fff"/>
+  <line x1="48" y1="28" x2="112" y2="28" stroke="#222" stroke-width="2"/>
+  <line x1="80" y1="28" x2="80" y2="14" stroke="#222" stroke-width="2"/>
+  <text x="86" y="18" font-family="DejaVu Serif, serif" font-size="12" fill="#222">30</text>
+</svg>

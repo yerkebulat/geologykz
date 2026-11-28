@@ -227,6 +227,7 @@
     function setOn(v) {
       on = !!v;
       setBtn(on);
+      if (!on && window.atlasLegend200) window.atlasLegend200.close();
       visOutlines(on);
       syncScans();
       try { localStorage.setItem(STORE, on ? "1" : "0"); } catch (e) {}
@@ -256,7 +257,8 @@
         return (
           '<div class="lg-map">' + t('layer.geo200') + '</div>' +
           '<div class="lg-row"><span class="sw" style="background:#1e3a5f"></span><span>' +
-          t('geo200.sheets', { n: n }) + "</span></div>"
+          t('geo200.sheets', { n: n }) + "</span></div>" +
+          '<button type="button" class="lg-open200" data-legend200>' + t('legend200.open') + '</button>'
         );
       }
     };

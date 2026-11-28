@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 56" width="160" height="56">
+  <rect width="160" height="56" fill="#fff"/>
+  <circle cx="68" cy="28" r="9" fill="none" stroke="#222" stroke-width="1.5"/>
+  <path d="M64,28 a8,8 0 0 1 8,0 a8,8 0 0 1 -8,0" fill="none" stroke="#222" stroke-width="1.2"/>
+  <text x="84" y="33" font-family="DejaVu Serif, serif" font-size="13" fill="#222">1</text>
+</svg>
