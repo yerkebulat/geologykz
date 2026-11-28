@@ -70,7 +70,7 @@
     if (docs) docs.remove();
     if (note) note.textContent = t('rights.note');
     if (SITE.mode === 'public') {
-      document.title = 'kzgeology';
+      if (!document.documentElement.getAttribute('data-ssr-title')) document.title = 'kzgeology';
       if (brand) brand.textContent = 'kzgeology';
       if (sub) sub.textContent = t('sub.maps');
       if (logout) logout.remove();

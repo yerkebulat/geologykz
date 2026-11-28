@@ -3,6 +3,9 @@
   var STORAGE = 'kzgeology-lang';
   var LANGS = { en: 1, kk: 1, ru: 1 };
   var STR = {
+    "seo.h1": { en: "Geological maps of Kazakhstan", kk: "Қазақстанның геологиялық карталары", ru: "Геологические карты Казахстана" },
+    "seo.intro": { en: "A free viewer for geological maps of Kazakhstan: the 1:1.5M geological map, 1:200,000 geological sheets, faults, mineral deposits and seismicity.", kk: "Қазақстанның геологиялық карталарын тегін қарау құралы: 1:1 500 000 геологиялық карта, 1:200 000 геологиялық парақтар, жарылымдар, кен орындары және сейсмикалық белсенділік.", ru: "Бесплатный просмотр геологических карт Казахстана: геологическая карта 1:1 500 000, геологические листы 1:200 000, разломы, месторождения и сейсмичность." },
+    "seo.browse": { en: "All maps and 1:200,000 sheets", kk: "Барлық карталар және 1:200 000 парақтар", ru: "Все карты и листы 1:200 000" },
     "nav.about": { en: "About", kk: "Жоба туралы", ru: "О проекте" },
     "nav.made": { en: "How it's made", kk: "Қалай жасалды", ru: "Как это сделано" },
     "nav.sources": { en: "Sources", kk: "Дереккөздер", ru: "Источники" },
@@ -414,10 +417,30 @@
     });
   }
 
+  var SPA_PAGES = { '/': 1, '/about': 1, '/about/made': 1, '/sources': 1, '/contribute': 1, '/open-source': 1, '/authors': 1 };
+  var LANG_PATH = /^\/(ru|kk)(?=\/|$)/;
+
+  function publicSite() {
+    return !!(global.ATLAS_SITE && global.ATLAS_SITE.mode === 'public');
+  }
+
+  function barePath(p) {
+    p = String(p || '/').replace(LANG_PATH, '') || '/';
+    if (p.length > 1) p = p.replace(/\/+$/, '');
+    return p || '/';
+  }
+
+  // The public site has real language URLs (/ru/, /kk/). Elsewhere the language stays in ?lang=.
   function writeParam(lang) {
     try {
       var u = new URL(location.href);
-      u.searchParams.set('lang', lang);
+      if (publicSite() && SPA_PAGES[barePath(u.pathname)]) {
+        var rest = u.pathname.replace(LANG_PATH, '') || '/';
+        u.pathname = (lang === 'en' ? '' : '/' + lang) + rest;
+        u.searchParams.delete('lang');
+      } else {
+        u.searchParams.set('lang', lang);
+      }
       history.replaceState(null, '', u.pathname + u.search + u.hash);
     } catch (e) {}
   }
@@ -442,6 +465,10 @@
   }
 
   function detect() {
+    try {
+      var pm = LANG_PATH.exec(location.pathname);
+      if (pm && publicSite()) return { lang: pm[1], persist: true, url: false };
+    } catch (e) {}
     try {
       var q = new URLSearchParams(location.search).get('lang');
       var fromQ = normalize(q);

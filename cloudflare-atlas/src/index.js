@@ -1,4 +1,6 @@
 import { EmailMessage } from "cloudflare:email";
+import { isPaleoPath, filterMaps } from "./catalog.js";
+import { seoRoute, renderSpa, robotsBody, SPA_PATHS } from "./seo.js";
 
 /* Same app for the public site and the password-gated atlas.
    Data is served from R2 (processed layers and PMTiles only). */
@@ -18,14 +20,7 @@ const NOINDEX = {
 };
 
 function isSitePage(path) {
-  return (
-    path === "/about" ||
-    path.startsWith("/about/") ||
-    path === "/sources" ||
-    path === "/contribute" ||
-    path === "/open-source" ||
-    path === "/authors"
-  );
+  return path !== "/" && SPA_PATHS.includes(path);
 }
 
 function isIndexable(request, isAtlas) {
@@ -41,7 +36,6 @@ function baseHeaders(indexable) {
 const TILE_RE = /^(200k|usgs|geo)\/[A-Za-z0-9][A-Za-z0-9._-]*\.(pmtiles|json)$/;
 const DATA_RE = /^data\/[A-Za-z0-9._/-]+$/;
 const RAW_RE = /\.(tiff?|kmz|kml|pdf)$/i;
-const PALEO_RE = /^data\/paleo-maps-/i;
 
 function defaultHosts() {
   return [
@@ -210,29 +204,6 @@ function deny(status, msg) {
     status,
     headers: { ...SECURITY, ...NOINDEX, "Cache-Control": "no-store", "Content-Type": "text/plain; charset=utf-8" },
   });
-}
-
-function isPaleoGroup(g) {
-  const n = String((g && g.name) || "");
-  return /^paleo\s*:/i.test(n) || /palinspastic|paleogeograph/i.test(n);
-}
-
-function isPaleoPath(pathname) {
-  const p = pathname.replace(/^\/+/, "");
-  return PALEO_RE.test(p);
-}
-
-function filterMaps(data) {
-  if (!data || !Array.isArray(data.groups)) return data;
-  return {
-    ...data,
-    groups: data.groups
-      .filter((g) => !isPaleoGroup(g))
-      .map((g) => ({
-        ...g,
-        maps: (g.maps || []).filter((m) => !isPaleoPath(m.file || "")),
-      })),
-  };
 }
 
 function r2MapsKey(isAtlas) {
@@ -556,7 +527,7 @@ async function handleDonate(request, env, isAtlas, headersOut) {
 
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     const path = url.pathname;
     const mode = env.SITE_MODE === "atlas" ? "atlas" : "public";
@@ -566,10 +537,17 @@ export default {
     const indexable = isIndexable(request, isAtlas);
     const headersOut = baseHeaders(indexable);
 
+    if (!isAtlas && url.hostname.toLowerCase() === "www.kzgeology.com" && (request.method === "GET" || request.method === "HEAD")) {
+      return new Response(null, {
+        status: 301,
+        headers: { ...SECURITY, Location: "https://kzgeology.com" + path + url.search, "Cache-Control": "public, max-age=3600" },
+      });
+    }
+
     if (path === "/robots.txt") {
-      const body = indexable ? "User-agent: *\nAllow: /\n" : "User-agent: *\nDisallow: /\n";
+      const body = robotsBody(indexable);
       return new Response(body, {
-        headers: { ...headersOut, "Cache-Control": "no-store", "Content-Type": "text/plain; charset=utf-8" },
+        headers: { ...headersOut, "Cache-Control": "public, max-age=3600", "Content-Type": "text/plain; charset=utf-8" },
       });
     }
 
@@ -687,6 +665,16 @@ export default {
       }
     }
 
+    if (!isAtlas) {
+      const seo = await seoRoute(request, env, ctx, path);
+      if (seo) {
+        const h = new Headers(seo.headers);
+        for (const [k, v] of Object.entries(headersOut)) if (!h.has(k)) h.set(k, v);
+        if (indexable) h.delete("X-Robots-Tag");
+        return new Response(seo.body, { status: seo.status, headers: h });
+      }
+    }
+
     const isPublicIcon =
       path === "/favicon.ico" ||
       path === "/favicon-32.png" ||
@@ -703,6 +691,17 @@ export default {
     }
 
     if (request.method !== "GET" && request.method !== "HEAD") return deny(405, "Method not allowed");
+    if (!isAtlas && request.method === "GET" && (path === "/" || isSitePage(path))) {
+      const res = await renderSpa(env, request, path, "en");
+      const h = new Headers(res.headers);
+      for (const [k, v] of Object.entries(headersOut)) h.set(k, v);
+      if (indexable) h.delete("X-Robots-Tag");
+      h.delete("Content-Length");
+      h.delete("ETag");
+      h.set("Content-Type", "text/html; charset=utf-8");
+      h.set("Cache-Control", "public, max-age=0, must-revalidate");
+      return new Response(res.body, { status: res.status, headers: h });
+    }
     const assetReq = isSitePage(path)
       ? new Request(new URL("/", request.url), request)
       : request;
@@ -717,25 +716,6 @@ export default {
       headers.set("Cache-Control", "private, max-age=0, must-revalidate");
     }
     const status = isSitePage(path) ? 200 : asset.status;
-    const ogPage = !isAtlas && (path === "/" || isSitePage(path));
-    if (ogPage && request.method === "GET") {
-      const html = await asset.text();
-      const origin = "https://kzgeology.com";
-      const pageUrl = origin + (path === "/" ? "/" : path);
-      const tags = '<meta property="og:title" content="kzgeology">' +
-        '<meta property="og:description" content="Geological maps of Kazakhstan">' +
-        '<meta property="og:image" content="' + origin + '/og.png">' +
-        '<meta property="og:image:width" content="1200">' +
-        '<meta property="og:image:height" content="630">' +
-        '<meta property="og:url" content="' + pageUrl + '">' +
-        '<meta property="og:type" content="website">' +
-        '<meta name="twitter:card" content="summary_large_image">' +
-        '<meta name="twitter:title" content="kzgeology">' +
-        '<meta name="twitter:description" content="Geological maps of Kazakhstan">' +
-        '<meta name="twitter:image" content="' + origin + '/og.png">';
-      const injected = html.indexOf("</head>") >= 0 ? html.replace("</head>", tags + "</head>") : html;
-      return new Response(injected, { status, headers });
-    }
     return new Response(asset.body, { status, headers });
   },
 };

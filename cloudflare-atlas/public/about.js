@@ -15,6 +15,14 @@
     "/open-source": "Open source",
     "/authors": "Authors"
   };
+  var TITLE_KEYS = {
+    "/about": "about.h1",
+    "/about/made": "made.h1",
+    "/sources": "src.h1",
+    "/contribute": "contrib.h1",
+    "/open-source": "code.h1",
+    "/authors": "authors.h1"
+  };
   var HANDLERS = [
     "scrollZoom", "boxZoom", "dragRotate", "dragPan",
     "keyboard", "doubleClickZoom", "touchZoomRotate", "touchPitch"
@@ -24,8 +32,13 @@
   var open = false;
 
   function $(id) { return document.getElementById(id); }
+  var LANG_PATH = /^\/(ru|kk)(?=\/|$)/;
+  function langBase() {
+    var m = LANG_PATH.exec(location.pathname || "");
+    return m ? "/" + m[1] : "";
+  }
   function pathOf() {
-    var p = location.pathname || "/";
+    var p = (location.pathname || "/").replace(LANG_PATH, "") || "/";
     if (p.length > 1 && p.charAt(p.length - 1) === "/") p = p.slice(0, -1);
     return p;
   }
@@ -38,7 +51,14 @@
     return (window.ATLAS_SITE && window.ATLAS_SITE.mode === "atlas") ? "Atlas" : "kzgeology";
   }
   function setTitle(path) {
-    var t = TITLES[path];
+    var root = document.documentElement;
+    if (root.getAttribute("data-ssr-title") && root.getAttribute("data-ssr-path") === path && !root.getAttribute("data-ssr-used")) {
+      root.setAttribute("data-ssr-used", "1");
+      document.title = root.getAttribute("data-ssr-title");
+      return;
+    }
+    var key = TITLE_KEYS[path];
+    var t = key && window.atlasI18n && window.atlasI18n.t ? window.atlasI18n.t(key) : TITLES[path];
     document.title = t ? (t + " · " + brandName()) : brandName();
   }
   function setMapLive(on) {
@@ -72,7 +92,7 @@
       var links = nav.querySelectorAll("a[data-about], a[data-support]");
       for (var i = 0; i < links.length; i++) {
         var isSupport = links[i].hasAttribute("data-support");
-        var href = (links[i].getAttribute("href") || "").split("#")[0];
+        var href = (links[i].getAttribute("href") || "").split("#")[0].replace(LANG_PATH, "") || "/";
         var on = hash === "support" ? isSupport : (!isSupport && href === path);
         if (on) links[i].setAttribute("aria-current", "page");
         else links[i].removeAttribute("aria-current");
@@ -172,7 +192,7 @@
     hash = hash === "support" ? "support" : "";
     if (!ROUTES[path]) {
       hidePages();
-      if (push && (pathOf() !== "/" || hashOf())) history.pushState({ about: false }, "", "/");
+      if (push && (pathOf() !== "/" || hashOf())) history.pushState({ about: false }, "", langBase() ? langBase() + "/" : "/");
       return;
     }
     showPages();
@@ -180,7 +200,7 @@
     setTitle(path);
     markNav(path, hash);
     showSection(path);
-    var url = path + (hash ? "#" + hash : "");
+    var url = langBase() + path + (hash ? "#" + hash : "");
     if (push && (pathOf() !== path || hashOf() !== hash)) {
       history.pushState({ about: true, path: path, hash: hash }, "", url);
     }
@@ -197,7 +217,7 @@
     var href = a.getAttribute("href");
     if (!href || href.charAt(0) !== "/") return;
     if (a.getAttribute("target") === "_blank") return;
-    var path = href.split("?")[0].split("#")[0];
+    var path = (href.split("?")[0].split("#")[0].replace(LANG_PATH, "")) || "/";
     var hash = href.split("#")[1] || "";
     if (path.length > 1 && path.charAt(path.length - 1) === "/") path = path.slice(0, -1);
     if (a.hasAttribute("data-support") || hash === "support") {

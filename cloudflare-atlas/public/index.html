@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<script>(function(){try{var q=new URLSearchParams(location.search).get('lang');var s=localStorage.getItem('kzgeology-lang');var l=(q||s||'').toLowerCase().slice(0,2);if(l==='kz')l='kk';if(l==='kk'||l==='ru'||l==='en')document.documentElement.lang=l;}catch(e){}})();</script>
+<script>(function(){try{var m=/^\/(ru|kk)(\/|$)/.exec(location.pathname);var q=new URLSearchParams(location.search).get('lang');var s=localStorage.getItem('kzgeology-lang');var l=((m&&m[1])||q||s||'').toLowerCase().slice(0,2);if(l==='kz')l='kk';if(l==='kk'||l==='ru'||l==='en')document.documentElement.lang=l;}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <base href="/">
 <title>kzgeology</title>
@@ -10,12 +10,20 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=bm1">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=bm1">
 <!-- workers builds hook check -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="preload" href="fonts/source-serif-pro-semibold.woff2" as="font" type="font/woff2" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css" rel="stylesheet">
-<link href="style.css?v=cf35" rel="stylesheet">
+<link href="style.css?v=cf36" rel="stylesheet">
 </head>
 <body>
+<div class="seo-intro">
+  <h1 data-i18n="seo.h1">Geological maps of Kazakhstan</h1>
+  <p data-i18n="seo.intro">A free viewer for geological maps of Kazakhstan: the 1:1.5M geological map, 1:200,000 geological sheets, faults, mineral deposits and seismicity.</p>
+  <a href="/maps" data-i18n="seo.browse">All maps and 1:200,000 sheets</a>
+</div>
 <header class="topbar">
   <span class="brand">Atlas</span>
   <span class="sub" data-i18n="sub.maps">Geological maps of Kazakhstan</span>
@@ -302,12 +310,12 @@
 <script src="geo200-pilot.js?v=cf5"></script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <script src="config.js"></script>
-<script src="i18n.js?v=cf15"></script>
+<script src="i18n.js?v=cf16"></script>
 <script src="vsegei_decode.js?v=1"></script>
 <script src="legend200.js?v=2"></script>
 <script src="donate.js?v=cf11"></script>
-<script src="about.js?v=cf14"></script>
-<script src="app.js?v=cf36"></script>
+<script src="about.js?v=cf16"></script>
+<script src="app.js?v=cf37"></script>
 <script src="print.js?v=cf5"></script>
 </body>
 </html>
