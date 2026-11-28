@@ -171,11 +171,7 @@
     }
 
     function raiseHi() {
-      if (window.atlasOrderLayers) { window.atlasOrderLayers(); return; }
-      const before = firstOverlayId(map);
-      ["geo200-label-hi"].forEach((id) => {
-        if (map.getLayer(id)) { try { map.moveLayer(id, before); } catch (e) {} }
-      });
+      if (window.atlasOrderLayers) window.atlasOrderLayers();
     }
 
     function addScan(sheet) {

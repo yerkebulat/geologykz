@@ -386,10 +386,7 @@
   function faultPad() { return phone ? 7 : 3; }
   const FAULT_SPAN = 90;
   function queryBox(point, pad) { return [[point.x - pad, point.y - pad], [point.x + pad, point.y + pad]]; }
-  function raiseSel() {
-    const before = firstSymbolLayer();
-    SEL_IDS.forEach(id => { if (map.getLayer(id)) { try { map.moveLayer(id, before); } catch (e) {} } });
-  }
+  function raiseSel() { orderLayers(); }
   function ensureSelLayers() {
     if (!map.getSource(SEL_SRC)) map.addSource(SEL_SRC, { type: 'geojson', data: EMPTY_FC });
     const before = firstSymbolLayer();
@@ -1319,30 +1316,32 @@
     applyKeyVis(k);
   }
   function activeKeys() { return order.filter(keyOn); }
-  // Draw order, bottom to top: user stack, then 1:200k sheet labels, deposits, subsoil layers, licenses, click highlight, basemap labels.
+  // Draw order lives in layer-order.js (bands: basemap, hillshade, user rasters/fills, outlines, lines and borders, points, labels, tools).
+  // The Active Layers drag order only ranks layers inside the user band.
+  function layerOrderCtx() {
+    const rank = new Map();
+    activeKeys().reverse().forEach((k, i) => keyLayers(k).forEach(id => rank.set(id, i)));
+    return {
+      rank: id => (rank.has(id) ? rank.get(id) : -1),
+      isBar: id => { const m = overlayFromLayerId(id); return !!(m && (m.bar || m.id === 'wsm-2016')); },
+      pinnedPoint: id => id === 'atlas-ov-' + DEP || id.startsWith('atlas-ov-' + DEP + '-')
+    };
+  }
+  window.atlasLayerOrderCtx = layerOrderCtx;
   function orderLayers() {
-    const layers = styleLayers(); if (!layers.length) return;
-    const ours = id => /^(atlas-|eqazyna-|process-|geo200-)/.test(id);
-    const base = layers.find(l => l.type === 'symbol' && !ours(l.id));
-    const seq = [];
-    activeKeys().reverse().forEach(k => keyLayers(k).forEach(id => seq.push(id)));
-    ['geo200-label', 'geo200-label-hi', 'atlas-ov-' + DEP].forEach(id => seq.push(id));
-    layers.forEach(l => { if (l.id.startsWith('process-')) seq.push(l.id); });
-    layers.forEach(l => { if (l.id.startsWith('eqazyna-')) seq.push(l.id); });
-    SEL_IDS.forEach(id => seq.push(id));
-    layers.forEach(l => { if (l.id.startsWith('atlas-measure-')) seq.push(l.id); });
-    const ids = layers.map(l => l.id), want = seq.filter(id => ids.includes(id));
-    // Skip when already in place: same relative order and nothing foreign between the first one and the labels.
-    const pos = want.map(id => ids.indexOf(id)), end = base ? ids.indexOf(base.id) : ids.length;
-    let ok = pos.every((p, i) => i === 0 || p > pos[i - 1]);
-    if (ok && pos.length) for (let i = pos[0]; i < end; i++) { if (!ours(ids[i])) { ok = false; break; } }
-    if (!ok) want.forEach(id => { try { map.moveLayer(id, base && base.id); } catch (e) {} });
-    // Keep the measure line above rasters, 1:200k scans and sheet grids.
-    ['atlas-measure-halo', 'atlas-measure-casing', 'atlas-measure-line', 'atlas-measure-pts', 'atlas-sketch-halo', 'atlas-sketch-line'].forEach(id => {
-      if (map.getLayer(id)) { try { map.moveLayer(id, base && base.id); } catch (e) {} }
-    });
+    if (!window.atlasLayerOrder || !styleLayers().length) return;
+    window.atlasLayerOrder.apply(map, layerOrderCtx());
   }
   window.atlasOrderLayers = orderLayers;
+  // Safety net: any layer added or moved by any module (lazy overlays, scans, tools, style or basemap switches) is put back in its band.
+  (function () {
+    let pending = false;
+    map.on('styledata', () => {
+      if (pending || map.__atlasOrdering) return;
+      pending = true;
+      requestAnimationFrame(() => { pending = false; orderLayers(); });
+    });
+  })();
   function syncList() {
     for (let i = order.length - 1; i >= 0; i--) if (!keyOn(order[i])) order.splice(i, 1);
     allKeys().forEach(k => { if (keyOn(k) && !order.includes(k)) order.unshift(k); });
@@ -2131,12 +2130,7 @@
     function fcPts() {
       return { type: 'FeatureCollection', features: verts.map((c, i) => ({ type: 'Feature', geometry: { type: 'Point', coordinates: c }, properties: { i } })) };
     }
-    function raise() {
-      const layers = (map.getStyle() && map.getStyle().layers) || [];
-      const base = layers.find(l => l.type === 'symbol' && !/^(atlas-|eqazyna-|process-|geo200-)/.test(l.id));
-      const before = base && base.id;
-      LIDS.forEach(id => { if (map.getLayer(id)) { try { map.moveLayer(id, before); } catch (e) {} } });
-    }
+    function raise() { orderLayers(); }
     function ensure() {
       if (!map.getStyle() || !map.getStyle().layers) return;
       if (!map.getSource(SRC)) map.addSource(SRC, { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
@@ -2432,11 +2426,7 @@
     function fc() {
       return { type: 'FeatureCollection', features: live ? features.concat([live]) : features };
     }
-    function raise() {
-      const layers = (map.getStyle() && map.getStyle().layers) || [];
-      const base = layers.find(l => l.type === 'symbol' && !/^(atlas-|eqazyna-|process-|geo200-)/.test(l.id));
-      LIDS.forEach(id => { if (map.getLayer(id)) { try { map.moveLayer(id, base && base.id); } catch (e) {} } });
-    }
+    function raise() { orderLayers(); }
     function ensure() {
       if (!map.getStyle() || !map.getStyle().layers) return;
       if (!map.getSource(SRC)) map.addSource(SRC, { type: 'geojson', data: fc() });
@@ -3768,6 +3758,8 @@
           copiedLayers.push(l.id);
         } catch (e) {}
       });
+      // Same band order on the compare copy as on the main map.
+      try { if (window.atlasLayerOrder) window.atlasLayerOrder.apply(map2, layerOrderCtx()); } catch (e) {}
       applyingRight = false;
       if (rightAgain && on) applyRight();
     }
@@ -4438,6 +4430,7 @@
           'hillshade-illumination-direction': 315
         }
       }, firstOurs && firstOurs.id);
+      orderLayers();
     }
     function wantTerrain() {
       return on && map.getZoom() >= TERRAIN_MIN_ZOOM;

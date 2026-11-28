@@ -137,43 +137,10 @@
     }
 
     const LIC_IDS = ["eqazyna-fill", "eqazyna-casing", "eqazyna-line"];
-    const isSel = (id) => id.startsWith("atlas-sel-");
 
-    // True when licenses already sit directly under the basemap labels, with
-    // only the click-selection highlight between them and the labels.
-    function inOrder() {
-      const layers = map.getStyle().layers || [];
-      const ids = layers.map((l) => l.id);
-      const pos = LIC_IDS.map((id) => ids.indexOf(id));
-      if (pos.some((p) => p < 0)) return true;
-      if (!(pos[0] < pos[1] && pos[1] < pos[2])) return false;
-      for (let i = pos[0] + 1; i < layers.length; i++) {
-        const l = layers[i];
-        if (LIC_IDS.includes(l.id) || isSel(l.id) || l.type === "symbol") continue;
-        return false;
-      }
-      // No data layer may hide among the labels either.
-      return !layers.slice(pos[2] + 1).some((l) => l.id.startsWith("atlas-") && !isSel(l.id));
-    }
-
-    // Licenses go on top of every data layer (lithology, faults, deposits,
-    // main atlas maps, any overlay added later), under basemap labels only.
+    // Draw order is decided in one place (layer-order.js, run by app.js).
     function syncOrder() {
-      if (LIC_IDS.some((id) => !map.getLayer(id))) return;
-      if (inOrder()) return;
-      const before = beforeId();
-      try {
-        const layers = map.getStyle().layers || [];
-        const idx = before ? layers.findIndex((l) => l.id === before) : layers.length;
-        // Pull data layers that were added above the labels back under them.
-        if (idx >= 0) {
-          layers.slice(idx).filter((l) => l.type !== "symbol" && !LIC_IDS.includes(l.id) && !isSel(l.id)).forEach((l) => {
-            map.moveLayer(l.id, before);
-          });
-        }
-        LIC_IDS.forEach((id) => map.moveLayer(id, before));
-        if (window.atlasRaiseSel) window.atlasRaiseSel();
-      } catch (e) {}
+      if (window.atlasOrderLayers) window.atlasOrderLayers();
     }
 
     const EQ_STORE = "atlas-eqazyna-v2";
@@ -261,14 +228,6 @@
     }
 
     addLayers();
-    // Safety net: any layer added or moved later (lazy overlays, main maps,
-    // basemap changes) triggers styledata; restore licenses on top if needed.
-    let pending = false;
-    map.on("styledata", () => {
-      if (pending) return;
-      pending = true;
-      requestAnimationFrame(() => { pending = false; syncOrder(); });
-    });
     tg.addEventListener("click", (e) => { e.stopPropagation(); set(!on); });
     syncToggle();
     if (on) set(true);

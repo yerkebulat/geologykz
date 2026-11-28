@@ -233,13 +233,9 @@
       "process-pugfn-fill", "process-pugfn-line"
     ];
 
+    // Draw order is decided in one place (layer-order.js, run by app.js).
     function placeUnderLicenses() {
-      const before = beforeLicenses();
-      if (!before) return;
-      try {
-        PROCESS_IDS.forEach((id) => { if (map.getLayer(id)) map.moveLayer(id, before); });
-        if (window.atlasEqazyna && window.atlasEqazyna.syncOrder) window.atlasEqazyna.syncOrder();
-      } catch (e) {}
+      if (window.atlasOrderLayers) window.atlasOrderLayers();
     }
 
     function wantedVis(key, show) {
@@ -435,12 +431,6 @@
     syncToggles();
     map.on("zoomend", () => {
       SPECS.forEach((s) => { if (state[s.id]) maybeLoadCells(s); });
-    });
-    let pending = false;
-    map.on("styledata", () => {
-      if (pending) return;
-      pending = true;
-      requestAnimationFrame(() => { pending = false; placeUnderLicenses(); });
     });
     if (state.open) setSpec(SPECS[0], true);
     if (state.auction) setSpec(SPECS[1], true);
