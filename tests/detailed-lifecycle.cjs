@@ -199,10 +199,33 @@ function env({ hold = false, fresh = false, storage, blocked = false, zoom = 10,
   assert.equal(corrupt.ids().length, 0);
   [corrupt, blocked].forEach((v) => v.close());
 
+  // Hide-then-zoom-out for each scale group: uncheck after sheets are in, widen the view, fire zoomend.
+  async function hideThenZoomOut(label, bounds) {
+    const e = env({ zoom: 10, bounds });
+    await e.flush();
+    await e.api.show();
+    await tick();
+    assert(e.ids().length >= 1, label + " should load sheets at zoom 10");
+    e.w.document.getElementById("detail-toggle").checked = false;
+    e.w.document.getElementById("detail-toggle").dispatchEvent(new e.w.Event("change"));
+    await e.api.load();
+    assert.equal(e.ids().length, 0, label + " hide should drop sheets");
+    e.state.zoom = 7;
+    e.state.bounds = { west: 50, south: 40, east: 87, north: 55 };
+    if (e.state.handlers.zoomend) e.state.handlers.zoomend();
+    await e.api.load();
+    assert.equal(e.ids().length, 0, label + " must stay hidden after hide-then-zoom-out");
+    assert(!e.w.document.getElementById("detail-toggle").checked);
+    e.close();
+  }
+  await hideThenZoomOut("1:200k", { west: 72.2, south: 48.1, east: 72.8, north: 48.5 });
+  await hideThenZoomOut("1:500k", { west: 75.2, south: 43.0, east: 77.5, north: 43.8 });
+  await hideThenZoomOut("1:1,000,000", { west: 66.2, south: 44.2, east: 71.5, north: 47.5 });
+
   const html = fs.readFileSync(root + "index.html", "utf8");
   assert(html.includes("National geological map (1:1,500,000)"));
   assert(html.includes("Hold for more"));
   assert(html.includes("Source: Unified Subsoil Use Platform"));
   assert(!html.includes("Show all 1:200,000"));
-  console.log("PASS simplified detailed maps: one toggle, scans only, lazy in-view load, v5/v4/v3 migration, e-qazyna stays off until chosen, hide/zoom, no color assets.");
+  console.log("PASS simplified detailed maps: one toggle, scans only, lazy in-view load, v5/v4/v3 migration, e-qazyna stays off until chosen, hide/zoom, hide-then-zoom-out for 200k/500k/1M, no color assets.");
 })().catch((e) => { console.error(e); process.exit(1); });

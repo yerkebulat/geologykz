@@ -194,8 +194,10 @@
     }
 
     function visible(show) {
+      let vis = show ? "visible" : "none";
+      if (show && window.atlasLayerVisible && !window.atlasLayerVisible("eq")) vis = "none";
       LIC_IDS.forEach((id) => {
-        if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", show ? "visible" : "none");
+        if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", vis);
       });
     }
 

@@ -242,16 +242,23 @@
       } catch (e) {}
     }
 
+    function wantedVis(key, show) {
+      if (!show) return "none";
+      if (window.atlasLayerVisible) return window.atlasLayerVisible(key) ? "visible" : "none";
+      return "visible";
+    }
     function setVisible(id, show) {
+      const vis = wantedVis("pr:" + id, show);
       ["-clusters-fill", "-clusters-casing", "-clusters-line", "-clusters-dot", "-cells-fill", "-cells-line"].forEach((s) => {
         const lid = "process-" + id + s;
-        if (map.getLayer(lid)) map.setLayoutProperty(lid, "visibility", show ? "visible" : "none");
+        if (map.getLayer(lid)) map.setLayoutProperty(lid, "visibility", vis);
       });
     }
 
     function setPugfnVisible(show) {
+      const vis = wantedVis("pr:pugfn", show);
       ["process-pugfn-fill", "process-pugfn-line"].forEach((id) => {
-        if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", show ? "visible" : "none");
+        if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", vis);
       });
     }
 

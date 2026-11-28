@@ -1266,6 +1266,9 @@
   function applyAllState() {
     pinnedKeys().concat(activeKeys()).forEach(applyKeyOpacity);
   }
+  function layerVisible(k) { return keyOn(k) && !layerHid.has(k); }
+  window.atlasLayerVisible = layerVisible;
+  window.atlasApplyKeyVis = applyKeyVis;
   function bumpOp(v) { return v <= 0 ? 0 : Math.min(1, v + 0.1); }
   function setPaint(id, prop, val) { try { map.setPaintProperty(id, prop, val); } catch (e) {} }
   function applyKeyOpacity(k) {
@@ -1778,6 +1781,7 @@
       setLoading('fig1b', true);
       if (!map.getSource(FIG1B.id)) map.addSource(FIG1B.id, { type: 'image', url: FIG1B.url, coordinates: FIG1B.coords });
       if (!map.getLayer(FIG1B.id)) map.addLayer({ id: FIG1B.id, type: 'raster', source: FIG1B.id, paint: { 'raster-opacity': opOf('fig1b'), 'raster-fade-duration': 0 } }, firstSymbolLayer());
+      applyKeyVis('fig1b');
       const done = () => setLoading('fig1b', false);
       if (map.loaded && map.loaded()) map.once('idle', done); else done();
     } else {
@@ -3663,7 +3667,8 @@
       allActiveKeys().forEach(k => {
         compareLayerIds(k).forEach(lid => {
           if (!map.getLayer(lid)) return;
-          try { map.setLayoutProperty(lid, 'visibility', k === leftKey ? 'visible' : 'none'); } catch (e) {}
+          const vis = (k === leftKey && !layerHid.has(k)) ? 'visible' : 'none';
+          try { map.setLayoutProperty(lid, 'visibility', vis); } catch (e) {}
         });
       });
       applyRight();
@@ -3698,10 +3703,10 @@
       }
       return def;
     }
-    function cloneLayer(l) {
+    function cloneLayer(l, vis) {
       const copy = JSON.parse(JSON.stringify(l));
       if (!copy.layout) copy.layout = {};
-      copy.layout.visibility = 'visible';
+      copy.layout.visibility = vis || 'visible';
       return copy;
     }
     function syncMap2Basemap() {
@@ -3740,7 +3745,7 @@
         }
         const satLayer = (st.layers || []).find(l => l.id === 'sat');
         if (satLayer && map2.getSource('sat') && !map2.getLayer('sat')) {
-          try { map2.addLayer(cloneLayer(satLayer), before && before.id); copiedLayers.push('sat'); } catch (e) {}
+          try { map2.addLayer(cloneLayer(satLayer, 'visible'), before && before.id); copiedLayers.push('sat'); } catch (e) {}
         }
         try { if (map2.getLayer('sat')) map2.setLayoutProperty('sat', 'visibility', 'visible'); } catch (e) {}
       }
@@ -3758,7 +3763,8 @@
       layers.forEach(l => {
         if (map2.getLayer(l.id) || !map2.getSource(l.source)) return;
         try {
-          map2.addLayer(cloneLayer(l), before && before.id);
+          const vis = layerHid.has(rightKey) ? 'none' : 'visible';
+          map2.addLayer(cloneLayer(l, vis), before && before.id);
           copiedLayers.push(l.id);
         } catch (e) {}
       });
@@ -4598,7 +4604,7 @@
     applyBasemap();
     if (typeof initAtlasEqazyna === 'function') initAtlasEqazyna(map, { onUpdate: () => { syncList(); renderLegend(); }, coordLine });
     if (typeof initAtlasProcess === 'function') initAtlasProcess(map, { onUpdate: () => { syncList(); renderLegend(); } });
-    if (typeof initAtlasGeo200 === 'function') initAtlasGeo200(map, { onUpdate: () => { syncList(); renderLegend(); } });
+    if (typeof initAtlasGeo200 === 'function') initAtlasGeo200(map, { onUpdate: () => { syncList(); renderLegend(); }, isVisible: () => !layerHid.has('geo200'), applyVis: () => applyKeyVis('geo200') });
     const SPEC = (HASH && HASH.special) ? HASH.special : (SAVED_VIEW && Array.isArray(SAVED_VIEW.special) ? SAVED_VIEW.special : null);
     if (SPEC) {
       const has = k => SPEC.includes(k);

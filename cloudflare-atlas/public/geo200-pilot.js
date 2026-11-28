@@ -60,8 +60,28 @@
       btn.setAttribute("aria-pressed", v ? "true" : "false");
     }
 
-    function visOutlines(v) {
-      const value = v ? "visible" : "none";
+    function layerShown() {
+      if (!on) return false;
+      if (hooksSafe.isVisible) return !!hooksSafe.isVisible();
+      if (window.atlasLayerVisible) return !!window.atlasLayerVisible("geo200");
+      return true;
+    }
+    function wantedVis() { return layerShown() ? "visible" : "none"; }
+    function applyWantedVis() {
+      if (hooksSafe.applyVis) { hooksSafe.applyVis(); return; }
+      if (window.atlasApplyKeyVis) { window.atlasApplyKeyVis("geo200"); return; }
+      const vis = wantedVis();
+      const layers = (map.getStyle() && map.getStyle().layers) || [];
+      layers.forEach((l) => {
+        const id = l && l.id;
+        if (!id) return;
+        if (id === "geo200-fill" || id === "geo200-outline" || id === "geo200-label" || id === "geo200-label-hi" || id.startsWith("geo200-scan-")) {
+          if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", vis);
+        }
+      });
+    }
+    function visOutlines() {
+      const value = wantedVis();
       ["geo200-outline", "geo200-fill", "geo200-label", "geo200-label-hi"].forEach((id) => {
         if (map.getLayer(id)) map.setLayoutProperty(id, "visibility", value);
       });
@@ -132,7 +152,7 @@
           source: "geo200-outlines",
           minzoom: 5.2,
           layout: {
-            visibility: on ? "visible" : "none",
+            visibility: wantedVis(),
             "text-field": ["get", "id"],
             "text-size": 11,
             "text-font": ["Noto Sans Bold"],
@@ -180,11 +200,11 @@
           type: "raster",
           source: sid,
           minzoom: sheet.minzoom || SCAN_MIN_ZOOM,
-          layout: { visibility: on ? "visible" : "none" },
+          layout: { visibility: wantedVis() },
           paint: { "raster-opacity": currentOpacity(), "raster-fade-duration": 0 }
         }, before);
       } else {
-        map.setLayoutProperty(sid, "visibility", on ? "visible" : "none");
+        map.setLayoutProperty(sid, "visibility", wantedVis());
       }
       loaded.add(sheet.id);
     }
@@ -214,6 +234,7 @@
         if (wanted.has(s.id) && !loaded.has(s.id)) addScan(s);
       });
       raiseHi();
+      applyWantedVis();
     }
 
     async function load() {
@@ -228,7 +249,7 @@
       on = !!v;
       setBtn(on);
       if (!on && window.atlasLegend200) window.atlasLegend200.close();
-      visOutlines(on);
+      visOutlines();
       syncScans();
       try { localStorage.setItem(STORE, on ? "1" : "0"); } catch (e) {}
       if (hooksSafe.onUpdate) hooksSafe.onUpdate();
@@ -268,7 +289,7 @@
       try { start = localStorage.getItem(STORE) === "1"; } catch (e) {}
       startWanted = false;
       if (start) setOn(true);
-      else { setBtn(false); visOutlines(false); if (hooksSafe.onUpdate) hooksSafe.onUpdate(); }
+      else { setBtn(false); visOutlines(); if (hooksSafe.onUpdate) hooksSafe.onUpdate(); }
     }).catch((e) => {
       startWanted = false;
       console.warn("geo200", e);
