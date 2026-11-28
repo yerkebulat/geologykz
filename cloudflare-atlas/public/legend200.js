@@ -109,7 +109,7 @@
     h += '<h3 class="l2-h l2-h2">' + esc(t('legend200.signs')) + '</h3>';
     doc.signs.forEach(function (s) {
       h += '<div class="l2-row sign" data-kind="sign" data-id="' + esc(s.id) + '">' +
-        '<img class="l2-svg" src="legend-signs/' + esc(s.svg) + '" alt="" loading="lazy" width="80" height="28">' +
+        '<img class="l2-svg" src="legend-signs/' + esc(s.svg) + '?v=2" alt="" loading="lazy" width="80" height="28">' +
         '<span class="l2-name">' + esc(s[L] || s.en) + '</span></div>';
     });
     h += '</div>';
